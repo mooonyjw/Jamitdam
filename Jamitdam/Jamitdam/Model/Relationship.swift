@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct Relationship {
+    let id: UUID = UUID()
     var nickname: String
     var hashtags: [String]
     var icon: String
