@@ -14,6 +14,8 @@
 		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
 		971A0BA52CD9D32900A2BF5E /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */; };
 		971A0BA72CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */; };
+		9748B69F2CDA553D009A0A71 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748B69D2CDA553D009A0A71 /* Relationship.swift */; };
+		9748B6A22CDA5543009A0A71 /* CreateJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9748B6A02CDA5543009A0A71 /* CreateJamView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
 		971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9748B69D2CDA553D009A0A71 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		9748B6A02CDA5543009A0A71 /* CreateJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateJamView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
+				9748B6A12CDA5543009A0A71 /* View */,
+				9748B69E2CDA553D009A0A71 /* Model */,
 				971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */,
 				971A0B8B2CD9D32700A2BF5E /* ContentView.swift */,
 				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
@@ -125,6 +131,22 @@
 				971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */,
 			);
 			path = JamitdamUITests;
+			sourceTree = "<group>";
+		};
+		9748B69E2CDA553D009A0A71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9748B69D2CDA553D009A0A71 /* Relationship.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9748B6A12CDA5543009A0A71 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9748B6A02CDA5543009A0A71 /* CreateJamView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */,
+				9748B6A22CDA5543009A0A71 /* CreateJamView.swift in Sources */,
+				9748B69F2CDA553D009A0A71 /* Relationship.swift in Sources */,
 				971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
