@@ -19,12 +19,12 @@ var baeksook = Relationship(nickname: "능이백숙", hashtags: ["치근덕"], i
 var son = Relationship(nickname: "SON", hashtags: ["전남친", "과CC"], icon: "⚽️", startDate: Date() - 86400 * 30 * 24, userId: id)
 var airpod = Relationship(nickname: "에어팟", hashtags: ["썸남"], icon: "🎧", startDate: Date() - 86400, userId: id)
 
-var relationships: Relationship[] = [tiger, podong, gamer, baeksook, son]
+var relationships: [Relationship] = [tiger, podong, gamer, baeksook, son]
 
-func getRelationships = () -> Relationship[] {
+func getRelationships() -> [Relationship] {
     return relationships
 }
 
-func addRelationship = (relationship: Relationship) {
+func addRelationship(relationship: Relationship) {
     relationships.append(relationship)
 }
