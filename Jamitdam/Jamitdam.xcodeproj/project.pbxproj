@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E7916BB2CDA207200535605 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7916BA2CDA207000535605 /* Posts.swift */; };
+		8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9237DB2CDB0C4400301FE8 /* Relationship.swift */; };
 		971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */; };
 		971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B8B2CD9D32700A2BF5E /* ContentView.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		8E7916BA2CDA207000535605 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		8E9237DB2CDB0C4400301FE8 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		971A0B8B2CD9D32700A2BF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 		8E7916B82CDA202700535605 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E9237DB2CDB0C4400301FE8 /* Relationship.swift */,
 				8E7916BA2CDA207000535605 /* Posts.swift */,
 			);
 			path = Model;
@@ -271,6 +274,7 @@
 				971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */,
 				971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */,
 				8E7916BB2CDA207200535605 /* Posts.swift in Sources */,
+				8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
