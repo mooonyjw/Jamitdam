@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E8424142CDB0FD7001B8E4D /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8424122CDB0FD7001B8E4D /* Relationship.swift */; };
+		8EFA82FE2CDA0972007B2E38 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA82FC2CDA0972007B2E38 /* Relationship.swift */; };
+		8EFA83002CDA098E007B2E38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA82FF2CDA098E007B2E38 /* User.swift */; };
 		971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */; };
 		971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B8B2CD9D32700A2BF5E /* ContentView.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
@@ -35,7 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E8424122CDB0FD7001B8E4D /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		8EFA82FC2CDA0972007B2E38 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		8EFA82FF2CDA098E007B2E38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		971A0B8B2CD9D32700A2BF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,10 +75,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E8424132CDB0FD7001B8E4D /* Model */ = {
+		8EFA82FD2CDA0972007B2E38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E8424122CDB0FD7001B8E4D /* Relationship.swift */,
+				8EFA82FC2CDA0972007B2E38 /* Relationship.swift */,
+				8EFA82FF2CDA098E007B2E38 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +111,7 @@
 				971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */,
 				971A0B8B2CD9D32700A2BF5E /* ContentView.swift */,
 				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
+				8EFA82FD2CDA0972007B2E38 /* Model */,
 				971A0B8F2CD9D32900A2BF5E /* Preview Content */,
 			);
 			path = Jamitdam;
@@ -268,8 +272,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EFA83002CDA098E007B2E38 /* User.swift in Sources */,
 				971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */,
-				8E8424142CDB0FD7001B8E4D /* Relationship.swift in Sources */,
+				8EFA82FE2CDA0972007B2E38 /* Relationship.swift in Sources */,
 				971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
