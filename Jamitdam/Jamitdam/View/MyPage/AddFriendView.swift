@@ -11,7 +11,7 @@ struct AddFriendView: View {
     
     @State private var friendName: String = ""
     @State private var friendID: String = ""
-    @State private var friendsList = [("John", "john123"), ("Jane", "jane456")]
+    @State private var friendsList = [("John", "john123"), ("Jane", "jane456")] // 더미데이터
     
     var body: some View {
         VStack(spacing: 0) {
