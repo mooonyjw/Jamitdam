@@ -26,7 +26,7 @@ struct AddFriendView: View {
             )
             
             
-            //Spacer().frame(height: 33)
+            // 간격 33
             Spacer().frame(height: UIScreen.main.bounds.height * 0.0391)
 
             
