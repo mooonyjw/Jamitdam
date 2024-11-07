@@ -13,7 +13,8 @@ struct TopBar: View {
     var showBackButton: Bool = true
     var backButtonFunc: (() -> Void)
     var rightButton: String = ""
-    var rightButtonFunc: (() -> Void)
+    var rightButtonFunc: (() -> Void) = {}
+    var rightButtonDisabled: Bool = false
     
     var body: some View {
         HStack {
@@ -33,7 +34,7 @@ struct TopBar: View {
             Spacer()
             
             // 추가 버튼의 유무 결정 가능
-            if !rightButton.isEmpty {
+            if !rightButtonDisabled && rightButton != ""{
                 Button(action: rightButtonFunc) {
                     Text(rightButton)
                         .padding()
@@ -45,6 +46,7 @@ struct TopBar: View {
         .padding(.top, 0)
         .frame(height: 57.0)
         .background(Color("Whitebackground"))
+        
         
         // divider
         .overlay(

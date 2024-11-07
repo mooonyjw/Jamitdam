@@ -21,9 +21,10 @@ struct AddFriendView: View {
                 title: "아이디로 친구 추가",
                 backButtonFunc: { print("뒤로 가기 클릭") },
                 rightButton: "추가",
-                rightButtonFunc: { print("추가 버튼 클릭") }
+                rightButtonFunc: { print("추가 버튼 클릭") },
+                rightButtonDisabled: !isFriendValid()
             )
-            .disabled(!isFriendValid())
+            
             
             //Spacer().frame(height: 33)
             Spacer().frame(height: UIScreen.main.bounds.height * 0.0391)
