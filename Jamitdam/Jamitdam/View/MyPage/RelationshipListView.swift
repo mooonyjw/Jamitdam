@@ -6,6 +6,8 @@ struct RelationshipListView: View {
     @State private var user1Relationships: [Relationship] = getRelationships()
     @State private var isShowDeleteAlert = false
     @State private var selectedRelationship: Relationship?
+    // 편집 모드 상태
+    @State private var isEditing = false
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
@@ -19,17 +21,57 @@ struct RelationshipListView: View {
                 
                 TopBar(
                     title: "인연",
-                    backButtonFunc: { print("뒤로 가기 클릭") },
-                    rightButton: "편집",
-                    rightButtonDisabled: false
+                    backButtonFunc: { print("뒤로 가기 클릭") }
+                    //rightButton: "편집",
+//                    rightButtonFunc: {
+//                        isEditing.toggle()
+//                        print("편집 버튼 클릭")
+//                    }, rightButtonDisabled: false
                 )
-                
+                .overlay(
+                    HStack {
+                        Spacer()
+                        
+                        Menu {
+                            Button("수정") {
+                                isEditing.toggle()
+                            }
+                            Button("삭제") {
+                                if let relationship = selectedRelationship {
+                                    deleteRelationship(relationship)
+                                }
+                            }
+                        } label: {
+                            Text("편집")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    .padding(.trailing, 21)
+                )
+
                 Spacer().frame(height: 9 * heightRatio)
                 
                 // 인연 리스트
                 List {
                     ForEach(user1Relationships) { relationship in
                         RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
+                            .contextMenu {
+                                if isEditing { // 편집 모드일 때만 메뉴 표시
+                                    Button(action: {
+                                        // 수정 버튼 눌렀을 때 동작
+                                        print("수정 \(relationship.nickname)")
+                                    }) {
+                                        Label("수정", systemImage: "pencil")
+                                    }
+                                    Button(action: {
+                                        // 삭제 버튼 눌렀을 때 동작
+                                        selectedRelationship = relationship
+                                        isShowDeleteAlert.toggle()
+                                    }) {
+                                        Label("삭제", systemImage: "trash")
+                                    }
+                                }
+                            }
                             .listRowInsets(EdgeInsets())
                             .listRowSeparator(.hidden)
                             // 왼쪽으로 스와이프하여 삭제
@@ -46,6 +88,7 @@ struct RelationshipListView: View {
                         user1Relationships.remove(atOffsets: indexSet)
                     }
                 }
+                .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 // 삭제 시 경고창
                 .alert(isPresented: $isShowDeleteAlert) {
                     Alert(
@@ -63,7 +106,7 @@ struct RelationshipListView: View {
                 
                 Spacer()
             }
-            .navigationBarItems(trailing: EditButton())
+
         }
     }
 

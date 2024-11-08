@@ -1,10 +1,3 @@
-//
-//  BlockedFriendListView.swift
-//  Jamitdam
-//
-//  Created by sojeong on 11/7/24.
-//
-
 import SwiftUI
 import Foundation
 
