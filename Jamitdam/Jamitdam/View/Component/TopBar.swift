@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Jamitdam/Jamitdam/View/Component/TopBar.swift
 
 /*
  상단바 컴포넌트
@@ -7,6 +8,8 @@
  */
 
 
+=======
+>>>>>>> feature/#6:Jamitdam/Jamitdam/View/Components/TopBar.swift
 import SwiftUI
 
 struct TopBar: View {
