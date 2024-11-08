@@ -15,27 +15,36 @@ struct BlockedFriendListView: View {
     @State private var showingAlert = false
     @State private var selectedFriend: User = User(name: "", profile: "", userID: "", password: "", email: "")
     
+    var screenWidth: CGFloat = 390
+    var screenHeight: CGFloat = 844
+    
+    
     var body: some View {
-        VStack(spacing: 0) {
+        GeometryReader { geometry in
             
-            TopBar(
-                title: "차단된 친구",
-                backButtonFunc: { print("뒤로 가기 클릭") }
-            )
+            let widthRatio = geometry.size.width / screenWidth
+            let heightRatio = geometry.size.height / screenHeight
             
-            // 간격 9
-            Spacer().frame(height: UIScreen.main.bounds.height * 0.0109)
-            
-            
-            // 차단된 친구 목록
-            ForEach(blockedFriends) { friend in
-                BlockedFriendRow(friend: friend) {
-                    // 차단 해제 버튼 클릭 시
-                    showingAlert = true
-                    selectedFriend = friend
+            VStack(spacing: 0) {
+                
+                TopBar(
+                    title: "차단된 친구",
+                    backButtonFunc: { print("뒤로 가기 클릭") }
+                )
+                
+                // 간격 9
+                Spacer().frame(height: 9 * heightRatio)
+                
+                
+                // 차단된 친구 목록
+                ForEach(blockedFriends) { friend in
+                    BlockedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
+                        // 차단 해제 버튼 클릭 시
+                        showingAlert = true
+                        selectedFriend = friend
+                    }
                 }
-            }
-            .alert(isPresented: $showingAlert) {
+                .alert(isPresented: $showingAlert) {
                     Alert(
                         title: Text("삭제하시겠습니까?"),
                         message: Text("이 친구를 차단 해제하시겠습니까?"),
@@ -46,8 +55,9 @@ struct BlockedFriendListView: View {
                         
                     )
                 }
-            
-            Spacer()
+                
+                Spacer()
+            }
         }
     }
     
@@ -60,6 +70,9 @@ struct BlockedFriendListView: View {
 struct BlockedFriendRow: View {
     var friend: User
     
+    var widthRatio: CGFloat
+    var heightRatio: CGFloat
+    
     // 차단 해제 기능 추후 구현
     var unblockAction: () -> Void
 
@@ -68,38 +81,38 @@ struct BlockedFriendRow: View {
         
         HStack {
             
-            Spacer().frame(width: UIScreen.main.bounds.height * 0.0213)
+            Spacer().frame(width: widthRatio * 18)
             
             // 차단 친구 프로필
             Image(friend.profile)
                 .resizable()
-                .frame(width: 47, height: 47)
+                .frame(width: widthRatio * 47, height: heightRatio * 47)
                 .clipShape(Circle())
             
             // 이미지와 텍스트 간 간격 21
-            Spacer().frame(width: 21)
+            Spacer().frame(width: widthRatio * 21)
             
             Text(friend.name)
-                .font(.system(size: 20))
+                .font(.system(size: widthRatio * 20))
                 .foregroundColor(Color.black)
             
             Spacer()
             
             Button(action: unblockAction) {
                 Text("차단 해제")
-                    .font(.system(size: 16))
+                    .font(.system(size: widthRatio * 16))
                     .fontWeight(.medium)
                     .foregroundColor(.white)
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 12)
+                    .padding(.vertical, heightRatio * 6)
+                    .padding(.horizontal, widthRatio * 12)
                     .background(Color("Redemphasis2"))
                     .cornerRadius(13)
             }
             
-            Spacer().frame(width: 21)
+            Spacer().frame(width: widthRatio * 21)
             
         }
-        .padding(.vertical, 19)
+        .padding(.vertical, heightRatio * 19)
     }
     
 }
