@@ -9,7 +9,7 @@ public struct RedButton: View {
     // 버튼 크기
     let height: CGFloat
     
-    public init(title: String, isEnabled: Binding<Bool>, action: @escaping () -> Void, height: CGFloat) {
+    public init(title: String, isEnabled: Binding<Bool>, height: CGFloat, action: @escaping () -> Void) {
         self.title = title
         self._isEnabled = isEnabled
         self.action = action
