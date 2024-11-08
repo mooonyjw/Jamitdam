@@ -46,9 +46,9 @@ struct BlockedFriendListView: View {
                 }
                 .alert(isPresented: $showingAlert) {
                     Alert(
-                        title: Text("삭제하시겠습니까?"),
+                        title: Text("차단 해제하시겠습니까?"),
                         message: Text("이 친구를 차단 해제하시겠습니까?"),
-                        primaryButton: .destructive(Text("삭제")) {
+                        primaryButton: .destructive(Text("해제")) {
                             removeFriendFromBlockedList(selectedFriend)
                         },
                         secondaryButton: .cancel(Text("취소"))
