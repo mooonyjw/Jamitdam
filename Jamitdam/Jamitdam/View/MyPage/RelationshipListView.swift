@@ -11,8 +11,8 @@ import Foundation
 struct RelationshipListView: View {
     
     // 더미 데이터 - 유수현(user1)의 인연 목록
-    @State private var user1Relationships = relationships.filter { $0.userId == user1.id }
-    
+    @State private var user1Relationships: [Relationship] = getRelationships()
+
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
@@ -53,11 +53,10 @@ struct RelationshipRow: View {
             
             Spacer().frame(width: 18 * widthRatio)
             
-            Text("😊") // 이모지 텍스트
-                .font(.system(size: 47 * widthRatio)) // 크기 조정
-                .frame(width: 47 * widthRatio, height: 47 * heightRatio) // 프레임 크기 조정
-                .background(Color.yellow) // 배경 색상
-                .clipShape(Circle()) // 원형으로 자르기
+            Text(relationship.icon)
+                .font(.system(size: 47 * widthRatio))
+                .frame(width: 47 * widthRatio, height: 47 * heightRatio)
+    
             
             Spacer().frame(width: 21 * widthRatio)
             
@@ -67,10 +66,12 @@ struct RelationshipRow: View {
             
             Spacer()
             
-            Text(relationship.hashtags[0])
-                .font(.system(size: 20 * widthRatio))
-                .foregroundColor(Color.black)
-            
+            // 인연 해시태그배열 요소 모두 작성
+            ForEach(relationship.hashtags, id: \.self) { hashtag in
+                Text("#" + hashtag)
+                    .font(.system(size: 15 * widthRatio))
+                    .foregroundColor(Color("Redemphasis"))
+            }
             
             Spacer().frame(width: 21 * widthRatio)
             
