@@ -12,7 +12,7 @@ struct AddFriendView: View {
     var body: some View {
         GeometryReader { geometry in
             
-            let _widthRatio = geometry.size.width / screenWidth
+            let widthRatio = geometry.size.width / screenWidth
             let heightRatio = geometry.size.height / screenHeight
             
             VStack(spacing: 0) {

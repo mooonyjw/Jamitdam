@@ -1,15 +1,3 @@
-<<<<<<< HEAD:Jamitdam/Jamitdam/View/Component/TopBar.swift
-
-/*
- 상단바 컴포넌트
- - 제목 및 오른쪽 버튼 내용은 동적으로 변경 가능
- - 오른쪽 버튼은 사용 여부 결정 가능
- - 알림창, 마이페이지 세부 페이지에서 사용된다.
- */
-
-
-=======
->>>>>>> feature/#6:Jamitdam/Jamitdam/View/Components/TopBar.swift
 import SwiftUI
 
 struct TopBar: View {
