@@ -1,10 +1,3 @@
-//
-//  Posts.swift
-//  Jamitdam
-//
-//  Created by sojeong on 11/5/24.
-//
-
 import SwiftUI
 import Foundation
 

@@ -1,10 +1,3 @@
-//
-//  AddFriendView1.swift
-//  Jamitdam
-//
-//  Created by sojeong on 11/6/24.
-//
-
 import SwiftUI
 
 struct AddFriendView: View {
