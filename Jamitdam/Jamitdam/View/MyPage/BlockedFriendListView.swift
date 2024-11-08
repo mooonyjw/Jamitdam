@@ -53,7 +53,7 @@ struct BlockedFriendListView: View {
     
     // 인자로 받은 친구를 유저의 차단 목록에서 제거하는 함수
     private func removeFriendFromBlockedList(_ friend: User) {
-        blockedFriends.removeAll { $0.userID == friend.userID }
+        blockedFriends.removeAll { $0.id == friend.id }
     }
 }
 
