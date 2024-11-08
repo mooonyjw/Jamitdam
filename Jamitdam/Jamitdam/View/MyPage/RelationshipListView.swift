@@ -6,8 +6,11 @@ struct RelationshipListView: View {
     @State private var user1Relationships: [Relationship] = getRelationships()
     @State private var isShowDeleteAlert = false
     @State private var selectedRelationship: Relationship?
+
     // 편집 모드 상태
     @State private var isEditing = false
+    // 수정 페이지로 이동 여부 상태
+    @State private var navigateToEdit = false
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
@@ -21,33 +24,19 @@ struct RelationshipListView: View {
                 
                 TopBar(
                     title: "인연",
-                    backButtonFunc: { print("뒤로 가기 클릭") }
-                    //rightButton: "편집",
-//                    rightButtonFunc: {
-//                        isEditing.toggle()
-//                        print("편집 버튼 클릭")
-//                    }, rightButtonDisabled: false
-                )
-                .overlay(
-                    HStack {
-                        Spacer()
-                        
-                        Menu {
-                            Button("수정") {
-                                isEditing.toggle()
-                            }
-                            Button("삭제") {
-                                if let relationship = selectedRelationship {
-                                    deleteRelationship(relationship)
-                                }
-                            }
-                        } label: {
-                            Text("편집")
-                                .foregroundColor(.blue)
-                        }
+                    backButtonFunc: { print("뒤로 가기 클릭") },
+                    
+                    // isEditing이 false일 때는 편집, true일 때는 완료
+                    rightButton: isEditing ? "완료" : "편집",
+                    
+                    // 편집 버튼 누를 시 편집 모드로 전환
+                    rightButtonFunc: {
+                        isEditing.toggle()
+                        print(isEditing ? "편집 모드 활성화" : "편집 모드 비활성화")
                     }
-                    .padding(.trailing, 21)
                 )
+
+                
 
                 Spacer().frame(height: 9 * heightRatio)
                 
@@ -55,32 +44,39 @@ struct RelationshipListView: View {
                 List {
                     ForEach(user1Relationships) { relationship in
                         RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
-                            .contextMenu {
-                                if isEditing { // 편집 모드일 때만 메뉴 표시
-                                    Button(action: {
-                                        // 수정 버튼 눌렀을 때 동작
-                                        print("수정 \(relationship.nickname)")
-                                    }) {
-                                        Label("수정", systemImage: "pencil")
-                                    }
-                                    Button(action: {
-                                        // 삭제 버튼 눌렀을 때 동작
-                                        selectedRelationship = relationship
-                                        isShowDeleteAlert.toggle()
-                                    }) {
-                                        Label("삭제", systemImage: "trash")
-                                    }
+                            // 각 열 선택 시 각 인연 수정 페이지로 이동
+                            .contentShape(Rectangle()) // 전체 Row를 터치 영역으로 설정
+                            .onTapGesture {
+                                if isEditing {
+                                    selectedRelationship = relationship
+                                    navigateToEdit = true // 수정 페이지로 이동 가능
+                                    print("\(relationship.nickname) 수정 페이지로 이동")
                                 }
                             }
+                        
+                            // 수정 페이지 구현 후 수정 페이지로 이동 기능 추가
+//                          .background(
+//                                NavigationLink(
+//                                    destination: RelationshipEditView(relationship: selectedRelationship),
+//                                    isActive: $navigateToEdit
+//                                ) {
+//                                    EmptyView()
+//                                }
+//                                .hidden()
+//                            )
+                        
+                            // 각 열 간격 없애기
                             .listRowInsets(EdgeInsets())
                             .listRowSeparator(.hidden)
+                        
                             // 왼쪽으로 스와이프하여 삭제
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
                                     selectedRelationship = relationship
+                                    // 경고창 뜨도록
                                     isShowDeleteAlert.toggle()
                                 } label: {
-                                    Label("Delete", systemImage: "trash.circle")
+                                    Label("Delete", systemImage: "trash")
                                 }
                             }
                     }
@@ -88,6 +84,7 @@ struct RelationshipListView: View {
                         user1Relationships.remove(atOffsets: indexSet)
                     }
                 }
+                // 편집 모드 상태 전달
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
                 // 삭제 시 경고창
                 .alert(isPresented: $isShowDeleteAlert) {
@@ -104,6 +101,7 @@ struct RelationshipListView: View {
                 }
                 .listStyle(.plain)
                 
+              
                 Spacer()
             }
 
@@ -117,6 +115,7 @@ struct RelationshipListView: View {
     }
 }
 
+// 인연 리스트의 각 행 커스텀
 struct RelationshipRow: View {
     var relationship: Relationship
     var widthRatio: CGFloat
