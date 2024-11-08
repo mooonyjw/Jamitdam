@@ -10,7 +10,9 @@ import Foundation
 
 struct RelationshipListView: View {
     
-    @State private var relationships: [Relationship] = user1.relationships
+    // 더미 데이터 - 유수현(user1)의 인연 목록
+    @State private var user1Relationships = relationships.filter { $0.userId == user1.id }
+    
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
@@ -30,8 +32,8 @@ struct RelationshipListView: View {
                 
                 Spacer().frame(height: 9 * heightRatio)
                 
-                ForEach(friends) { friend in
-                    RelationshipRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio)
+                ForEach(user1Relationships) { relationship in
+                    RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
                 }
                 
                 Spacer()

@@ -23,7 +23,6 @@ struct User: Identifiable {
     var email: String
     var blockedFriends: [User] = []
     var friends: [User] = []
-    var relationships: [Relationship] = []
     
 }
 
