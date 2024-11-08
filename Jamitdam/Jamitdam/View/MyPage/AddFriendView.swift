@@ -11,7 +11,7 @@ struct AddFriendView: View {
     
     @State private var friendName: String = ""
     @State private var friendID: String = ""
-    @State private var friendsList = [("John", "john123"), ("Jane", "jane456")] // 더미데이터
+    @State private var friendsList = [("John", "john123"), ("Jane", "jane456")]
     
     let textFieldPadding = UIScreen.main.bounds.height * 0.0213
     
@@ -66,10 +66,10 @@ struct CustomTextField: View {
     var body: some View {
         VStack {
             TextField(placeholder, text: $text)
-                .padding(.bottom, UIScreen.main.bounds.height * 0.0105) // 텍스트 필드 내부 아래쪽 여백
+                .padding(.bottom, UIScreen.main.bounds.height * 0.0105)
                 
             Rectangle()
-                .frame(height: 1) // 아래 모서리 선 두께
+                .frame(height: 1) 
                 .foregroundColor(Color("Grayunselected"))
         }
     }
