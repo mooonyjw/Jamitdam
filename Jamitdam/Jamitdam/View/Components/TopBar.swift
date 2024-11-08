@@ -1,3 +1,4 @@
+
 /*
  상단바 컴포넌트
  - 제목 및 오른쪽 버튼 내용은 동적으로 변경 가능
@@ -40,8 +41,7 @@ struct TopBar: View {
                         .padding()
                 }
             } else {
-                // Add 버튼 공간 확보
-                Spacer().frame(width: 44)
+                Spacer().frame(width: 44) // Add 버튼 공간 확보
             }
         }
         .padding(.top, 0)

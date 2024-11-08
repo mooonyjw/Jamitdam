@@ -13,38 +13,45 @@ struct AddFriendView: View {
     @State private var friendID: String = ""
     @State private var friendsList = [("John", "john123"), ("Jane", "jane456")]
     
-    let textFieldPadding = UIScreen.main.bounds.height * 0.0213
+    let screenWidth: CGFloat = 390
+    let screenHeight: CGFloat = 844
     
     var body: some View {
-        VStack(spacing: 0) {
-            TopBar(
-                title: "아이디로 친구 추가",
-                backButtonFunc: { print("뒤로 가기 클릭") },
-                rightButton: "추가",
-                rightButtonFunc: { print("추가 버튼 클릭") },
-                rightButtonDisabled: !isFriendValid()
-            )
+        GeometryReader { geometry in
             
+            let _widthRatio = geometry.size.width / screenWidth
+            let heightRatio = geometry.size.height / screenHeight
             
-            // 간격 33
-            Spacer().frame(height: UIScreen.main.bounds.height * 0.0391)
-
-            
-            CustomTextField("친구 이름", text: $friendName)
-                .padding(.horizontal, textFieldPadding)
-            
-            Spacer().frame(height: UIScreen.main.bounds.height * 0.0213)
-            
-            CustomTextField("친구 아이디", text: $friendID)
-                .padding(.horizontal, textFieldPadding)
-            
-            Spacer()
-            
+            VStack(spacing: 0) {
+                TopBar(
+                    title: "아이디로 친구 추가",
+                    backButtonFunc: { print("뒤로 가기 클릭") },
+                    rightButton: "추가",
+                    rightButtonFunc: { print("추가 버튼 클릭") },
+                    rightButtonDisabled: !isFriendValid()
+                )
+                
+                
+                // 간격 33
+                Spacer().frame(height: 33 * heightRatio)
+                
+                
+                CustomTextField("친구 이름", text: $friendName)
+                    .padding(.horizontal, 18 * heightRatio)
+                
+                Spacer().frame(height: 33 * heightRatio)
+                
+                CustomTextField("친구 아이디", text: $friendID)
+                    .padding(.horizontal, 18 * heightRatio)
+                
+                Spacer()
+                
+            }
+            .background(Color("Whitebackground"))
         }
-        .background(Color("Whitebackground"))
     }
-    
-    // 일치하는 사용자가 있을 시 추가 버튼 활성화
+        
+        // 일치하는 사용자가 있을 시 추가 버튼 활성화
     private func isFriendValid() -> Bool {
         friendsList.contains { (name, id) in
             name == friendName && id == friendID
