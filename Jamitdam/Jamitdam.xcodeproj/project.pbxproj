@@ -3,14 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8EFA82FE2CDA0972007B2E38 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA82FC2CDA0972007B2E38 /* Relationship.swift */; };
-		8EFA83002CDA098E007B2E38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA82FF2CDA098E007B2E38 /* User.swift */; };
-		971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */; };
-		971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B8B2CD9D32700A2BF5E /* ContentView.swift */; };
+		8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E43DD312CDCE27C00F3CEC6 /* User.swift */; };
+		8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A22CDDB6EC0076AE5C /* ContentView.swift */; };
+		8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */; };
+		8E4845A72CDDB7090076AE5C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A62CDDB7090076AE5C /* Post.swift */; };
+		8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9237DB2CDB0C4400301FE8 /* Relationship.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
 		971A0B912CD9D32900A2BF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */; };
 		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
@@ -36,11 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8EFA82FC2CDA0972007B2E38 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		8EFA82FF2CDA098E007B2E38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8E43DD312CDCE27C00F3CEC6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8E4845A22CDDB6EC0076AE5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
+		8E4845A62CDDB7090076AE5C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8E9237DB2CDB0C4400301FE8 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
-		971A0B8B2CD9D32700A2BF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		971A0B962CD9D32900A2BF5E /* JamitdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +51,10 @@
 		971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
 		971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8E9237DD2CDB123A00301FE8 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		971A0B832CD9D32700A2BF5E /* Frameworks */ = {
@@ -75,11 +81,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8EFA82FD2CDA0972007B2E38 /* Model */ = {
+		8E7916B82CDA202700535605 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8EFA82FC2CDA0972007B2E38 /* Relationship.swift */,
-				8EFA82FF2CDA098E007B2E38 /* User.swift */,
+				8E4845A62CDDB7090076AE5C /* Post.swift */,
+				8E43DD312CDCE27C00F3CEC6 /* User.swift */,
+				8E9237DB2CDB0C4400301FE8 /* Relationship.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,11 +114,11 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
-				8E8424132CDB0FD7001B8E4D /* Model */,
-				971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */,
-				971A0B8B2CD9D32700A2BF5E /* ContentView.swift */,
+				8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */,
+				8E4845A22CDDB6EC0076AE5C /* ContentView.swift */,
+				8E9237DD2CDB123A00301FE8 /* View */,
+				8E7916B82CDA202700535605 /* Model */,
 				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
-				8EFA82FD2CDA0972007B2E38 /* Model */,
 				971A0B8F2CD9D32900A2BF5E /* Preview Content */,
 			);
 			path = Jamitdam;
@@ -156,6 +163,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8E9237DD2CDB123A00301FE8 /* View */,
 			);
 			name = Jamitdam;
 			productName = Jamitdam;
@@ -272,10 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EFA83002CDA098E007B2E38 /* User.swift in Sources */,
-				971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */,
-				8EFA82FE2CDA0972007B2E38 /* Relationship.swift in Sources */,
-				971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */,
+				8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */,
+				8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */,
+				8E4845A72CDDB7090076AE5C /* Post.swift in Sources */,
+				8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */,
+				8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
