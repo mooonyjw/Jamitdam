@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E43DD6C2CDCE97600F3CEC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E43DD6B2CDCE97600F3CEC6 /* User.swift */; };
-		8E7916BB2CDA207200535605 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7916BA2CDA207000535605 /* Posts.swift */; };
+		8E1318B02CDDAF4200A204DF /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1318AB2CDDAF4200A204DF /* JamitdamApp.swift */; };
+		8E1318B22CDDB04900A204DF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1318B12CDDB04400A204DF /* ContentView.swift */; };
+		8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E43DD312CDCE27C00F3CEC6 /* User.swift */; };
+		8E7916BB2CDA207200535605 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7916BA2CDA207000535605 /* Post.swift */; };
 		8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9237DB2CDB0C4400301FE8 /* Relationship.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
 		971A0B912CD9D32900A2BF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */; };
@@ -35,8 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E43DD6B2CDCE97600F3CEC6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8E7916BA2CDA207000535605 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		8E1318AB2CDDAF4200A204DF /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
+		8E1318B12CDDB04400A204DF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8E43DD312CDCE27C00F3CEC6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8E7916BA2CDA207000535605 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8E9237DB2CDB0C4400301FE8 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,9 +84,9 @@
 		8E7916B82CDA202700535605 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E43DD6B2CDCE97600F3CEC6 /* User.swift */,
+				8E43DD312CDCE27C00F3CEC6 /* User.swift */,
 				8E9237DB2CDB0C4400301FE8 /* Relationship.swift */,
-				8E7916BA2CDA207000535605 /* Posts.swift */,
+				8E7916BA2CDA207000535605 /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +114,8 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
+				8E1318B12CDDB04400A204DF /* ContentView.swift */,
+				8E1318AB2CDDAF4200A204DF /* JamitdamApp.swift */,
 				8E9237DD2CDB123A00301FE8 /* View */,
 				8E7916B82CDA202700535605 /* Model */,
 				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
@@ -276,9 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E7916BB2CDA207200535605 /* Posts.swift in Sources */,
+				8E1318B02CDDAF4200A204DF /* JamitdamApp.swift in Sources */,
+				8E1318B22CDDB04900A204DF /* ContentView.swift in Sources */,
+				8E7916BB2CDA207200535605 /* Post.swift in Sources */,
 				8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */,
-				8E43DD6C2CDCE97600F3CEC6 /* User.swift in Sources */,
+				8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
