@@ -1,18 +1,12 @@
-//
-//  RelationshipListView.swift
-//  Jamitdam
-//
-//  Created by sojeong on 11/8/24.
-//
-
 import SwiftUI
 import Foundation
 
 struct RelationshipListView: View {
     
-    // 더미 데이터 - 유수현(user1)의 인연 목록
     @State private var user1Relationships: [Relationship] = getRelationships()
-
+    @State private var isShowDeleteAlert = false
+    @State private var selectedRelationship: Relationship?
+    
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
@@ -32,31 +26,66 @@ struct RelationshipListView: View {
                 
                 Spacer().frame(height: 9 * heightRatio)
                 
-                ForEach(user1Relationships) { relationship in
-                    RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
+                // 인연 리스트
+                List {
+                    ForEach(user1Relationships) { relationship in
+                        RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
+                            .listRowInsets(EdgeInsets())
+                            .listRowSeparator(.hidden)
+                            // 왼쪽으로 스와이프하여 삭제
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button(role: .destructive) {
+                                    selectedRelationship = relationship
+                                    isShowDeleteAlert.toggle()
+                                } label: {
+                                    Label("Delete", systemImage: "trash.circle")
+                                }
+                            }
+                    }
+                    .onDelete { indexSet in
+                        user1Relationships.remove(atOffsets: indexSet)
+                    }
                 }
+                // 삭제 시 경고창
+                .alert(isPresented: $isShowDeleteAlert) {
+                    Alert(
+                        title: Text("삭제하시겠습니까?"),
+                        message: Text("이 인연을 삭제하시겠습니까?"),
+                        primaryButton: .destructive(Text("삭제")) {
+                            if let relationship = selectedRelationship {
+                                deleteRelationship(relationship)
+                            }
+                        },
+                        secondaryButton: .cancel(Text("취소"))
+                    )
+                }
+                .listStyle(.plain)
                 
                 Spacer()
             }
+            .navigationBarItems(trailing: EditButton())
+        }
+    }
+
+    func deleteRelationship(_ relationship: Relationship) {
+        if let index = user1Relationships.firstIndex(where: { $0.id == relationship.id }) {
+            user1Relationships.remove(at: index)
         }
     }
 }
 
 struct RelationshipRow: View {
     var relationship: Relationship
-    
     var widthRatio: CGFloat
     var heightRatio: CGFloat
     
     var body: some View {
         HStack {
-            
             Spacer().frame(width: 18 * widthRatio)
             
             Text(relationship.icon)
                 .font(.system(size: 47 * widthRatio))
                 .frame(width: 47 * widthRatio, height: 47 * heightRatio)
-    
             
             Spacer().frame(width: 21 * widthRatio)
             
@@ -66,7 +95,6 @@ struct RelationshipRow: View {
             
             Spacer()
             
-            // 인연 해시태그배열 요소 모두 작성
             ForEach(relationship.hashtags, id: \.self) { hashtag in
                 Text("#" + hashtag)
                     .font(.system(size: 15 * widthRatio))
@@ -74,7 +102,6 @@ struct RelationshipRow: View {
             }
             
             Spacer().frame(width: 21 * widthRatio)
-            
         }
         .padding(.vertical, 19 * heightRatio)
     }
