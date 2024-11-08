@@ -10,15 +10,19 @@ import SwiftUI
 
 struct User: Identifiable {
     
-    var id: String { userID } // 구조체를 Idenfiable하기 위한 장치 추가
-    var name: String     // 닉네임
+    // 사용자 고유 아이디
+    var id: UUID = UUID()
+    
+    var name: String
     var profile: String
-    var userID: String   // 사용자 입력 아이디
+    
+    // 사용자 입력 아이디
+    var userID: String
+    
     var password: String
     var email: String
-    
-    var blockedFriends: [User] = [] // 차단된 친구 목록 추가
-    var friends: [User] = [] // 친구 목록 추가
+    var blockedFriends: [User] = []
+    var friends: [User] = []
     
 }
 
