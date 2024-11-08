@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E7AE2D72CDC7D08008139EA /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AE2D62CDC7D08008139EA /* CalendarView.swift */; };
+		8E7AE2D92CDC8C08008139EA /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AE2D82CDC8C08008139EA /* DateValue.swift */; };
+		8E7AE2DB2CDC98C4008139EA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7AE2DA2CDC98C4008139EA /* Post.swift */; };
 		8EFA82FE2CDA0972007B2E38 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA82FC2CDA0972007B2E38 /* Relationship.swift */; };
 		8EFA83002CDA098E007B2E38 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFA82FF2CDA098E007B2E38 /* User.swift */; };
 		971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E7AE2D62CDC7D08008139EA /* CalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		8E7AE2D82CDC8C08008139EA /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		8E7AE2DA2CDC98C4008139EA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8EFA82FC2CDA0972007B2E38 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		8EFA82FF2CDA098E007B2E38 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,11 +81,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E8424152CDB1519001B8E4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E7AE2D62CDC7D08008139EA /* CalendarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8EFA82FD2CDA0972007B2E38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				8EFA82FC2CDA0972007B2E38 /* Relationship.swift */,
 				8EFA82FF2CDA098E007B2E38 /* User.swift */,
+				8E7AE2D82CDC8C08008139EA /* DateValue.swift */,
+				8E7AE2DA2CDC98C4008139EA /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,7 +123,7 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
-				8E8424132CDB0FD7001B8E4D /* Model */,
+				8E8424152CDB1519001B8E4D /* View */,
 				971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */,
 				971A0B8B2CD9D32700A2BF5E /* ContentView.swift */,
 				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
@@ -274,7 +290,10 @@
 			files = (
 				8EFA83002CDA098E007B2E38 /* User.swift in Sources */,
 				971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */,
+				8E7AE2D72CDC7D08008139EA /* CalendarView.swift in Sources */,
+				8E7AE2D92CDC8C08008139EA /* DateValue.swift in Sources */,
 				8EFA82FE2CDA0972007B2E38 /* Relationship.swift in Sources */,
+				8E7AE2DB2CDC98C4008139EA /* Post.swift in Sources */,
 				971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
