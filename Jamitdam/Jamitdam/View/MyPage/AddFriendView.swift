@@ -36,12 +36,12 @@ struct AddFriendView: View {
                 Spacer().frame(height: 33 * heightRatio)
                 
                 
-                CustomTextField("친구 이름", text: $friendName)
+                CustomTextField("친구 아이디", text: $friendID, fieldHeightRatio: heightRatio)
                     .padding(.horizontal, 18 * heightRatio)
                 
                 Spacer().frame(height: 33 * heightRatio)
                 
-                CustomTextField("친구 아이디", text: $friendID)
+                CustomTextField("친구 아이디", text: $friendID, fieldHeightRatio: heightRatio)
                     .padding(.horizontal, 18 * heightRatio)
                 
                 Spacer()
@@ -63,17 +63,21 @@ struct AddFriendView: View {
 
 struct CustomTextField: View {
     var placeholder: String
+    var fieldHeightRatio: CGFloat
     @Binding var text: String
     
-    init(_ placeholder: String, text: Binding<String>) {
+    init(_ placeholder: String, text: Binding<String>, fieldHeightRatio: CGFloat) {
         self.placeholder = placeholder
         self._text = text
+        self.fieldHeightRatio = fieldHeightRatio
     }
+    
     
     var body: some View {
         VStack {
             TextField(placeholder, text: $text)
-                .padding(.bottom, UIScreen.main.bounds.height * 0.0105)
+                // 간격 7
+                .padding(.bottom, fieldHeightRatio * 7)
                 
             Rectangle()
                 .frame(height: 1) 
