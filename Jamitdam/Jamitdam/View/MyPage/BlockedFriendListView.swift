@@ -1,10 +1,3 @@
-//
-//  BlockedFriendListView.swift
-//  Jamitdam
-//
-//  Created by sojeong on 11/7/24.
-//
-
 import SwiftUI
 import Foundation
 
@@ -14,6 +7,7 @@ struct BlockedFriendListView: View {
     @State private var blockedFriends: [User] = user1.blockedFriends
     @State private var showingAlert = false
     @State private var selectedFriend: User = User(name: "", profile: "", userID: "", password: "", email: "")
+    
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
@@ -35,11 +29,10 @@ struct BlockedFriendListView: View {
                 // 간격 9
                 Spacer().frame(height: 9 * heightRatio)
                 
-                
                 // 차단된 친구 목록
                 ForEach(blockedFriends) { friend in
                     BlockedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
-                        // 차단 해제 버튼 클릭 시
+                        // 차단 해제 버튼 클릭 시 .alert 표시
                         showingAlert = true
                         selectedFriend = friend
                     }
@@ -52,7 +45,6 @@ struct BlockedFriendListView: View {
                             removeFriendFromBlockedList(selectedFriend)
                         },
                         secondaryButton: .cancel(Text("취소"))
-                        
                     )
                 }
                 
@@ -61,19 +53,23 @@ struct BlockedFriendListView: View {
         }
     }
     
-    // 인자로 받은 친구를 유저의 차단 목록에서 제거하는 함수
+    // 인자로 받은 친구를 유저의 차단 목록에서 제거하는 함수 (친구 차단 해제)
     private func removeFriendFromBlockedList(_ friend: User) {
         blockedFriends.removeAll { $0.id == friend.id }
     }
 }
 
+
+
+
+// 차단된 친구 목록의 각 행
 struct BlockedFriendRow: View {
+    
     var friend: User
     
     var widthRatio: CGFloat
     var heightRatio: CGFloat
     
-    // 차단 해제 기능 추후 구현
     var unblockAction: () -> Void
 
     var body: some View {
@@ -89,7 +85,7 @@ struct BlockedFriendRow: View {
                 .frame(width: widthRatio * 47, height: heightRatio * 47)
                 .clipShape(Circle())
             
-            // 이미지와 텍스트 간 간격 21
+            // 이미지와 텍스트 간 간격
             Spacer().frame(width: widthRatio * 21)
             
             Text(friend.name)
@@ -109,7 +105,7 @@ struct BlockedFriendRow: View {
                     .cornerRadius(13)
             }
             
-            Spacer().frame(width: widthRatio * 21)
+            Spacer().frame(width: widthRatio * 18)
             
         }
         .padding(.vertical, heightRatio * 19)
