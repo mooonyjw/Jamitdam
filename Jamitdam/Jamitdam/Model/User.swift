@@ -1,10 +1,3 @@
-//
-//  User.swift
-//  Jamitdam
-//
-//  Created by Jueun Son on 11/5/24.
-//
-
 import Foundation
 import SwiftUI
 
@@ -23,6 +16,7 @@ struct User: Identifiable {
     var email: String
     var blockedFriends: [User] = []
     var friends: [User] = []
+    var requestedFriends: [User] = []
     
 }
 
