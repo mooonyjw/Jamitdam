@@ -5,7 +5,7 @@ import SwiftUI
 // Post Model and Sample Posts
 // Array of Posts
 struct Post: Identifiable{
-    var id = UUID().uuidString
+    var id = UUID()
     var title: String
     var content: String
     var emoji: String
@@ -16,7 +16,7 @@ struct Post: Identifiable{
 
 // Total post Meta View
 struct PostMetaData: Identifiable{
-    var id = UUID().uuidString
+    var id = UUID()
     //var post: [Post]
     var post: Post
     var postDate: Date
