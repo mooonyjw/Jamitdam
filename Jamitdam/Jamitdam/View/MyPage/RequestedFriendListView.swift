@@ -3,10 +3,10 @@ import Foundation
 
 struct RequestedFriendListView: View {
     
-    // 더미 데이터 - 유수현(user1)의 차단 친구 목록
-    @State private var blockedFriends: [User] = user1.blockedFriends
+    // 더미 데이터 - 유수현(user1)의 요청 온 친구 목록
+    @State private var requestedFriends: [User] = user1.requestedFriends
     @State private var showingAlert = false
-    @State private var selectedFriend: User = User(name: "", profile: "", userID: "", password: "", email: "")
+    @State private var selectedFriend: User?
     @State private var navigateToProfile: Bool = false
     
     
@@ -23,7 +23,7 @@ struct RequestedFriendListView: View {
             VStack(spacing: 0) {
                 
                 TopBar(
-                    title: "차단된 친구",
+                    title: "친구 요청",
                     backButtonFunc: { print("뒤로 가기 클릭") }
                 )
                 
@@ -31,26 +31,27 @@ struct RequestedFriendListView: View {
                 Spacer().frame(height: 9 * heightRatio)
                 
                 // 차단된 친구 목록
-                ForEach(blockedFriends) { friend in
+                ForEach(requestedFriends) { friend in
                     RequestedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
-                        // 차단 해제 버튼 클릭 시 .alert 표시
+                        // 추가 버튼 클릭 시 .alert 표시
                         showingAlert = true
                         selectedFriend = friend
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        // 추후 친구 프로필로 이동 기능 구현
+                        // 추후 친구 수락/거절 페이지로 이동 기능 구현
                         selectedFriend = friend
                         navigateToProfile = true
-                        print("\(selectedFriend.name) 프로필 페이지로 이동")
+                        print("\(selectedFriend!.name) 수락/거절 페이지로 이동")
                     }
                 }
                 .alert(isPresented: $showingAlert) {
                     Alert(
-                        title: Text("차단 해제하시겠습니까?"),
-                        message: Text("이 친구를 차단 해제하시겠습니까?"),
-                        primaryButton: .destructive(Text("해제")) {
-                            addFriend(selectedFriend)
+                        title: Text("친구 추가하시겠습니까?"),
+                        message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
+                        primaryButton: .destructive(Text("추가")) {
+                            addFriend(selectedFriend!)
+                            
                         },
                         secondaryButton: .cancel(Text("취소"))
                     )
@@ -61,9 +62,11 @@ struct RequestedFriendListView: View {
         }
     }
     
-    // 인자로 받은 친구를 유저의 차단 목록에서 제거하는 함수 (친구 차단 해제)
+    // 친구를 유저의 친구 목록에 추가 + 요청된 친구 목록에서 제거하는 함수
     private func addFriend(_ friend: User) {
         user1.friends.append(friend)
+        requestedFriends.removeAll { $0.id == friend.id }
+        // 상대 친구에게 알림 전송 추후 구현
     }
 }
 
@@ -78,7 +81,7 @@ struct RequestedFriendRow: View {
     var widthRatio: CGFloat
     var heightRatio: CGFloat
     
-    var unblockAction: () -> Void
+    var addAction: () -> Void
 
     var body: some View {
         
@@ -101,8 +104,8 @@ struct RequestedFriendRow: View {
             
             Spacer()
             
-            Button(action: unblockAction) {
-                Text("차단 해제")
+            Button(action: addAction) {
+                Text("추가")
                     .font(.system(size: widthRatio * 16))
                     .fontWeight(.medium)
                     .foregroundColor(.white)
@@ -123,6 +126,6 @@ struct RequestedFriendRow: View {
 
 
 #Preview {
-    BlockedFriendListView()
+    RequestedFriendListView()
 }
 
