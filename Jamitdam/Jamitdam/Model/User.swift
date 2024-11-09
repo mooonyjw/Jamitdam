@@ -1,9 +1,3 @@
-//
-//  User.swift
-//  Jamitdam
-//
-//  Created by Jueun Son on 11/5/24.
-//
 
 import Foundation
 import SwiftUI

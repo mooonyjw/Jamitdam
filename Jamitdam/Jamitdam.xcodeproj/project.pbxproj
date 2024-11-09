@@ -81,10 +81,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E8424152CDB1519001B8E4D /* View */ = {
+		8E19780E2CDF5E5900307505 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				8E7AE2D62CDC7D08008139EA /* CalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		8E8424152CDB1519001B8E4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8E19780E2CDF5E5900307505 /* Calendar */,
 			);
 			path = View;
 			sourceTree = "<group>";
