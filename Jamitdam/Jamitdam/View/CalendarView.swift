@@ -1,9 +1,3 @@
-//
-//  Calender.swift
-//  Jamitdam
-//
-//  Created by Jueun Son on 11/6/24.
-//
 
 import Foundation
 import SwiftUI
@@ -15,17 +9,17 @@ struct CalendarView: View {
     @State var currentMonth: Int = 0
     
     var body: some View{
-        VStack(spacing: 8){
+        VStack(spacing: 8) {
             // 내 달력
-            HStack(spacing: 20){
+            HStack(spacing: 20) {
                 Text("내 달력")
                     .font(.title2.bold())
                     //.frame(maxWidth: .infinity, alignment: .leading)
-                Button{
+                Button {
                     withAnimation{
                         
                     }
-                }label: {
+                } label: {
                     Image(systemName: "chevron.down")
                         .font(.callout)
                         .foregroundColor(.black)
@@ -37,7 +31,7 @@ struct CalendarView: View {
             .padding(.horizontal)
             
             // 연도, 월, 앞 뒤 버튼
-            HStack(spacing: 5){
+            HStack(spacing: 5) {
                 Text(extraDate()[0])
                     .font(.headline)
                     .fontWeight(.bold)
@@ -47,34 +41,32 @@ struct CalendarView: View {
                 
                 Spacer()
                 
-                HStack(spacing:35){
+                HStack(spacing:35) {
                     
-                    Button{
+                    Button {
                         withAnimation{
                             currentMonth -= 1
                         }
-                    }label: {
+                    } label: {
                         Image(systemName: "chevron.left")
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundColor(.redemphasis)
                         
                     }
-                    Button{
+                    Button {
                         withAnimation{
                             currentMonth += 1
                         }
                         
-                    }label: {
+                    } label: {
                         Image(systemName: "chevron.right")
                             .font(.headline)
                             .fontWeight(.semibold)
                             .foregroundColor(.redemphasis)
                         
                     }
-                }
-                
-                
+                }    
             }
             .padding(.horizontal)
             
@@ -83,7 +75,7 @@ struct CalendarView: View {
             
             
             // Day View
-            HStack(spacing: 0){
+            HStack(spacing: 0) {
                 ForEach(days, id: \.self){ day in
                     Text(day)
                         .font(.callout)
@@ -97,7 +89,7 @@ struct CalendarView: View {
             // Lazy Grid
             let columns  = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns, spacing: 15){
-                ForEach(extractDate()){ value in
+                ForEach(extractDate()) { value in
                    CardView(value: value)
                         .background(
                             Capsule()
@@ -107,7 +99,7 @@ struct CalendarView: View {
                         
                         )
                         .onTapGesture {
-                            if hasTask(for: value.date){
+                            if hasTask(for: value.date) {
                                 currentDate = value.date
                             }
                             
@@ -118,7 +110,7 @@ struct CalendarView: View {
             
             // Tasks
             
-            if let postData = posts.first(where: { isSameDay(date1: $0.postDate, date2: currentDate)}){
+            if let postData = posts.first(where: { isSameDay(date1: $0.postDate, date2: currentDate)}) {
                 PostDetailView(postData: postData)
                     .padding()
                     .background(Color("Redemphasis").opacity(0.2))
@@ -126,34 +118,31 @@ struct CalendarView: View {
                     .padding(.top, 16)
                     .frame(maxHeight: .none)
                 
-            }
-            
+            }    
         }
         .ignoresSafeArea(edges:.bottom)
-        .onChange(of: currentMonth){ _ in
+        .onChange(of: currentMonth) { _ in
             // updating Month
             currentDate = getCurrentMonth()
             
         }
-        
-        
     }
                                   
           
-func hasTask(for date: Date)->Bool{
+func hasTask(for date: Date)->Bool {
     posts.contains{ isSameDay(date1: $0.postDate, date2: date)}
 }
                                   
                                   
     @ViewBuilder
-    func CardView(value: DateValue)->some View{
+    func CardView(value: DateValue)->some View {
         VStack{
          
-            if value.day != -1{
+            if value.day != -1 {
                 if let post = posts.first(where: { post in
                     
                     return isSameDay(date1: post.postDate, date2: value.date)
-                }){
+                }) {
                     Text("\(value.day)")
                         .font(.title3.bold())
                         .foregroundColor(isSameDay(date1: post.postDate, date2: currentDate) ? .white : .primary
@@ -166,7 +155,7 @@ func hasTask(for date: Date)->Bool{
                         .fill(isSameDay(date1: post.postDate, date2: currentDate) ? .white : Color("Redemphasis"))
                         .frame(width: 8, height: 8)
                 }
-                else{
+                else {
                     
                     Text("\(value.day)")
                         .font(.title3.bold())
@@ -175,7 +164,6 @@ func hasTask(for date: Date)->Bool{
                     
                     Spacer()
                 }
-            
             }
         }
         // calendar 여백 조정
@@ -184,9 +172,9 @@ func hasTask(for date: Date)->Bool{
         
     }
     @ViewBuilder
-    func PostDetailView(postData: PostMetaData) -> some View{
-        VStack(alignment: .leading, spacing: 10){
-            HStack{
+    func PostDetailView(postData: PostMetaData) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
                 Text("\(extraDate()[0]) \(extraDate()[1]) \(Calendar.current.component(.day, from: currentDate))일")
                     .font(.title3.bold())
                 Spacer()
@@ -196,10 +184,10 @@ func hasTask(for date: Date)->Bool{
                 .foregroundColor(.black)
             }
             
-            HStack{
+            HStack {
                 Text(postData.post.emoji)
                     .font(.largeTitle)
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     Text(postData.post.nickname)
                         .font(.callout.bold())
                         
@@ -208,29 +196,19 @@ func hasTask(for date: Date)->Bool{
                         
                         .foregroundColor(Color("Redemphasis"))
                 }
-                
-                
             }
-           
-            
-            
-            
             
             Text("그 날의 글")
                 .font(.subheadline)
                 .padding(.top, 8)
             
-            VStack(alignment: .leading, spacing: 20){
+            VStack(alignment: .leading, spacing: 20) {
                 
                 Text(postData.post.title ?? "")
                     .font(.headline)
-                   
-                    
-                
+           
                 Text(postData.post.content ?? "")
-                    
-                    
-                
+           
             }
             .padding()
             .background(Color("Whitebackground"))
@@ -245,14 +223,14 @@ func hasTask(for date: Date)->Bool{
     
     
     // checking dates
-    func isSameDay(date1: Date, date2: Date)->Bool{
+    func isSameDay(date1: Date, date2: Date) -> Bool {
         let calendar = Calendar.current
         return calendar.isDate(date1, inSameDayAs: date2)
     }
     
     
     // extrating Year and Month for display
-    func extraDate()->[String]{
+    func extraDate() -> [String] {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY년 MM월"
         
@@ -260,7 +238,7 @@ func hasTask(for date: Date)->Bool{
         return date.components(separatedBy: " ")
     }
     
-    func getCurrentMonth()->Date{
+    func getCurrentMonth() -> Date {
         let calendar = Calendar.current
         // Getting Current Month Date
         guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else{
@@ -268,7 +246,8 @@ func hasTask(for date: Date)->Bool{
         }
         return currentMonth
     }
-    func extractDate()->[DateValue]{
+    
+    func extractDate() -> [DateValue] {
         
         let calendar = Calendar.current
         // Getting Current Month Date
@@ -281,7 +260,7 @@ func hasTask(for date: Date)->Bool{
         
         // adding offset days to get extra week day
         let firstWeekday = calendar.component(.weekday, from: days.first?.date ?? Date())
-        for _ in 0..<firstWeekday - 1{
+        for _ in 0..<firstWeekday - 1 {
             days.insert(DateValue(day: -1, date: Date()), at: 0)
         }
         return days
@@ -293,9 +272,9 @@ func hasTask(for date: Date)->Bool{
     return CalendarView(currentDate: $currentDate)
 }
 
-// Extending Date to get Current Month Dates...
-extension Date{
-    func getAllDates()->[Date]{
+// Extending Date to get Current Month Dates
+extension Date {
+    func getAllDates() -> [Date] {
         let calendar = Calendar.current
         
         // getting start Date
