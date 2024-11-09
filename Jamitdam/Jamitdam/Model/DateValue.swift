@@ -1,10 +1,3 @@
-//
-//  DateValue.swift
-//  Jamitdam
-//
-//  Created by Jueun Son on 11/7/24.
-//
-
 import Foundation
 import SwiftUI
 
