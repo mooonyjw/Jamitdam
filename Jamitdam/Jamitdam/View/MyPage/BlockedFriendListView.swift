@@ -7,6 +7,7 @@ struct BlockedFriendListView: View {
     @State private var blockedFriends: [User] = user1.blockedFriends
     @State private var showingAlert = false
     @State private var selectedFriend: User = User(name: "", profile: "", userID: "", password: "", email: "")
+    @State private var navigateToProfile: Bool = false
     
     
     var screenWidth: CGFloat = 390
@@ -35,6 +36,13 @@ struct BlockedFriendListView: View {
                         // 차단 해제 버튼 클릭 시 .alert 표시
                         showingAlert = true
                         selectedFriend = friend
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        // 추후 친구 프로필로 이동 기능 구현
+                        selectedFriend = friend
+                        navigateToProfile = true
+                        print("\(selectedFriend.name) 프로필 페이지로 이동")
                     }
                 }
                 .alert(isPresented: $showingAlert) {
