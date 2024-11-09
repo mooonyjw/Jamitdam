@@ -19,7 +19,6 @@ struct AddFriendView: View {
     var body: some View {
         GeometryReader { geometry in
             
-            let _widthRatio = geometry.size.width / screenWidth
             let heightRatio = geometry.size.height / screenHeight
             
             VStack(spacing: 0) {
@@ -51,7 +50,7 @@ struct AddFriendView: View {
         }
     }
         
-        // 일치하는 사용자가 있을 시 추가 버튼 활성화
+    // 일치하는 사용자가 있을 시 추가 버튼 활성화
     private func isFriendValid() -> Bool {
         friendsList.contains { (name, id) in
             name == friendName && id == friendID
@@ -78,7 +77,6 @@ struct CustomTextField: View {
             TextField(placeholder, text: $text)
                 // 간격 7
                 .padding(.bottom, fieldHeightRatio * 7)
-                
             Rectangle()
                 .frame(height: 1) 
                 .foregroundColor(Color("Grayunselected"))
