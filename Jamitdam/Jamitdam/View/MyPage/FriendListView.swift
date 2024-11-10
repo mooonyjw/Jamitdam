@@ -5,7 +5,7 @@ struct FriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 친구 목록
     @State private var friends: [User] = user1.friends
-    @State private var selectedFriend: User = User(name: "", profile: "", userID: "", password: "", email: "")
+    @State private var selectedFriend: User?
     // 친구 프로필로 이동
     @State private var navigateToProfile: Bool = false
     
@@ -25,21 +25,22 @@ struct FriendListView: View {
                     backButtonFunc: { print("뒤로 가기 클릭") }
                 )
                 
-                Spacer().frame(height: 9 * heightRatio)
-                
-                ForEach(friends) { friend in
-                    FriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio)
-                    // 친구 행 클릭 시 친구 프로필로 이동
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        // 추후 친구 프로필로 이동 기능 구현
-                        selectedFriend = friend
-                        navigateToProfile = true
-                        print("\(selectedFriend.name) 프로필 페이지로 이동")
+                ScrollView {
+                    Spacer().frame(height: 9 * heightRatio)
+                    
+                    ForEach(friends) { friend in
+                        FriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio)
+                        // 친구 행 클릭 시 친구 프로필로 이동
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                // 추후 친구 프로필로 이동 기능 구현
+                                selectedFriend = friend
+                                navigateToProfile = true
+                                print("\(selectedFriend!.name) 프로필 페이지로 이동")
+                            }
                     }
                 }
                 
-                Spacer()
             }
         }
     }
@@ -70,7 +71,7 @@ struct FriendRow: View {
             Spacer()
             
         }
-        .padding(.vertical, 19 * heightRatio)
+        .padding(.vertical, 14 * heightRatio)
     }
 }
 

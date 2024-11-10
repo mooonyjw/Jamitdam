@@ -27,37 +27,38 @@ struct RequestedFriendListView: View {
                     backButtonFunc: { print("뒤로 가기 클릭") }
                 )
                 
-                // 간격 9
-                Spacer().frame(height: 9 * heightRatio)
-                
-                // 차단된 친구 목록
-                ForEach(requestedFriends) { friend in
-                    RequestedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
-                        // 추가 버튼 클릭 시 .alert 표시
-                        showingAlert = true
-                        selectedFriend = friend
+                ScrollView {
+                    // 간격 9
+                    Spacer().frame(height: 9 * heightRatio)
+                    
+                    // 차단된 친구 목록
+                    ForEach(requestedFriends) { friend in
+                        RequestedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
+                            // 추가 버튼 클릭 시 .alert 표시
+                            showingAlert = true
+                            selectedFriend = friend
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            // 추후 친구 수락/거절 페이지로 이동 기능 구현
+                            selectedFriend = friend
+                            navigateToProfile = true
+                            print("\(selectedFriend!.name) 수락/거절 페이지로 이동")
+                        }
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        // 추후 친구 수락/거절 페이지로 이동 기능 구현
-                        selectedFriend = friend
-                        navigateToProfile = true
-                        print("\(selectedFriend!.name) 수락/거절 페이지로 이동")
+                    .alert(isPresented: $showingAlert) {
+                        Alert(
+                            title: Text("친구 추가하시겠습니까?"),
+                            message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
+                            primaryButton: .destructive(Text("추가")) {
+                                addFriend(selectedFriend!)
+                                
+                            },
+                            secondaryButton: .cancel(Text("취소"))
+                        )
                     }
                 }
-                .alert(isPresented: $showingAlert) {
-                    Alert(
-                        title: Text("친구 추가하시겠습니까?"),
-                        message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
-                        primaryButton: .destructive(Text("추가")) {
-                            addFriend(selectedFriend!)
-                            
-                        },
-                        secondaryButton: .cancel(Text("취소"))
-                    )
-                }
-                
-                Spacer()
+        
             }
         }
     }
@@ -118,7 +119,7 @@ struct RequestedFriendRow: View {
             Spacer().frame(width: widthRatio * 18)
             
         }
-        .padding(.vertical, heightRatio * 19)
+        .padding(.vertical, heightRatio * 14)
     }
     
 }

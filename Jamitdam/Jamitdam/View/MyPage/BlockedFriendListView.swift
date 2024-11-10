@@ -5,8 +5,12 @@ struct BlockedFriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 차단 친구 목록
     @State private var blockedFriends: [User] = user1.blockedFriends
+    
+    // 차단 해제 시 .alert 표시 여부
     @State private var showingAlert = false
-    @State private var selectedFriend: User = User(name: "", profile: "", userID: "", password: "", email: "")
+    @State private var selectedFriend: User?
+    
+    // 친구 프로필로 이동 여부
     @State private var navigateToProfile: Bool = false
     
     
@@ -26,37 +30,36 @@ struct BlockedFriendListView: View {
                     title: "차단된 친구",
                     backButtonFunc: { print("뒤로 가기 클릭") }
                 )
-                
-                // 간격 9
-                Spacer().frame(height: 9 * heightRatio)
-                
-                // 차단된 친구 목록
-                ForEach(blockedFriends) { friend in
-                    BlockedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
-                        // 차단 해제 버튼 클릭 시 .alert 표시
-                        showingAlert = true
-                        selectedFriend = friend
+                ScrollView {
+          
+                    Spacer().frame(height: 9 * heightRatio)
+                    
+                    // 차단된 친구 목록
+                    ForEach(blockedFriends) { friend in
+                        BlockedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
+                            // 차단 해제 버튼 클릭 시 .alert 표시
+                            showingAlert = true
+                            selectedFriend = friend
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            // 추후 친구 프로필로 이동 기능 구현
+                            selectedFriend = friend
+                            navigateToProfile = true
+                            print("\(selectedFriend!.name) 프로필 페이지로 이동")
+                        }
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        // 추후 친구 프로필로 이동 기능 구현
-                        selectedFriend = friend
-                        navigateToProfile = true
-                        print("\(selectedFriend.name) 프로필 페이지로 이동")
+                    .alert(isPresented: $showingAlert) {
+                        Alert(
+                            title: Text("차단 해제하시겠습니까?"),
+                            message: Text("\(selectedFriend!.name)님을 차단 해제하시겠습니까?"),
+                            primaryButton: .destructive(Text("해제")) {
+                                removeFriendFromBlockedList(selectedFriend!)
+                            },
+                            secondaryButton: .cancel(Text("취소"))
+                        )
                     }
                 }
-                .alert(isPresented: $showingAlert) {
-                    Alert(
-                        title: Text("차단 해제하시겠습니까?"),
-                        message: Text("이 친구를 차단 해제하시겠습니까?"),
-                        primaryButton: .destructive(Text("해제")) {
-                            removeFriendFromBlockedList(selectedFriend)
-                        },
-                        secondaryButton: .cancel(Text("취소"))
-                    )
-                }
-                
-                Spacer()
             }
         }
     }
@@ -116,7 +119,7 @@ struct BlockedFriendRow: View {
             Spacer().frame(width: widthRatio * 18)
             
         }
-        .padding(.vertical, heightRatio * 19)
+        .padding(.vertical, heightRatio * 14)
     }
     
 }
