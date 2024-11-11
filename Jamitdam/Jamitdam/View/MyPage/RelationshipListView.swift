@@ -36,44 +36,25 @@ struct RelationshipListView: View {
                     }
                 )
 
-                
-
                 Spacer().frame(height: 9 * heightRatio)
                 
                 // 인연 리스트
                 List {
                     ForEach(user1Relationships) { relationship in
                         RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
-                            // 각 열 선택 시 각 인연 수정 페이지로 이동
-                            .contentShape(Rectangle()) // 전체 Row를 터치 영역으로 설정
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 if isEditing {
                                     selectedRelationship = relationship
-                                    navigateToEdit = true // 수정 페이지로 이동 가능
+                                    navigateToEdit = true
                                     print("\(relationship.nickname) 수정 페이지로 이동")
                                 }
                             }
-                        
-                            // 수정 페이지 구현 후 수정 페이지로 이동 기능 추가
-//                          .background(
-//                                NavigationLink(
-//                                    destination: RelationshipEditView(relationship: selectedRelationship),
-//                                    isActive: $navigateToEdit
-//                                ) {
-//                                    EmptyView()
-//                                }
-//                                .hidden()
-//                            )
-                        
-                            // 각 열 간격 없애기
                             .listRowInsets(EdgeInsets())
                             .listRowSeparator(.hidden)
-                        
-                            // 왼쪽으로 스와이프하여 삭제
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button(role: .destructive) {
                                     selectedRelationship = relationship
-                                    // 경고창 뜨도록
                                     isShowDeleteAlert.toggle()
                                 } label: {
                                     Label("Delete", systemImage: "trash")
@@ -84,9 +65,7 @@ struct RelationshipListView: View {
                         user1Relationships.remove(atOffsets: indexSet)
                     }
                 }
-                // 편집 모드 상태 전달
                 .environment(\.editMode, .constant(isEditing ? .active : .inactive))
-                // 삭제 시 경고창
                 .alert(isPresented: $isShowDeleteAlert) {
                     Alert(
                         title: Text("삭제하시겠습니까?"),
@@ -101,10 +80,28 @@ struct RelationshipListView: View {
                 }
                 .listStyle(.plain)
                 
-              
                 Spacer()
             }
-
+            .overlay(
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            print("인연 추가 버튼 클릭")
+                            // 인연 추가 페이지로 이동
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.title)
+                                .padding()
+                                .background(Color("Redemphasis2"))
+                                .foregroundColor(.white)
+                                .clipShape(Circle())
+                        }
+                        .padding()
+                    }
+                }
+            )
         }
     }
 
@@ -146,6 +143,8 @@ struct RelationshipRow: View {
             Spacer().frame(width: 21 * widthRatio)
         }
         .padding(.vertical, 19 * heightRatio)
+        
+        
     }
 }
 
