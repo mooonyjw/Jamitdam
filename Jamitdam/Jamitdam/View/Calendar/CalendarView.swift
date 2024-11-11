@@ -110,7 +110,7 @@ struct CalendarView: View {
             
             // Tasks
             
-            if let postData = posts.first(where: { isSameDay(date1: $0.postDate, date2: currentDate)}) {
+            if let postData = dummyPosts.first(where: { isSameDay(date1: $0.timestamp, date2: currentDate)}) {
                 PostDetailView(postData: postData)
                     .padding()
                     .background(Color("Redemphasis").opacity(0.2))
@@ -130,7 +130,7 @@ struct CalendarView: View {
                                   
           
 func hasTask(for date: Date)->Bool {
-    posts.contains{ isSameDay(date1: $0.postDate, date2: date)}
+    dummyPosts.contains{ isSameDay(date1: $0.timestamp, date2: date)}
 }
                                   
                                   
@@ -139,20 +139,20 @@ func hasTask(for date: Date)->Bool {
         VStack{
          
             if value.day != -1 {
-                if let post = posts.first(where: { post in
+                if let post = dummyPosts.first(where: { post in
                     
-                    return isSameDay(date1: post.postDate, date2: value.date)
+                    return isSameDay(date1: post.timestamp, date2: value.date)
                 }) {
                     Text("\(value.day)")
                         .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: post.postDate, date2: currentDate) ? .white : .primary
+                        .foregroundColor(isSameDay(date1: post.timestamp, date2: currentDate) ? .white : .primary
                         )
                         .frame(maxWidth: .infinity)
                     
                     Spacer()
                     
                     Circle()
-                        .fill(isSameDay(date1: post.postDate, date2: currentDate) ? .white : Color("Redemphasis"))
+                        .fill(isSameDay(date1: post.timestamp, date2: currentDate) ? .white : Color("Redemphasis"))
                         .frame(width: 8, height: 8)
                 }
                 else {
@@ -172,7 +172,7 @@ func hasTask(for date: Date)->Bool {
         
     }
     @ViewBuilder
-    func PostDetailView(postData: PostMetaData) -> some View {
+    func PostDetailView(postData: Post) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text("\(extraDate()[0]) \(extraDate()[1]) \(Calendar.current.component(.day, from: currentDate))일")
@@ -185,13 +185,13 @@ func hasTask(for date: Date)->Bool {
             }
             
             HStack {
-                Text(postData.post.emoji)
+                Text(postData.relationships[0].icon)
                     .font(.largeTitle)
                 VStack(alignment: .leading) {
-                    Text(postData.post.nickname)
+                    Text(postData.relationships[0].nickname)
                         .font(.callout.bold())
-                        
-                    Text(postData.post.hashtag)
+                    // hashtag 하나로 수정?
+                    Text("#" + postData.relationships[0].hashtags[0])
                         .font(.caption.bold())
                         
                         .foregroundColor(Color("Redemphasis"))
@@ -204,10 +204,10 @@ func hasTask(for date: Date)->Bool {
             
             VStack(alignment: .leading, spacing: 20) {
                 
-                Text(postData.post.title ?? "")
+                Text(postData.title ?? "")
                     .font(.headline)
            
-                Text(postData.post.content ?? "")
+                Text(postData.content ?? "")
            
             }
             .padding()
