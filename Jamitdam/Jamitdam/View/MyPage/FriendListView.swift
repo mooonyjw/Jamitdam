@@ -22,7 +22,7 @@ struct FriendListView: View {
                 
                 TopBar(
                     title: "친구",
-                    backButtonFunc: { print("뒤로 가기 클릭") }
+                    rightButtonDisabled: true
                 )
                 
                 ScrollView {

@@ -25,7 +25,7 @@ struct RequestedFriendListView: View {
                 
                 TopBar(
                     title: "친구 요청",
-                    backButtonFunc: { print("뒤로 가기 클릭") }
+                    rightButtonDisabled: true
                 )
                 
                 ScrollView {

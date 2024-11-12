@@ -29,7 +29,7 @@ struct BlockedFriendListView: View {
                 
                 TopBar(
                     title: "차단된 친구",
-                    backButtonFunc: { print("뒤로 가기 클릭") }
+                    rightButtonDisabled: true
                 )
                 ScrollView {
           
