@@ -3,8 +3,10 @@ import SwiftUI
 
 struct SelectingFriendProfileView: View {
     
-    // 더미데이터: 진서기
-    let user = user2
+    // 유수현의 계정
+    let user = user1
+    // 추가할 친구: 진서기
+    let friend = user2
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     var unapprovalFriend: (() -> Void) = {
@@ -25,7 +27,7 @@ struct SelectingFriendProfileView: View {
                 })
                 
                 // 사용자 프로필
-                Image(user2.profile)
+                Image(friend.profile)
                     .resizable()
                 //.scaledToFit()
                     .frame(width: widthRatio * 110, height: heightRatio * 110)
@@ -33,12 +35,12 @@ struct SelectingFriendProfileView: View {
                     .padding(.top, 26 * heightRatio)
                 
                 // 사용자 이름
-                Text(user2.name)
+                Text(friend.name)
                     .font(.system(size: 25 * widthRatio))
                     .fontWeight(.semibold)
                     .padding(.top, 27 * heightRatio)
                 
-                Text(user2.name + "님과 친구를 맺어\n재미를 이어보세요!")
+                Text(friend.name + "님과 친구를 맺어\n재미를 이어보세요!")
                     .font(.system(size: 20 * widthRatio))
                     .padding(.top, 27 * heightRatio)
                     .multilineTextAlignment(.center)
