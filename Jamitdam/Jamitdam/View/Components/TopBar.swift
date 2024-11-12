@@ -7,7 +7,7 @@ struct TopBar: View {
     var title: String
     var showBackButton: Bool = true
     var rightButton: String = ""
-    var rightButtonFunc: (() -> Void)
+    var rightButtonFunc: (() -> Void)?
     var rightButtonDisabled: Bool = false
     
     func backButtonFunc() {
@@ -34,7 +34,7 @@ struct TopBar: View {
             
             // 추가 버튼의 유무 결정 가능
             if !rightButtonDisabled && rightButton != ""{
-                Button(action: rightButtonFunc) {
+                Button(action: rightButtonFunc!) {
                     Text(rightButton)
                         .padding()
                 }
