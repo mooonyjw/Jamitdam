@@ -1,26 +1,23 @@
-//
-//  Posts.swift
-//  Jamitdam
-//
-//  Created by sojeong on 11/5/24.
-//
-
 import SwiftUI
 import Foundation
 
 struct Post {
-    let id: UUID = UUID()       
-    var comments: [Int]
-    let body: String
+    let id: UUID = UUID()
+    // 추후 댓글 db 구현 후 작성
+    // var comments: [Comment]
+    var content: String
     let timestamp: Date
     
-    // 작성자 id
-    let authorId: UUID
+    // 작성자
+    let author: User
     
     let title: String
     var likesCount: Int
+    
+    // 글 해시태그 (최대 2개)
     var hashTags: [String]
-    let relationshipIds: [UUID]
+    
+    let relationships: [Relationship]
     
     // 글 해시태그 추가
     mutating func addHashTags(hastTags: [String]) {
@@ -45,8 +42,8 @@ let relationship2 = getRelationships()[1]
 // 더미데이터 생성
 // 유수현의 포스트 (user1)
 var dummyPosts: [Post] = [
-    Post(comments: [], body: "밥 뭐먹지", timestamp: Date(), authorId: user1.id, title: "점메추", likesCount: 5, hashTags: ["#친구"], relationshipIds: [relationship1.id]),
-    Post(comments: [], body: "밥 먹자고 안하네", timestamp: Date(), authorId: user1.id, title: "답답해", likesCount: 8, hashTags: ["#썸남", "#답답"], relationshipIds: [relationship2.id]),
+    Post(content: "밥 뭐먹지", timestamp: Date(), author: user1, title: "점메추", likesCount: 5, hashTags: ["#친구"], relationships: [relationship1]),
+    Post(content: "밥 먹자고 안하네", timestamp: Date(), author: user1, title: "답답해", likesCount: 8, hashTags: ["#썸남", "#답답"], relationships: [relationship2]),
 ]
 
 
@@ -61,4 +58,3 @@ func addPost(post: Post) {
 func deletePost(post: Post) {
     dummyPosts.removeAll { $0.id == post.id }
 }
-
