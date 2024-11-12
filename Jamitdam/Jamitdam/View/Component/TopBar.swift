@@ -3,14 +3,14 @@ import SwiftUI
 struct TopBar: View {
     var title: String
     var showBackButton: Bool = true
-    var backButtonFunc: (() -> Void)
+    var backButtonFunc: (() -> Void)?
     var rightButton: String = ""
     var rightButtonFunc: (() -> Void) = {}
     var rightButtonDisabled: Bool = false
     
     var body: some View {
         HStack {
-            Button(action: backButtonFunc) {
+            Button(action: backButtonFunc!) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 21))
                     .padding()
