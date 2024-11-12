@@ -4,15 +4,18 @@ import SwiftUI
 struct SelectingFriendProfileView: View {
     
     // 유수현의 계정
-    let user = user1
+    @State private var user = user1 // 변경 가능한 상태로 선언
     // 추가할 친구: 진서기
-    let friend = user2
+    @State private var friend = user2
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
-    var unapprovalFriend: (() -> Void) = {
+    
+    func unapprovalFriend() {
         print("친구 거절 버튼 클릭")
-        
+        user.deleteRequestedFriend(friend: friend)
     }
+        
+
     
     var body: some View {
         GeometryReader { geometry in
@@ -51,6 +54,9 @@ struct SelectingFriendProfileView: View {
                 RedButton(title: "친구 추가", isEnabled: .constant(true), height: 60 * heightRatio, action: {
                     // 친구 추가 버튼 클릭 시
                     print("친구 추가 버튼 클릭")
+                    user.deleteRequestedFriend(friend: friend)
+                    user.addFriend(friend: friend)
+                    friend.addFriend(friend: user)
                 })
                 
                 Spacer()

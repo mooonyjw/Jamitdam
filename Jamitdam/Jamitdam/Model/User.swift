@@ -37,6 +37,16 @@ struct User: Identifiable {
     mutating func unblockFriend(friend: User) {
         blockedFriends.removeAll { $0.id == friend.id }
     }
+    
+    // 요청 온 친구 추가
+    mutating func addRequestedFriend(friend: User) {
+        requestedFriends.append(friend)
+    }
+    
+    // 요청 온 친구 삭제
+    mutating func deleteRequestedFriend(friend: User) {
+        requestedFriends.removeAll { $0.id == friend.id }
+    }
 }
 
 
