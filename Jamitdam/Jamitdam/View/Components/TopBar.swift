@@ -1,12 +1,19 @@
 import SwiftUI
 
 struct TopBar: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    
     var title: String
     var showBackButton: Bool = true
-    var backButtonFunc: (() -> Void)
     var rightButton: String = ""
-    var rightButtonFunc: (() -> Void) = {}
+    var rightButtonFunc: (() -> Void)
     var rightButtonDisabled: Bool = false
+    
+    func backButtonFunc() {
+        print("뒤로가기 클릭")
+        dismiss()
+    }
     
     var body: some View {
         HStack {
@@ -54,7 +61,6 @@ struct TopBar: View {
 #Preview {
     TopBar(
         title: "상단바 제목",
-        backButtonFunc: { print("뒤로 가기 클릭") },
         rightButton: "추가",
         rightButtonFunc: { print("추가 버튼 클릭") }
     )

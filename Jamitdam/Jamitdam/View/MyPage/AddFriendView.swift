@@ -17,7 +17,6 @@ struct AddFriendView: View {
             VStack(spacing: 0) {
                 TopBar(
                     title: "아이디로 친구 추가",
-                    backButtonFunc: { print("뒤로 가기 클릭") },
                     rightButton: "추가",
                     rightButtonFunc: { print("추가 버튼 클릭") },
                     rightButtonDisabled: !isFriendValid()
