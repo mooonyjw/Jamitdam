@@ -10,6 +10,9 @@
 		6362779B2CDDFA2B00ACC17B /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362779A2CDDFA2B00ACC17B /* Register.swift */; };
 		6362779D2CDDFA4300ACC17B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362779C2CDDFA4300ACC17B /* Login.swift */; };
 		6393CDCE2CDB0BA90092E9D4 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393CDCD2CDB0BA90092E9D4 /* SplashView.swift */; };
+		63974C672CE2F588003F27FE /* RedButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63974C662CE2F582003F27FE /* RedButtonComponent.swift */; };
+		63974C6D2CE334A3003F27FE /* SearchID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63974C6C2CE3349F003F27FE /* SearchID.swift */; };
+		63974C6F2CE334A9003F27FE /* SearchPW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63974C6E2CE334A8003F27FE /* SearchPW.swift */; };
 		971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */; };
 		971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B8B2CD9D32700A2BF5E /* ContentView.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
@@ -40,6 +43,9 @@
 		6362779A2CDDFA2B00ACC17B /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		6362779C2CDDFA4300ACC17B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		6393CDCD2CDB0BA90092E9D4 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		63974C662CE2F582003F27FE /* RedButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButtonComponent.swift; sourceTree = "<group>"; };
+		63974C6C2CE3349F003F27FE /* SearchID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchID.swift; sourceTree = "<group>"; };
+		63974C6E2CE334A8003F27FE /* SearchPW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPW.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0B892CD9D32700A2BF5E /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		971A0B8B2CD9D32700A2BF5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 		636277992CDDFA1600ACC17B /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				63974C6E2CE334A8003F27FE /* SearchPW.swift */,
+				63974C6C2CE3349F003F27FE /* SearchID.swift */,
 				6362779A2CDDFA2B00ACC17B /* Register.swift */,
 				6362779C2CDDFA4300ACC17B /* Login.swift */,
 			);
@@ -97,10 +105,19 @@
 		6393CDCF2CDB12360092E9D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				63974C652CE2F56F003F27FE /* Component */,
 				636277992CDDFA1600ACC17B /* Login */,
 				6393CDCC2CDB0B5C0092E9D4 /* Splash */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		63974C652CE2F56F003F27FE /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				63974C662CE2F582003F27FE /* RedButtonComponent.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		971A0B7D2CD9D32700A2BF5E = {
@@ -290,10 +307,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63974C672CE2F588003F27FE /* RedButtonComponent.swift in Sources */,
 				971A0B8C2CD9D32700A2BF5E /* ContentView.swift in Sources */,
+				63974C6D2CE334A3003F27FE /* SearchID.swift in Sources */,
 				6362779D2CDDFA4300ACC17B /* Login.swift in Sources */,
 				971A0B8A2CD9D32700A2BF5E /* JamitdamApp.swift in Sources */,
 				6362779B2CDDFA2B00ACC17B /* Register.swift in Sources */,
+				63974C6F2CE334A9003F27FE /* SearchPW.swift in Sources */,
 				6393CDCE2CDB0BA90092E9D4 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
