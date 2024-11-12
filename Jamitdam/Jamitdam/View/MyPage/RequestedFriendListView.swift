@@ -5,7 +5,7 @@ struct RequestedFriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 요청 온 친구 목록
     @State private var user = user1
-    @State private var requestedFriends: [User] = user1.requestedFriends
+    @State private var requestedFriends: [User] = []
     @State private var showingAlert = false
     @State private var selectedFriend: User?
     @State private var navigateToProfile: Bool = false
@@ -52,10 +52,11 @@ struct RequestedFriendListView: View {
                             title: Text("친구 추가하시겠습니까?"),
                             message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
                             primaryButton: .destructive(Text("추가")) {
-                                user1.addFriend(friend: selectedFriend!)
-                                user1.deleteRequestedFriend(friend: selectedFriend!)
+                                user.addFriend(friend: selectedFriend!)
+                                user.deleteRequestedFriend(friend: selectedFriend!)
                                 
-                                selectedFriend!.addFriend(friend: user1)
+                                selectedFriend!.addFriend(friend: user)
+                                requestedFriends = user.requestedFriends
                                 
                             },
                             secondaryButton: .cancel(Text("취소"))
@@ -63,6 +64,9 @@ struct RequestedFriendListView: View {
                     }
                 }
         
+            }
+            .onAppear {
+                requestedFriends = user.requestedFriends
             }
         }
     }

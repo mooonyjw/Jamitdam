@@ -5,7 +5,7 @@ struct BlockedFriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 차단 친구 목록
     @State private var user = user1
-    @State private var blockedFriends: [User] = user1.blockedFriends
+    @State private var blockedFriends: [User] = []
     
     // 차단 해제 시 .alert 표시 여부
     @State private var showingAlert = false
@@ -50,19 +50,41 @@ struct BlockedFriendListView: View {
                             print("\(selectedFriend!.name) 프로필 페이지로 이동")
                         }
                     }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(
-                            title: Text("차단 해제하시겠습니까?"),
-                            message: Text("\(selectedFriend!.name)님을 차단 해제하시겠습니까?"),
-                            primaryButton: .destructive(Text("해제")) {
-                                user.unblockFriend(friend: selectedFriend!)
-                            },
-                            secondaryButton: .cancel(Text("취소"))
-                        )
-                    }
+//                    .alert(isPresented: $showingAlert) {
+//                        Alert(
+//                            title: Text("차단 해제하시겠습니까?"),
+//                            message: Text("\(selectedFriend!.name)님을 차단 해제하시겠습니까?"),
+//                            primaryButton: .destructive(Text("해제")) {
+//                                user.unblockFriend(friend: selectedFriend!)
+//                            },
+//                            secondaryButton: .cancel(Text("취소"))
+//                        )
+//                    }
+                    .actionSheet(isPresented: $showingAlert) {
+                      ActionSheet(
+                          title: Text("차단 해제 하시겠습니까?"),
+                          buttons: [
+                              .default(Text("차단 해제")) {
+                                  print("차단 해제 선택됨")
+                                  user.unblockFriend(friend: selectedFriend!)
+                                  blockedFriends = user.blockedFriends
+                              },
+                              .default(Text("친구 추가")) {
+                                  print("친구 추가 선택됨")
+                                  user.unblockFriend(friend: selectedFriend!)
+                                  user.addFriend(friend: selectedFriend!)
+                                  blockedFriends = user.blockedFriends
+                              },
+                              .cancel(Text("취소"))
+                          ]
+                      )
+                  }
                 }
             }
-        }
+            .onAppear {
+                blockedFriends = user.blockedFriends
+            }
+        }        
     }
 }
 
