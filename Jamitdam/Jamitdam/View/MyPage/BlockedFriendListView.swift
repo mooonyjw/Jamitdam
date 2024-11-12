@@ -4,6 +4,7 @@ import Foundation
 struct BlockedFriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 차단 친구 목록
+    @State private var user = user1
     @State private var blockedFriends: [User] = user1.blockedFriends
     
     // 차단 해제 시 .alert 표시 여부
@@ -54,7 +55,7 @@ struct BlockedFriendListView: View {
                             title: Text("차단 해제하시겠습니까?"),
                             message: Text("\(selectedFriend!.name)님을 차단 해제하시겠습니까?"),
                             primaryButton: .destructive(Text("해제")) {
-                                removeFriendFromBlockedList(selectedFriend!)
+                                user.unblockFriend(friend: selectedFriend!)
                             },
                             secondaryButton: .cancel(Text("취소"))
                         )
@@ -62,11 +63,6 @@ struct BlockedFriendListView: View {
                 }
             }
         }
-    }
-    
-    // 인자로 받은 친구를 유저의 차단 목록에서 제거하는 함수 (친구 차단 해제)
-    private func removeFriendFromBlockedList(_ friend: User) {
-        blockedFriends.removeAll { $0.id == friend.id }
     }
 }
 

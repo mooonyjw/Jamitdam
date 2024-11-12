@@ -4,6 +4,7 @@ import Foundation
 struct RequestedFriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 요청 온 친구 목록
+    @State private var user = user1
     @State private var requestedFriends: [User] = user1.requestedFriends
     @State private var showingAlert = false
     @State private var selectedFriend: User?
@@ -51,7 +52,10 @@ struct RequestedFriendListView: View {
                             title: Text("친구 추가하시겠습니까?"),
                             message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
                             primaryButton: .destructive(Text("추가")) {
-                                addFriend(selectedFriend!)
+                                user1.addFriend(friend: selectedFriend!)
+                                user1.deleteRequestedFriend(friend: selectedFriend!)
+                                
+                                selectedFriend!.addFriend(friend: user1)
                                 
                             },
                             secondaryButton: .cancel(Text("취소"))
@@ -61,13 +65,6 @@ struct RequestedFriendListView: View {
         
             }
         }
-    }
-    
-    // 친구를 유저의 친구 목록에 추가 + 요청된 친구 목록에서 제거하는 함수
-    private func addFriend(_ friend: User) {
-        user1.friends.append(friend)
-        requestedFriends.removeAll { $0.id == friend.id }
-        // 상대 친구에게 알림 전송 추후 구현
     }
 }
 
