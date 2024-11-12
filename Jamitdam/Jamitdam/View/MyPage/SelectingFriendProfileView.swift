@@ -2,6 +2,9 @@ import SwiftUI
 
 struct SelectingFriendProfileView: View {
     
+    // 뒤로가기 기능 함수
+    @Environment(\.dismiss) private var dismiss
+    
     // 유수현의 계정
     @State private var user = user1
     // 추가할 친구: 진서기
@@ -30,6 +33,7 @@ struct SelectingFriendProfileView: View {
                 VStack {
                     AddFriendCustomBar(backButtonFunc: {
                         print("뒤로 가기 버튼 클릭")
+                        dismiss()
                     }, widthRatio: widthRatio, heightRatio: heightRatio)
                     
                     // 사용자 프로필
