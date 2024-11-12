@@ -19,7 +19,7 @@ struct SelectingFriendProfileView: View {
             let heightRatio = geometry.size.height / screenHeight
             
             VStack {
-                CustomBar(backButtonFunc: {
+                AddFriendCustomBar(backButtonFunc: {
                     // 전 페이지로 이동 추후 구현
                     print("뒤로 가기 버튼 클릭")
                 })
@@ -30,7 +30,7 @@ struct SelectingFriendProfileView: View {
                 //.scaledToFit()
                     .frame(width: widthRatio * 110, height: heightRatio * 110)
                     .clipShape(Circle())
-                    .padding(.top, 26)
+                    .padding(.top, 26 * heightRatio)
                 
                 // 사용자 이름
                 Text(user2.name)
@@ -76,7 +76,9 @@ struct SelectingFriendProfileView: View {
         }
     }
 }
-struct CustomBar: View {
+
+// 위에 상단바
+struct AddFriendCustomBar: View {
     var showBackButton: Bool = true
     var backButtonFunc: (() -> Void)
     

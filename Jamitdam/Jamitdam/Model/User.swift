@@ -17,7 +17,28 @@ struct User: Identifiable {
     var blockedFriends: [User] = []
     var friends: [User] = []
     
+    // 친구 추가
+    mutating func addFriend(friend: User) {
+        friends.append(friend)
+    }
+    
+    // 친구 삭제
+    mutating func deleteFriend(friend: User) {
+        friends.removeAll { $0.id == friend.id }
+    }
+    
+    // 차단 친구 추가
+    mutating func blockFriend(friend: User) {
+        blockedFriends.append(friend)
+    }
+    
+    // 차단 친구 해제
+    mutating func unblockFriend(friend: User) {
+        blockedFriends.removeAll { $0.id == friend.id }
+    }
 }
+
+
 
 var user1 = User(name: "유수현", profile: "UserProfile1", userID: "suhyeonU", password: "suhyeonU11", email: "Shu11@hanyang.ac.kr", blockedFriends: [user2, user3], friends: [user4, user5])
 
