@@ -24,11 +24,8 @@ struct RelationshipListView: View {
                 
                 TopBar(
                     title: "인연",
-                    backButtonFunc: { print("뒤로 가기 클릭") },
-                    
                     // isEditing이 false일 때는 편집, true일 때는 완료
                     rightButton: isEditing ? "완료" : "편집",
-                    
                     // 편집 버튼 누를 시 편집 모드로 전환
                     rightButtonFunc: {
                         isEditing.toggle()
