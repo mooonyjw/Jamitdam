@@ -67,7 +67,7 @@ struct AddFriendProfileView: View {
             }
             .alert(isPresented: $showAlert) {
                 Alert(
-                    title: Text("친구 요청을 하시겠습니까?"),
+                    title: Text("친구 요청"),
                     message: Text(friend.name+"님에게 친구 요청을 하시겠습니까?"),
                     primaryButton: .default(Text("확인")) {
                         // 버튼 비활성화 및 문구 변경

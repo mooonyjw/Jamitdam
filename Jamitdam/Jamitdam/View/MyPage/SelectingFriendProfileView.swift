@@ -71,7 +71,7 @@ struct SelectingFriendProfileView: View {
                     .alert(isPresented: $showAddFriendAlert) {
                         Alert(
                             title: Text("친구 추가"),
-                            message: Text("친구 요청을 보내시겠습니까?"),
+                            message: Text("친구 추가를 하시겠습니까?"),
                             primaryButton: .default(Text("확인")) {
                                 user.deleteRequestedFriend(friend: friend)
                                 user.addFriend(friend: friend)
