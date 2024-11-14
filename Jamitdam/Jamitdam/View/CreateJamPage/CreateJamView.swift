@@ -27,7 +27,7 @@ struct CreateJamView: View {
             let heightRatio = geometry.size.height / screenHeight
             
             NavigationStack{
-                TopBar(title: "잼얘 생성하기", backButtonFunc: {})
+                TopBar(title: "잼얘 생성하기")
                 ZStack {
                     Color("BackgroundWhite")
                     VStack {
