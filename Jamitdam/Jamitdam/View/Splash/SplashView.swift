@@ -14,9 +14,7 @@ struct SplashView: View {
     // 2초 지연 후 true로 변경되며 다른 UI 요소에 애니메이션이 적용된다.
     @State private var isVisible = false
     
-    // 화면 전환을 위한 boolean
-    // 시작하기가 선택되면 true가 된다.
-    @State private var navigateToLogin = false
+    @StateObject private var navigationState = NavigationState()
 
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
     let screenWidth: CGFloat = 390
@@ -73,7 +71,7 @@ struct SplashView: View {
                         
                         // 시작하기 버튼이 눌리면 Login 화면으로 이동한다.
                         RedButton(title: "시작하기", isEnabled: $isEnabled, height: 55) {
-                            navigateToLogin = true
+                            navigationState.navigateToLogin = true
                         }
                         .opacity(isVisible ? 1 : 0)
                         .animation(.easeOut(duration: 1.2), value: isVisible)
@@ -88,7 +86,7 @@ struct SplashView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: $navigateToLogin){
+            .navigationDestination(isPresented: $navigationState.navigateToLogin){
                 Login()
             }
         }

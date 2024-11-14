@@ -11,29 +11,18 @@ struct Login: View {
     // 해당 화면에서는 항상 true로 유지된다.
     @State private var isEnabled: Bool = true
     
-    // 화면 전환을 위한 boolean
-    // 시작하기가 선택되면 true가 된다.
-    @State private var navigateToHome = false
     
-    // 화면 전환을 위한 boolean
-    // 시작하기가 선택되면 true가 된다.
-    @State private var navigateToRegister = false
-    
-    // 화면 전환을 위한 boolean
-    // 시작하기가 선택되면 true가 된다.
-    @State private var navigateToSearchID = false
-    
-    // 화면 전환을 위한 boolean
-    // 시작하기가 선택되면 true가 된다.
-    @State private var navigateToSearchPW = false
-    @State private var path: [String] = []
+    //@State private var path: [String] = []
     
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
     let screenWidth: CGFloat = 390
     let screenHeight: CGFloat = 844
     
+    @StateObject private var navigationState = NavigationState()
+
     var body: some View {
-        NavigationStack(path: $path){
+        
+        NavigationStack{
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -82,8 +71,7 @@ struct Login: View {
                         // 로그인 부수 기능 추가
                         HStack {
                             Button(action: {
-                                path.append("Register")
-                                navigateToRegister = true
+                                navigationState.navigateToRegister = true
                             }, label: {
                                 Text("회원가입")
                                     .font(.body)
@@ -93,8 +81,7 @@ struct Login: View {
                                 .fill(Color.gray)
                                 .frame(width: heightRatio * 3)
                             Button(action: {
-                                path.append("SearchID")
-                                navigateToSearchID = true
+                                navigationState.navigateToSearchID = true
                             }, label: {
                                 Text("아이디 찾기")
                                     .foregroundColor(.black)
@@ -104,8 +91,7 @@ struct Login: View {
                                 .fill(Color.gray)
                                 .frame(width: heightRatio * 3)
                             Button(action: {
-                                path.append("SearchPW")
-                                navigateToSearchPW = true
+                                navigationState.navigateToSearchPW = true
                             }, label: {
                                 Text("비밀번호 찾기")
                                     .foregroundColor(.black)
@@ -119,8 +105,7 @@ struct Login: View {
                         
                         // Login Button
                         RedButton(title: "로그인", isEnabled: $isEnabled, height: 55) {
-                            navigateToHome = true
-                            path.append("Home")
+                            navigationState.navigateToHome = true
                         }
                         .padding(.bottom, 70 * heightRatio)
                     }
@@ -128,35 +113,19 @@ struct Login: View {
                     .navigationBarHidden(true)
                 }
             }
-            .navigationDestination(for: String.self) { value in
-                // String 값에 따라 이동할 화면 설정
-                switch value {
-                    case "Register":
-                        Register()
-                    case "SearchID":
-                        SearchID()
-                    case "SearchPW":
-                        SearchPW()
-                    case "Home":
-                        SearchPW()
-                        //Home()
-                    default:
-                        EmptyView()
-                }
-                
-                //            .navigationDestination(isPresented: $navigateToHome){
-                //                //Home()
-                //            }
-                //            .navigationDestination(isPresented: $navigateToRegister){
-                //                Register()
-                //            }
-                //            .navigationDestination(isPresented: $navigateToSearchID){
-                //                SearchID()
-                //            }
-                //            .navigationDestination(isPresented: $navigateToSearchPW){
-                //                SearchPW()
-                //            }
+            .navigationDestination(isPresented: $navigationState.navigateToHome){
+                //Home()
             }
+            .navigationDestination(isPresented: $navigationState.navigateToRegister){
+                Register()
+            }
+            .navigationDestination(isPresented: $navigationState.navigateToSearchID){
+                SearchID()
+            }
+            .navigationDestination(isPresented: $navigationState.navigateToSearchPW){
+                SearchPW()
+            }
+            
         }
     }
 }

@@ -1,5 +1,23 @@
 import SwiftUI
 
+class CustomNavigationController: UINavigationController, UIGestureRecognizerDelegate {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+}
+
+struct RegisterWrapper: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> CustomNavigationController {
+        let navigationController = CustomNavigationController(rootViewController: UIHostingController(rootView: Register()))
+        navigationController.interactivePopGestureRecognizer?.isEnabled = true
+        return navigationController
+    }
+    
+    func updateUIViewController(_ uiViewController: CustomNavigationController, context: Context) {}
+}
+
+
 struct Register: View {
     
     @State private var email: String = ""
@@ -8,12 +26,7 @@ struct Register: View {
     // 모든 정보가 입력되면 true가 된다.
     @State private var isEnabled: Bool = false
     
-    // 화면 전환을 위한 boolean
-    // 시작하기가 선택되면 true가 된다.
-    @State private var navigateToHome = false
     
-    @State private var navigateToNickname = false
-
     
     @State private var verificationCode: String = ""
     @State private var isCodeFieldVisible = false // 인증번호 입력 필드 표시 여부
@@ -28,6 +41,9 @@ struct Register: View {
     @State private var username: String = ""
     @State private var password: String = ""
     
+    @StateObject private var navigationState = NavigationState()
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
 
 
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
@@ -54,6 +70,8 @@ struct Register: View {
         return String(format: "%02d:%02d", min, sec)
     }
     
+    
+    
     var body: some View {
         NavigationStack{
             GeometryReader { geometry in
@@ -61,11 +79,17 @@ struct Register: View {
                 let widthRatio = geometry.size.width / screenWidth
                 let heightRatio = geometry.size.height / screenHeight
                 
-                ZStack{
+                ZStack(alignment: .topLeading){
                     
                     Color("Whitebackground")
                     
+                    BackButton{
+                        navigationState.navigateToLogin = true
+                    }
+                    .padding()
+                    
                     VStack {
+                        
                         
                         // Logo
                         Image("Logo")
@@ -209,20 +233,28 @@ struct Register: View {
                         
                     }
                     .frame(maxHeight: .infinity, alignment: .top)
-                    .navigationBarHidden(true)
+                    //.navigationBarHidden(true)
                     
                     
                     // Login Button
                     RedButton(title: "다음", isEnabled: $isEnabled, height: heightRatio * 55 ) {
-                        navigateToNickname = true
+                        navigationState.navigateToNickname = true
                     }
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     .padding(.bottom, 70 * heightRatio)
+                    
+                    
                 }
+                
             }
+            .navigationBarBackButtonHidden(true)
             
-            .navigationDestination(isPresented: $navigateToNickname){
+            
+            .navigationDestination(isPresented: $navigationState.navigateToNickname){
                 //Home()
+            }
+            .navigationDestination(isPresented: $navigationState.navigateToLogin){
+                Login()
             }
             
         }
