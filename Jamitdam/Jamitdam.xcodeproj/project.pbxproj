@@ -15,11 +15,7 @@
 		971994882CDF65F500D543E9 /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994872CDF65F500D543E9 /* JamitdamUITests.swift */; };
 		9719948A2CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */; };
 		971994A52CDF66B800D543E9 /* RedButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994972CDF66B800D543E9 /* RedButtonComponent.swift */; };
-		971994A62CDF66B800D543E9 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994982CDF66B800D543E9 /* TopBar.swift */; };
 		971994A72CDF66B800D543E9 /* CreateJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719949A2CDF66B800D543E9 /* CreateJamView.swift */; };
-		971994A82CDF66B800D543E9 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719949C2CDF66B800D543E9 /* AddFriendView.swift */; };
-		971994A92CDF66B800D543E9 /* BlockedFriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719949D2CDF66B800D543E9 /* BlockedFriendListView.swift */; };
-		971994AA2CDF66B800D543E9 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719949E2CDF66B800D543E9 /* FriendListView.swift */; };
 		971994AB2CDF66B800D543E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A12CDF66B800D543E9 /* Post.swift */; };
 		971994AC2CDF66B800D543E9 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A22CDF66B800D543E9 /* Relationship.swift */; };
 		971994AD2CDF66B800D543E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A32CDF66B800D543E9 /* User.swift */; };
@@ -54,11 +50,7 @@
 		971994872CDF65F500D543E9 /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
 		971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		971994972CDF66B800D543E9 /* RedButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedButtonComponent.swift; sourceTree = "<group>"; };
-		971994982CDF66B800D543E9 /* TopBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
 		9719949A2CDF66B800D543E9 /* CreateJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateJamView.swift; sourceTree = "<group>"; };
-		9719949C2CDF66B800D543E9 /* AddFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
-		9719949D2CDF66B800D543E9 /* BlockedFriendListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockedFriendListView.swift; sourceTree = "<group>"; };
-		9719949E2CDF66B800D543E9 /* FriendListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
 		971994A12CDF66B800D543E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		971994A22CDF66B800D543E9 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		971994A32CDF66B800D543E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -151,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				971994972CDF66B800D543E9 /* RedButtonComponent.swift */,
-				971994982CDF66B800D543E9 /* TopBar.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -164,22 +155,11 @@
 			path = CreateJamPage;
 			sourceTree = "<group>";
 		};
-		9719949F2CDF66B800D543E9 /* MyPage */ = {
-			isa = PBXGroup;
-			children = (
-				9719949C2CDF66B800D543E9 /* AddFriendView.swift */,
-				9719949D2CDF66B800D543E9 /* BlockedFriendListView.swift */,
-				9719949E2CDF66B800D543E9 /* FriendListView.swift */,
-			);
-			path = MyPage;
-			sourceTree = "<group>";
-		};
 		971994A02CDF66B800D543E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				971994992CDF66B800D543E9 /* Component */,
 				9719949B2CDF66B800D543E9 /* CreateJamPage */,
-				9719949F2CDF66B800D543E9 /* MyPage */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,15 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				971994A82CDF66B800D543E9 /* AddFriendView.swift in Sources */,
 				971994A52CDF66B800D543E9 /* RedButtonComponent.swift in Sources */,
-				971994A92CDF66B800D543E9 /* BlockedFriendListView.swift in Sources */,
 				9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */,
 				9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */,
 				971994AC2CDF66B800D543E9 /* Relationship.swift in Sources */,
-				971994A62CDF66B800D543E9 /* TopBar.swift in Sources */,
 				971994AB2CDF66B800D543E9 /* Post.swift in Sources */,
-				971994AA2CDF66B800D543E9 /* FriendListView.swift in Sources */,
 				971994A72CDF66B800D543E9 /* CreateJamView.swift in Sources */,
 				971994AD2CDF66B800D543E9 /* User.swift in Sources */,
 			);
