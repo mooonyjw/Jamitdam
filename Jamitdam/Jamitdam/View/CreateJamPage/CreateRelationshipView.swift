@@ -31,6 +31,10 @@ struct CreateRelationshipView: View {
     // 친구들에게 알림 보낼지 여부
     @State private var alertFriends: Bool = true
     
+    // emoji 입력이 아닐 시 alert를 띄우기 위한 변수
+    @State private var isShowingAlert = false
+    
+    
     func saveHashtag() {
         print(hashtagContent)
         if !hashtagContent.isEmpty {
@@ -81,6 +85,7 @@ struct CreateRelationshipView: View {
                                     Circle()
                                         .fill(Color("Redsoftbase"))
                                         .frame(width: 130 * widthRatio, height: 130 * heightRatio)
+                                    /*
                                     TextField("", text: $icon)
                                         .font(.system(size: 25 * widthRatio, weight: .semibold))
                                         .multilineTextAlignment(.center)
@@ -88,6 +93,9 @@ struct CreateRelationshipView: View {
                                         .keyboardType(.default)
                                         .frame(width: 100 * widthRatio, height: 130 * heightRatio)
                                         .font(.system(size: 60 * widthRatio))
+                                     */
+                                    EmojiTextfield(text: $icon, isShowingAlert: $isShowingAlert)
+                                        .frame(width: 100 * widthRatio, height: 130 * heightRatio)
                                     
                                     if icon.isEmpty {
                                         Image(systemName: "plus")
