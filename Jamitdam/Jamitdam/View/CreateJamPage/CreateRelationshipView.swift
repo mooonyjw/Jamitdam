@@ -28,6 +28,9 @@ struct CreateRelationshipView: View {
     // 해시태그 저장 후 수정 중인지 여부
     @State private var isEditing: Bool = false
     
+    // 친구들에게 알림 보낼지 여부
+    @State private var alertFriends: Bool = true
+    
     func saveHashtag() {
         print(hashtagContent)
         if !hashtagContent.isEmpty {
@@ -39,6 +42,10 @@ struct CreateRelationshipView: View {
             print(hashtag)
 
         }
+    }
+    
+    func updateButtonState() {
+        isEnabled = !nickname.isEmpty && !hashtag.isEmpty && !icon.isEmpty
     }
     
     var body: some View {
@@ -152,17 +159,34 @@ struct CreateRelationshipView: View {
                                             hashtag = ""
                                         }) {
                                             Text("수정")
+                                                .foregroundColor(Color("Graybasic"))
                                         }
                                     }
                                 }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .frame(height: 25 * heightRatio)
                             }
-                            .frame(height: 165 * heightRatio)
-
+                            .frame(height: 64 * heightRatio)
+                            
+                            
+                            Toggle("친구들에게 알림 보내기", isOn: $alertFriends)
+                                .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
+                                .padding(.leading)
+                                .padding(.trailing)
+                                .frame(height: 64 * heightRatio)
                             
                             RedButton(title: "완료", isEnabled: $isEnabled, height: 55 * heightRatio, action: {print("hi")})
                         }
+                        .onChange(of: icon) { _ in
+                            updateButtonState()
+                        }
+                        .onChange(of: nickname) { _ in
+                            updateButtonState()
+                        }
+                        .onChange(of: hashtag) { _ in
+                            updateButtonState()
+                        }
                         .ignoresSafeArea(.keyboard, edges: .bottom)
-                    
                 }
             }
         }
