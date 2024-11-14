@@ -85,15 +85,7 @@ struct CreateRelationshipView: View {
                                     Circle()
                                         .fill(Color("Redsoftbase"))
                                         .frame(width: 130 * widthRatio, height: 130 * heightRatio)
-                                    /*
-                                    TextField("", text: $icon)
-                                        .font(.system(size: 25 * widthRatio, weight: .semibold))
-                                        .multilineTextAlignment(.center)
-                                        .textFieldStyle(PlainTextFieldStyle())
-                                        .keyboardType(.default)
-                                        .frame(width: 100 * widthRatio, height: 130 * heightRatio)
-                                        .font(.system(size: 60 * widthRatio))
-                                     */
+                                    
                                     EmojiTextfield(text: $icon, isShowingAlert: $isShowingAlert)
                                         .frame(width: 100 * widthRatio, height: 130 * heightRatio)
                                     
@@ -106,6 +98,13 @@ struct CreateRelationshipView: View {
                                     }
                                 }
                                 .frame(height: 150 * heightRatio)
+                                .alert(isPresented: $isShowingAlert) {
+                                    Alert(
+                                        title: Text(""),
+                                        message: Text("이모지를 입력해주세요!"),
+                                        dismissButton: .default(Text("확인"))
+                                    )
+                                }
                                 
                                 Spacer()
                                     .frame(height: 40 * heightRatio)
@@ -142,9 +141,6 @@ struct CreateRelationshipView: View {
                                 HStack {
                                     Text("#")
                                         .padding(.leading)
-                                     
-                                    // 스페이스 눌러야 해시태그 수정 뜨는거 -> 그냥 완료하면 수정 뜨는걸로?
-                                    // 해시태그 작성 완료되면 가운데로 와버리는거 고치기
                                     
                                     if isEditing || hashtag.isEmpty {
                                         TextField("title", text: $hashtagContent, prompt: Text("여기를_눌러서_관계를_해시태그로_표현해보아요.")
