@@ -63,59 +63,64 @@ struct WriteJamView: View {
                         }
                         
                         // 본문 입력
-                        VStack {
-                            ZStack(alignment: .topLeading) {
-                                if content.isEmpty {
+                        ZStack(alignment: .topLeading) {
+                            if content.isEmpty {
+                                VStack {
                                     Text("본문을 입력해주세요.")
                                         .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
                                         .padding(.leading)
-                                }
-                                MentionTextField(
-                                    text: $content,
-                                    isMentioning: $isMentioning,
-                                    mentionQuery: $mentionQuery,
-                                    mentionPosition: $mentionPosition,
-                                    height: $textFieldHeight,
-                                    maxHeight: 200,
-                                    fontSize: 20
-                                )
-                                .padding(.horizontal)
-                                .frame(height: textFieldHeight)
-                                .onChange(of: content) { newText in
-                                    if newText.count > 300 {
-                                        content = String(newText.prefix(300))
-                                    }
+                                        .frame(height: 30)
+                                    Spacer()
+                                        .frame(height: .infinity)
                                 }
                             }
-                        }
-                        
-                        if isMentioning {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
-                                    .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 0)
-                                    .frame(width: 170, height: 150)
-                                
-                                ScrollView {
-                                    VStack(alignment: .leading) {
-                                        ForEach(filteredRelationships, id: \.id) { relationship in
-                                            HStack {
-                                                Text(relationship.icon)
-                                                    .font(.system(size: 30))
-                                                Text(relationship.nickname)
-                                                    .font(.system(size: 20))
-                                                    .bold()
-                                            }
-                                            .onTapGesture {
-                                                insertMention(relationship)
+                            MentionTextField(
+                                text: $content,
+                                isMentioning: $isMentioning,
+                                mentionQuery: $mentionQuery,
+                                mentionPosition: $mentionPosition,
+                                height: $textFieldHeight,
+                                maxHeight: 200,
+                                fontSize: 20
+                            )
+                            .padding(.horizontal)
+                            .frame(height: textFieldHeight, alignment: .topLeading)
+                            .onChange(of: content) { newText in
+                                if newText.count > 300 {
+                                    content = String(newText.prefix(300))
+                                }
+                            }
+                            if isMentioning {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
+                                        .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 0)
+                                        .frame(width: 170, height: 150)
+                                    
+                                    ScrollView {
+                                        VStack(alignment: .leading) {
+                                            ForEach(filteredRelationships, id: \.id) { relationship in
+                                                HStack {
+                                                    Text(relationship.icon)
+                                                        .font(.system(size: 30))
+                                                    Text(relationship.nickname)
+                                                        .font(.system(size: 20))
+                                                        .bold()
+                                                }
+                                                .onTapGesture {
+                                                    insertMention(relationship)
+                                                }
                                             }
                                         }
                                     }
+                                    .frame(height: 150)
                                 }
-                                .frame(height: 150)
+                                .position(mentionPosition)
+                                .padding(.horizontal)
                             }
-                            .position(mentionPosition)
-                            .padding(.horizontal)
+                            Spacer()
+                                .frame(height: .infinity)
                         }
+                        .frame(height: 360)
                         
                         // 글자 수 제한 표시
                         Text("\(content.count) / 300")
