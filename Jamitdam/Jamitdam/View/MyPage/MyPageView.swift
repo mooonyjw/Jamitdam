@@ -12,11 +12,21 @@ struct MyPageView: View {
     
     // 닉네임 변경 여부
     @State private var isEditingName = false
+    // 8글자 이상 닉네임 입력 시
+    @State private var showWarning = false
+    
+    @State private var isShowingImagePicker = false
+    // 선택된 갤러리 이미지
+    @State private var profileImage: UIImage? = nil
+    
     // 변경 사항 여부
     @State private var isEdited = false
     @State private var editedName: String = ""
     
     @State private var showSaveMessage = false
+    
+    // 친구 추가 액션 시트
+    @State private var isPresentingBottomSheet = false
     
     // 알림 토글
     @State private var onAlarm: Bool = true
@@ -44,55 +54,104 @@ struct MyPageView: View {
                             // 오른쪽 여백 확보
                             Spacer()
                             
+                            // 저장 버튼 누를 시
                             if isEdited {
                                 Button(action: {
                                     print("변경사항 저장")
                                     // 변경된 닉네임을 유저의 닉네임으로 업데이트
                                     user.name = editedName
+                                    // 변경된 프사를 유저의 프사로 업데이트 - 추후 구현?
+                                    //user.profile = String(profileImage)
                                     isEdited.toggle()
                                     
                                     // 저장 알림 표시
-                                     withAnimation {
-                                         showSaveMessage = true
-                                     }
-                                     
-                                     // 2초 후 알림 사라지도록 설정
-                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                         withAnimation {
-                                             showSaveMessage = false
-                                         }
-                                     }
+                                    withAnimation {
+                                        showSaveMessage = true
+                                    }
+                                    
+                                    // 2초 후 알림 사라지도록 설정
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        withAnimation {
+                                            showSaveMessage = false
+                                        }
+                                    }
                                 }) {
                                     Text("저장")
-                                        .padding(.trailing, 18)
+                                        .padding(.trailing, 18 * widthRatio)
                                 }
                             } else {
                                 // Add 버튼 공간 확보
-                                Spacer().frame(width: 44)
+                                Spacer().frame(width: 44 * widthRatio)
                             }
                             
                         }
                         
                         // 화면 가운데 프로필 이미지
-                        Image(user.profile)
-                            .resizable()
-                            .frame(width: widthRatio * 110, height: heightRatio * 110)
-                            .clipShape(Circle())
-                            .padding(.top, 26 * heightRatio)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        
+                        ZStack(alignment: .bottomTrailing) {
+                            // 프로필 변경 시 갤러리에서 가져온 이미지
+                            if let profileImage = profileImage {
+                                Image(uiImage: profileImage)
+                                    .resizable()
+                                    .frame(width: 110 * widthRatio, height: 110 * heightRatio)
+                                    .clipShape(Circle())
+                                    .padding(.top, 26 * heightRatio)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            } else {
+                                Image(user.profile)
+                                    .resizable()
+                                    .frame(width: 110 * widthRatio, height: 110 * heightRatio)
+                                    .clipShape(Circle())
+                                    .padding(.top, 26 * heightRatio)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            
+                            // 카메라 버튼
+                            Button(action: {
+                                isEdited = true
+                                isShowingImagePicker = true
+                            }) {
+                                Image(systemName: "camera.circle.fill")
+                                    .resizable()
+                                    .frame(width: 30 * widthRatio, height: 30 * heightRatio)
+                                    .foregroundColor(Color("Redbase"))
+                                    .background(Color.white)
+                                    .clipShape(Circle())
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.white, lineWidth: 2)
+                                    )
+                            }
+                            .offset(x: -145 * widthRatio, y: 10 * heightRatio)
+                        }
+                        .sheet(isPresented: $isShowingImagePicker) {
+                            // 갤러리로 이동
+                            ImagePicker(selectedImage: $profileImage)
+                        }
+                    
                         
                         // 닉네임
                         VStack(spacing: 0) {
-                            
+                            // 편집모드
                             if isEditingName {
                                 // 편집 모드에서는 TextField를 표시
                                 // 8글자 넘을 시 경고창 띄워야됨
                                 TextField("", text: $nickname, onCommit: {
                                     isEditingName = false
-                                    // 변경된 닉네임 저장
-                                    editedName = nickname
+                                    if nickname.count > 8 {
+                                        // 8글자 이상일 경우 경고창 표시 및 저장 비활성화
+                                        showWarning = true
+                                        isEdited = false
+                                    } else {
+                                        // 닉네임이 유효할 경우
+                                        editedName = nickname
+                                        isEdited = true
+                                    }
                                 })
+                                .onChange(of: nickname) { newValue in
+                                    // 닉네임 길이 확인 및 저장 버튼 상태 업데이트
+                                    showWarning = newValue.count > 8
+                                    isEdited = newValue.count <= 8 && newValue != user.name
+                                }
                                 .font(.system(size: 25 * widthRatio))
                                 .fontWeight(.semibold)
                                 .multilineTextAlignment(.center)
@@ -105,6 +164,13 @@ struct MyPageView: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .onPreferenceChange(TextWidthPreferenceKey.self) { textWidth in
                                     underlineWidth = textWidth
+                                }
+                                
+                                if showWarning {
+                                    Text("8글자 이내로 작성해주세요.")
+                                        .font(.footnote)
+                                        .foregroundColor(.red)
+                                        .padding(.top, 4)
                                 }
                                 
                             } else {
@@ -142,6 +208,8 @@ struct MyPageView: View {
                         
                         Spacer()
                             .frame(height: heightRatio * 36)
+                        
+                        
                         
                         // 상단 버튼 (인연 보기, 친구 보기, 디데이)
                         HStack {
@@ -231,8 +299,6 @@ struct MyPageView: View {
                                 .frame(height: 40 * heightRatio)
                                 .fontWeight(.bold)
                             
-                            
-                            
                             Text("친구 관리")
                                 .font(.system(size: 20 * widthRatio))
                                 .fontWeight(.medium)
@@ -243,7 +309,48 @@ struct MyPageView: View {
                                 .frame(height: 13 * heightRatio)
                             
                             VStack {
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 추가", button: "chevron.right", destination: AddFriendProfileView())
+                                
+                                // 친구 추가 리스트
+                                HStack {
+                                    Spacer()
+                                        .frame(width: 26 * widthRatio)
+
+                                    Text("친구 추가")
+                                        .font(.system(size: 18 * widthRatio))
+                                        .foregroundColor(Color.black)
+                                    
+                                    Spacer()
+                                    
+                                   
+                                        Image(systemName: "plus")
+                                            .font(.system(size: 21 * widthRatio))
+                                            .foregroundColor(Color("Graybasic"))
+                                            .onTapGesture {
+                                                isPresentingBottomSheet = true
+                                            }
+                                            .actionSheet(isPresented: $isPresentingBottomSheet) {
+                                                ActionSheet(
+                                                    title: Text("친구 추가 방식을 선택해주세요."),
+                                                    buttons: [
+                                                        .default(Text("아이디로 친구 추가")) {
+                                                            // 페이지 이동 추후 구현
+                                                    
+                                                        },
+                                                        .default(Text("카카오톡으로 친구 추가")) {
+                                                            // 카카오톡으로 링크 보내기
+                                                        },
+                                                        .cancel {
+                                                        }
+                                                    ]
+                                                )
+                                            }
+                                    
+                                    Spacer()
+                                        .frame(width: 17 * widthRatio)
+                                    
+                                }
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 57 * heightRatio)
                                 
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "차단된 친구", button: "chevron.right", destination: SelectingFriendProfileView())
                                 
@@ -326,7 +433,7 @@ struct MyPageView: View {
                 if showSaveMessage {
                     VStack {
                         Text("변경사항이 저장되었습니다.")
-                            .font(.system(size: 20 * widthRatio))
+                            .font(.system(size: 18 * widthRatio))
                             .padding()
                             .background(Color("Grayunselected"))
                             .foregroundColor(.white)
