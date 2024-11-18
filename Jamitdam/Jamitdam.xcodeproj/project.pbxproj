@@ -19,6 +19,8 @@
 		971994AB2CDF66B800D543E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A12CDF66B800D543E9 /* Post.swift */; };
 		971994AC2CDF66B800D543E9 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A22CDF66B800D543E9 /* Relationship.swift */; };
 		971994AD2CDF66B800D543E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A32CDF66B800D543E9 /* User.swift */; };
+		97AA05062CE72F1100652325 /* MentionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AA05052CE72F0000652325 /* MentionTextField.swift */; };
+		97B5E3502CE663090043F024 /* WriteJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B5E34E2CE65EC70043F024 /* WriteJamView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		971994A12CDF66B800D543E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		971994A22CDF66B800D543E9 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		971994A32CDF66B800D543E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97AA05052CE72F0000652325 /* MentionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionTextField.swift; sourceTree = "<group>"; };
+		97B5E34E2CE65EC70043F024 /* WriteJamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteJamView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 		971994992CDF66B800D543E9 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				97AA05052CE72F0000652325 /* MentionTextField.swift */,
 				971994972CDF66B800D543E9 /* RedButtonComponent.swift */,
 			);
 			path = Component;
@@ -150,6 +155,7 @@
 		9719949B2CDF66B800D543E9 /* CreateJamPage */ = {
 			isa = PBXGroup;
 			children = (
+				97B5E34E2CE65EC70043F024 /* WriteJamView.swift */,
 				9719949A2CDF66B800D543E9 /* CreateJamView.swift */,
 			);
 			path = CreateJamPage;
@@ -304,6 +310,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97B5E3502CE663090043F024 /* WriteJamView.swift in Sources */,
+				97AA05062CE72F1100652325 /* MentionTextField.swift in Sources */,
 				971994A52CDF66B800D543E9 /* RedButtonComponent.swift in Sources */,
 				9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */,
 				9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */,
