@@ -2,15 +2,15 @@ import SwiftUI
 
 struct AddFriendProfileView: View {
     
+    var screenWidth: CGFloat = 390
+    var screenHeight: CGFloat = 844
+    
     // 뒤로 가기 기능
     @Environment(\.dismiss) private var dismiss
     // 유수현의 계정
     @State private var user = user1
     // 추가할 친구: 진서기
     @State private var friend = user2
-    
-    var screenWidth: CGFloat = 390
-    var screenHeight: CGFloat = 844
     
     // 버튼과 알림 상태를 관리하는 상태 변수
     @State private var showAlert = false
@@ -78,6 +78,7 @@ struct AddFriendProfileView: View {
                     secondaryButton: .cancel(Text("취소"))
                 )
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct JamitdamApp: App {
     var body: some Scene {
         WindowGroup {
-            SelectingFriendProfileView()
+            MyPageView()
         }
     }
 }
