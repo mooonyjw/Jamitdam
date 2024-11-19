@@ -75,18 +75,20 @@ struct CalendarView: View {
     func headerView() -> some View {
         // 내 달력
         HStack(spacing: 20) {
-            Text("\(selectedUser.name) 달력")
+            Text("내 달력")
                 .font(.title2.bold())
-           
-            Button {
-                withAnimation{
-                    isMenuVisible.toggle()
-                }
-            } label: {
-                Image(systemName: "chevron.down")
-                    .font(.callout)
-                    .foregroundColor(.black)
-            }
+//            Text("\(selectedUser.name) 달력")
+//                .font(.title2.bold())
+//           
+//            Button {
+//                withAnimation{
+//                    isMenuVisible.toggle()
+//                }
+//            } label: {
+//                Image(systemName: "chevron.down")
+//                    .font(.callout)
+//                    .foregroundColor(.black)
+//            }
             
             Spacer()
             
@@ -287,7 +289,7 @@ struct CalendarView: View {
     let initialCalendar = getCalendar(for: user1, from: dummyCalendars)
     var displayedCalendar = initialCalendar
     // 기본적으로 본인 사용자로 초기화
-   var selectedUser = user1
+    var selectedUser = user1
     
     CalendarView(displayedCalendar: displayedCalendar, selectedUser: selectedUser)
     
