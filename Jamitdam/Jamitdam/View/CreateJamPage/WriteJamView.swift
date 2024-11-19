@@ -34,6 +34,8 @@ struct WriteJamView: View {
     // 해시태그 작성 중인지 여부
     @State private var isEditing: Bool = false
     
+    @State private var isTextFieldEnabled: Bool = true
+    
     // 언급 시 보여줄 인연 목록
     var filteredRelationships: [Relationship] {
         if mentionQuery.isEmpty {
@@ -45,16 +47,23 @@ struct WriteJamView: View {
     
     private func insertHashtags() {
         if !hashtagContent.isEmpty {
-            hashtag = hashtagContent.trimmingCharacters(in: .whitespacesAndNewlines)
-            hashtagContent = "" // 입력 필드 초기화
-            hashtags.append(hashtag)
-            isEditing = false // 수정 상태 종료
+            let sanitizedHashtag = hashtagContent.trimmingCharacters(in: .whitespacesAndNewlines)
+                // 공백을 "_"로 변환
+                .replacingOccurrences(of: " ", with: "_")
+            // 입력 필드 초기화
+            hashtagContent = ""
+            // 변환된 해시태그 추가
+            hashtags.append(sanitizedHashtag)
+            // 수정 상태 종료
+            isEditing = false
         }
+        isTextFieldEnabled = hashtags.count >= 2 ? false : true
     }
     
     private func removeHashtag(at index: Int) {
         hashtags.remove(at: index)
         isEditing = false
+        isTextFieldEnabled = hashtags.count >= 2 ? false : true
     }
     
     private func insertMention(_ relationship: Relationship) {
@@ -70,78 +79,82 @@ struct WriteJamView: View {
             VStack {
                 ScrollView {
                     VStack(spacing: 20) {
-                        // 제목 입력
-                        VStack(spacing: 10) {
-                            TextField("제목", text: $title, prompt: Text("제목")
-                                .font(.system(size: 20)).foregroundColor(Color("Graybasic")))
-                                .keyboardType(.default)
-                                .frame(height: 40)
-                                .font(.system(size: 25, weight: .bold))
-                                .padding(.horizontal)
-                            
-                            Rectangle()
-                                .fill(Color("Graybasic"))
-                                .frame(height: 1)
-                                .padding(.horizontal)
-                        }
-                        
                         // 본문 입력
                         ZStack(alignment: .topLeading) {
-                            if content.isEmpty {
-                                VStack {
-                                    Text("본문을 입력해주세요.")
-                                        .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
+                            VStack {
+                                // 제목 입력
+                                VStack(spacing: 10) {
+                                    TextField("제목", text: $title, prompt: Text("제목")
+                                        .font(.system(size: 20)).foregroundColor(Color("Graybasic")))
+                                        .keyboardType(.default)
+                                        .frame(height: 40)
+                                        .font(.system(size: 25, weight: .bold))
                                         .padding(.leading)
-                                        .frame(height: 30)
-                                    Spacer()
-                                        .frame(height: .infinity)
-                                }
-                            }
-                            MentionTextField(
-                                text: $content,
-                                isMentioning: $isMentioning,
-                                mentionQuery: $mentionQuery,
-                                mentionPosition: $mentionPosition,
-                                height: $textFieldHeight,
-                                maxHeight: 200,
-                                fontSize: 20
-                            )
-                            .padding(.horizontal)
-                            .frame(height: textFieldHeight, alignment: .topLeading)
-                            .onChange(of: content) { newText in
-                                if newText.count > 300 {
-                                    content = String(newText.prefix(300))
-                                }
-                            }
-                            if isMentioning {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
-                                        .shadow(color: Color.black.opacity(0.15), radius: 20, x: 0, y: 0)
-                                        .frame(width: 170, height: 150)
+                                        .padding(.top)
                                     
-                                    ScrollView {
-                                        VStack(alignment: .leading) {
-                                            ForEach(filteredRelationships, id: \.id) { relationship in
-                                                HStack {
-                                                    Text(relationship.icon)
-                                                        .font(.system(size: 30))
-                                                    Text(relationship.nickname)
-                                                        .font(.system(size: 20))
-                                                        .bold()
-                                                }
-                                                .onTapGesture {
-                                                    insertMention(relationship)
-                                                }
-                                            }
+                                    Rectangle()
+                                        .fill(Color("Graybasic"))
+                                        .frame(height: 1)
+                                        .padding(.horizontal)
+                                        .ignoresSafeArea(edges: .horizontal)
+                                }
+                                ZStack {
+                                    if content.isEmpty {
+                                        Text("본문을 입력해주세요.")
+                                            .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .padding(.top)
+                                            .padding(.leading)
+                                    }
+                                    MentionTextField(
+                                        text: $content,
+                                        isMentioning: $isMentioning,
+                                        mentionQuery: $mentionQuery,
+                                        mentionPosition: $mentionPosition,
+                                        height: $textFieldHeight,
+                                        maxHeight: 250,
+                                        fontSize: 20
+                                    )
+                                    .padding(.horizontal)
+                                    .padding(.top)
+                                    .frame(height: textFieldHeight, alignment: .topLeading)
+                                    .onChange(of: content) { newText in
+                                        if newText.count > 300 {
+                                            content = String(newText.prefix(300))
                                         }
                                     }
-                                    .frame(height: 150)
                                 }
-                                .position(mentionPosition)
-                                .padding(.horizontal)
+                                    if isMentioning {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
+                                              
+                                                .frame(width: 170, height: 150)
+                                            
+                                            ScrollView {
+                                                VStack(alignment: .leading) {
+                                                    ForEach(filteredRelationships, id: \.id) { relationship in
+                                                        HStack {
+                                                            Text(relationship.icon)
+                                                                .font(.system(size: 30))
+                                                            Text(relationship.nickname)
+                                                                .font(.system(size: 20))
+                                                                .bold()
+                                                        }
+                                                        .onTapGesture {
+                                                            insertMention(relationship)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            .frame(height: 150)
+                                        }
+                                        .position(mentionPosition)
+                                        .padding(.horizontal)
+                                    }
+                                    Spacer()
+                                    .frame(maxHeight: .infinity)
+
                             }
-                            Spacer()
-                                .frame(height: .infinity)
                         }
                         .frame(height: 360)
                         
@@ -153,52 +166,75 @@ struct WriteJamView: View {
                         
                         // 글 해시태그
                         VStack {
-                            Text("글 해시태그")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading)
-                                .font(.system(size: 25, weight: .semibold))
-                            HStack {
-                                Text("#")
-                                    .font(.system(size: 14))
+                            HStack(spacing: 10) {
+                                Text("글 해시태그")
+                                    .font(.system(size: 25, weight: .semibold))
                                 
-                                TextField("해시태그_추가", text: $hashtagContent)
-                                    .font(.system(size: 14))
+                                Text("최대 2개까지 작성할 수 있어요.")
                                     .foregroundColor(Color("Graybasic"))
-                                    .onSubmit {
-                                        insertHashtags()
-                                    }
-                                    .frame(width: 100, alignment: .leading)
-                                
-                                if !hashtags.isEmpty {
-                                    ScrollView(.horizontal) {
+                                    .font(.system(size: 12))
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                            VStack {
+                                ZStack(alignment: .topLeading) {
+                                    RoundedRectangle(cornerRadius: 10).fill(Color("Redsoftbase"))
+                                        .shadow(color: Color.black.opacity(0), radius: 15, x: 0, y: 0)
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: 150)
+                                    
+                                    VStack {
                                         HStack {
-                                            ForEach(hashtags.indices, id: \.self) { index in
+                                            Text("#")
+                                                .font(.system(size: 14))
+                                            
+                                            TextField("title", text: $hashtagContent, prompt: Text("여기를_눌러서_해시태그를_추가해보아요.")
+                                                .font(.system(size: 14))
+                                                .foregroundColor(Color("Graybasic")))
+                                            .font(.system(size: 18, weight: .semibold))
+                                            .onSubmit {
+                                                insertHashtags()
+                                            }
+                                            .frame(alignment: .leading)
+                                            .disabled(!isTextFieldEnabled)
+                                        }
+                                        .padding(.top)
+                                        
+                                        if !hashtags.isEmpty {
+                                            ScrollView(.horizontal) {
                                                 HStack {
-                                                    Text("#")
-                                                    Text(hashtags[index])
-                                                    Button(action: {
-                                                        removeHashtag(at: index)
-                                                    }) {
-                                                        Image(systemName: "xmark")
-                                                            .foregroundColor(Color("Graybasic"))
+                                                    ForEach(hashtags.indices, id: \.self) { index in
+                                                        HStack {
+                                                            Text("#")
+                                                                .font(.system(size: 18, weight: .semibold))
+                                                            Text(hashtags[index])
+                                                                .font(.system(size: 18, weight: .semibold))
+                                                            Button(action: {
+                                                                removeHashtag(at: index)
+                                                            }) {
+                                                                Image(systemName: "xmark")
+                                                                    .foregroundColor(Color("Graybasic"))
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
+                                            .frame(width: .infinity, height: 50)
                                         }
                                     }
-                                    .frame(width: .infinity)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.horizontal)
                                 }
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading)
                         }
                     }
                     // 키보드 높이 만큼 패딩 추가
                     .padding(.bottom, keyboardHeight)
                 }
+
             }
             .padding()
-            .background(Color("Backgroundwhite").ignoresSafeArea())
+            .background(Color("Whitebackground").ignoresSafeArea())
             .navigationTitle("글 작성하기")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
