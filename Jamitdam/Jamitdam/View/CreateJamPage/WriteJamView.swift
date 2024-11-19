@@ -25,6 +25,15 @@ struct WriteJamView: View {
     // 키보드 높이 관리 변수
     @State private var keyboardHeight: CGFloat = 0
     
+    // 사용자의 해시태그 입력
+    @State private var hashtagContent: String = ""
+    // 완전히 입력된 하나의 해시태그
+    @State private var hashtag: String = ""
+    // 입력된 해시태그들
+    @State private var hashtags: [String] = []
+    // 해시태그 작성 중인지 여부
+    @State private var isEditing: Bool = false
+    
     // 언급 시 보여줄 인연 목록
     var filteredRelationships: [Relationship] {
         if mentionQuery.isEmpty {
@@ -32,6 +41,20 @@ struct WriteJamView: View {
         } else {
             return relationships.filter { $0.nickname.contains(mentionQuery) }
         }
+    }
+    
+    private func insertHashtags() {
+        if !hashtagContent.isEmpty {
+            hashtag = hashtagContent.trimmingCharacters(in: .whitespacesAndNewlines)
+            hashtagContent = "" // 입력 필드 초기화
+            hashtags.append(hashtag)
+            isEditing = false // 수정 상태 종료
+        }
+    }
+    
+    private func removeHashtag(at index: Int) {
+        hashtags.remove(at: index)
+        isEditing = false
     }
     
     private func insertMention(_ relationship: Relationship) {
@@ -134,9 +157,44 @@ struct WriteJamView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading)
                                 .font(.system(size: 25, weight: .semibold))
+                            HStack {
+                                Text("#")
+                                    .font(.system(size: 14))
+                                
+                                TextField("해시태그_추가", text: $hashtagContent)
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color("Graybasic"))
+                                    .onSubmit {
+                                        insertHashtags()
+                                    }
+                                    .frame(width: 100, alignment: .leading)
+                                
+                                if !hashtags.isEmpty {
+                                    ScrollView(.horizontal) {
+                                        HStack {
+                                            ForEach(hashtags.indices, id: \.self) { index in
+                                                HStack {
+                                                    Text("#")
+                                                    Text(hashtags[index])
+                                                    Button(action: {
+                                                        removeHashtag(at: index)
+                                                    }) {
+                                                        Image(systemName: "xmark")
+                                                            .foregroundColor(Color("Graybasic"))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .frame(width: .infinity)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading)
                         }
                     }
-                    .padding(.bottom, keyboardHeight) // 키보드 높이 만큼 패딩 추가
+                    // 키보드 높이 만큼 패딩 추가
+                    .padding(.bottom, keyboardHeight)
                 }
             }
             .padding()
