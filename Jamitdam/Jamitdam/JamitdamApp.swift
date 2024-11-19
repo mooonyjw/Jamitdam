@@ -11,7 +11,11 @@ import SwiftUI
 struct JamitdamApp: App {
     var body: some Scene {
         WindowGroup {
+<<<<<<< HEAD
             MyPageView()
+=======
+            AddFriendView()
+>>>>>>> feature/#2
         }
     }
 }

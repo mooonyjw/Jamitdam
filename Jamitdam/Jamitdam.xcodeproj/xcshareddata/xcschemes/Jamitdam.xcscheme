@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
-               BuildableName = "Jamitdam.app"
+               BuildableName = "Jamitdam"
                BlueprintName = "Jamitdam"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
@@ -36,7 +36,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "971A0B952CD9D32900A2BF5E"
-               BuildableName = "JamitdamTests.xctest"
+               BuildableName = "JamitdamTests"
                BlueprintName = "JamitdamTests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "971A0B9F2CD9D32900A2BF5E"
-               BuildableName = "JamitdamUITests.xctest"
+               BuildableName = "JamitdamUITests"
                BlueprintName = "JamitdamUITests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
-            BuildableName = "Jamitdam.app"
+            BuildableName = "Jamitdam"
             BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
-            BuildableName = "Jamitdam.app"
+            BuildableName = "Jamitdam"
             BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
