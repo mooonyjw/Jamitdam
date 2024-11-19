@@ -54,157 +54,31 @@ struct MyPageView: View {
                             // 오른쪽 여백 확보
                             Spacer()
                             
-                            // 저장 버튼 누를 시
-                            if isEdited {
-                                Button(action: {
-                                    print("변경사항 저장")
-                                    // 변경된 닉네임을 유저의 닉네임으로 업데이트
-                                    user.name = editedName
-                                    // 변경된 프사를 유저의 프사로 업데이트 - 추후 구현?
-                                    //user.profile = String(profileImage)
-                                    isEdited.toggle()
-                                    
-                                    // 저장 알림 표시
-                                    withAnimation {
-                                        showSaveMessage = true
-                                    }
-                                    
-                                    // 2초 후 알림 사라지도록 설정
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        withAnimation {
-                                            showSaveMessage = false
-                                        }
-                                    }
-                                }) {
-                                    Text("저장")
-                                        .padding(.trailing, 18 * widthRatio)
-                                }
-                            } else {
-                                // Add 버튼 공간 확보
-                                Spacer().frame(width: 44 * widthRatio)
-                            }
-                            
                         }
                         
                         // 화면 가운데 프로필 이미지
-                        ZStack(alignment: .bottomTrailing) {
-                            // 프로필 변경 시 갤러리에서 가져온 이미지
-                            if let profileImage = profileImage {
-                                Image(uiImage: profileImage)
-                                    .resizable()
-                                    .frame(width: 110 * widthRatio, height: 110 * heightRatio)
-                                    .clipShape(Circle())
-                                    .padding(.top, 26 * heightRatio)
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                            } else {
-                                Image(user.profile)
-                                    .resizable()
-                                    .frame(width: 110 * widthRatio, height: 110 * heightRatio)
-                                    .clipShape(Circle())
-                                    .padding(.top, 26 * heightRatio)
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                            }
-                            
-                            // 카메라 버튼
-                            Button(action: {
-                                isEdited = true
-                                isShowingImagePicker = true
-                            }) {
-                                Image(systemName: "camera.circle.fill")
-                                    .resizable()
-                                    .frame(width: 30 * widthRatio, height: 30 * heightRatio)
-                                    .foregroundColor(Color("Redbase"))
-                                    .background(Color.white)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle()
-                                            .stroke(Color.white, lineWidth: 2)
-                                    )
-                            }
-                            .offset(x: -145 * widthRatio, y: 10 * heightRatio)
-                        }
-                        .sheet(isPresented: $isShowingImagePicker) {
-                            // 갤러리로 이동
-                            ImagePicker(selectedImage: $profileImage)
-                        }
-                    
+                        Image(user.profile)
+                            .resizable()
+                            .frame(width: 110 * widthRatio, height: 110 * heightRatio)
+                            .clipShape(Circle())
+                            .padding(.top, 26 * heightRatio)
+                            .frame(maxWidth: .infinity, alignment: .center)
                         
                         // 닉네임
-                        VStack(spacing: 0) {
-                            // 편집모드
-                            if isEditingName {
-                                // 편집 모드에서는 TextField를 표시
-                                // 8글자 넘을 시 경고창 띄워야됨
-                                TextField("", text: $nickname, onCommit: {
-                                    isEditingName = false
-                                    if nickname.count > 8 {
-                                        // 8글자 이상일 경우 경고창 표시 및 저장 비활성화
-                                        showWarning = true
-                                        isEdited = false
-                                    } else {
-                                        // 닉네임이 유효할 경우
-                                        editedName = nickname
-                                        isEdited = true
-                                    }
-                                })
-                                .onChange(of: nickname) { newValue in
-                                    // 닉네임 길이 확인 및 저장 버튼 상태 업데이트
-                                    showWarning = newValue.count > 8
-                                    isEdited = newValue.count <= 8 && newValue != user.name
-                                }
-                                .font(.system(size: 25 * widthRatio))
-                                .fontWeight(.semibold)
-                                .multilineTextAlignment(.center)
-                                .background(
-                                    GeometryReader { geometry in
-                                        Color.clear
-                                            .preference(key: TextWidthPreferenceKey.self, value: geometry.size.width)
-                                    }
-                                )
-                                .frame(maxWidth: .infinity, alignment: .center)
-                                .onPreferenceChange(TextWidthPreferenceKey.self) { textWidth in
-                                    underlineWidth = textWidth
-                                }
-                                
-                                if showWarning {
-                                    Text("8글자 이내로 작성해주세요.")
-                                        .font(.footnote)
-                                        .foregroundColor(.red)
-                                        .padding(.top, 4)
-                                }
-                                
-                            } else {
-                                // 편집 모드가 아니면 Text를 표시
-                                Text(nickname)
-                                    .font(.system(size: 25 * widthRatio))
-                                    .fontWeight(.semibold)
-                                    .multilineTextAlignment(.center)
-                                    .background(
-                                        GeometryReader { geometry in
-                                            Color.clear
-                                                .preference(key: TextWidthPreferenceKey.self, value: geometry.size.width)
-                                        }
-                                    )
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .onPreferenceChange(TextWidthPreferenceKey.self) { textWidth in
-                                        underlineWidth = textWidth
-                                    }
-                                    .onTapGesture {
-                                        // 닉네임 선택 시 닉네임 수정 가능
-                                        isEditingName = true
-                                        // 변경 사항 생김 - 저장 버튼 활성화
-                                        isEdited = true
-                                    }
-                            }
-                        }
+                        Text(nickname)
+                            .font(.system(size: 25 * widthRatio))
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
+
                         Spacer()
-                            .frame(height: 0)
+                            .frame(height: 8 * heightRatio)
                         
-                        // 닉네임 밑줄
-                        Rectangle()
-                            .frame(width: underlineWidth, height: 1)
-                            .foregroundColor(Color("Graybasic"))
-                            .offset(y: 4)
+                        NavigationLink(destination: AddFriendProfileView()) {
+                            Text("프로필 편집")
+                                .font(.headline)
+                                .foregroundColor(Color("Graybasic"))
+                        }
                         
                         Spacer()
                             .frame(height: heightRatio * 36)
@@ -448,14 +322,7 @@ struct MyPageView: View {
                 nickname = user.name
                 editedName = user.name
             }
-            // 전체 영역에 탭 가능하도록 설정
-            .contentShape(Rectangle())
-            // 외부를 터치하면 닉네임 편집 모드 종료
-            .onTapGesture {
-                if isEditingName{
-                    isEditingName = false
-                }
-            }
+
         }
     }
     
