@@ -12,6 +12,14 @@ struct CreateVoteView: View {
     @State private var allowOptionAddition: Bool = false
     @State private var notifyBeforeEnd: Bool = false
     @State private var showTooltip: Bool = false
+    //@State private var isEnabled: Bool = false
+    private var isEnabled: Bool {
+        // 제목, 내용, 투표 항목 2개가 비어있지 않은 경우에만 활성화
+        !title.trimmingCharacters(in: .whitespaces).isEmpty &&
+        !content.trimmingCharacters(in: .whitespaces).isEmpty &&
+        options.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }.count >= 2
+    }
+    
     
     var body: some View {
         
@@ -168,30 +176,14 @@ struct CreateVoteView: View {
                
             }
             .padding()
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        // Back action
-                    }) {
-                        HStack {
-                            Image(systemName: "chevron.left")
-                            Text("뒤로")
-                        }
-                    }
-                }
-            }
+
             
         }//
-        // 효정이 코드로 수정하기
-        Button(action: {}) {
-            Text("완료")
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.gray)
-                .foregroundColor(.white)
-                .cornerRadius(8)
+      
+        
+        RedButton(title: "완료", isEnabled: .constant(isEnabled), height: 55){
+            // action
+            print("완료 버튼이 선택됨")
         }
         .padding()
        
