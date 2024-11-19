@@ -17,9 +17,9 @@ struct CreateVoteView: View {
         
         // TopBar
         TopBar(
-            title: "투표 생성하기",
+            title: "투표 생성하기"
             // action 넣기
-            backButtonFunc: { print("뒤로 가기 클릭") }
+            //backButtonFunc: { print("뒤로 가기 클릭") }
             
         )
         // 항목 추가 시, 화면이 길어질 것을 대비해서 스크롤 뷰로 작성
