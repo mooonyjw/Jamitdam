@@ -36,7 +36,6 @@ struct MyPageView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     // Logo + 저장 버튼
-                    // Logo + 저장 버튼
                     HStack {
                         Image("Logo")
                             .resizable()
@@ -113,7 +112,8 @@ struct MyPageView: View {
                                         .stroke(Color.white, lineWidth: 2)
                                 )
                         }
-                        .offset(x: -145, y: 10)
+                        .offset(x: -140, y: 10)
+                        .contentShape(Circle())
                     }
                     .sheet(isPresented: $isShowingImagePicker) {
                         // 갤러리로 이동
@@ -201,14 +201,14 @@ struct MyPageView: View {
                         .frame(height: 10)
                     
                     // 버튼 섹션: 인연 보기, 친구 보기, 디데이
-                    Grid(horizontalSpacing: 20, verticalSpacing: 10) {
+                    Grid() {
                         GridRow {
                             MyPageButton(icon: "🩷", title: "인연 보기", destination: AddFriendProfileView())
                             MyPageButton(icon: "😎", title: "친구 보기", destination: SelectingFriendProfileView())
                             DdayButton(icon: "🐻‍❄️", Dday: 100)
                         }
                     }
-                    //.padding(.horizontal, 10)
+                    .padding(.horizontal, 10)
 
 
                     // 나의 기록, 나의 활동, 친구 관리
@@ -225,6 +225,7 @@ struct MyPageView: View {
                     section(title: "친구 관리") {
                         MyPageList(title: "친구 추가", button: "plus", destination: AddFriendProfileView())
                         MyPageList(title: "차단된 친구", button: "chevron.right", destination: SelectingFriendProfileView())
+                        MyPageList(title: "친구 요청 확인하기", button: "chevron.right", destination: SelectingFriendProfileView())
                     }
 
                     section(title: "앱 관리") {
@@ -241,6 +242,21 @@ struct MyPageView: View {
                 }
                 .padding()
             }
+            // 저장 시 알림 메세지
+            if showSaveMessage {
+                VStack {
+                    Text("변경사항이 저장되었습니다.")
+                        .font(.system(size: 18))
+                        .padding()
+                        .background(Color("Grayunselected"))
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                        .transition(.opacity) // 애니메이션 전환
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.clear)
+                .animation(.easeInOut, value: showSaveMessage)
+            }
         }
         .onAppear {
             nickname = user.name
@@ -255,66 +271,9 @@ struct MyPageView: View {
             }
         }
     }
+        
 
-    var profileImageSection: some View {
-        ZStack(alignment: .bottomTrailing) {
-            if let profileImage = profileImage {
-                Image(uiImage: profileImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 110, height: 110)
-                    .clipShape(Circle())
-            } else {
-                Image(user.profile)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 110, height: 110)
-                    .clipShape(Circle())
-            }
 
-            Button(action: {
-                isShowingImagePicker = true
-            }) {
-                Image(systemName: "camera.circle.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.red)
-            }
-        }
-        .padding(.top, 16)
-        .sheet(isPresented: $isShowingImagePicker) {
-            ImagePicker(selectedImage: $profileImage)
-        }
-    }
-
-    var nicknameSection: some View {
-        VStack {
-            if isEditingName {
-                TextField("닉네임 입력", text: $nickname)
-                    .onChange(of: nickname) { newValue in
-                        showWarning = newValue.count > 8
-                        isEdited = newValue != user.name && newValue.count <= 8
-                    }
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
-                    .padding()
-            } else {
-                Text(nickname)
-                    .font(.title2)
-                    .onTapGesture {
-                        isEditingName = true
-                    }
-            }
-
-            if showWarning {
-                Text("8글자 이내로 작성해주세요.")
-                    .foregroundColor(.red)
-                    .font(.caption)
-            }
-
-            Divider().frame(height: 1).background(Color.gray)
-        }
-    }
 
     func section<Content: View>(title: String, @ViewBuilder content: () -> Content, dividerOn: Bool = true) -> some View {
         VStack(alignment: .leading, spacing: 0) {
