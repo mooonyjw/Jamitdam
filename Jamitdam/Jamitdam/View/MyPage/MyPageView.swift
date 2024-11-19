@@ -8,23 +8,7 @@ struct MyPageView: View {
     // 유수현의 마이페이지
     @State private var user: User = user1
     @State private var nickname: String = ""
-    @State private var underlineWidth: CGFloat = 0
-    
-    // 닉네임 변경 여부
-    @State private var isEditingName = false
-    // 8글자 이상 닉네임 입력 시
-    @State private var showWarning = false
-    
-    @State private var isShowingImagePicker = false
-    // 선택된 갤러리 이미지
-    @State private var profileImage: UIImage? = nil
-    
-    // 변경 사항 여부
-    @State private var isEdited = false
-    @State private var editedName: String = ""
-    
-    @State private var showSaveMessage = false
-    
+
     // 친구 추가 액션 시트
     @State private var isPresentingBottomSheet = false
     
@@ -303,24 +287,10 @@ struct MyPageView: View {
            
                 }
                 
-                // 저장 시 알림 메세지
-                if showSaveMessage {
-                    VStack {
-                        Text("변경사항이 저장되었습니다.")
-                            .font(.system(size: 18 * widthRatio))
-                            .padding()
-                            .background(Color("Grayunselected"))
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                            .transition(.opacity)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.clear)
-                }
+
             }
             .onAppear {
                 nickname = user.name
-                editedName = user.name
             }
 
         }
