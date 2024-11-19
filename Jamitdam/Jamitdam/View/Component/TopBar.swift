@@ -1,16 +1,24 @@
 import SwiftUI
 
 struct TopBar: View {
+    
+    // 뒤로 가기 기능
+    @Environment(\.dismiss) private var dismiss
+    
     var title: String
     var showBackButton: Bool = true
-    var backButtonFunc: (() -> Void)?
     var rightButton: String = ""
-    var rightButtonFunc: (() -> Void) = {}
+    var rightButtonFunc: (() -> Void)?
     var rightButtonDisabled: Bool = false
+    
+    func backButtonFunc() {
+        print("뒤로가기 클릭")
+        dismiss()
+    }
     
     var body: some View {
         HStack {
-            Button(action: backButtonFunc!) {
+            Button(action: backButtonFunc) {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 21))
                     .padding()
@@ -27,12 +35,13 @@ struct TopBar: View {
             
             // 추가 버튼의 유무 결정 가능
             if !rightButtonDisabled && rightButton != ""{
-                Button(action: rightButtonFunc) {
+                Button(action: rightButtonFunc!) {
                     Text(rightButton)
                         .padding()
                 }
             } else {
-                Spacer().frame(width: 44) // Add 버튼 공간 확보
+                // Add 버튼 공간 확보
+                Spacer().frame(width: 44)
             }
         }
         .padding(.top, 0)
@@ -53,7 +62,6 @@ struct TopBar: View {
 #Preview {
     TopBar(
         title: "상단바 제목",
-        backButtonFunc: { print("뒤로 가기 클릭") },
         rightButton: "추가",
         rightButtonFunc: { print("추가 버튼 클릭") }
     )
