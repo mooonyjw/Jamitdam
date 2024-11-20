@@ -178,7 +178,8 @@ struct CreateVoteView: View {
             .padding()
 
             
-        }//
+        }
+        .navigationBarBackButtonHidden(true)
       
         
         RedButton(title: "완료", isEnabled: .constant(isEnabled), height: 55){
