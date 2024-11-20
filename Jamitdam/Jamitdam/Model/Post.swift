@@ -43,12 +43,21 @@ let relationship2 = getRelationships()[1]
 // 유수현의 포스트 (user1)
 var dummyPosts: [Post] = [
     Post(content: "밥 뭐먹지", timestamp: Date(), author: user1, title: "점메추", likesCount: 5, hashTags: ["#친구"], relationships: [relationship1]),
-    Post(content: "밥 먹자고 안하네", timestamp: Date(), author: user1, title: "답답해", likesCount: 8, hashTags: ["#썸남", "#답답"], relationships: [relationship2]),
+    Post(content: "밥 먹자고 안하네", timestamp: Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 3)) ?? Date(), author: user1, title: "답답해", likesCount: 8, hashTags: ["#썸남", "#답답"], relationships: [relationship2]),
+
+    //user2 포스트 추가
+    Post(content: "user2", timestamp: Calendar.current.date(from: DateComponents(year: 2024, month: 11, day: 10)) ?? Date(), author: user2, title: "테스트", likesCount: 5, hashTags: ["#친구"], relationships: [relationship1]),
+    Post(content: "user2", timestamp: Calendar.current.date(from: DateComponents(year: 2024, month: 10, day: 5)) ?? Date(), author: user2, title: "test", likesCount: 8, hashTags: ["#썸남", "#답답"], relationships: [relationship2]),
+    
 ]
 
+//func getPosts() -> [Post] {
+//    return dummyPosts
+//}
 
-func getPosts() -> [Post] {
-    return dummyPosts
+
+func getPosts(for user: User, from allPosts: [Post]) -> [Post] {
+    return allPosts.filter {$0.author.id == user.id}
 }
 
 func addPost(post: Post) {
@@ -58,3 +67,4 @@ func addPost(post: Post) {
 func deletePost(post: Post) {
     dummyPosts.removeAll { $0.id == post.id }
 }
+
