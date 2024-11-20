@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E43DD312CDCE27C00F3CEC6 /* User.swift */; };
 		8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A22CDDB6EC0076AE5C /* ContentView.swift */; };
 		8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */; };
@@ -18,22 +17,6 @@
 		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
 		971A0BA52CD9D32900A2BF5E /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */; };
 		971A0BA72CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */; };
-=======
-
-		9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719946C2CDF65F400D543E9 /* JamitdamApp.swift */; };
-		9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719946E2CDF65F400D543E9 /* ContentView.swift */; };
-		971994712CDF65F500D543E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971994702CDF65F500D543E9 /* Assets.xcassets */; };
-		971994742CDF65F500D543E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971994732CDF65F500D543E9 /* Preview Assets.xcassets */; };
-		9719947E2CDF65F500D543E9 /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719947D2CDF65F500D543E9 /* JamitdamTests.swift */; };
-		971994882CDF65F500D543E9 /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994872CDF65F500D543E9 /* JamitdamUITests.swift */; };
-		9719948A2CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */; };
-		971994A52CDF66B800D543E9 /* RedButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994972CDF66B800D543E9 /* RedButtonComponent.swift */; };
-		971994A72CDF66B800D543E9 /* CreateJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719949A2CDF66B800D543E9 /* CreateJamView.swift */; };
-		971994AB2CDF66B800D543E9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A12CDF66B800D543E9 /* Post.swift */; };
-		971994AC2CDF66B800D543E9 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A22CDF66B800D543E9 /* Relationship.swift */; };
-		971994AD2CDF66B800D543E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994A32CDF66B800D543E9 /* User.swift */; };
-
->>>>>>> feature/#2
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +37,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
 		8E43DD312CDCE27C00F3CEC6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E4845A22CDDB6EC0076AE5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
@@ -68,25 +50,6 @@
 		971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
 		971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
-=======
-
-		971994692CDF65F400D543E9 /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9719946C2CDF65F400D543E9 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
-		9719946E2CDF65F400D543E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		971994702CDF65F500D543E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		971994732CDF65F500D543E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		971994792CDF65F500D543E9 /* JamitdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9719947D2CDF65F500D543E9 /* JamitdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamTests.swift; sourceTree = "<group>"; };
-		971994832CDF65F500D543E9 /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		971994872CDF65F500D543E9 /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
-		971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		971994972CDF66B800D543E9 /* RedButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedButtonComponent.swift; sourceTree = "<group>"; };
-		9719949A2CDF66B800D543E9 /* CreateJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateJamView.swift; sourceTree = "<group>"; };
-		971994A12CDF66B800D543E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		971994A22CDF66B800D543E9 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		971994A32CDF66B800D543E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-
->>>>>>> feature/#2
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -144,7 +107,6 @@
 				971A0B862CD9D32700A2BF5E /* Jamitdam.app */,
 				971A0B962CD9D32900A2BF5E /* JamitdamTests.xctest */,
 				971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */,
-<<<<<<< HEAD
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,58 +145,10 @@
 			children = (
 				971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */,
 				971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */,
-=======
->>>>>>> feature/#2
-			);
-
-			path = JamitdamUITests;
-			sourceTree = "<group>";
-		};
-<<<<<<< HEAD
-=======
-		971994992CDF66B800D543E9 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				971994972CDF66B800D543E9 /* RedButtonComponent.swift */,
-			);
-			path = Component;
-
-			sourceTree = "<group>";
-		};
-		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
-			isa = PBXGroup;
-			children = (
-				8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */,
-				8E4845A22CDDB6EC0076AE5C /* ContentView.swift */,
-				8E9237DD2CDB123A00301FE8 /* View */,
-				8E7916B82CDA202700535605 /* Model */,
-				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
-				971A0B8F2CD9D32900A2BF5E /* Preview Content */,
-			);
-			path = Jamitdam;
-			sourceTree = "<group>";
-		};
-
-		971994A02CDF66B800D543E9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				971994992CDF66B800D543E9 /* Component */,
-				9719949B2CDF66B800D543E9 /* CreateJamPage */,
-
-			);
-			path = JamitdamTests;
-			sourceTree = "<group>";
-		};
-		971A0BA32CD9D32900A2BF5E /* JamitdamUITests */ = {
-			isa = PBXGroup;
-			children = (
-				971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */,
-				971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */,
 			);
 			path = JamitdamUITests;
 			sourceTree = "<group>";
 		};
->>>>>>> feature/#2
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -368,23 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */,
 				8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */,
 				8E4845A72CDDB7090076AE5C /* Post.swift in Sources */,
 				8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */,
 				8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */,
-=======
-
-				971994A52CDF66B800D543E9 /* RedButtonComponent.swift in Sources */,
-				9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */,
-				9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */,
-				971994AC2CDF66B800D543E9 /* Relationship.swift in Sources */,
-				971994AB2CDF66B800D543E9 /* Post.swift in Sources */,
-				971994A72CDF66B800D543E9 /* CreateJamView.swift in Sources */,
-				971994AD2CDF66B800D543E9 /* User.swift in Sources */,
-
->>>>>>> feature/#2
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
