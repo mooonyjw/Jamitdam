@@ -99,7 +99,7 @@ struct PostPopUp: View {
             
             Divider()
                 .frame(width: buttonWidth, height: 1)
-                .background(Color("Graybasic"))
+                .background(Color("Grayoutline"))
             
             // 2. 투표 생성하기
             NavigationLink(destination: CreateVoteView()) {
