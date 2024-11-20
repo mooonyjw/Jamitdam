@@ -3,21 +3,31 @@ import SwiftUI
 struct JamDetailView: View {
     
     // 글 주인공 (더미데이터 유수현)
-    private var owner: User = user1
+    private var writer: User = user1
     // 글 (더미데이터 유수현의 글)
     private var post: Post = dummyPosts[0]
+    // 좋아요 눌렀는지 여부
+    // false로 초기화하지만 DB -> likebutton으로부터 정보를 받아서 업데이트
+    @State var isLiked: Bool = false
+    // 좋아요 개수
+    @State var likesCount: Int = 0
     
     var body: some View {
+        // 글 ID
+        let postId: UUID = post.id
+        // 작성자 ID
+        let writerId: UUID = writer.id
         // 작성자 프로필
-        var profile: String = owner.profile
+        let profile: String = writer.profile
         // 작성자 이름
-        var name: String = owner.name
+        let name: String = writer.name
         // 글 제목
-        var title: String = post.title
+        let title: String = post.title
         // 글 본문
-        var content: String = post.content
+        let content: String = post.content
         // 글 작성 시간
-        var writeDate: Date = post.timestamp
+        let writeDate: Date = post.timestamp
+
         
         ScrollView {
             TopBar(title: "재미를 잇다")
@@ -49,13 +59,58 @@ struct JamDetailView: View {
                 
                 // 좋아요 및 댓글
                 HStack {
+                    // 좋아요
+                    HStack(spacing: 5) {
+                        LikeButton(isLiked: $isLiked, likesCount: $likesCount, userId: user1.id, postId: postId)
+                        Text("\(likesCount)")
+                            .foregroundColor(Color("Graybasic"))
+                            .font(.system(size: 20))
+                    }
                     
+                    Spacer()
+                        .frame(width: 15)
+                    
+                    // 댓글
+                    HStack(spacing: 5) {
+                        Image(systemName: "quote.bubble")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Color("Graybasic"))
+                    }
+        
+
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Rectangle()
+                    .frame(width: .infinity, height: 1)
+                    .foregroundColor(Color("Graybasic"))
+                    
             }
             // 글 본문은 좀 더 안쪽으로 들어오도록 한다
             .padding(.horizontal)
         }
         .padding(.horizontal)
+        .onAppear {
+            // 사용자의 좋아요 상태를 체크하여 초깃값 설정
+            initializeLikeStatus()
+        }
+    }
+    
+    // 좋아요 상태 초기화를 위한 함수
+    private func initializeLikeStatus() {
+        // 좋아요 여부를 체크하는 함수 사용
+        isLiked = checkIfLiked(userId: writer.id, postId: post.id)
+        likesCount = post.likesCount
+    }
+    
+    // 유저가 글을 좋아요 눌렀는지 여부를 확인하는 함수
+    private func checkIfLiked(userId: UUID, postId: UUID) -> Bool {
+        // 실제 데이터 소스를 사용해 좋아요 여부를 확인
+        return likes.contains { like in
+            like.userId == userId && like.postId == postId
+        }
     }
 }
 
