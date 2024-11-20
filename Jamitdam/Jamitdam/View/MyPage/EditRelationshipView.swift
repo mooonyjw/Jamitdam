@@ -165,6 +165,7 @@ struct EditRelationshipView: View {
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
+        .navigationBarBackButtonHidden(true) 
     }
 }
 

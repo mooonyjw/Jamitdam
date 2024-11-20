@@ -68,6 +68,7 @@ struct RequestedFriendListView: View {
             .onAppear {
                 requestedFriends = user.requestedFriends
             }
+            .navigationBarBackButtonHidden(true) 
         }
     }
 }

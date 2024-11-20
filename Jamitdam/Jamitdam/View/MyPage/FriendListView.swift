@@ -42,6 +42,7 @@ struct FriendListView: View {
                 }
                 
             }
+            .navigationBarBackButtonHidden(true) 
         }
     }
 }

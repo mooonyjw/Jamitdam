@@ -39,6 +39,7 @@ struct AddFriendView: View {
             
         }
         .background(Color("Whitebackground"))
+        .navigationBarBackButtonHidden(true) 
     }
     
     // 일치하는 사용자가 있을 시 추가 버튼 활성화

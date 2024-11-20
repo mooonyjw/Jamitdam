@@ -79,6 +79,7 @@ struct RelationshipListView: View {
                 
                 Spacer()
             }
+            .navigationBarBackButtonHidden(true)
             .overlay(
                 VStack {
                     Spacer()

@@ -84,7 +84,8 @@ struct BlockedFriendListView: View {
             .onAppear {
                 blockedFriends = user.blockedFriends
             }
-        }        
+            .navigationBarBackButtonHidden(true) 
+        }
     }
 }
 
