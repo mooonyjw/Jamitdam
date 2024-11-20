@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Relationship {
+struct Relationship : Identifiable{
     let id: UUID = UUID()
     var nickname: String
     var hashtags: [String]

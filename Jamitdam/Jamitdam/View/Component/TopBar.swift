@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct TopBar: View {
-    
-    // 뒤로 가기 기능
+
     @Environment(\.dismiss) private var dismiss
     
     var title: String

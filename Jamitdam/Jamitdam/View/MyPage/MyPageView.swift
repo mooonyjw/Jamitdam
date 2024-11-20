@@ -12,13 +12,15 @@ struct MyPageView: View {
     // 친구 추가 액션 시트
     @State private var isPresentingBottomSheet = false
     
+    @State private var navigationSelection: String? = nil
+    
     // 알림 토글
     @State private var onAlarm: Bool = true
     // 다크모드 토글
     @State private var darkMode: Bool = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -71,14 +73,15 @@ struct MyPageView: View {
                         
                         // 상단 버튼 (인연 보기, 친구 보기, 디데이)
                         HStack {
-                            MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🩷", title: "인연 보기", destination: AddFriendProfileView())
+                            MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🩷", title: "인연 보기", destination: RelationshipListView())
                             
                             Spacer().frame(width: 11.5 * widthRatio)
                             
-                            MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "😎", title: "친구 보기", destination: SelectingFriendProfileView())
+                            MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "😎", title: "친구 보기", destination: FriendListView())
                             
                             Spacer().frame(width: 11.5 * widthRatio)
                             
+                            // destination 설정 해야함
                             DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🐻‍❄️", Dday: 100)
                             
                         }
@@ -104,18 +107,20 @@ struct MyPageView: View {
                             
                             
                             VStack {
+                                // destination 설정 해야함
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: AddFriendProfileView())
-                                
+                                // destination 설정 해야함
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: SelectingFriendProfileView())
                             }
                             
                             Spacer()
                                 .frame(height: 20 * heightRatio)
                             
+                            // 구분선
                             Rectangle()
-                                .frame(height: 1)
+                                .frame(height: 1 * heightRatio)
                                 .foregroundColor(Color.gray.opacity(0.3))
-                                .padding(.horizontal, 26)
+                                .padding(.horizontal, 26 * widthRatio)
                         }
                         
                         // 나의 활동
@@ -137,8 +142,9 @@ struct MyPageView: View {
                             
                             
                             VStack {
+                                // destination 설정 해야함
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: AddFriendProfileView())
-                                
+                                // destination 설정 해야함
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: SelectingFriendProfileView())
                             }
                             
@@ -146,9 +152,9 @@ struct MyPageView: View {
                                 .frame(height: 20 * heightRatio)
                             
                             Rectangle()
-                                .frame(height: 1)
+                                .frame(height: 1 * heightRatio)
                                 .foregroundColor(Color.gray.opacity(0.3))
-                                .padding(.horizontal, 26)
+                                .padding(.horizontal, 26 * widthRatio)
                         }
                         
                         // 친구 관리
@@ -180,29 +186,28 @@ struct MyPageView: View {
                                     Spacer()
                                     
                                    
-                                        Image(systemName: "plus")
-                                            .font(.system(size: 21 * widthRatio))
-                                            .foregroundColor(Color("Graybasic"))
-                                            .onTapGesture {
-                                                isPresentingBottomSheet = true
-                                            }
-                                            .actionSheet(isPresented: $isPresentingBottomSheet) {
-                                                ActionSheet(
-                                                    title: Text("친구 추가 방식을 선택해주세요."),
-                                                    buttons: [
-                                                        .default(Text("아이디로 친구 추가")) {
-                                                            // 페이지 이동 추후 구현
-                                                    
-                                                        },
-                                                        .default(Text("카카오톡으로 친구 추가")) {
-                                                            // 카카오톡으로 링크 보내기
-                                                        },
-                                                        .cancel {
-                                                        }
-                                                    ]
-                                                )
-                                            }
-                                    
+                                Image(systemName: "plus")
+                                    .font(.system(size: 21 * widthRatio))
+                                    .foregroundColor(Color("Graybasic"))
+                                    .onTapGesture {
+                                        isPresentingBottomSheet = true
+                                    }
+                                    .actionSheet(isPresented: $isPresentingBottomSheet) {
+                                        ActionSheet(
+                                            title: Text("친구 추가 방식을 선택해주세요."),
+                                            buttons: [
+                                                .default(Text("아이디로 친구 추가")) {
+                                                    navigationSelection = "addFriend"
+
+                                                },
+                                                .default(Text("카카오톡으로 친구 추가")) {
+                                                    navigationSelection = "kakaoFriend"
+                                                },
+                                                .cancel()
+                                            ]
+                                        )
+                                    }
+                            
                                     Spacer()
                                         .frame(width: 17 * widthRatio)
                                     
@@ -210,18 +215,18 @@ struct MyPageView: View {
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 57 * heightRatio)
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "차단된 친구", button: "chevron.right", destination: SelectingFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "차단된 친구", button: "chevron.right", destination: BlockedFriendListView())
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 요청 확인하기", button: "chevron.right", destination: SelectingFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 요청 확인하기", button: "chevron.right", destination: RequestedFriendListView())
                             }
                             
                             Spacer()
                                 .frame(height: 20 * heightRatio)
                             
                             Rectangle()
-                                .frame(height: 1)
+                                .frame(height: 1 * heightRatio)
                                 .foregroundColor(Color.gray.opacity(0.3))
-                                .padding(.horizontal, 26)
+                                .padding(.horizontal, 26 * widthRatio)
                         }
                         
                         // 앱 관리
@@ -253,9 +258,9 @@ struct MyPageView: View {
                                 .frame(height: 20 * heightRatio)
                             
                             Rectangle()
-                                .frame(height: 1)
+                                .frame(height: 1 * heightRatio)
                                 .foregroundColor(Color.gray.opacity(0.3))
-                                .padding(.horizontal, 26)
+                                .padding(.horizontal, 26 * widthRatio)
                         }
                         
                         // 로그인
@@ -283,11 +288,15 @@ struct MyPageView: View {
                             }
 
                         }
+                        NavigationLink(destination: AddFriendView(), tag: "addFriend", selection: $navigationSelection) {
+                            EmptyView()
+                        }
+                        
+                        NavigationLink(destination: AddFriendView(), tag: "kakaoFriend", selection: $navigationSelection) {
+                            EmptyView()
+                        }
                     }
-           
                 }
-                
-
             }
             .onAppear {
                 nickname = user.name
