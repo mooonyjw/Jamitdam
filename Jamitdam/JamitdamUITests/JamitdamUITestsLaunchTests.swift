@@ -1,8 +1,8 @@
 //
-//  JamitdamUITestsLaunchTests.swift
-//  JamitdamUITests
+//  JamitDamUITestsLaunchTests.swift
+//  JamitDamUITests
 //
-//  Created by 이효정 on 11/5/24.
+//  Created by woni on 11/18/24.
 //
 
 import XCTest
@@ -17,6 +17,7 @@ final class JamitdamUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()

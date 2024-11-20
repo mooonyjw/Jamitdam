@@ -1,8 +1,8 @@
 //
-//  JamitdamApp.swift
-//  Jamitdam
+//  JamitDamApp.swift
+//  JamitDam
 //
-//  Created by 이효정 on 11/5/24.
+//  Created by woni on 11/18/24.
 //
 
 import SwiftUI
