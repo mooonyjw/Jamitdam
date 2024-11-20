@@ -247,5 +247,4 @@ struct CreateJamView: View {
 
 #Preview {
     CreateJamView()
-        .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
 }

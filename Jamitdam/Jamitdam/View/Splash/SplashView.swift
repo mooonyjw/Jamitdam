@@ -76,6 +76,7 @@ struct SplashView: View {
                         .opacity(isVisible ? 1 : 0)
                         .animation(.easeOut(duration: 1.2), value: isVisible)
                         .padding(.bottom, 70 * heightRatio)
+                        
                     }
                 }
                 .onAppear {

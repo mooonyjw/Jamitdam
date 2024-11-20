@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  Jamitdam
+//  JamitDam
 //
-//  Created by sojeong on 11/8/24.
+//  Created by woni on 11/18/24.
 //
 
 import SwiftUI
