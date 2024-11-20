@@ -37,6 +37,8 @@ struct TopBar: View {
                 Button(action: rightButtonFunc!) {
                     Text(rightButton)
                         .padding()
+                        .foregroundColor(Color.black)
+                        .font(.system(size: 15))
                 }
             } else {
                 // Add 버튼 공간 확보
