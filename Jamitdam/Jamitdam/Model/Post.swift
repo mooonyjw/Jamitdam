@@ -51,14 +51,9 @@ var dummyPosts: [Post] = [
     
 ]
 
-//func getPosts() -> [Post] {
-//    return dummyPosts
-//}
-
 
 func getPosts(for user: User, from allPosts: [Post]) -> [Post] {
     return allPosts.filter {$0.author.id == user.id}
-}
 
 func addPost(post: Post) {
     dummyPosts.append(post)

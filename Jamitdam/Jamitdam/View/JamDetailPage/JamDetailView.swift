@@ -17,13 +17,11 @@ struct JamDetailView: View {
         // 글 본문
         var content: String = post.content
         // 글 작성 시간
-        var timestamp: Date = post.timestamp
-        //
+        var writeDate: Date = post.timestamp
         
         ScrollView {
             TopBar(title: "재미를 잇다")
             VStack {
-                
                 // 작성자 프로필
                 HStack {
                     Image(profile)
@@ -31,21 +29,28 @@ struct JamDetailView: View {
                         .scaledToFit()
                         .frame(width: 40, height: 40)
                         .clipShape(Circle())
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text(name)
                             .font(.system(size: 20, weight: .semibold))
-                        
+                        Text(timeAgoSinceDate(writeDate))
+                            .font(.system(size: 13))
+                            .padding(.leading, 2)
                     }
-
                 }
                 .padding(.top, 37)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
+                // 본문
                 Text(content)
                     .font(.system(size: 25))
                     .frame(height: 110)
+                    .frame(minHeight: 110)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
+                // 좋아요 및 댓글
+                HStack {
+                    
+                }
             }
             // 글 본문은 좀 더 안쪽으로 들어오도록 한다
             .padding(.horizontal)

@@ -10,7 +10,7 @@ import SwiftUI
  하루 초과인 경우: @@일 전
  
  */
-private func timeAgoSinceDate(_ date: Date) -> String {
+public func timeAgoSinceDate(_ date: Date) -> String {
     let currentDate = Date()
     let difference = currentDate.timeIntervalSince(date)
     
