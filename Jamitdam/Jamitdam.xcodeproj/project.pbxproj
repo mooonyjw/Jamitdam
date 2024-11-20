@@ -52,8 +52,27 @@
 		971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8E3584482CEDCD1A00AC989C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Component/TabBar.swift,
+				Vote/CreateVote.swift,
+			);
+			target = 971A0B952CD9D32900A2BF5E /* JamitdamTests */;
+		};
+		8E3584492CEDCD1A00AC989C /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Component/TabBar.swift,
+				Vote/CreateVote.swift,
+			);
+			target = 971A0B9F2CD9D32900A2BF5E /* JamitdamUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8E9237DD2CDB123A00301FE8 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
+		8E9237DD2CDB123A00301FE8 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8E3584482CEDCD1A00AC989C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 8E3584492CEDCD1A00AC989C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
