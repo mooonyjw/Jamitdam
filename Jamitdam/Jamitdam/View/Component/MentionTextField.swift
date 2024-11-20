@@ -58,7 +58,7 @@ struct MentionTextField: UIViewRepresentable {
                 // mentionPosition 계산
                 self.parent.mentionPosition = CGPoint(
                     x: globalCaretRect.midX,
-                    y: globalCaretRect.origin.y - contentOffsetY + insetY + caretRect.height + 80
+                    y: globalCaretRect.origin.y - contentOffsetY + insetY + caretRect.height + 40
                 )
             }
             

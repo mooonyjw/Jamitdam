@@ -33,8 +33,15 @@ struct WriteJamView: View {
     @State private var hashtags: [String] = []
     // 해시태그 작성 중인지 여부
     @State private var isEditing: Bool = false
-    
+    // 해시태그 작성 필드 활성화 여부
     @State private var isTextFieldEnabled: Bool = true
+    
+    // 사용자가 불러온 이미지 배열. 최대 10개까지 추가 가능
+    @State private var selectedImages: [UIImage] = []
+    // 이미지 선택 화면 표시 여부
+    @State private var isImagePickerPresented: Bool = false
+    // 선택한 이미지
+    @State private var selectedImage: UIImage?
     
     // 언급 시 보여줄 인연 목록
     var filteredRelationships: [Relationship] {
@@ -89,13 +96,11 @@ struct WriteJamView: View {
                                         .keyboardType(.default)
                                         .frame(height: 40)
                                         .font(.system(size: 25, weight: .bold))
-                                        .padding(.leading)
                                         .padding(.top)
                                     
                                     Rectangle()
                                         .fill(Color("Graybasic"))
                                         .frame(height: 1)
-                                        .padding(.horizontal)
                                         .ignoresSafeArea(edges: .horizontal)
                                 }
                                 ZStack {
@@ -104,7 +109,6 @@ struct WriteJamView: View {
                                             .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                             .padding(.top)
-                                            .padding(.leading)
                                     }
                                     MentionTextField(
                                         text: $content,
@@ -115,7 +119,6 @@ struct WriteJamView: View {
                                         maxHeight: 250,
                                         fontSize: 20
                                     )
-                                    .padding(.horizontal)
                                     .padding(.top)
                                     .frame(height: textFieldHeight, alignment: .topLeading)
                                     .onChange(of: content) { newText in
@@ -158,11 +161,52 @@ struct WriteJamView: View {
                         }
                         .frame(height: 360)
                         
+                        // 이미지
+                        if !selectedImages.isEmpty {
+                            ScrollView(.horizontal) {
+                                HStack(spacing: 10) {
+                                    ForEach(selectedImages.indices, id: \.self) { index in
+                                        ZStack(alignment: .topTrailing) {
+                                            Image(uiImage: selectedImages[index])
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 150, height: 150)
+                                                .cornerRadius(10)
+
+                                            Button(action: {
+                                                // 이미지 삭제
+                                                selectedImages.remove(at: index)
+                                            }) {
+                                                Image(systemName: "xmark.circle.fill")
+                                                    .foregroundColor(.redemphasis)
+                                                    .background(Circle().fill(Color.white))
+                                            }
+                                            .offset(x: -5, y: 5)
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                        
+                        Button(action: {
+                            isImagePickerPresented.toggle()
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(selectedImages.count < 10 ? Color("Redemphasis2") : Color.gray)
+                                Image(systemName: "photo")
+                                    .foregroundColor(.white)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .disabled(selectedImages.count >= 10)
+                        }
+                        
                         // 글자 수 제한 표시
                         Text("\(content.count) / 300")
                             .foregroundColor(Color("Graybasic"))
                             .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.trailing)
                         
                         // 글 해시태그
                         VStack {
@@ -242,6 +286,15 @@ struct WriteJamView: View {
             }
             .onDisappear {
                 removeKeyboardObservers()
+            }
+            .sheet(isPresented: $isImagePickerPresented) {
+                ImagePicker(selectedImage: $selectedImage)
+                    .onChange(of: selectedImage) { newImage in
+                        if let image = newImage, selectedImages.count < 10 {
+                            selectedImages.append(image)
+                            selectedImage = nil
+                        }
+                    }
             }
         }
     }
