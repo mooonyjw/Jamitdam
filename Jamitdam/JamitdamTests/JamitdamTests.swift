@@ -6,7 +6,7 @@
 //
 
 import Testing
-@testable import JamitDam
+@testable import Jamitdam
 
 struct JamitdamTests {
 

@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "63B05BBD2CEB3EFC00071C09"
-               BuildableName = "JamitDam.app"
-               BlueprintName = "JamitDam"
+               BuildableName = "Jamitdam.app"
+               BlueprintName = "Jamitdam"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,8 +36,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "63B05BCD2CEB3EFD00071C09"
-               BuildableName = "JamitDamTests.xctest"
-               BlueprintName = "JamitDamTests"
+               BuildableName = "JamitdamTests.xctest"
+               BlueprintName = "JamitdamTests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "63B05BD72CEB3EFD00071C09"
-               BuildableName = "JamitDamUITests.xctest"
-               BlueprintName = "JamitDamUITests"
+               BuildableName = "JamitdamUITests.xctest"
+               BlueprintName = "JamitdamUITests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -69,8 +69,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63B05BBD2CEB3EFC00071C09"
-            BuildableName = "JamitDam.app"
-            BlueprintName = "JamitDam"
+            BuildableName = "Jamitdam.app"
+            BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -86,8 +86,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "63B05BBD2CEB3EFC00071C09"
-            BuildableName = "JamitDam.app"
-            BlueprintName = "JamitDam"
+            BuildableName = "Jamitdam.app"
+            BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

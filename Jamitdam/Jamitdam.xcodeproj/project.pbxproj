@@ -24,15 +24,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		63B05BBE2CEB3EFC00071C09 /* JamitDam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JamitDam.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		63B05BCE2CEB3EFD00071C09 /* JamitDamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitDamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		63B05BD82CEB3EFD00071C09 /* JamitDamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitDamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63B05BBE2CEB3EFC00071C09 /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		63B05BCE2CEB3EFD00071C09 /* JamitdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		63B05BD82CEB3EFD00071C09 /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		63B05BC02CEB3EFC00071C09 /* JamitDam */ = {
+		63B05BC02CEB3EFC00071C09 /* Jamitdam */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = JamitDam;
+			path = Jamitdam;
 			sourceTree = "<group>";
 		};
 		63B05BD12CEB3EFD00071C09 /* JamitdamTests */ = {
@@ -75,7 +75,7 @@
 		63B05BB52CEB3EFC00071C09 = {
 			isa = PBXGroup;
 			children = (
-				63B05BC02CEB3EFC00071C09 /* JamitDam */,
+				63B05BC02CEB3EFC00071C09 /* Jamitdam */,
 				63B05BD12CEB3EFD00071C09 /* JamitdamTests */,
 				63B05BDB2CEB3EFD00071C09 /* JamitdamUITests */,
 				63B05BBF2CEB3EFC00071C09 /* Products */,
@@ -85,9 +85,9 @@
 		63B05BBF2CEB3EFC00071C09 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				63B05BBE2CEB3EFC00071C09 /* JamitDam.app */,
-				63B05BCE2CEB3EFD00071C09 /* JamitDamTests.xctest */,
-				63B05BD82CEB3EFD00071C09 /* JamitDamUITests.xctest */,
+				63B05BBE2CEB3EFC00071C09 /* Jamitdam.app */,
+				63B05BCE2CEB3EFD00071C09 /* JamitdamTests.xctest */,
+				63B05BD82CEB3EFD00071C09 /* JamitdamUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		63B05BBD2CEB3EFC00071C09 /* JamitDam */ = {
+		63B05BBD2CEB3EFC00071C09 /* Jamitdam */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63B05BE22CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitDam" */;
+			buildConfigurationList = 63B05BE22CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "Jamitdam" */;
 			buildPhases = (
 				63B05BBA2CEB3EFC00071C09 /* Sources */,
 				63B05BBB2CEB3EFC00071C09 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				63B05BC02CEB3EFC00071C09 /* JamitDam */,
+				63B05BC02CEB3EFC00071C09 /* Jamitdam */,
 			);
-			name = JamitDam;
+			name = Jamitdam;
 			packageProductDependencies = (
 			);
 			productName = JamitDam;
-			productReference = 63B05BBE2CEB3EFC00071C09 /* JamitDam.app */;
+			productReference = 63B05BBE2CEB3EFC00071C09 /* Jamitdam.app */;
 			productType = "com.apple.product-type.application";
 		};
-		63B05BCD2CEB3EFD00071C09 /* JamitDamTests */ = {
+		63B05BCD2CEB3EFD00071C09 /* JamitdamTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63B05BE52CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitDamTests" */;
+			buildConfigurationList = 63B05BE52CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitdamTests" */;
 			buildPhases = (
 				63B05BCA2CEB3EFD00071C09 /* Sources */,
 				63B05BCB2CEB3EFD00071C09 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				63B05BD12CEB3EFD00071C09 /* JamitdamTests */,
 			);
-			name = JamitDamTests;
+			name = JamitdamTests;
 			packageProductDependencies = (
 			);
 			productName = JamitDamTests;
-			productReference = 63B05BCE2CEB3EFD00071C09 /* JamitDamTests.xctest */;
+			productReference = 63B05BCE2CEB3EFD00071C09 /* JamitdamTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		63B05BD72CEB3EFD00071C09 /* JamitDamUITests */ = {
+		63B05BD72CEB3EFD00071C09 /* JamitdamUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 63B05BE82CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitDamUITests" */;
+			buildConfigurationList = 63B05BE82CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitdamUITests" */;
 			buildPhases = (
 				63B05BD42CEB3EFD00071C09 /* Sources */,
 				63B05BD52CEB3EFD00071C09 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				63B05BDB2CEB3EFD00071C09 /* JamitdamUITests */,
 			);
-			name = JamitDamUITests;
+			name = JamitdamUITests;
 			packageProductDependencies = (
 			);
 			productName = JamitDamUITests;
-			productReference = 63B05BD82CEB3EFD00071C09 /* JamitDamUITests.xctest */;
+			productReference = 63B05BD82CEB3EFD00071C09 /* JamitdamUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				63B05BBD2CEB3EFC00071C09 /* JamitDam */,
-				63B05BCD2CEB3EFD00071C09 /* JamitDamTests */,
-				63B05BD72CEB3EFD00071C09 /* JamitDamUITests */,
+				63B05BBD2CEB3EFC00071C09 /* Jamitdam */,
+				63B05BCD2CEB3EFD00071C09 /* JamitdamTests */,
+				63B05BD72CEB3EFD00071C09 /* JamitdamUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		63B05BD02CEB3EFD00071C09 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 63B05BBD2CEB3EFC00071C09 /* JamitDam */;
+			target = 63B05BBD2CEB3EFC00071C09 /* Jamitdam */;
 			targetProxy = 63B05BCF2CEB3EFD00071C09 /* PBXContainerItemProxy */;
 		};
 		63B05BDA2CEB3EFD00071C09 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 63B05BBD2CEB3EFC00071C09 /* JamitDam */;
+			target = 63B05BBD2CEB3EFC00071C09 /* Jamitdam */;
 			targetProxy = 63B05BD92CEB3EFD00071C09 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -524,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63B05BE22CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitDam" */ = {
+		63B05BE22CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "Jamitdam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				63B05BE32CEB3EFD00071C09 /* Debug */,
@@ -533,7 +533,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63B05BE52CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitDamTests" */ = {
+		63B05BE52CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitdamTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				63B05BE62CEB3EFD00071C09 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		63B05BE82CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitDamUITests" */ = {
+		63B05BE82CEB3EFD00071C09 /* Build configuration list for PBXNativeTarget "JamitdamUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				63B05BE92CEB3EFD00071C09 /* Debug */,
