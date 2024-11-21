@@ -36,8 +36,8 @@ struct Login: View {
                                         .font(.system(size: 25, weight: .bold))
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 60)
-                                .padding(.horizontal, 20)
+                                //.padding(.top, 60)
+                                .padding(.horizontal)
                                 
                                 // Text Fields
                                 Grid(alignment: .center, horizontalSpacing: 20, verticalSpacing: 22) {
@@ -56,7 +56,7 @@ struct Login: View {
                                             .gridColumnAlignment(.leading)
                                     }
                                 }
-                                .padding(.horizontal, 20)
+                                .padding(.horizontal)
                                 
                                 // Additional options
                                 HStack {
