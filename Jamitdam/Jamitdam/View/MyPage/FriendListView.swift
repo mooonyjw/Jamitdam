@@ -4,46 +4,65 @@ import Foundation
 struct FriendListView: View {
     
     // 더미 데이터 - 유수현(user1)의 친구 목록
-    @State private var friends: [User] = user1.friends
+    @State var user: User = user1
+    
+    @State private var friends: [User]
     @State private var selectedFriend: User?
     // 친구 프로필로 이동
     @State private var navigateToProfile: Bool = false
+    
+    init(user: User) {
+        self.user = user
+        // 친구 목록을 불러올 때 사용자의 친구 목록을 불러옴
+        friends = user.friends
+    }
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
     var body: some View {
-        GeometryReader { geometry in
-            
-            let widthRatio = geometry.size.width / screenWidth
-            let heightRatio = geometry.size.height / screenHeight
-            
-            VStack(spacing: 0) {
+        NavigationStack {
+            GeometryReader { geometry in
                 
-                TopBar(
-                    title: "친구",
-                    rightButtonDisabled: true
-                )
+                let widthRatio = geometry.size.width / screenWidth
+                let heightRatio = geometry.size.height / screenHeight
                 
-                ScrollView {
-                    Spacer().frame(height: 9 * heightRatio)
+                VStack(spacing: 0) {
                     
-                    ForEach(friends) { friend in
-                        FriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio)
-                        // 친구 행 클릭 시 친구 프로필로 이동
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                // 추후 친구 프로필로 이동 기능 구현
-                                selectedFriend = friend
-                                navigateToProfile = true
-                                print("\(selectedFriend!.name) 프로필 페이지로 이동")
-                            }
+                    TopBar(
+                        title: "친구",
+                        rightButtonDisabled: true
+                    )
+                    
+                    ScrollView {
+                        Spacer().frame(height: 9 * heightRatio)
+                        
+                        ForEach(friends) { friend in
+                            FriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio)
+                            // 친구 행 클릭 시 친구 프로필로 이동
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    // 추후 친구 프로필로 이동 기능 구현
+                                    selectedFriend = friend
+                                    navigateToProfile = true
+                                    print("\(selectedFriend!.name) 프로필 페이지로 이동")
+                                }
+                        }
                     }
+                    
                 }
-                
+                .navigationBarBackButtonHidden(true)
             }
-            .navigationBarBackButtonHidden(true) 
+            NavigationLink(
+                destination: FriendProfileView(
+                    user: selectedFriend ?? user.friends[0]
+                ),
+                isActive: $navigateToProfile
+            ) {
+                EmptyView()
+            }
         }
+
     }
 }
 
@@ -77,5 +96,5 @@ struct FriendRow: View {
 }
 
 #Preview {
-    FriendListView()
+    FriendListView(user: user1)
 }

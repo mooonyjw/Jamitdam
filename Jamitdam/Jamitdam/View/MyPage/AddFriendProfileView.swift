@@ -23,10 +23,7 @@ struct AddFriendProfileView: View {
             let heightRatio = geometry.size.height / screenHeight
             
             VStack {
-                AddFriendCustomBar(backButtonFunc: {
-                    dismiss()
-                    print("뒤로 가기 버튼 클릭")
-                }, widthRatio: widthRatio, heightRatio: heightRatio)
+                AddFriendCustomBar(widthRatio: widthRatio, heightRatio: heightRatio)
                 
                 // 사용자 프로필
                 Image(friend.profile)

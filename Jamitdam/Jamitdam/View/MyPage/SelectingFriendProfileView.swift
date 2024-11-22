@@ -31,10 +31,7 @@ struct SelectingFriendProfileView: View {
                 let heightRatio = geometry.size.height / screenHeight
                 
                 VStack {
-                    AddFriendCustomBar(backButtonFunc: {
-                        print("뒤로 가기 버튼 클릭")
-                        dismiss()
-                    }, widthRatio: widthRatio, heightRatio: heightRatio)
+                    AddFriendCustomBar(widthRatio: widthRatio, heightRatio: heightRatio)
                     
                     // 사용자 프로필
                     Image(friend.profile)
@@ -137,37 +134,6 @@ struct SelectingFriendProfileView: View {
 }
 
 
-
-// 위에 상단바
-struct AddFriendCustomBar: View {
-    var showBackButton: Bool = true
-    var backButtonFunc: (() -> Void)
-    
-    var widthRatio: CGFloat
-    var heightRatio: CGFloat
-    
-    var body: some View {
-        HStack {
-            Button(action: backButtonFunc) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 21 * widthRatio))
-                    .padding()
-                    .foregroundColor(Color("Graybasic"))
-            }
-            
-            Spacer()
-            
-            // 오른쪽에 로고 배치
-            Image("Logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40 * widthRatio, height: 28.5 * heightRatio)
-                .padding(.trailing, 27 * widthRatio)
-        }
-        .padding(.top, 0)
-        .frame(height: 57.0 * heightRatio)
-    }
-}
 
 
 
