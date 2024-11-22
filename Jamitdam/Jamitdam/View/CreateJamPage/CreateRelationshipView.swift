@@ -1,15 +1,9 @@
 import SwiftUI
 
-
-
-struct EditRelationshipView: View {
-    
-    // 전달받은 유저의 인연 수정
-    @State var user: User
-    @State var relationship: Relationship
-    
+struct CreateRelationshipView: View {
     // 버튼을 활성화시키기 위한 변수
     @State private var isEnabled: Bool = false
+
     // 사용자가 입력한 이모지
     @State private var icon: String = ""
     // 사용자가 입력한 닉네임
@@ -28,20 +22,11 @@ struct EditRelationshipView: View {
     // emoji 입력이 아닐 시 alert를 띄우기 위한 변수
     @State private var isShowingAlert = false
 
-    init(user: User, relationship: Relationship) {
-        self.user = user
-        self.relationship = relationship
-        _icon = State(initialValue: relationship.icon)
-        _nickname = State(initialValue: relationship.nickname)
-        _hashtagContent = State(initialValue: relationship.hashtags.joined(separator: " "))
-        _hashtag = State(initialValue: relationship.hashtags.joined(separator: " "))
-    }
-    
     func saveHashtag() {
         if !hashtagContent.isEmpty {
             hashtag = hashtagContent.trimmingCharacters(in: .whitespacesAndNewlines)
-            hashtagContent = ""
-            isEditing = false
+            hashtagContent = "" // 입력 필드 초기화
+            isEditing = false // 수정 상태 종료
         }
     }
 
@@ -52,13 +37,10 @@ struct EditRelationshipView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
-                TopBar(title: "인연 수정하기")
-                
+                TopBar(title: "새로운 인연 생성하기")
                 ScrollView {
                     Spacer()
                         .frame(height: 50)
-                    
                     VStack(spacing: 20) {
                         Text("그 사람은 누구인가요?")
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,10 +64,11 @@ struct EditRelationshipView: View {
                                     .frame(width: 100, height: 130)
 
                                 if icon.isEmpty {
-                                    Text(relationship.icon)
-                                        .font(.system(size: 70))
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
                                         .foregroundColor(Color("Grayunselected"))
-                                        //.transition(.opacity)
+                                        .transition(.opacity)
                                 }
                             }
                             .alert(isPresented: $isShowingAlert) {
@@ -97,9 +80,10 @@ struct EditRelationshipView: View {
                             }
 
                             VStack(spacing: 10) {
-                                TextField("title", text: $nickname)
+                                TextField("title", text: $nickname,
+                                          prompt: Text("별명 입력")
                                             .font(.system(size: 25))
-                                            .foregroundColor(Color.black)
+                                            .foregroundColor(Color("Graybasic")))
                                     .multilineTextAlignment(.center)
                                     .textFieldStyle(PlainTextFieldStyle())
                                     .keyboardType(.default)
@@ -124,17 +108,15 @@ struct EditRelationshipView: View {
                                     .padding(.leading)
 
                                 if isEditing || hashtag.isEmpty {
-                                    TextField("해시태그를 입력하세요", text: $hashtagContent)
-                                        .font(.system(size: 18, weight: .semibold))
-                                        .onSubmit { // 사용자가 엔터를 눌러 입력을 종료했을 때 실행
+                                    TextField("title", text: $hashtagContent, prompt: Text("여기를_눌러서_관계를_해시태그로_표현해보아요.")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(Color("Graybasic")))
+                                    .font(.system(size: 18, weight: .semibold))
+                                    .onChange(of: hashtagContent) { newValue in
+                                        if newValue.contains(" ") || newValue.contains("\n") {
                                             saveHashtag()
                                         }
-                                        .onChange(of: hashtagContent) { newValue in
-                                            // 조건: 공백이나 줄바꿈이 포함된 경우에도 실수로 실행되지 않도록 제한
-                                            if newValue.last == " " || newValue.last == "\n" {
-                                                saveHashtag()
-                                            }
-                                        }
+                                    }
                                 } else {
                                     Text(hashtag)
                                         .font(.system(size: 18, weight: .semibold))
@@ -166,10 +148,10 @@ struct EditRelationshipView: View {
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
-        .navigationBarBackButtonHidden(true) 
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    EditRelationshipView(user: user1, relationship: getRelationships()[2])
+    CreateRelationshipView()
 }

@@ -13,7 +13,7 @@ struct TabBar: View {
                             Image(systemName: "house")
                             Text("홈")
                         }
-                    FriendListView()
+                    MyPageView()
                         .tabItem {
                             Image(systemName: "bubble.left.and.bubble.right")
                             Text("투표")

@@ -77,7 +77,7 @@ struct MyPageView: View {
                             
                             Spacer().frame(width: 11.5 * widthRatio)
                             
-                            MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "😎", title: "친구 보기", destination: FriendListView())
+                            MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "😎", title: "친구 보기", destination: FriendListView(user: user))
                             
                             Spacer().frame(width: 11.5 * widthRatio)
                             
@@ -485,6 +485,7 @@ struct ToggleList: View {
             if whatToggle == 1{
                 Toggle("", isOn: $onAlarm)
                     .labelsHidden()
+                    .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                 
                 if !onAlarm {
                     // 알람 끄기?
@@ -492,6 +493,7 @@ struct ToggleList: View {
             } else {
                 Toggle("", isOn: $darkMode)
                     .labelsHidden()
+                    .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                 
                 if darkMode {
                     // 다크모드?
