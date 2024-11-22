@@ -110,6 +110,14 @@ struct RelationshipListView: View {
                 isActive: $navigateToCreateRelationship,
                 label: { EmptyView() }
             )
+            NavigationLink(
+                destination: EditRelationshipView(
+                    user: user1,
+                    relationship: selectedRelationship ?? user1Relationships[0]
+                ),
+                isActive: $navigateToEdit,
+                label: { EmptyView() }
+            )
 
         }
     }

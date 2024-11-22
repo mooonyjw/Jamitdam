@@ -3,12 +3,13 @@ import SwiftUI
 
 
 struct EditRelationshipView: View {
+    
+    // 전달받은 유저의 인연 수정
+    @State var user: User
+    @State var relationship: Relationship
+    
     // 버튼을 활성화시키기 위한 변수
     @State private var isEnabled: Bool = false
-    // 유수현의 인연 수정
-    @State private var user: User = user1
-    // 유수현의 인연
-    @State private var relationship: Relationship = getRelationships()[0]
     // 사용자가 입력한 이모지
     @State private var icon: String = ""
     // 사용자가 입력한 닉네임
@@ -27,9 +28,9 @@ struct EditRelationshipView: View {
     // emoji 입력이 아닐 시 alert를 띄우기 위한 변수
     @State private var isShowingAlert = false
 
-    init() {
-        // 초기값 설정
-        let relationship = getRelationships()[0]
+    init(user: User, relationship: Relationship) {
+        self.user = user
+        self.relationship = relationship
         _icon = State(initialValue: relationship.icon)
         _nickname = State(initialValue: relationship.nickname)
         _hashtagContent = State(initialValue: relationship.hashtags.joined(separator: " "))
@@ -170,5 +171,5 @@ struct EditRelationshipView: View {
 }
 
 #Preview {
-    EditRelationshipView()
+    EditRelationshipView(user: user1, relationship: getRelationships()[2])
 }
