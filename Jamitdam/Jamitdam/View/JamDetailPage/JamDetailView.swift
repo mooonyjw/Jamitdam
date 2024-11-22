@@ -20,6 +20,9 @@ struct JamDetailView: View {
     // 대댓글 딕셔너리
     // key: 최상위 댓글 배열, value: 대댓글 목록
     @State var replyDict: [UUID: [Comment]] = [:]
+    
+    // 사용자가 입력한 댓글
+    @State var myComment: String = ""
 
     var body: some View {
         // 글 ID
@@ -39,7 +42,6 @@ struct JamDetailView: View {
 
         TopBar(title: "재미를 잇다")
         ScrollView {
-            
             VStack {
                 // 작성자 프로필
                 HStack {
@@ -50,7 +52,7 @@ struct JamDetailView: View {
                         .clipShape(Circle())
                     
                     Spacer()
-                        .frame(width: 15)
+                        .frame(width: 10)
                     
                     VStack(alignment: .leading) {
                         Text(name)
@@ -75,18 +77,17 @@ struct JamDetailView: View {
                 // 좋아요 및 댓글
                 HStack {
                     // 좋아요
-                    HStack(spacing: 5) {
+                    HStack {
                         LikeButton(isLiked: $isLiked, likesCount: $likesCount, userId: user1.id, postId: postId)
                         Text("\(likesCount)")
                             .foregroundColor(Color("Graybasic"))
                             .font(.system(size: 20))
                     }
-                    
-                    Spacer()
-                        .frame(width: 15)
+                    .frame(width: 70, alignment: .leading)
+
                     
                     // 댓글
-                    HStack(spacing: 5) {
+                    HStack {
                         Image(systemName: "quote.bubble")
                             .resizable()
                             .scaledToFit()
@@ -118,7 +119,7 @@ struct JamDetailView: View {
                                         .clipShape(Circle())
                                     
                                     Spacer()
-                                        .frame(width: 15)
+                                        .frame(width: 10)
                                     
                                     VStack(alignment: .leading) {
                                         // 사용자 이름 및 작성 시간
@@ -149,7 +150,7 @@ struct JamDetailView: View {
                                             .clipShape(Circle())
                                         
                                         Spacer()
-                                            .frame(width: 15)
+                                            .frame(width: 10)
                                         
                                         VStack(alignment: .leading) {
                                             // 사용자 이름 및 작성 시간
@@ -184,6 +185,56 @@ struct JamDetailView: View {
             // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
             initializeComments()
         }
+        
+        // 하단 키보드 고정
+        HStack {
+            // 유저 프로필
+            
+            Image(user1.profile)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50, alignment: .leading)
+                .clipShape(Circle())
+                .padding(.leading)
+            
+            Spacer()
+            
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color("Grayunselected"), lineWidth: 1)
+                    .frame(height: 50)
+                    .frame(maxWidth: .infinity)
+                
+                TextField("", text: $myComment)
+                    .keyboardType(.default)
+                    .frame(height: 50)
+                    .font(.system(size: 20))
+                    .padding(.leading, 10)
+                
+                if myComment.isEmpty {
+                    Text("당신의 의견을 입력해주세요!")
+                        .font(.system(size: 15)).foregroundColor(Color("Grayunselected"))
+                        .padding(.horizontal, 10)
+                }
+            }
+            
+            Button(action: {
+                // 댓글을 추가
+                addComment(user: user1)
+                
+            }) {
+                Image(systemName: "arrow.up.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
+            }
+            .disabled(myComment.isEmpty)
+            .padding(.trailing)
+
+
+        }
+        .frame(alignment: .bottom)
     }
     
     // 좋아요 상태 초기화를 위한 함수
@@ -217,12 +268,35 @@ struct JamDetailView: View {
                 }
             }
         }
-        
-        // 확인용 출력
-        for (key, value) in replyDict {
-            print("Parent ID: \(key)")
-            print("Replies: \(value.map { $0.content })")
+    }
+    
+    // 대댓글 추가
+    public func addReply(user: User, comment: Comment) {
+        if let parentId = comment.parentId {
+            if replyDict[parentId] != nil {
+                replyDict[parentId]?.append(comment)
+            }
+            else {
+                replyDict[parentId] = [comment]
+            }
         }
+    }
+    
+    // 댓글 추가
+    public func addComment(user: User) {
+        guard !myComment.isEmpty else { return }
+        
+        let newComment = Comment(
+            userId: user.id,
+            postId: post.id,
+            date: Date(),
+            content: myComment,
+            parentId: nil
+        )
+        
+        comments.append(newComment)
+        topLevelComments.append(newComment)
+        myComment = ""
     }
     
 }
