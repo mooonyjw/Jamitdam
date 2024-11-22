@@ -82,6 +82,12 @@ struct JamDetailView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
                 
+                // 이미지
+                if !post.images.isEmpty {
+                    ImageSlider(imageUrls: post.images)
+                        .padding(.bottom, 30)
+                }
+                
                 // 좋아요 및 댓글
                 HStack {
                     // 좋아요
