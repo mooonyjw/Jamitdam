@@ -4,8 +4,23 @@ import SwiftUI
 
 struct DayPlusView: View {
     
-    @State private var selectedDate = Date()
-    //@Binding var selectedRelationship: Relationship?
+    // EditView에서 데이터를 전달받도록
+    var relationship: Relationship
+    var startDate: Date
+
+    
+   // 얼마나 지났는지 날짜 계산
+    private var daysSinceStart: Int {
+        let calendar = Calendar.current
+        // 시간제거
+        let startOfStartDate = calendar.startOfDay(for: startDate)
+        let startOfToday = calendar.startOfDay(for: Date())
+        return max(-1, Calendar.current.dateComponents([.day], from: startOfStartDate, to: startOfToday).day ?? 0)
+    }
+    
+    
+    // 화면 닫기 위해 사용
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         
@@ -15,6 +30,7 @@ struct DayPlusView: View {
                 
                 Button(action: {
                     // action 넣기
+                    // 소정이가 만든 마이페이지 화면으로
                 }) {
                     Text("닫기")
                         .font(.callout)
@@ -24,6 +40,7 @@ struct DayPlusView: View {
                 Spacer()
                 Button(action: {
                     //action
+                    dismiss()
                 }) {
                     Text("편집")
                         .font(.callout)
@@ -44,25 +61,29 @@ struct DayPlusView: View {
                     .foregroundColor(.whitebackground)
                 
                 //이모지
-                //DB 에서 가져오기가 아니라 수정 페이지에서 입력한 내용이 들어가도록 수정하기
-                Text("🎧")
+                Text(relationship.icon)
                     .font(.system(size: 80))
-                
                 
             }
             
-            Text("에어팟")
+            Text(relationship.nickname)
                 .font(.title.bold())
                 .padding()
             
-            Text("에어팟 님과 \n인연을 시작한 지")
+            Text("\(relationship.nickname) 님과 \n인연을 시작한 지")
                 .font(.title3)
                 .multilineTextAlignment(.center)
-            
-            
-            Text("D + 40")
-                .font(.largeTitle.bold())
-                .foregroundColor(.redlogo)
+          
+            if daysSinceStart < 0 {
+                Text("D + 0")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(.redlogo)
+            }
+            else { Text("D + \(daysSinceStart)")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(.redlogo)
+            }
+                
                
             Spacer()
             
@@ -70,16 +91,18 @@ struct DayPlusView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.redsoftbase)
-
+        .navigationBarBackButtonHidden(true)
+        
         
     }
-        
-    
-    
-    
+
 }
 
 #Preview {
     
-    DayPlusView()
+    //DayPlusView()
+    DayPlusView(
+        relationship: tiger,
+           startDate: Calendar.current.date(byAdding: .day, value: -40, to: Date())!
+       )
 }

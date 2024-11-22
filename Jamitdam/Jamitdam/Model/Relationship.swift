@@ -1,6 +1,7 @@
 import SwiftUI
 
-struct Relationship {
+// DayPlus Navigation에서 필요해서 수정
+struct Relationship: Identifiable, Hashable, Equatable {
     let id: UUID = UUID()
     var nickname: String
     var hashtags: [String]

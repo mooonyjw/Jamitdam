@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1540"
+   LastUpgradeVersion = "1610"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -29,30 +29,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "971A0B952CD9D32900A2BF5E"
-               BuildableName = "JamitdamTests"
-               BlueprintName = "JamitdamTests"
-               ReferencedContainer = "container:Jamitdam.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "971A0B9F2CD9D32900A2BF5E"
-               BuildableName = "JamitdamUITests"
-               BlueprintName = "JamitdamUITests"
-               ReferencedContainer = "container:Jamitdam.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -68,6 +44,13 @@
          runnableDebuggingMode = "0"
          FilePath = "/Users/jueunson/Library/Developer/Xcode/DerivedData/Jamitdam-djeciunaopbzmodupmpxdyfejgfv/Build/Products/Debug-iphonesimulator/Jamitdam.app">
       </PathRunnable>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -77,23 +60,6 @@
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Release"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
-            BuildableName = "Jamitdam"
-            BlueprintName = "Jamitdam"
-            ReferencedContainer = "container:Jamitdam.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
