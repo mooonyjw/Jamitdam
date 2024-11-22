@@ -26,9 +26,6 @@ struct CreateVoteView: View {
         // TopBar
         TopBar(
             title: "투표 생성하기"
-            // action 넣기
-            //backButtonFunc: { print("뒤로 가기 클릭") }
-            
         )
         // 항목 추가 시, 화면이 길어질 것을 대비해서 스크롤 뷰로 작성
         ScrollView{
@@ -117,8 +114,11 @@ struct CreateVoteView: View {
                 // 토글
                 VStack(alignment: .leading, spacing: 10) {
                     Toggle("복수선택", isOn: $multipleChoice)
+                        .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                     Toggle("익명투표", isOn: $anonymousVote)
+                        .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                     Toggle("선택항목 추가 허용", isOn: $allowOptionAddition)
+                        .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                     HStack(alignment: .center, spacing: 5){
                         VStack{
                             Button(action:{
@@ -166,6 +166,7 @@ struct CreateVoteView: View {
                         
                   Toggle("투표 종료 전 알림 받기", isOn: $notifyBeforeEnd)
                             .padding(.leading, 5)
+                            .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
 
                         
                     }
@@ -179,7 +180,7 @@ struct CreateVoteView: View {
 
             
         }//
-      
+        .navigationBarBackButtonHidden(true)
         
         RedButton(title: "완료", isEnabled: .constant(isEnabled), height: 55){
             // action
