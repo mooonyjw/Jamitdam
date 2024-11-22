@@ -23,6 +23,14 @@ struct JamDetailView: View {
     
     // 사용자가 입력한 댓글
     @State var myComment: String = ""
+    
+    // 사용자가 현재 대댓글을 입력하고 있는 댓글
+    @State var parentComment: Comment? = nil
+    // 사용자가 현재 대댓글을 입력하고 있는지 여부
+    @State var isReply: Bool = false
+    
+    // 답글버튼을 누를 시 자동으로 키보드가 올라오게 하기 위한 변수
+    @FocusState private var isKeyboardActive: Bool
 
     var body: some View {
         // 글 ID
@@ -68,7 +76,7 @@ struct JamDetailView: View {
                 
                 // 본문
                 Text(content)
-                    .font(.system(size: 25))
+                    .font(.system(size: 20))
                     .frame(height: 110)
                     .frame(minHeight: 110, maxHeight: .infinity)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -93,15 +101,18 @@ struct JamDetailView: View {
                             .scaledToFit()
                             .frame(width: 20, height: 20)
                             .foregroundColor(Color("Graybasic"))
+                        Text("\(comments.count)")
+                            .foregroundColor(Color("Graybasic"))
+                            .font(.system(size: 20))
                     }
-        
-
+                    
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
                 
                 Rectangle()
-                    .frame(width: .infinity, height: 1)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 1)
                     .foregroundColor(Color("Graybasic"))
                     .padding(.bottom, 10)
                 
@@ -131,8 +142,23 @@ struct JamDetailView: View {
                                         }
                                         // 댓글 내용
                                         Text(comment.content)
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 18))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                     }
+                                    
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        // 답글 모드로 전환
+                                        enableReply(parent: comment)
+                                    }) {
+                                        Image(systemName: "bubble")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 15, height: 15)
+                                            .foregroundColor(Color("Graybasic"))
+                                    }
+                                    .frame(alignment: .trailing)
                                 }
                             }
                             .padding(.bottom, 15)
@@ -142,7 +168,7 @@ struct JamDetailView: View {
                         if let replies = replyDict[comment.id] {
                             ForEach(replies, id: \.id) { reply in
                                 if let replyWriter = users.first(where: { $0.id == reply.userId }) {
-                                    HStack {
+                                    HStack(alignment: .top) {
                                         Image("\(replyWriter.profile)")
                                             .resizable()
                                             .scaledToFit()
@@ -162,7 +188,8 @@ struct JamDetailView: View {
                                             }
                                             // 댓글 내용
                                             Text(reply.content)
-                                                .font(.system(size: 20))
+                                                .font(.system(size: 18))
+                                                .frame(maxWidth: .infinity, alignment: .leading)
                                         }
                                     }
                                     .padding(.leading, 70)
@@ -185,56 +212,84 @@ struct JamDetailView: View {
             // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
             initializeComments()
         }
+        .onTapGesture {
+            // 배경 터치 시 키보드를 내린다
+            print(isKeyboardActive)
+            isKeyboardActive = false
+            
+        }
         
-        // 하단 키보드 고정
-        HStack {
-            // 유저 프로필
-            
-            Image(user1.profile)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 50, height: 50, alignment: .leading)
-                .clipShape(Circle())
-                .padding(.leading)
-            
-            Spacer()
-            
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color("Grayunselected"), lineWidth: 1)
-                    .frame(height: 50)
-                    .frame(maxWidth: .infinity)
-                
-                TextField("", text: $myComment)
-                    .keyboardType(.default)
-                    .frame(height: 50)
-                    .font(.system(size: 20))
-                    .padding(.leading, 10)
-                
-                if myComment.isEmpty {
-                    Text("당신의 의견을 입력해주세요!")
-                        .font(.system(size: 15)).foregroundColor(Color("Grayunselected"))
-                        .padding(.horizontal, 10)
+        
+        VStack {
+            // 언급 중인 경우
+            if parentComment != nil && isReply {
+                if let parentWriter = users.first(where: { $0.id ==  parentComment?.userId } ) {
+                    Text("\(parentWriter.name)님의 댓글에 답글을 작성중이에요!")
+                        .font(.system(size: 15))
                 }
             }
             
-            Button(action: {
-                // 댓글을 추가
-                addComment(user: user1)
+            // 하단 키보드 고정
+            HStack {
+                // 유저 프로필
                 
-            }) {
-                Image(systemName: "arrow.up.circle.fill")
+                Image(user1.profile)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 50, height: 50)
-                    .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
+                    .frame(width: 50, height: 50, alignment: .leading)
+                    .clipShape(Circle())
+                    .padding(.leading)
+                
+                Spacer()
+                
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("Grayunselected"), lineWidth: 1)
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                    
+                    TextField("", text: $myComment)
+                        .keyboardType(.default)
+                        .frame(height: 50)
+                        .font(.system(size: 20))
+                        .padding(.leading, 10)
+                        .focused($isKeyboardActive)
+                    
+                    if myComment.isEmpty {
+                        Text("당신의 의견을 입력해주세요!")
+                            .font(.system(size: 15)).foregroundColor(Color("Grayunselected"))
+                            .padding(.horizontal, 10)
+                    }
+                }
+                .background(Color.clear)
+                
+                Button(action: {
+                    // 댓글을 추가
+                    if !isReply && parentComment == nil {
+                        addComment(user: user1)
+                    }
+                    // 대댓글을 추가
+                    else {
+                        if let parent = parentComment {
+                            addReply(user: user1, parent: parent)
+                        }
+                    }
+                    
+                }) {
+                    Image(systemName: "arrow.up.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
+                }
+                .disabled(myComment.isEmpty)
+                .padding(.trailing)
             }
-            .disabled(myComment.isEmpty)
-            .padding(.trailing)
-
-
+            .background(Color.clear)
+            .frame(alignment: .bottom)
+            .padding(.bottom)
         }
-        .frame(alignment: .bottom)
+        .background(Color.clear)
     }
     
     // 좋아요 상태 초기화를 위한 함수
@@ -270,21 +325,43 @@ struct JamDetailView: View {
         }
     }
     
-    // 대댓글 추가
-    public func addReply(user: User, comment: Comment) {
-        if let parentId = comment.parentId {
-            if replyDict[parentId] != nil {
-                replyDict[parentId]?.append(comment)
-            }
-            else {
-                replyDict[parentId] = [comment]
-            }
+    // parent 댓글에 대한 대댓글 모드
+    public func enableReply(parent: Comment) {
+        self.parentComment = parent
+        self.isReply = true
+        DispatchQueue.main.async {
+            self.isKeyboardActive = true
         }
+    }
+    
+    // 대댓글 추가
+    public func addReply(user: User, parent: Comment) {
+        let newReply = Comment(
+            userId: user.id,
+            postId: post.id,
+            date: Date(),
+            content: myComment,
+            parentId: parent.id
+        )
+        
+        if replyDict[parent.id] != nil {
+            replyDict[parent.id]?.append(newReply)
+        }
+        else {
+            replyDict[parent.id] = [newReply]
+        }
+        
+        self.comments.append(newReply)
+        self.myComment = ""
+        self.isReply = false
+        self.parentComment = nil
+        // 키보드를 내린다
+        self.isKeyboardActive = false
     }
     
     // 댓글 추가
     public func addComment(user: User) {
-        guard !myComment.isEmpty else { return }
+        guard !self.myComment.isEmpty else { return }
         
         let newComment = Comment(
             userId: user.id,
@@ -294,9 +371,9 @@ struct JamDetailView: View {
             parentId: nil
         )
         
-        comments.append(newComment)
-        topLevelComments.append(newComment)
-        myComment = ""
+        self.comments.append(newComment)
+        self.topLevelComments.append(newComment)
+        self.myComment = ""
     }
     
 }
@@ -304,3 +381,13 @@ struct JamDetailView: View {
 #Preview {
     JamDetailView()
 }
+
+/*
+ 고칠거
+ 
+ 1. 언급 시 키보드 올라오게 하기
+ 2. 언급 비활성화 기능도 추가하기
+ 3. 바탕 누르면 키보드 내려가게 하기
+ 4. 댓글 작성 완료하면 키보드 내려가게 하기
+ 
+ */
