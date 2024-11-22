@@ -51,16 +51,15 @@ struct FriendProfileView: View {
                         
                         
                         // 상단 버튼 (인연 보기, 친구 보기, 디데이)
-                        HStack(alignment: .center, spacing: 30 * widthRatio) {
+                        HStack(spacing: 30 * widthRatio) {
                             MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🩷", title: "인연 보기", destination: RelationshipListView())
-                            
-                            //Spacer().frame(width: 11.5 * widthRatio)
                             
                             // destination 설정 해야함
                             DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🐻‍❄️", Dday: 100)
                             
                         }
                         .padding(.leading, 26 * widthRatio)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         
                         
                         // 친구의 기록
@@ -107,9 +106,9 @@ struct FriendProfileView: View {
                             
                             VStack {
 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 삭제", destination: BlockedFriendListView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 삭제", titleButton: true, destination: BlockedFriendListView())
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 차단", destination: RequestedFriendListView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "친구 차단", titleColor: Color.red, titleButton: true, destination: RequestedFriendListView())
                             }
                         }
                         

@@ -113,7 +113,7 @@ struct RelationshipListView: View {
             NavigationLink(
                 destination: EditRelationshipView(
                     user: user1,
-                    relationship: selectedRelationship ?? user1Relationships[0]
+                    relationship: selectedRelationship ?? getRelationships()[0]
                 ),
                 isActive: $navigateToEdit,
                 label: { EmptyView() }
