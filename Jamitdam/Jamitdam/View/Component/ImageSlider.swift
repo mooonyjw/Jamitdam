@@ -24,7 +24,7 @@ struct ImageSlider: View {
                         .clipped()
                         .cornerRadius(20)
                         .shadow(radius: 5)
-                    // 현재 인덱스 이미지와 다른 이미지는 투명도 조절
+                        // 현재 인덱스 이미지와 다른 이미지는 투명도 조절
                         .opacity(index == activeIndex ? 1 : 0.6)
                         .offset(x: CGFloat(index - activeIndex) * geometry.size.width + offset)
                         .animation(.easeInOut, value: offset)
