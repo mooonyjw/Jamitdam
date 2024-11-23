@@ -220,7 +220,7 @@ struct JamDetailView: View {
                 // 새로운 댓글이 추가되면 가장 아래로 스크롤
                 .onChange(of: scrollToId) { id in
                     if let id = id {
-                        proxy.scrollTo(id, anchor: .center)
+                        proxy.scrollTo(id, anchor: .bottom)
                     }
                 }
                 .padding(.horizontal)
@@ -244,11 +244,27 @@ struct JamDetailView: View {
             // 언급 중인 경우
             if parentComment != nil && isReply {
                 if let parentWriter = users.first(where: { $0.id ==  parentComment?.userId } ) {
-                    Text("\(parentWriter.name)님의 댓글에 답글을 작성중이에요!")
-                        .font(.system(size: 15))
+                    HStack {
+                        Text("\(parentWriter.name)님의 댓글에 답글을 작성중이에요!")
+                            .font(.system(size: 15))
+                        
+                        // 언급 취소 버튼
+                        Button(action: {
+                            isReply = false
+                            parentComment = nil
+                            
+                        }) {
+                            Image(systemName: "x.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(Color("Graybasic"))
+                        }
+                    }
+
                 }
             }
-            
+             
             // 하단 키보드 고정
             HStack {
                 // 유저 프로필
@@ -381,7 +397,7 @@ struct JamDetailView: View {
         // 답글 추가 시 해당 답글의 부모 댓글 스크롤
         DispatchQueue.main.async {
             withAnimation {
-                scrollToId = parent.id
+                scrollToId = newReply.id
             }
         }
     }
