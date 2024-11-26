@@ -31,10 +31,10 @@ struct EditRelationshipView: View {
     init(user: User, relationship: Relationship) {
         self.user = user
         self.relationship = relationship
-        _icon = State(initialValue: relationship.icon)
-        _nickname = State(initialValue: relationship.nickname)
-        _hashtagContent = State(initialValue: relationship.hashtags.joined(separator: " "))
-        _hashtag = State(initialValue: relationship.hashtags.joined(separator: " "))
+//        _icon = State(initialValue: relationship.icon)
+//        _nickname = State(initialValue: relationship.nickname)
+//        _hashtagContent = State(initialValue: relationship.hashtags.joined(separator: " "))
+//        _hashtag = State(initialValue: relationship.hashtags.joined(separator: " "))
     }
     
     func saveHashtag() {

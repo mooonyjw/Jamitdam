@@ -148,10 +148,7 @@ struct CreateRelationshipView: View {
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
-<<<<<<< HEAD
         .navigationBarBackButtonHidden(true)
-=======
->>>>>>> 3e64fa88de02e011c9c5ea1bf98e2ae1a15dc682
     }
 }
 
