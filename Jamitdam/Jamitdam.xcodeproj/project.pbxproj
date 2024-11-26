@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E5623E82CEC861E00EA0975 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5623E62CEC861E00EA0975 /* Relationship.swift */; };
-		8E5623E92CEC861E00EA0975 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5623E52CEC861E00EA0975 /* Post.swift */; };
-		8E5623EA2CEC861E00EA0975 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5623E72CEC861E00EA0975 /* User.swift */; };
-		8E5623EE2CEC868B00EA0975 /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5623ED2CEC868B00EA0975 /* JamitdamApp.swift */; };
-		8E5623EF2CEC868B00EA0975 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5623EB2CEC868B00EA0975 /* ContentView.swift */; };
-		8E5623F02CEC868B00EA0975 /* CreateJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5623EC2CEC868B00EA0975 /* CreateJam.swift */; };
+		974511FE2CF5A1C8000A97BE /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974511FC2CF5A1C8000A97BE /* Relationship.swift */; };
+		974511FF2CF5A1C8000A97BE /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974511FB2CF5A1C8000A97BE /* Post.swift */; };
+		974512002CF5A1C8000A97BE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974511FD2CF5A1C8000A97BE /* User.swift */; };
+		974512052CF5A206000A97BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 974512012CF5A206000A97BE /* Assets.xcassets */; };
+		974512062CF5A206000A97BE /* CreateJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974512032CF5A206000A97BE /* CreateJam.swift */; };
+		974512072CF5A206000A97BE /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974512042CF5A206000A97BE /* JamitdamApp.swift */; };
+		974512082CF5A206000A97BE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974512022CF5A206000A97BE /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,12 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E5623E52CEC861E00EA0975 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		8E5623E62CEC861E00EA0975 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		8E5623E72CEC861E00EA0975 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8E5623EB2CEC868B00EA0975 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8E5623EC2CEC868B00EA0975 /* CreateJam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJam.swift; sourceTree = "<group>"; };
-		8E5623ED2CEC868B00EA0975 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
+		974511FB2CF5A1C8000A97BE /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		974511FC2CF5A1C8000A97BE /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		974511FD2CF5A1C8000A97BE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		974512012CF5A206000A97BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		974512022CF5A206000A97BE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		974512032CF5A206000A97BE /* CreateJam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJam.swift; sourceTree = "<group>"; };
+		974512042CF5A206000A97BE /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -73,9 +75,9 @@
 		8E7916B82CDA202700535605 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E5623E52CEC861E00EA0975 /* Post.swift */,
-				8E5623E62CEC861E00EA0975 /* Relationship.swift */,
-				8E5623E72CEC861E00EA0975 /* User.swift */,
+				974511FB2CF5A1C8000A97BE /* Post.swift */,
+				974511FC2CF5A1C8000A97BE /* Relationship.swift */,
+				974511FD2CF5A1C8000A97BE /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,9 +101,10 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
-				8E5623EB2CEC868B00EA0975 /* ContentView.swift */,
-				8E5623EC2CEC868B00EA0975 /* CreateJam.swift */,
-				8E5623ED2CEC868B00EA0975 /* JamitdamApp.swift */,
+				974512012CF5A206000A97BE /* Assets.xcassets */,
+				974512022CF5A206000A97BE /* ContentView.swift */,
+				974512032CF5A206000A97BE /* CreateJam.swift */,
+				974512042CF5A206000A97BE /* JamitdamApp.swift */,
 				8E9237DD2CDB123A00301FE8 /* View */,
 				8E7916B82CDA202700535605 /* Model */,
 			);
@@ -134,6 +137,8 @@
 				8E9237DD2CDB123A00301FE8 /* View */,
 			);
 			name = Jamitdam;
+			packageProductDependencies = (
+			);
 			productName = Jamitdam;
 			productType = "com.apple.product-type.application";
 		};
@@ -151,6 +156,8 @@
 				971A0B982CD9D32900A2BF5E /* PBXTargetDependency */,
 			);
 			name = JamitdamTests;
+			packageProductDependencies = (
+			);
 			productName = JamitdamTests;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -168,6 +175,8 @@
 				971A0BA22CD9D32900A2BF5E /* PBXTargetDependency */,
 			);
 			name = JamitdamUITests;
+			packageProductDependencies = (
+			);
 			productName = JamitdamUITests;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -178,8 +187,8 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					971A0B852CD9D32700A2BF5E = {
 						CreatedOnToolsVersion = 15.4;
@@ -219,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				974512052CF5A206000A97BE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,12 +253,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E5623E82CEC861E00EA0975 /* Relationship.swift in Sources */,
-				8E5623E92CEC861E00EA0975 /* Post.swift in Sources */,
-				8E5623EE2CEC868B00EA0975 /* JamitdamApp.swift in Sources */,
-				8E5623EF2CEC868B00EA0975 /* ContentView.swift in Sources */,
-				8E5623F02CEC868B00EA0975 /* CreateJam.swift in Sources */,
-				8E5623EA2CEC861E00EA0975 /* User.swift in Sources */,
+				974511FE2CF5A1C8000A97BE /* Relationship.swift in Sources */,
+				974511FF2CF5A1C8000A97BE /* Post.swift in Sources */,
+				974512002CF5A1C8000A97BE /* User.swift in Sources */,
+				974512062CF5A206000A97BE /* CreateJam.swift in Sources */,
+				974512072CF5A206000A97BE /* JamitdamApp.swift in Sources */,
+				974512082CF5A206000A97BE /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -391,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -460,12 +470,11 @@
 		971A0BAE2CD9D32900A2BF5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sainbunbap.JamitdamTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -479,12 +488,11 @@
 		971A0BAF2CD9D32900A2BF5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = sainbunbap.JamitdamTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -498,7 +506,6 @@
 		971A0BB12CD9D32900A2BF5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -515,7 +522,6 @@
 		971A0BB22CD9D32900A2BF5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
