@@ -372,7 +372,8 @@ struct DdayButton: View {
     
     var body: some View {
         // 디데이 수정 페이지로 이동
-        NavigationLink(destination: AddFriendProfileView()) {
+        NavigationLink(destination: DayPlusView(relationship: tiger, startDate: Calendar.current.date(byAdding: .day, value: -40, to: Date())!
+           )) {
             VStack {
                 
                 ZStack {
