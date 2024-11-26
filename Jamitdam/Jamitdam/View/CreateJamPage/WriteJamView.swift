@@ -83,6 +83,7 @@ struct WriteJamView: View {
     
     var body: some View {
         NavigationStack {
+            TopBar(title: "글 작성하기")
             VStack {
                 ScrollView {
                     VStack(spacing: 20) {
@@ -108,7 +109,7 @@ struct WriteJamView: View {
                                         Text("본문을 입력해주세요.")
                                             .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
                                             .frame(maxWidth: .infinity, alignment: .leading)
-                                            .padding(.top)
+                                            .padding(.horizontal, 4)
                                     }
                                     MentionTextField(
                                         text: $content,
@@ -119,18 +120,18 @@ struct WriteJamView: View {
                                         maxHeight: 250,
                                         fontSize: 20
                                     )
-                                    .padding(.top)
-                                    .frame(height: textFieldHeight, alignment: .topLeading)
+                                    .frame(height: textFieldHeight)
                                     .onChange(of: content) { newText in
                                         if newText.count > 300 {
                                             content = String(newText.prefix(300))
                                         }
                                     }
                                 }
-                                    if isMentioning {
+                                if isMentioning {
+                                    GeometryReader { geometry in
                                         ZStack {
                                             RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
-                                              
+                                            
                                                 .frame(width: 170, height: 150)
                                             
                                             ScrollView {
@@ -151,11 +152,13 @@ struct WriteJamView: View {
                                             }
                                             .frame(height: 150)
                                         }
-                                        .position(mentionPosition)
-                                        .padding(.horizontal)
+                                        .offset(x: mentionPosition.x, y: mentionPosition.y) // `offset`으로 위치 조정
+                                        
+                                        
                                     }
-                                    Spacer()
-                                    .frame(maxHeight: .infinity)
+                                }
+                                Spacer()
+                                .frame(maxHeight: .infinity)
 
                             }
                         }
@@ -201,6 +204,9 @@ struct WriteJamView: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .disabled(selectedImages.count >= 10)
+                            .onTapGesture {
+                                print("Tapped outside button")
+                            }
                         }
                         
                         // 글자 수 제한 표시
@@ -279,7 +285,7 @@ struct WriteJamView: View {
             }
             .padding()
             .background(Color("Whitebackground").ignoresSafeArea())
-            .navigationTitle("글 작성하기")
+            //.navigationTitle("글 작성하기")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 setupKeyboardObservers()
