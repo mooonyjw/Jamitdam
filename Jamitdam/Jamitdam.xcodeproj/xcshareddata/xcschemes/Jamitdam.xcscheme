@@ -15,8 +15,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "971994682CDF65F400D543E9"
-               BuildableName = "Jamitdam.app"
+               BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
+               BuildableName = "Jamitdam"
                BlueprintName = "Jamitdam"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
@@ -35,8 +35,8 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "971994782CDF65F500D543E9"
-               BuildableName = "JamitdamTests.xctest"
+               BlueprintIdentifier = "971A0B952CD9D32900A2BF5E"
+               BuildableName = "JamitdamTests"
                BlueprintName = "JamitdamTests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
@@ -46,8 +46,8 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "971994822CDF65F500D543E9"
-               BuildableName = "JamitdamUITests.xctest"
+               BlueprintIdentifier = "971A0B9F2CD9D32900A2BF5E"
+               BuildableName = "JamitdamUITests"
                BlueprintName = "JamitdamUITests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
             </BuildableReference>
@@ -64,16 +64,19 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         FilePath = "/Users/hyojeong/Library/Developer/Xcode/DerivedData/Jamitdam-exdvghsjirsdnlbvvxvjdtuoavhy/Build/Products/Debug-iphonesimulator/Jamitdam.app">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "971994682CDF65F400D543E9"
-            BuildableName = "Jamitdam.app"
+            BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
+            BuildableName = "Jamitdam"
             BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,8 +88,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "971994682CDF65F400D543E9"
-            BuildableName = "Jamitdam.app"
+            BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
+            BuildableName = "Jamitdam"
             BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
          </BuildableReference>
