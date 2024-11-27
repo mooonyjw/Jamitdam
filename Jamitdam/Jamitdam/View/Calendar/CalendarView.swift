@@ -232,10 +232,7 @@ struct CalendarView: View {
                 Text(displayedCalendar.formattedDate(from: postData.timestamp, format: "yyyy년 MM월 dd일"))
                     .font(.title3.bold())
                 Spacer()
-                Button("삭제"){
-                    // Add delete functionality here
-                }
-                .foregroundColor(.black)
+                
             }
             
             HStack {
