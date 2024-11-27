@@ -5,14 +5,12 @@ struct WriteJamView: View {
     @State private var title: String = ""
     // 글 본문
     @State private var content: String = ""
-    
     // 현재 언급 중인지를 나타내는 변수
     @State private var isMentioning: Bool = false
     // @ 뒤에 오는 글자로 누구를 언급하는지 필터링하기 위한 변수
     @State private var mentionQuery: String = ""
     // 언급이 나타날 위치
     @State private var mentionPosition: CGPoint = .zero
-    
     // 본문 텍스트 필드의 공간을 동적으로 조정하기 위한 변수, 기본 값은 30
     @State private var textFieldHeight: CGFloat = 30
     
@@ -21,10 +19,8 @@ struct WriteJamView: View {
     
     // 언급된 인연 id 목록
     @State private var mentionedRelationshipIDs: [UUID] = []
-    
     // 키보드 높이 관리 변수
     @State private var keyboardHeight: CGFloat = 0
-    
     // 사용자의 해시태그 입력
     @State private var hashtagContent: String = ""
     // 완전히 입력된 하나의 해시태그
@@ -35,7 +31,6 @@ struct WriteJamView: View {
     @State private var isEditing: Bool = false
     // 해시태그 작성 필드 활성화 여부
     @State private var isTextFieldEnabled: Bool = true
-    
     // 사용자가 불러온 이미지 배열. 최대 10개까지 추가 가능
     @State private var selectedImages: [UIImage] = []
     // 이미지 선택 화면 표시 여부
@@ -105,8 +100,6 @@ struct WriteJamView: View {
                                         .ignoresSafeArea(edges: .horizontal)
                                 }
                                 GeometryReader { geometry in
-                                    
-                                    
                                     ZStack {
                                         if content.isEmpty {
                                             Text("본문을 입력해주세요.")
@@ -137,7 +130,6 @@ struct WriteJamView: View {
                                             GeometryReader { geometry in
                                                 ZStack {
                                                     RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
-                                                    
                                                         .frame(width: 170, height: 150)
                                                     
                                                     ScrollView {
@@ -159,13 +151,10 @@ struct WriteJamView: View {
                                                     .frame(height: 150)
                                                 }
                                                 .offset(x: mentionPosition.x - 60, y: mentionPosition.y - 30)
-                                                
-                                                
                                             }
                                         }
                                     }
-                                    .frame(maxHeight: .infinity) // ZStack 높이 조정
-                                    
+                                    .frame(maxHeight: .infinity)
                                 }
                             }
                         }
@@ -212,12 +201,8 @@ struct WriteJamView: View {
                                 }
                                 .disabled(selectedImages.count >= 10)
                                 .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
-                                
-                                
                             }
                             .frame(alignment: .trailing)
-                            
-                            
                         }
                         // 글자 수 제한 표시
                         Text("\(content.count) / 300")
