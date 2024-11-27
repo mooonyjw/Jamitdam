@@ -104,62 +104,71 @@ struct WriteJamView: View {
                                         .frame(height: 1)
                                         .ignoresSafeArea(edges: .horizontal)
                                 }
-                                ZStack {
-                                    if content.isEmpty {
-                                        Text("본문을 입력해주세요.")
-                                            .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .padding(.horizontal, 4)
-                                    }
-                                    MentionTextField(
-                                        text: $content,
-                                        isMentioning: $isMentioning,
-                                        mentionQuery: $mentionQuery,
-                                        mentionPosition: $mentionPosition,
-                                        height: $textFieldHeight,
-                                        maxHeight: 250,
-                                        fontSize: 20
-                                    )
-                                    .frame(height: textFieldHeight)
-                                    .onChange(of: content) { newText in
-                                        if newText.count > 300 {
-                                            content = String(newText.prefix(300))
+                                GeometryReader { geometry in
+                                    
+                                    
+                                    ZStack {
+                                        if content.isEmpty {
+                                            Text("본문을 입력해주세요.")
+                                                .font(.system(size: 20)).foregroundColor(Color("Graybasic"))
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .frame(maxHeight: .infinity, alignment: .top)
+                                                .padding(.top, geometry.size.height * 0.02)
+                                                .padding(.horizontal, 4)
                                         }
-                                    }
-                                }
-                                if isMentioning {
-                                    GeometryReader { geometry in
-                                        ZStack {
-                                            RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
-                                            
-                                                .frame(width: 170, height: 150)
-                                            
-                                            ScrollView {
-                                                VStack(alignment: .leading) {
-                                                    ForEach(filteredRelationships, id: \.id) { relationship in
-                                                        HStack {
-                                                            Text(relationship.icon)
-                                                                .font(.system(size: 30))
-                                                            Text(relationship.nickname)
-                                                                .font(.system(size: 20))
-                                                                .bold()
-                                                        }
-                                                        .onTapGesture {
-                                                            insertMention(relationship)
+                                        MentionTextField(
+                                            text: $content,
+                                            isMentioning: $isMentioning,
+                                            mentionQuery: $mentionQuery,
+                                            mentionPosition: $mentionPosition,
+                                            height: $textFieldHeight,
+                                            maxHeight: 280,
+                                            fontSize: 20
+                                        )
+                                        .frame(height: textFieldHeight)
+                                        .frame(maxHeight: .infinity, alignment: .top)
+                                        .onChange(of: content) { newText in
+                                            if newText.count > 300 {
+                                                content = String(newText.prefix(300))
+                                            }
+                                        }
+                                        
+                                        if isMentioning {
+                                            GeometryReader { geometry in
+                                                ZStack {
+                                                    RoundedRectangle(cornerRadius: 10).fill(Color("Whitebackground"))
+                                                    
+                                                        .frame(width: 170, height: 150)
+                                                    
+                                                    ScrollView {
+                                                        VStack(alignment: .leading) {
+                                                            ForEach(filteredRelationships, id: \.id) { relationship in
+                                                                HStack {
+                                                                    Text(relationship.icon)
+                                                                        .font(.system(size: 30))
+                                                                    Text(relationship.nickname)
+                                                                        .font(.system(size: 20))
+                                                                        .bold()
+                                                                }
+                                                                .onTapGesture {
+                                                                    insertMention(relationship)
+                                                                }
+                                                            }
                                                         }
                                                     }
+                                                    .frame(height: 150)
                                                 }
+                                                .offset(x: mentionPosition.x - 60, y: mentionPosition.y - 30)
+                                                
+                                                
                                             }
-                                            .frame(height: 150)
                                         }
-                                        .offset(x: mentionPosition.x, y: mentionPosition.y) // `offset`으로 위치 조정
-                                        
-                                        
+                                        //Spacer()
+                                        //.frame(maxHeight: .infinity)
                                     }
+                                    .frame(maxHeight: .infinity) // ZStack 높이 조정
+                                    
                                 }
-                                Spacer()
-                                .frame(maxHeight: .infinity)
-
                             }
                         }
                         .frame(height: 360)
@@ -191,24 +200,28 @@ struct WriteJamView: View {
                                 .padding(.horizontal)
                             }
                         }
-                        
-                        Button(action: {
-                            isImagePickerPresented.toggle()
-                        }) {
-                            ZStack {
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(selectedImages.count < 10 ? Color("Redemphasis2") : Color.gray)
-                                Image(systemName: "photo")
-                                    .foregroundColor(.white)
+                        HStack{
+                            Spacer()
+                            Button(action: {
+                                isImagePickerPresented.toggle()
+                            }) {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 50, height: 50)
+                                        .foregroundColor(selectedImages.count < 10 ? Color("Redemphasis2") : Color.gray)
+                                    Image(systemName: "photo")
+                                        .foregroundColor(.white)
+                                }
+                                //.frame(maxWidth: .infinity, alignment: .trailing)
+                                .disabled(selectedImages.count >= 10)
+                                .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
+                                
+                                
                             }
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .disabled(selectedImages.count >= 10)
-                            .onTapGesture {
-                                print("Tapped outside button")
-                            }
+                            .frame(alignment: .trailing)
+                            
+                            
                         }
-                        
                         // 글자 수 제한 표시
                         Text("\(content.count) / 300")
                             .foregroundColor(Color("Graybasic"))
