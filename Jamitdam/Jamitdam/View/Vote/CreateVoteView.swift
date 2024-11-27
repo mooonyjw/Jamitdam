@@ -188,7 +188,6 @@ struct CreateVoteView: View {
     }
 }
 
-
 #Preview {
     CreateVoteView()
 }
