@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct TopBar: View {
-    
-    // 뒤로 가기 기능
+
     @Environment(\.dismiss) private var dismiss
     
     var title: String
@@ -38,6 +37,8 @@ struct TopBar: View {
                 Button(action: rightButtonFunc!) {
                     Text(rightButton)
                         .padding()
+                        .foregroundColor(Color.black)
+                        .font(.system(size: 15))
                 }
             } else {
                 // Add 버튼 공간 확보

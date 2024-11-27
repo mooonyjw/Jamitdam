@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		97B97BFD2CEDA10900F8BD97 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97BF62CEDA0E100F8BD97 /* Post.swift */; };
-		97B97BFE2CEDA10900F8BD97 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97BF72CEDA0E100F8BD97 /* Relationship.swift */; };
-		97B97BFF2CEDA10900F8BD97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97BF82CEDA0E100F8BD97 /* User.swift */; };
+		973CF7042CF6EF03004BDC68 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CF7012CF6EF03004BDC68 /* Post.swift */; };
+		973CF7052CF6EF03004BDC68 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CF7032CF6EF03004BDC68 /* User.swift */; };
+		973CF7062CF6EF03004BDC68 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CF7022CF6EF03004BDC68 /* Relationship.swift */; };
+		973CF70A2CF6F000004BDC68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 973CF7072CF6F000004BDC68 /* Assets.xcassets */; };
+		973CF70B2CF6F000004BDC68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CF7082CF6F000004BDC68 /* ContentView.swift */; };
+		973CF70C2CF6F000004BDC68 /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CF7092CF6F000004BDC68 /* JamitdamApp.swift */; };
 		97B97C0B2CEDA14C00F8BD97 /* CreateJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97C0A2CEDA14C00F8BD97 /* CreateJam.swift */; };
-		97B97C0C2CEDA14C00F8BD97 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97C092CEDA14C00F8BD97 /* ContentView.swift */; };
-		97B97C0D2CEDA14C00F8BD97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97B97C082CEDA14C00F8BD97 /* Assets.xcassets */; };
-		97B97C0F2CEDA16900F8BD97 /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97C0E2CEDA16900F8BD97 /* JamitdamApp.swift */; };
 		97B97C1D2CEDB49300F8BD97 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97C1C2CEDB49200F8BD97 /* Like.swift */; };
 		97B97C8A2CEDCD0000F8BD97 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B97C892CEDCCF500F8BD97 /* Comment.swift */; };
 /* End PBXBuildFile section */
@@ -36,20 +36,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E43DD312CDCE27C00F3CEC6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9719946C2CDF65F400D543E9 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		9719946E2CDF65F400D543E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		971994972CDF66B800D543E9 /* RedButtonComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedButtonComponent.swift; sourceTree = "<group>"; };
 		9719949A2CDF66B800D543E9 /* CreateJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateJamView.swift; sourceTree = "<group>"; };
 		971994A12CDF66B800D543E9 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		971994A22CDF66B800D543E9 /* Relationship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		971994A32CDF66B800D543E9 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		97B97BF62CEDA0E100F8BD97 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		97B97BF72CEDA0E100F8BD97 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		97B97BF82CEDA0E100F8BD97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		97B97C082CEDA14C00F8BD97 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		97B97C092CEDA14C00F8BD97 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		973CF7012CF6EF03004BDC68 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		973CF7022CF6EF03004BDC68 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		973CF7032CF6EF03004BDC68 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		973CF7072CF6F000004BDC68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		973CF7082CF6F000004BDC68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		973CF7092CF6F000004BDC68 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		97B97C0A2CEDA14C00F8BD97 /* CreateJam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJam.swift; sourceTree = "<group>"; };
-		97B97C0E2CEDA16900F8BD97 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		97B97C1C2CEDB49200F8BD97 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		97B97C892CEDCCF500F8BD97 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,11 +86,11 @@
 		8E7916B82CDA202700535605 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				973CF7012CF6EF03004BDC68 /* Post.swift */,
+				973CF7022CF6EF03004BDC68 /* Relationship.swift */,
+				973CF7032CF6EF03004BDC68 /* User.swift */,
 				97B97C892CEDCCF500F8BD97 /* Comment.swift */,
 				97B97C1C2CEDB49200F8BD97 /* Like.swift */,
-				97B97BF62CEDA0E100F8BD97 /* Post.swift */,
-				97B97BF72CEDA0E100F8BD97 /* Relationship.swift */,
-				97B97BF82CEDA0E100F8BD97 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,9 +115,9 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
-				97B97C0E2CEDA16900F8BD97 /* JamitdamApp.swift */,
-				97B97C082CEDA14C00F8BD97 /* Assets.xcassets */,
-				97B97C092CEDA14C00F8BD97 /* ContentView.swift */,
+				973CF7072CF6F000004BDC68 /* Assets.xcassets */,
+				973CF7082CF6F000004BDC68 /* ContentView.swift */,
+				973CF7092CF6F000004BDC68 /* JamitdamApp.swift */,
 				97B97C0A2CEDA14C00F8BD97 /* CreateJam.swift */,
 				8E9237DD2CDB123A00301FE8 /* View */,
 				8E7916B82CDA202700535605 /* Model */,
@@ -141,7 +141,7 @@
 				971994A22CDF66B800D543E9 /* Relationship.swift */,
 				971994A12CDF66B800D543E9 /* Post.swift */,
 				9719949A2CDF66B800D543E9 /* CreateJamView.swift */,
-				971994A32CDF66B800D543E9 /* User.swift */,
+				8E43DD312CDCE27C00F3CEC6 /* User.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -227,11 +227,12 @@
 			};
 			buildConfigurationList = 971A0B812CD9D32700A2BF5E /* Build configuration list for PBXProject "Jamitdam" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 971A0B7D2CD9D32700A2BF5E;
 			productRefGroup = 971A0B872CD9D32700A2BF5E /* JamitdamUITests */;
@@ -250,7 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97B97C0D2CEDA14C00F8BD97 /* Assets.xcassets in Resources */,
+				973CF70A2CF6F000004BDC68 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,11 +279,11 @@
 				97B97C8A2CEDCD0000F8BD97 /* Comment.swift in Sources */,
 				97B97C0B2CEDA14C00F8BD97 /* CreateJam.swift in Sources */,
 				97B97C1D2CEDB49300F8BD97 /* Like.swift in Sources */,
-				97B97C0C2CEDA14C00F8BD97 /* ContentView.swift in Sources */,
-				97B97BFD2CEDA10900F8BD97 /* Post.swift in Sources */,
-				97B97BFE2CEDA10900F8BD97 /* Relationship.swift in Sources */,
-				97B97C0F2CEDA16900F8BD97 /* JamitdamApp.swift in Sources */,
-				97B97BFF2CEDA10900F8BD97 /* User.swift in Sources */,
+				973CF70B2CF6F000004BDC68 /* ContentView.swift in Sources */,
+				973CF70C2CF6F000004BDC68 /* JamitdamApp.swift in Sources */,
+				973CF7042CF6EF03004BDC68 /* Post.swift in Sources */,
+				973CF7052CF6EF03004BDC68 /* User.swift in Sources */,
+				973CF7062CF6EF03004BDC68 /* Relationship.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +460,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -487,7 +488,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
