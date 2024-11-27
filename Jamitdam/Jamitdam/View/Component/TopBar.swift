@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TopBar: View {
+
     @Environment(\.dismiss) private var dismiss
     
     var title: String
@@ -36,9 +37,12 @@ struct TopBar: View {
                 Button(action: rightButtonFunc!) {
                     Text(rightButton)
                         .padding()
+                        .foregroundColor(Color.black)
+                        .font(.system(size: 15))
                 }
             } else {
-                Spacer().frame(width: 44) // Add 버튼 공간 확보
+                // Add 버튼 공간 확보
+                Spacer().frame(width: 44)
             }
         }
         .padding(.top, 0)

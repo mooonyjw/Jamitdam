@@ -163,8 +163,6 @@ struct WriteJamView: View {
                                                 
                                             }
                                         }
-                                        //Spacer()
-                                        //.frame(maxHeight: .infinity)
                                     }
                                     .frame(maxHeight: .infinity) // ZStack 높이 조정
                                     
@@ -212,7 +210,6 @@ struct WriteJamView: View {
                                     Image(systemName: "photo")
                                         .foregroundColor(.white)
                                 }
-                                //.frame(maxWidth: .infinity, alignment: .trailing)
                                 .disabled(selectedImages.count >= 10)
                                 .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
                                 
@@ -294,11 +291,9 @@ struct WriteJamView: View {
                     // 키보드 높이 만큼 패딩 추가
                     .padding(.bottom, keyboardHeight)
                 }
-
             }
             .padding()
             .background(Color("Whitebackground").ignoresSafeArea())
-            //.navigationTitle("글 작성하기")
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 setupKeyboardObservers()
