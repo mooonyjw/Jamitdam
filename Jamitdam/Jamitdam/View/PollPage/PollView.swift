@@ -67,18 +67,18 @@ struct PollView: View {
                                     }
                                 }
                                 //.popover(isPresented: $showHashtagPopover) {
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        ForEach(relationship.hashtags, id: \.self) { hashtag in
-                                            Text("#\(hashtag)")
-                                                .font(.headline)
-                                                .padding(.horizontal, 8)
-                                                .padding(.vertical, 4)
-                                                .background(Color.blue.opacity(0.2))
-                                                .cornerRadius(8)
-                                        }
-                                    }
-                                    .padding()
-                                    .frame(width: 200) // 말풍선 크기 조정
+//                                    VStack(alignment: .leading, spacing: 8) {
+//                                        ForEach(relationship.hashtags, id: \.self) { hashtag in
+//                                            Text("#\(hashtag)")
+//                                                .font(.headline)
+//                                                .padding(.horizontal, 8)
+//                                                .padding(.vertical, 4)
+//                                                .background(Color.blue.opacity(0.2))
+//                                                .cornerRadius(8)
+//                                        }
+//                                    }
+//                                    .padding()
+//                                    .frame(width: 200) // 말풍선 크기 조정
                                 }
                             Spacer()
                         }

@@ -106,9 +106,6 @@ struct Register: View {
                 VStack {
                     // Custom Navigation Bar 사용
                     AddFriendCustomBar(
-                        backButtonFunc: {
-                            dismiss() // 뒤로가기 액션
-                        },
                         widthRatio: widthRatio,
                         heightRatio: heightRatio
                     )
@@ -328,39 +325,6 @@ struct Register: View {
         }
     }
     
-}
-
-struct AddFriendCustomBar: View {
-    var backButtonFunc: (() -> Void)
-    var widthRatio: CGFloat
-    var heightRatio: CGFloat
-
-    var body: some View {
-        ZStack(alignment: .top) {
-            // Back 버튼 (왼쪽 상단에 위치)
-            Button(action: backButtonFunc) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 21))
-                    .foregroundColor(Color("Graybasic"))
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 16) // 왼쪽 여백
-            .alignmentGuide(.top) { _ in 0 } // 상단 정렬 기준 설정
-
-            // 로고 (화살표 상단에 맞춰 내림)
-            Image("Logo")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 80, height: 56)
-                .alignmentGuide(.top) { dimension in
-                    // Back 버튼 상단에 로고를 맞춤
-                    dimension[.top] + 6 * heightRatio
-                }
-        }
-        .frame(height: 57.0) // 전체 높이 설정
-        .ignoresSafeArea(.keyboard, edges: .bottom) // 키보드 영향 방지
-
-    }
 }
 
 

@@ -31,9 +31,6 @@ struct RegisterNickname: View {
                 VStack {
                     // Custom Navigation Bar 사용
                     AddFriendCustomBar(
-                        backButtonFunc: {
-                            dismiss() // 뒤로가기 액션
-                        },
                         widthRatio: widthRatio,
                         heightRatio: heightRatio
                     )
