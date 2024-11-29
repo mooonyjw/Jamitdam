@@ -12,6 +12,8 @@ struct CreateVoteView: View {
     @State private var notifyBeforeEnd: Bool = false
     @State private var showTooltip: Bool = false
     //@State private var isEnabled: Bool = false
+    @FocusState private var isFocused: Bool
+
     
     let screenWidth: CGFloat = 390
     let screenHeight: CGFloat = 844
@@ -25,13 +27,18 @@ struct CreateVoteView: View {
     
     
     var body: some View {
-        // TopBar
-        TopBar(
-            title: "투표 생성하기"
-        )
-        GeometryReader { geometry in
-            
+        ZStack {
+            Color("Whitebackground")
+                .ignoresSafeArea()
+                .onTapGesture {
+                    isFocused = false
+                }
             VStack {
+                    
+                TopBar(
+                    title: "투표 생성하기"
+                )
+
                 // 항목 추가 시, 화면이 길어질 것을 대비해서 스크롤 뷰로 작성
                 ScrollView{
                     VStack(alignment: .leading, spacing: 10) {
@@ -42,9 +49,10 @@ struct CreateVoteView: View {
                                 .font(.headline)
                             Text("*")
                                 .font(.subheadline)
-                                .foregroundColor(.redemphasis)
+                                .foregroundColor(Color("Redemphasis"))
                         }
                         .padding(.horizontal)
+                        
                         
                         TextField("제목을 입력해 주세요.", text: $title)
                             .padding()
@@ -54,19 +62,20 @@ struct CreateVoteView: View {
                                     .stroke(Color.gray, lineWidth: 1)
                             )
                             .padding(.horizontal)
-                        
+                            .focused($isFocused)
+
+
                         // 내용 입력 받기
                         HStack(){
                             Text("내용")
                                 .font(.headline)
                             Text("*")
                                 .font(.subheadline)
-                                .foregroundColor(.redemphasis)
+                                .foregroundColor(Color("Redemphasis"))
                         }
                         .padding(.horizontal)
                         
                         ZStack(alignment: .topLeading){
-                            
                             TextEditor(text: $content)
                                 .padding(.horizontal, 13)
                                 .frame(height: 100)
@@ -76,16 +85,15 @@ struct CreateVoteView: View {
                                         .stroke(Color.gray, lineWidth: 1)
                                 )
                                 .padding(.horizontal)
-                            
+                                .focused($isFocused)
+
                             if content.isEmpty{
                                 Text("내용을 입력해 주세요.")
                                     .foregroundColor(Color(.placeholderText))
                                     .font(.body)
                                     .padding(.horizontal, 33)
                                     .padding(.top, 8)
-                                
                             }
-                            
                         }
                         
                         // 투표 항목 입력
@@ -97,6 +105,7 @@ struct CreateVoteView: View {
                                     .padding()
                                     .background(Color(.systemGray6))
                                     .cornerRadius(8)
+                                    .focused($isFocused)
                             }
                             
                             Button(action: {
@@ -174,17 +183,15 @@ struct CreateVoteView: View {
                     }
                     .padding(.top)
                 }
-            }
+                
                 RedButton(title: "완료", isEnabled: .constant(isEnabled), height: 55){
                     // action
                     print("완료 버튼이 선택됨")
                 }
-                .frame(maxHeight: .infinity, alignment: .bottom)
                 .padding(.bottom)
             }
             .navigationBarBackButtonHidden(true)
-            
-        
+        }
     }
 }
 
