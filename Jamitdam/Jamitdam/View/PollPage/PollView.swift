@@ -274,6 +274,7 @@ struct PollView: View {
                                         // 댓글 목록
                                         ForEach(comments.filter { $0.parentId == nil }, id: \.id) { comment in
                                             VStack(alignment: .leading) {
+                                                
                                                 // 댓글 작성자 및 내용
                                                 HStack(alignment: .top) {
                                                     if let commentWriter = users.first(where: { $0.id == comment.userId }) {
@@ -312,29 +313,21 @@ struct PollView: View {
                                                                 .frame(width: 15, height: 15)
                                                                 .foregroundColor(Color("Graybasic"))
                                                         }
-                                                        // 수정, 삭제 메뉴
-                                                        Menu {
-                                                            Button(action: {
-                                                                print("수정 동작 실행")
-                                                                // 수정 로직 추가
-                                                            }) {
-                                                                Label("수정", systemImage: "pencil")
-                                                            }
-                                                            
-                                                            // 본인이 작성한 댓글만 삭제 버튼 표시
-                                                            if comment.userId == currentUser.id {
+                                                        if comment.userId == currentUser.id {
+                                                            Menu {
                                                                 Button(role: .destructive, action: {
                                                                     deleteComment(comment)
                                                                 }) {
                                                                     Label("삭제", systemImage: "trash")
                                                                 }
+                                                            } label: {
+                                                                Image(systemName: "ellipsis")
+                                                                    .rotationEffect(.degrees(90))
+                                                                    .font(.system(size: 15))
+                                                                    .foregroundColor(.gray)
+                                                                    .padding(.top, 5)
+                                                                    
                                                             }
-                                                        } label: {
-                                                            Image(systemName: "ellipsis")
-                                                                .rotationEffect(.degrees(90))
-                                                                .font(.system(size: 15))
-                                                                .foregroundColor(.gray)
-                                                                .padding(.top, 5)
                                                         }
                                                     }
                                                 }
@@ -378,29 +371,22 @@ struct PollView: View {
                                                                 }
                                                                 
                                                                 Spacer()
-                                                                // 수정, 삭제 메뉴
-                                                                Menu {
-                                                                    Button(action: {
-                                                                        print("수정 동작 실행")
-                                                                        // 수정 로직 추가
-                                                                    }) {
-                                                                        Label("수정", systemImage: "pencil")
-                                                                    }
-                                                                    
-                                                                    // 본인이 작성한 댓글만 삭제 버튼 표시
-                                                                    if reply.userId == currentUser.id {
+                                                                // 본인이 작성한 댓글만 삭제 버튼 표시
+                                                                if reply.userId == currentUser.id {
+                                                                    Menu {
                                                                         Button(role: .destructive, action: {
                                                                             deleteComment(reply)
                                                                         }) {
                                                                             Label("삭제", systemImage: "trash")
                                                                         }
+                                                                    
+                                                                    } label: {
+                                                                        Image(systemName: "ellipsis")
+                                                                            .rotationEffect(.degrees(90))
+                                                                            .font(.system(size: 15))
+                                                                            .foregroundColor(.gray)
+                                                                            .padding(.top, 5)
                                                                     }
-                                                                } label: {
-                                                                    Image(systemName: "ellipsis")
-                                                                        .rotationEffect(.degrees(90))
-                                                                        .font(.system(size: 15))
-                                                                        .foregroundColor(.gray)
-                                                                        .padding(.top, 5)
                                                                 }
                                                             }
                                                         }
@@ -650,29 +636,6 @@ struct PollView: View {
         initializeComments()
     }
     
-    // 댓글 수정 함수
-    func updateComment() {
-        guard let comment = editingComment else { return }
-
-        // 수정 권한 확인
-        guard comment.userId == currentUser.id else {
-            print("수정 권한이 없습니다.")
-            return
-        }
-
-        // 댓글 업데이트
-        if let index = comments.firstIndex(where: { $0.id == comment.id }) {
-            comments[index].content = editedContent
-            print("댓글이 수정되었습니다: \(editedContent)")
-        }
-
-        // 수정 상태 초기화
-        editingComment = nil
-        editedContent = ""
-    }
-
-
-
 }
 
 extension Character {
