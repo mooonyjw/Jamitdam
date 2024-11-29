@@ -10,7 +10,7 @@ struct Comment {
     // 작성 시각
     let date: Date
     // 내용
-    let content: String
+    var content: String
     // nil이면 최상위 댓글, 값이 있으면 대댓글
     let parentId: UUID?
     
