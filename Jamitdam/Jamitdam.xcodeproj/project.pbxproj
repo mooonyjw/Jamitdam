@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E4F84B62CFEB69C006C885A /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4F84B52CFEB69A006C885A /* Poll.swift */; };
 		8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32032CE1C28F00C4ED9E /* DateValue.swift */; };
 		8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32062CE1C28F00C4ED9E /* User.swift */; };
 		8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32052CE1C28F00C4ED9E /* Relationship.swift */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		8E4845A22CDDB6EC0076AE5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
+		8E4F84B52CFEB69A006C885A /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		8E6F32032CE1C28F00C4ED9E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		8E6F32042CE1C28F00C4ED9E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8E6F32052CE1C28F00C4ED9E /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		8E6F32072CE1C28F00C4ED9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E4F84B52CFEB69A006C885A /* Poll.swift */,
 				8ED6A2342CF890460096E58D /* Comment.swift */,
 				8ED6A2352CF890460096E58D /* Like.swift */,
 				8E6F32032CE1C28F00C4ED9E /* DateValue.swift */,
@@ -293,6 +296,7 @@
 			files = (
 				8ED6A2372CF890460096E58D /* Comment.swift in Sources */,
 				8ED6A2392CF890460096E58D /* Like.swift in Sources */,
+				8E4F84B62CFEB69C006C885A /* Poll.swift in Sources */,
 				8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */,
 				8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */,
 				8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */,
