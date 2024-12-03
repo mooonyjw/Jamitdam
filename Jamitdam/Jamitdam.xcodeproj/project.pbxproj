@@ -3,77 +3,135 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32032CE1C28F00C4ED9E /* DateValue.swift */; };
-		8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32062CE1C28F00C4ED9E /* User.swift */; };
-		8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32052CE1C28F00C4ED9E /* Relationship.swift */; };
-		8E6F320B2CE1C28F00C4ED9E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32042CE1C28F00C4ED9E /* Post.swift */; };
-		8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */; };
-		8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A22CDDB6EC0076AE5C /* ContentView.swift */; };
-		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
-		971A0B912CD9D32900A2BF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */; };
-		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
-		971A0BA52CD9D32900A2BF5E /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */; };
-		971A0BA72CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */; };
+		9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719946C2CDF65F400D543E9 /* JamitdamApp.swift */; };
+		9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719946E2CDF65F400D543E9 /* ContentView.swift */; };
+		971994712CDF65F500D543E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971994702CDF65F500D543E9 /* Assets.xcassets */; };
+		971994742CDF65F500D543E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971994732CDF65F500D543E9 /* Preview Assets.xcassets */; };
+		9719947E2CDF65F500D543E9 /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719947D2CDF65F500D543E9 /* JamitdamTests.swift */; };
+		971994882CDF65F500D543E9 /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994872CDF65F500D543E9 /* JamitdamUITests.swift */; };
+		9719948A2CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */; };
+		97727BAF2CFEAD890040B8E4 /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA32CFEAD890040B8E4 /* FriendListView.swift */; };
+		97727BB02CFEAD890040B8E4 /* AddFriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B9F2CFEAD890040B8E4 /* AddFriendProfileView.swift */; };
+		97727BB12CFEAD890040B8E4 /* CreateVoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BAA2CFEAD890040B8E4 /* CreateVoteView.swift */; };
+		97727BB22CFEAD890040B8E4 /* CreateJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B962CFEAD890040B8E4 /* CreateJamView.swift */; };
+		97727BB32CFEAD890040B8E4 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B882CFEAD890040B8E4 /* Relationship.swift */; };
+		97727BB42CFEAD890040B8E4 /* DayPlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B9A2CFEAD890040B8E4 /* DayPlusView.swift */; };
+		97727BB52CFEAD890040B8E4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BAD2CFEAD890040B8E4 /* ImagePicker.swift */; };
+		97727BB62CFEAD890040B8E4 /* CreateRelationshipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B972CFEAD890040B8E4 /* CreateRelationshipView.swift */; };
+		97727BB72CFEAD890040B8E4 /* AddFriendCustomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B8D2CFEAD890040B8E4 /* AddFriendCustomBar.swift */; };
+		97727BB82CFEAD890040B8E4 /* MentionTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B912CFEAD890040B8E4 /* MentionTextField.swift */; };
+		97727BB92CFEAD890040B8E4 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B932CFEAD890040B8E4 /* TabBar.swift */; };
+		97727BBA2CFEAD890040B8E4 /* RedButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B922CFEAD890040B8E4 /* RedButtonComponent.swift */; };
+		97727BBB2CFEAD890040B8E4 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B852CFEAD890040B8E4 /* DateValue.swift */; };
+		97727BBC2CFEAD890040B8E4 /* BlockedFriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA12CFEAD890040B8E4 /* BlockedFriendListView.swift */; };
+		97727BBD2CFEAD890040B8E4 /* WriteJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B982CFEAD890040B8E4 /* WriteJamView.swift */; };
+		97727BBE2CFEAD890040B8E4 /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B942CFEAD890040B8E4 /* TopBar.swift */; };
+		97727BBF2CFEAD890040B8E4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B872CFEAD890040B8E4 /* Post.swift */; };
+		97727BC02CFEAD890040B8E4 /* ComputeDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BAC2CFEAD890040B8E4 /* ComputeDate.swift */; };
+		97727BC12CFEAD890040B8E4 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA52CFEAD890040B8E4 /* MyPageView.swift */; };
+		97727BC22CFEAD890040B8E4 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B902CFEAD890040B8E4 /* LikeButton.swift */; };
+		97727BC32CFEAD890040B8E4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B9B2CFEAD890040B8E4 /* EditView.swift */; };
+		97727BC42CFEAD890040B8E4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B892CFEAD890040B8E4 /* User.swift */; };
+		97727BC62CFEAD890040B8E4 /* CreateJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B832CFEAD890040B8E4 /* CreateJam.swift */; };
+		97727BC72CFEAD890040B8E4 /* FriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA42CFEAD890040B8E4 /* FriendProfileView.swift */; };
+		97727BC82CFEAD890040B8E4 /* EmojiTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B8E2CFEAD890040B8E4 /* EmojiTextfield.swift */; };
+		97727BC92CFEAD890040B8E4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B842CFEAD890040B8E4 /* Comment.swift */; };
+		97727BCA2CFEAD890040B8E4 /* ImageSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B8F2CFEAD890040B8E4 /* ImageSlider.swift */; };
+		97727BCB2CFEAD890040B8E4 /* RelationshipListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA62CFEAD890040B8E4 /* RelationshipListView.swift */; };
+		97727BCC2CFEAD890040B8E4 /* SelectingFriendProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA82CFEAD890040B8E4 /* SelectingFriendProfileView.swift */; };
+		97727BCD2CFEAD890040B8E4 /* RequestedFriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA72CFEAD890040B8E4 /* RequestedFriendListView.swift */; };
+		97727BCE2CFEAD890040B8E4 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727B862CFEAD890040B8E4 /* Like.swift */; };
+		97727BCF2CFEAD890040B8E4 /* EditRelationshipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA22CFEAD890040B8E4 /* EditRelationshipView.swift */; };
+		97727BD02CFEAD890040B8E4 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BA02CFEAD890040B8E4 /* AddFriendView.swift */; };
+		97727BD12CFEAD890040B8E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97727B8B2CFEAD890040B8E4 /* Preview Assets.xcassets */; };
+		97727BDA2CFEAE1C0040B8E4 /* JamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97727BD82CFEAE1C0040B8E4 /* JamDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		971A0B972CD9D32900A2BF5E /* PBXContainerItemProxy */ = {
+		9719947A2CDF65F500D543E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 971A0B7E2CD9D32700A2BF5E /* Project object */;
+			containerPortal = 971994612CDF65F400D543E9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 971A0B852CD9D32700A2BF5E;
+			remoteGlobalIDString = 971994682CDF65F400D543E9;
 			remoteInfo = Jamitdam;
 		};
-		971A0BA12CD9D32900A2BF5E /* PBXContainerItemProxy */ = {
+		971994842CDF65F500D543E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 971A0B7E2CD9D32700A2BF5E /* Project object */;
+			containerPortal = 971994612CDF65F400D543E9 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 971A0B852CD9D32700A2BF5E;
+			remoteGlobalIDString = 971994682CDF65F400D543E9;
 			remoteInfo = Jamitdam;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E4845A22CDDB6EC0076AE5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
-		8E6F32032CE1C28F00C4ED9E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
-		8E6F32042CE1C28F00C4ED9E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		8E6F32052CE1C28F00C4ED9E /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		8E6F32062CE1C28F00C4ED9E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		971A0B962CD9D32900A2BF5E /* JamitdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamTests.swift; sourceTree = "<group>"; };
-		971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
-		971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		971994692CDF65F400D543E9 /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9719946C2CDF65F400D543E9 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
+		9719946E2CDF65F400D543E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		971994702CDF65F500D543E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		971994732CDF65F500D543E9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		971994792CDF65F500D543E9 /* JamitdamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9719947D2CDF65F500D543E9 /* JamitdamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamTests.swift; sourceTree = "<group>"; };
+		971994832CDF65F500D543E9 /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		971994872CDF65F500D543E9 /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
+		971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		97727B832CFEAD890040B8E4 /* CreateJam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJam.swift; sourceTree = "<group>"; };
+		97727B842CFEAD890040B8E4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		97727B852CFEAD890040B8E4 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		97727B862CFEAD890040B8E4 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		97727B872CFEAD890040B8E4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		97727B882CFEAD890040B8E4 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		97727B892CFEAD890040B8E4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97727B8B2CFEAD890040B8E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		97727B8D2CFEAD890040B8E4 /* AddFriendCustomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendCustomBar.swift; sourceTree = "<group>"; };
+		97727B8E2CFEAD890040B8E4 /* EmojiTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextfield.swift; sourceTree = "<group>"; };
+		97727B8F2CFEAD890040B8E4 /* ImageSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSlider.swift; sourceTree = "<group>"; };
+		97727B902CFEAD890040B8E4 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		97727B912CFEAD890040B8E4 /* MentionTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionTextField.swift; sourceTree = "<group>"; };
+		97727B922CFEAD890040B8E4 /* RedButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButtonComponent.swift; sourceTree = "<group>"; };
+		97727B932CFEAD890040B8E4 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		97727B942CFEAD890040B8E4 /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
+		97727B962CFEAD890040B8E4 /* CreateJamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJamView.swift; sourceTree = "<group>"; };
+		97727B972CFEAD890040B8E4 /* CreateRelationshipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRelationshipView.swift; sourceTree = "<group>"; };
+		97727B982CFEAD890040B8E4 /* WriteJamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteJamView.swift; sourceTree = "<group>"; };
+		97727B9A2CFEAD890040B8E4 /* DayPlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPlusView.swift; sourceTree = "<group>"; };
+		97727B9B2CFEAD890040B8E4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		97727B9F2CFEAD890040B8E4 /* AddFriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendProfileView.swift; sourceTree = "<group>"; };
+		97727BA02CFEAD890040B8E4 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		97727BA12CFEAD890040B8E4 /* BlockedFriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedFriendListView.swift; sourceTree = "<group>"; };
+		97727BA22CFEAD890040B8E4 /* EditRelationshipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRelationshipView.swift; sourceTree = "<group>"; };
+		97727BA32CFEAD890040B8E4 /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
+		97727BA42CFEAD890040B8E4 /* FriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileView.swift; sourceTree = "<group>"; };
+		97727BA52CFEAD890040B8E4 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		97727BA62CFEAD890040B8E4 /* RelationshipListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipListView.swift; sourceTree = "<group>"; };
+		97727BA72CFEAD890040B8E4 /* RequestedFriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedFriendListView.swift; sourceTree = "<group>"; };
+		97727BA82CFEAD890040B8E4 /* SelectingFriendProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingFriendProfileView.swift; sourceTree = "<group>"; };
+		97727BAA2CFEAD890040B8E4 /* CreateVoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVoteView.swift; sourceTree = "<group>"; };
+		97727BAC2CFEAD890040B8E4 /* ComputeDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeDate.swift; sourceTree = "<group>"; };
+		97727BAD2CFEAD890040B8E4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		97727BD82CFEAE1C0040B8E4 /* JamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		8E9237DD2CDB123A00301FE8 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		971A0B832CD9D32700A2BF5E /* Frameworks */ = {
+		971994662CDF65F400D543E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		971A0B932CD9D32900A2BF5E /* Frameworks */ = {
+		971994762CDF65F500D543E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		971A0B9D2CD9D32900A2BF5E /* Frameworks */ = {
+		971994802CDF65F500D543E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -83,158 +141,249 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E6F32072CE1C28F00C4ED9E /* Model */ = {
+		971994602CDF65F400D543E9 = {
 			isa = PBXGroup;
 			children = (
-				8E6F32032CE1C28F00C4ED9E /* DateValue.swift */,
-				8E6F32042CE1C28F00C4ED9E /* Post.swift */,
-				8E6F32052CE1C28F00C4ED9E /* Relationship.swift */,
-				8E6F32062CE1C28F00C4ED9E /* User.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		971A0B7D2CD9D32700A2BF5E = {
-			isa = PBXGroup;
-			children = (
-				971A0B882CD9D32700A2BF5E /* Jamitdam */,
-				971A0B992CD9D32900A2BF5E /* JamitdamTests */,
-				971A0BA32CD9D32900A2BF5E /* JamitdamUITests */,
-				971A0B872CD9D32700A2BF5E /* Products */,
+				9719946B2CDF65F400D543E9 /* Jamitdam */,
+				9719947C2CDF65F500D543E9 /* JamitdamTests */,
+				971994862CDF65F500D543E9 /* JamitdamUITests */,
+				9719946A2CDF65F400D543E9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		971A0B872CD9D32700A2BF5E /* Products */ = {
+		9719946A2CDF65F400D543E9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				971A0B862CD9D32700A2BF5E /* Jamitdam.app */,
-				971A0B962CD9D32900A2BF5E /* JamitdamTests.xctest */,
-				971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */,
+				971994692CDF65F400D543E9 /* Jamitdam.app */,
+				971994792CDF65F500D543E9 /* JamitdamTests.xctest */,
+				971994832CDF65F500D543E9 /* JamitdamUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
+		9719946B2CDF65F400D543E9 /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
-				8E6F32072CE1C28F00C4ED9E /* Model */,
-				8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */,
-				8E4845A22CDDB6EC0076AE5C /* ContentView.swift */,
-				8E9237DD2CDB123A00301FE8 /* View */,
-				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
-				971A0B8F2CD9D32900A2BF5E /* Preview Content */,
+				97727B832CFEAD890040B8E4 /* CreateJam.swift */,
+				97727B8A2CFEAD890040B8E4 /* Model */,
+				97727B8C2CFEAD890040B8E4 /* Preview Content */,
+				97727BAE2CFEAD890040B8E4 /* View */,
+				9719946C2CDF65F400D543E9 /* JamitdamApp.swift */,
+				9719946E2CDF65F400D543E9 /* ContentView.swift */,
+				971994702CDF65F500D543E9 /* Assets.xcassets */,
+				971994722CDF65F500D543E9 /* Preview Content */,
 			);
 			path = Jamitdam;
 			sourceTree = "<group>";
 		};
-		971A0B8F2CD9D32900A2BF5E /* Preview Content */ = {
+		971994722CDF65F500D543E9 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */,
+				971994732CDF65F500D543E9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		971A0B992CD9D32900A2BF5E /* JamitdamTests */ = {
+		9719947C2CDF65F500D543E9 /* JamitdamTests */ = {
 			isa = PBXGroup;
 			children = (
-				971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */,
+				9719947D2CDF65F500D543E9 /* JamitdamTests.swift */,
 			);
 			path = JamitdamTests;
 			sourceTree = "<group>";
 		};
-		971A0BA32CD9D32900A2BF5E /* JamitdamUITests */ = {
+		971994862CDF65F500D543E9 /* JamitdamUITests */ = {
 			isa = PBXGroup;
 			children = (
-				971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */,
-				971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */,
+				971994872CDF65F500D543E9 /* JamitdamUITests.swift */,
+				971994892CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift */,
 			);
 			path = JamitdamUITests;
+			sourceTree = "<group>";
+		};
+		97727B8A2CFEAD890040B8E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97727B842CFEAD890040B8E4 /* Comment.swift */,
+				97727B852CFEAD890040B8E4 /* DateValue.swift */,
+				97727B862CFEAD890040B8E4 /* Like.swift */,
+				97727B872CFEAD890040B8E4 /* Post.swift */,
+				97727B882CFEAD890040B8E4 /* Relationship.swift */,
+				97727B892CFEAD890040B8E4 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		97727B8C2CFEAD890040B8E4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				97727B8B2CFEAD890040B8E4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		97727B952CFEAD890040B8E4 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				97727B8D2CFEAD890040B8E4 /* AddFriendCustomBar.swift */,
+				97727B8E2CFEAD890040B8E4 /* EmojiTextfield.swift */,
+				97727B8F2CFEAD890040B8E4 /* ImageSlider.swift */,
+				97727B902CFEAD890040B8E4 /* LikeButton.swift */,
+				97727B912CFEAD890040B8E4 /* MentionTextField.swift */,
+				97727B922CFEAD890040B8E4 /* RedButtonComponent.swift */,
+				97727B932CFEAD890040B8E4 /* TabBar.swift */,
+				97727B942CFEAD890040B8E4 /* TopBar.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		97727B992CFEAD890040B8E4 /* CreateJamPage */ = {
+			isa = PBXGroup;
+			children = (
+				97727B962CFEAD890040B8E4 /* CreateJamView.swift */,
+				97727B972CFEAD890040B8E4 /* CreateRelationshipView.swift */,
+				97727B982CFEAD890040B8E4 /* WriteJamView.swift */,
+			);
+			path = CreateJamPage;
+			sourceTree = "<group>";
+		};
+		97727B9C2CFEAD890040B8E4 /* DayPlus */ = {
+			isa = PBXGroup;
+			children = (
+				97727B9A2CFEAD890040B8E4 /* DayPlusView.swift */,
+				97727B9B2CFEAD890040B8E4 /* EditView.swift */,
+			);
+			path = DayPlus;
+			sourceTree = "<group>";
+		};
+		97727BA92CFEAD890040B8E4 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				97727B9F2CFEAD890040B8E4 /* AddFriendProfileView.swift */,
+				97727BA02CFEAD890040B8E4 /* AddFriendView.swift */,
+				97727BA12CFEAD890040B8E4 /* BlockedFriendListView.swift */,
+				97727BA22CFEAD890040B8E4 /* EditRelationshipView.swift */,
+				97727BA32CFEAD890040B8E4 /* FriendListView.swift */,
+				97727BA42CFEAD890040B8E4 /* FriendProfileView.swift */,
+				97727BA52CFEAD890040B8E4 /* MyPageView.swift */,
+				97727BA62CFEAD890040B8E4 /* RelationshipListView.swift */,
+				97727BA72CFEAD890040B8E4 /* RequestedFriendListView.swift */,
+				97727BA82CFEAD890040B8E4 /* SelectingFriendProfileView.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		97727BAB2CFEAD890040B8E4 /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				97727BAA2CFEAD890040B8E4 /* CreateVoteView.swift */,
+			);
+			path = Vote;
+			sourceTree = "<group>";
+		};
+		97727BAE2CFEAD890040B8E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				97727BD92CFEAE1C0040B8E4 /* JamDetailPage */,
+				97727B952CFEAD890040B8E4 /* Component */,
+				97727B992CFEAD890040B8E4 /* CreateJamPage */,
+				97727B9C2CFEAD890040B8E4 /* DayPlus */,
+				97727BA92CFEAD890040B8E4 /* MyPage */,
+				97727BAB2CFEAD890040B8E4 /* Vote */,
+				97727BAC2CFEAD890040B8E4 /* ComputeDate.swift */,
+				97727BAD2CFEAD890040B8E4 /* ImagePicker.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97727BD92CFEAE1C0040B8E4 /* JamDetailPage */ = {
+			isa = PBXGroup;
+			children = (
+				97727BD82CFEAE1C0040B8E4 /* JamDetailView.swift */,
+			);
+			path = JamDetailPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		971A0B852CD9D32700A2BF5E /* Jamitdam */ = {
+		971994682CDF65F400D543E9 /* Jamitdam */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 971A0BAA2CD9D32900A2BF5E /* Build configuration list for PBXNativeTarget "Jamitdam" */;
+			buildConfigurationList = 9719948D2CDF65F600D543E9 /* Build configuration list for PBXNativeTarget "Jamitdam" */;
 			buildPhases = (
-				971A0B822CD9D32700A2BF5E /* Sources */,
-				971A0B832CD9D32700A2BF5E /* Frameworks */,
-				971A0B842CD9D32700A2BF5E /* Resources */,
+				971994652CDF65F400D543E9 /* Sources */,
+				971994662CDF65F400D543E9 /* Frameworks */,
+				971994672CDF65F400D543E9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				8E9237DD2CDB123A00301FE8 /* View */,
 			);
 			name = Jamitdam;
 			productName = Jamitdam;
-			productReference = 971A0B862CD9D32700A2BF5E /* Jamitdam.app */;
+			productReference = 971994692CDF65F400D543E9 /* Jamitdam.app */;
 			productType = "com.apple.product-type.application";
 		};
-		971A0B952CD9D32900A2BF5E /* JamitdamTests */ = {
+		971994782CDF65F500D543E9 /* JamitdamTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 971A0BAD2CD9D32900A2BF5E /* Build configuration list for PBXNativeTarget "JamitdamTests" */;
+			buildConfigurationList = 971994902CDF65F600D543E9 /* Build configuration list for PBXNativeTarget "JamitdamTests" */;
 			buildPhases = (
-				971A0B922CD9D32900A2BF5E /* Sources */,
-				971A0B932CD9D32900A2BF5E /* Frameworks */,
-				971A0B942CD9D32900A2BF5E /* Resources */,
+				971994752CDF65F500D543E9 /* Sources */,
+				971994762CDF65F500D543E9 /* Frameworks */,
+				971994772CDF65F500D543E9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				971A0B982CD9D32900A2BF5E /* PBXTargetDependency */,
+				9719947B2CDF65F500D543E9 /* PBXTargetDependency */,
 			);
 			name = JamitdamTests;
 			productName = JamitdamTests;
-			productReference = 971A0B962CD9D32900A2BF5E /* JamitdamTests.xctest */;
+			productReference = 971994792CDF65F500D543E9 /* JamitdamTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		971A0B9F2CD9D32900A2BF5E /* JamitdamUITests */ = {
+		971994822CDF65F500D543E9 /* JamitdamUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 971A0BB02CD9D32900A2BF5E /* Build configuration list for PBXNativeTarget "JamitdamUITests" */;
+			buildConfigurationList = 971994932CDF65F600D543E9 /* Build configuration list for PBXNativeTarget "JamitdamUITests" */;
 			buildPhases = (
-				971A0B9C2CD9D32900A2BF5E /* Sources */,
-				971A0B9D2CD9D32900A2BF5E /* Frameworks */,
-				971A0B9E2CD9D32900A2BF5E /* Resources */,
+				9719947F2CDF65F500D543E9 /* Sources */,
+				971994802CDF65F500D543E9 /* Frameworks */,
+				971994812CDF65F500D543E9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				971A0BA22CD9D32900A2BF5E /* PBXTargetDependency */,
+				971994852CDF65F500D543E9 /* PBXTargetDependency */,
 			);
 			name = JamitdamUITests;
 			productName = JamitdamUITests;
-			productReference = 971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */;
+			productReference = 971994832CDF65F500D543E9 /* JamitdamUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		971A0B7E2CD9D32700A2BF5E /* Project object */ = {
+		971994612CDF65F400D543E9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					971A0B852CD9D32700A2BF5E = {
+					971994682CDF65F400D543E9 = {
 						CreatedOnToolsVersion = 15.4;
 					};
-					971A0B952CD9D32900A2BF5E = {
+					971994782CDF65F500D543E9 = {
 						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 971A0B852CD9D32700A2BF5E;
+						TestTargetID = 971994682CDF65F400D543E9;
 					};
-					971A0B9F2CD9D32900A2BF5E = {
+					971994822CDF65F500D543E9 = {
 						CreatedOnToolsVersion = 15.4;
-						TestTargetID = 971A0B852CD9D32700A2BF5E;
+						TestTargetID = 971994682CDF65F400D543E9;
 					};
 				};
 			};
-			buildConfigurationList = 971A0B812CD9D32700A2BF5E /* Build configuration list for PBXProject "Jamitdam" */;
+			buildConfigurationList = 971994642CDF65F400D543E9 /* Build configuration list for PBXProject "Jamitdam" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -242,36 +391,37 @@
 				en,
 				Base,
 			);
-			mainGroup = 971A0B7D2CD9D32700A2BF5E;
-			productRefGroup = 971A0B872CD9D32700A2BF5E /* Products */;
+			mainGroup = 971994602CDF65F400D543E9;
+			productRefGroup = 9719946A2CDF65F400D543E9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				971A0B852CD9D32700A2BF5E /* Jamitdam */,
-				971A0B952CD9D32900A2BF5E /* JamitdamTests */,
-				971A0B9F2CD9D32900A2BF5E /* JamitdamUITests */,
+				971994682CDF65F400D543E9 /* Jamitdam */,
+				971994782CDF65F500D543E9 /* JamitdamTests */,
+				971994822CDF65F500D543E9 /* JamitdamUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		971A0B842CD9D32700A2BF5E /* Resources */ = {
+		971994672CDF65F400D543E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				971A0B912CD9D32900A2BF5E /* Preview Assets.xcassets in Resources */,
-				971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */,
+				971994742CDF65F500D543E9 /* Preview Assets.xcassets in Resources */,
+				97727BD12CFEAD890040B8E4 /* Preview Assets.xcassets in Resources */,
+				971994712CDF65F500D543E9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		971A0B942CD9D32900A2BF5E /* Resources */ = {
+		971994772CDF65F500D543E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		971A0B9E2CD9D32900A2BF5E /* Resources */ = {
+		971994812CDF65F500D543E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,53 +431,83 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		971A0B822CD9D32700A2BF5E /* Sources */ = {
+		971994652CDF65F400D543E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */,
-				8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */,
-				8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */,
-				8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */,
-				8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */,
-				8E6F320B2CE1C28F00C4ED9E /* Post.swift in Sources */,
+				9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */,
+				9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */,
+				97727BAF2CFEAD890040B8E4 /* FriendListView.swift in Sources */,
+				97727BB02CFEAD890040B8E4 /* AddFriendProfileView.swift in Sources */,
+				97727BB12CFEAD890040B8E4 /* CreateVoteView.swift in Sources */,
+				97727BB22CFEAD890040B8E4 /* CreateJamView.swift in Sources */,
+				97727BB32CFEAD890040B8E4 /* Relationship.swift in Sources */,
+				97727BB42CFEAD890040B8E4 /* DayPlusView.swift in Sources */,
+				97727BB52CFEAD890040B8E4 /* ImagePicker.swift in Sources */,
+				97727BB62CFEAD890040B8E4 /* CreateRelationshipView.swift in Sources */,
+				97727BB72CFEAD890040B8E4 /* AddFriendCustomBar.swift in Sources */,
+				97727BB82CFEAD890040B8E4 /* MentionTextField.swift in Sources */,
+				97727BDA2CFEAE1C0040B8E4 /* JamDetailView.swift in Sources */,
+				97727BB92CFEAD890040B8E4 /* TabBar.swift in Sources */,
+				97727BBA2CFEAD890040B8E4 /* RedButtonComponent.swift in Sources */,
+				97727BBB2CFEAD890040B8E4 /* DateValue.swift in Sources */,
+				97727BBC2CFEAD890040B8E4 /* BlockedFriendListView.swift in Sources */,
+				97727BBD2CFEAD890040B8E4 /* WriteJamView.swift in Sources */,
+				97727BBE2CFEAD890040B8E4 /* TopBar.swift in Sources */,
+				97727BBF2CFEAD890040B8E4 /* Post.swift in Sources */,
+				97727BC02CFEAD890040B8E4 /* ComputeDate.swift in Sources */,
+				97727BC12CFEAD890040B8E4 /* MyPageView.swift in Sources */,
+				97727BC22CFEAD890040B8E4 /* LikeButton.swift in Sources */,
+				97727BC32CFEAD890040B8E4 /* EditView.swift in Sources */,
+				97727BC42CFEAD890040B8E4 /* User.swift in Sources */,
+				97727BC62CFEAD890040B8E4 /* CreateJam.swift in Sources */,
+				97727BC72CFEAD890040B8E4 /* FriendProfileView.swift in Sources */,
+				97727BC82CFEAD890040B8E4 /* EmojiTextfield.swift in Sources */,
+				97727BC92CFEAD890040B8E4 /* Comment.swift in Sources */,
+				97727BCA2CFEAD890040B8E4 /* ImageSlider.swift in Sources */,
+				97727BCB2CFEAD890040B8E4 /* RelationshipListView.swift in Sources */,
+				97727BCC2CFEAD890040B8E4 /* SelectingFriendProfileView.swift in Sources */,
+				97727BCD2CFEAD890040B8E4 /* RequestedFriendListView.swift in Sources */,
+				97727BCE2CFEAD890040B8E4 /* Like.swift in Sources */,
+				97727BCF2CFEAD890040B8E4 /* EditRelationshipView.swift in Sources */,
+				97727BD02CFEAD890040B8E4 /* AddFriendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		971A0B922CD9D32900A2BF5E /* Sources */ = {
+		971994752CDF65F500D543E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */,
+				9719947E2CDF65F500D543E9 /* JamitdamTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		971A0B9C2CD9D32900A2BF5E /* Sources */ = {
+		9719947F2CDF65F500D543E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				971A0BA72CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift in Sources */,
-				971A0BA52CD9D32900A2BF5E /* JamitdamUITests.swift in Sources */,
+				9719948A2CDF65F500D543E9 /* JamitdamUITestsLaunchTests.swift in Sources */,
+				971994882CDF65F500D543E9 /* JamitdamUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		971A0B982CD9D32900A2BF5E /* PBXTargetDependency */ = {
+		9719947B2CDF65F500D543E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 971A0B852CD9D32700A2BF5E /* Jamitdam */;
-			targetProxy = 971A0B972CD9D32900A2BF5E /* PBXContainerItemProxy */;
+			target = 971994682CDF65F400D543E9 /* Jamitdam */;
+			targetProxy = 9719947A2CDF65F500D543E9 /* PBXContainerItemProxy */;
 		};
-		971A0BA22CD9D32900A2BF5E /* PBXTargetDependency */ = {
+		971994852CDF65F500D543E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 971A0B852CD9D32700A2BF5E /* Jamitdam */;
-			targetProxy = 971A0BA12CD9D32900A2BF5E /* PBXContainerItemProxy */;
+			target = 971994682CDF65F400D543E9 /* Jamitdam */;
+			targetProxy = 971994842CDF65F500D543E9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		971A0BA82CD9D32900A2BF5E /* Debug */ = {
+		9719948B2CDF65F600D543E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -390,7 +570,7 @@
 			};
 			name = Debug;
 		};
-		971A0BA92CD9D32900A2BF5E /* Release */ = {
+		9719948C2CDF65F600D543E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -446,7 +626,7 @@
 			};
 			name = Release;
 		};
-		971A0BAB2CD9D32900A2BF5E /* Debug */ = {
+		9719948E2CDF65F600D543E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -474,7 +654,7 @@
 			};
 			name = Debug;
 		};
-		971A0BAC2CD9D32900A2BF5E /* Release */ = {
+		9719948F2CDF65F600D543E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -502,7 +682,7 @@
 			};
 			name = Release;
 		};
-		971A0BAE2CD9D32900A2BF5E /* Debug */ = {
+		971994912CDF65F600D543E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -521,7 +701,7 @@
 			};
 			name = Debug;
 		};
-		971A0BAF2CD9D32900A2BF5E /* Release */ = {
+		971994922CDF65F600D543E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -540,7 +720,7 @@
 			};
 			name = Release;
 		};
-		971A0BB12CD9D32900A2BF5E /* Debug */ = {
+		971994942CDF65F600D543E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -557,7 +737,7 @@
 			};
 			name = Debug;
 		};
-		971A0BB22CD9D32900A2BF5E /* Release */ = {
+		971994952CDF65F600D543E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -577,43 +757,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		971A0B812CD9D32700A2BF5E /* Build configuration list for PBXProject "Jamitdam" */ = {
+		971994642CDF65F400D543E9 /* Build configuration list for PBXProject "Jamitdam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				971A0BA82CD9D32900A2BF5E /* Debug */,
-				971A0BA92CD9D32900A2BF5E /* Release */,
+				9719948B2CDF65F600D543E9 /* Debug */,
+				9719948C2CDF65F600D543E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		971A0BAA2CD9D32900A2BF5E /* Build configuration list for PBXNativeTarget "Jamitdam" */ = {
+		9719948D2CDF65F600D543E9 /* Build configuration list for PBXNativeTarget "Jamitdam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				971A0BAB2CD9D32900A2BF5E /* Debug */,
-				971A0BAC2CD9D32900A2BF5E /* Release */,
+				9719948E2CDF65F600D543E9 /* Debug */,
+				9719948F2CDF65F600D543E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		971A0BAD2CD9D32900A2BF5E /* Build configuration list for PBXNativeTarget "JamitdamTests" */ = {
+		971994902CDF65F600D543E9 /* Build configuration list for PBXNativeTarget "JamitdamTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				971A0BAE2CD9D32900A2BF5E /* Debug */,
-				971A0BAF2CD9D32900A2BF5E /* Release */,
+				971994912CDF65F600D543E9 /* Debug */,
+				971994922CDF65F600D543E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		971A0BB02CD9D32900A2BF5E /* Build configuration list for PBXNativeTarget "JamitdamUITests" */ = {
+		971994932CDF65F600D543E9 /* Build configuration list for PBXNativeTarget "JamitdamUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				971A0BB12CD9D32900A2BF5E /* Debug */,
-				971A0BB22CD9D32900A2BF5E /* Release */,
+				971994942CDF65F600D543E9 /* Debug */,
+				971994952CDF65F600D543E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 971A0B7E2CD9D32700A2BF5E /* Project object */;
+	rootObject = 971994612CDF65F400D543E9 /* Project object */;
 }
