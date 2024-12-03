@@ -76,7 +76,6 @@ struct JamDetailView: View {
                             }
                         }
                         .padding(.top, 37)
-                        .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
                         // 본문
@@ -85,13 +84,12 @@ struct JamDetailView: View {
                             .frame(height: 110)
                             .frame(minHeight: 110, maxHeight: .infinity)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal)
                         
                         // 이미지
                         if !post.images.isEmpty {
                             ImageSlider(imageUrls: post.images)
                                 .padding(.bottom, 30)
-                                .padding(.horizontal, -25)
+                                .padding(.horizontal, -27)
                         }
                         
                         // 좋아요 및 댓글
@@ -120,7 +118,7 @@ struct JamDetailView: View {
                             
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal)
+                        
                         
                         Rectangle()
                             .frame(maxWidth: .infinity)
@@ -212,7 +210,6 @@ struct JamDetailView: View {
                                 
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal)
                             // 각 댓글 뷰에 id 설정
                             .id(comment.id)
                         }
@@ -280,16 +277,15 @@ struct JamDetailView: View {
                 Spacer()
                 
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color("Grayunselected"), lineWidth: 1)
-                        .frame(height: 50)
-                        .frame(maxWidth: .infinity)
-                    
+
                     TextField("", text: $myComment)
-                        .keyboardType(.default)
-                        .frame(height: 50)
-                        .font(.system(size: 20))
-                        .padding(.leading, 10)
+                        .padding(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .font(.system(size: 15))
+                        .foregroundColor(Color.black)
                         .focused($isKeyboardActive)
                     
                     if myComment.isEmpty {
