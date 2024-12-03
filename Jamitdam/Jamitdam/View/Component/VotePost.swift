@@ -3,10 +3,10 @@ import SwiftUI
 struct VotePost: View {
     
     var user: User
-    var poll: Poll
+    var inputPoll: Poll
 
     init(poll: Poll) {
-        self.poll = poll
+        self.inputPoll = poll
         self.user = poll.writer
     }
     
@@ -14,7 +14,7 @@ struct VotePost: View {
     var screenHeight: CGFloat = 844
     
     @State var comments: [Comment] = [comment1, comment2, co_comment1]
-    
+    @State private var poll: Poll = dummyPolls[0]
     public var body: some View {
 
         NavigationLink(destination: MyPageView()) {
@@ -57,7 +57,7 @@ struct VotePost: View {
                 Spacer()
                     .frame(height: 30)
                 
-                VoteButton()
+                VoteButton(poll: $poll)
                     
                 Spacer()
                     .frame(height: 30)
@@ -80,6 +80,10 @@ struct VotePost: View {
             .cornerRadius(20)
             .shadow(color: Color.black.opacity(0.4), radius: 5, x: 0, y: 4)
             .padding(.horizontal)
+            .onAppear {
+                // onAppear로 Poll 초기화
+                poll = inputPoll
+            }
 
         }
         .buttonStyle(PlainButtonStyle())
@@ -88,13 +92,17 @@ struct VotePost: View {
 
 struct VoteButton: View { // View 프로토콜 준수
     
-    @State private var poll = dummyPolls[0] // 첫 번째 투표 데이터
+    @Binding var poll: Poll
+//    init(poll: Poll) {
+//        self.poll = poll
+//    }
     @State private var currentUser = user1 // 현재 사용자
     @State private var showPopover: Bool = false // 말풍선 표시 여부
     @State private var selectedOption: Int? = nil // 사용자가 선택한 옵션 인덱스
     @State private var hasVoted: Bool = false // 사용자가 투표를 완료했는지 여부
     @State private var editingComment: Comment? = nil // 현재 수정 중인 댓글
     @State private var editedContent: String = ""     // 수정된 댓글 내용
+    
     
     var body: some View { // 소문자로 body 작성
         let isEnabled: Bool = selectedOption != nil // 옵션 선택 여부 확인
@@ -219,7 +227,7 @@ struct VoteButton: View { // View 프로토콜 준수
 
 #Preview {
     NavigationStack {
-        VotePost(poll: dummyPolls[0])
+        VotePost(poll: dummyPolls[1])
     }
 }
 
