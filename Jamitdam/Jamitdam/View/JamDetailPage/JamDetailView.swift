@@ -91,6 +91,7 @@ struct JamDetailView: View {
                         if !post.images.isEmpty {
                             ImageSlider(imageUrls: post.images)
                                 .padding(.bottom, 30)
+                                .padding(.horizontal, -25)
                         }
                         
                         // 좋아요 및 댓글
@@ -124,7 +125,7 @@ struct JamDetailView: View {
                         Rectangle()
                             .frame(maxWidth: .infinity)
                             .frame(height: 1)
-                            .foregroundColor(Color("Graybasic"))
+                            .foregroundColor(Color("Grayunselected"))
                             .padding(.bottom, 10)
                         
                         // 댓글 목록
@@ -137,7 +138,7 @@ struct JamDetailView: View {
                                             Image("\(commentWriter.profile)")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 50, height: 50)
+                                                .frame(width: 40, height: 40)
                                                 .clipShape(Circle())
                                             
                                             Spacer()
@@ -147,13 +148,13 @@ struct JamDetailView: View {
                                                 // 사용자 이름 및 작성 시간
                                                 HStack {
                                                     Text("\(commentWriter.name)")
-                                                        .font(.system(size: 20))
+                                                        .font(.system(size: 13))
                                                     Text(timeAgoSinceDate(comment.date))
                                                         .font(.system(size: 12))
                                                 }
                                                 // 댓글 내용
                                                 Text(comment.content)
-                                                    .font(.system(size: 18))
+                                                    .font(.system(size: 15))
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                             }
                                             
@@ -183,7 +184,7 @@ struct JamDetailView: View {
                                                 Image("\(replyWriter.profile)")
                                                     .resizable()
                                                     .scaledToFit()
-                                                    .frame(width: 50, height: 50)
+                                                    .frame(width: 40, height: 40)
                                                     .clipShape(Circle())
                                                 
                                                 Spacer()
@@ -193,17 +194,17 @@ struct JamDetailView: View {
                                                     // 사용자 이름 및 작성 시간
                                                     HStack {
                                                         Text("\(replyWriter.name)")
-                                                            .font(.system(size: 20))
+                                                            .font(.system(size: 13))
                                                         Text(timeAgoSinceDate(reply.date))
                                                             .font(.system(size: 12))
                                                     }
                                                     // 댓글 내용
                                                     Text(reply.content)
-                                                        .font(.system(size: 18))
+                                                        .font(.system(size: 15))
                                                         .frame(maxWidth: .infinity, alignment: .leading)
                                                 }
                                             }
-                                            .padding(.leading, 70)
+                                            .padding(.leading, 40)
                                         }
                                     }
                                     .padding(.bottom, 15)
@@ -315,7 +316,7 @@ struct JamDetailView: View {
                     Image(systemName: "arrow.up.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 40, height: 40)
                         .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
                 }
                 .disabled(myComment.isEmpty)

@@ -20,7 +20,7 @@ struct ImageSlider: View {
                         .resizable()
                         // 비율 유지하며 꽉 채우기
                         .scaledToFill()
-                        .frame(width: geometry.size.width - 60, height: height)
+                        .frame(width: 350, height: height)
                         .clipped()
                         .cornerRadius(20)
                         .shadow(radius: 5)
