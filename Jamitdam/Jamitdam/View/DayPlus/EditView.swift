@@ -128,7 +128,9 @@ struct EditView: View {
             }
             .navigationDestination(for: SelectedData.self) { selectedData in
                 DayPlusView(relationship: selectedData.relationship, startDate: selectedData.date)
+
             }
+            .navigationBarBackButtonHidden(true)
         }
 
     }
