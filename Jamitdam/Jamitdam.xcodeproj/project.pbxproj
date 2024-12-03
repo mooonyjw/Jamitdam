@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8ED15FAC2CFEDD3500AFFD06 /* CalendarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED15FA92CFEDD3500AFFD06 /* CalendarMenuView.swift */; };
+		8ED15FAD2CFEDD3500AFFD06 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED15FAA2CFEDD3500AFFD06 /* CalendarView.swift */; };
 		9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719946C2CDF65F400D543E9 /* JamitdamApp.swift */; };
 		9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9719946E2CDF65F400D543E9 /* ContentView.swift */; };
 		971994712CDF65F500D543E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971994702CDF65F500D543E9 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8ED15FA92CFEDD3500AFFD06 /* CalendarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMenuView.swift; sourceTree = "<group>"; };
+		8ED15FAA2CFEDD3500AFFD06 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		971994692CDF65F400D543E9 /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9719946C2CDF65F400D543E9 /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		9719946E2CDF65F400D543E9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8ED15FAB2CFEDD3500AFFD06 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8ED15FA92CFEDD3500AFFD06 /* CalendarMenuView.swift */,
+				8ED15FAA2CFEDD3500AFFD06 /* CalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		971994602CDF65F400D543E9 = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +297,7 @@
 		97727BAE2CFEAD890040B8E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8ED15FAB2CFEDD3500AFFD06 /* Calendar */,
 				97727BD92CFEAE1C0040B8E4 /* JamDetailPage */,
 				97727B952CFEAD890040B8E4 /* Component */,
 				97727B992CFEAD890040B8E4 /* CreateJamPage */,
@@ -436,6 +450,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9719946F2CDF65F400D543E9 /* ContentView.swift in Sources */,
+				8ED15FAC2CFEDD3500AFFD06 /* CalendarMenuView.swift in Sources */,
+				8ED15FAD2CFEDD3500AFFD06 /* CalendarView.swift in Sources */,
 				9719946D2CDF65F400D543E9 /* JamitdamApp.swift in Sources */,
 				97727BAF2CFEAD890040B8E4 /* FriendListView.swift in Sources */,
 				97727BB02CFEAD890040B8E4 /* AddFriendProfileView.swift in Sources */,

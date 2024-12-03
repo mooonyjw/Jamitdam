@@ -242,7 +242,7 @@ struct CalendarView: View {
                                 VStack(alignment: .leading) {
                                     Text(post.relationships[0].nickname)
                                         .font(.callout.bold())
-                                    Text("#" + post.relationships[0].hashtags[0])
+                                    Text("#" + post.relationships[0].hashtags)
                                         .font(.caption.bold())
                                         .foregroundColor(Color("Redemphasis"))
                                 }
