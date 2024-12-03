@@ -22,6 +22,8 @@ struct CreateRelationshipView: View {
     // emoji 입력이 아닐 시 alert를 띄우기 위한 변수
     @State private var isShowingAlert = false
     
+    @State private var navigateToCreateJam: Bool = false
+    
     @FocusState private var isKeyboardActive: Bool
 
     func saveHashtag() {
@@ -150,7 +152,9 @@ struct CreateRelationshipView: View {
                             .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                             .padding(.horizontal)
                         
-                        RedButton(title: "완료", isEnabled: $isEnabled, height: 55, action: { print("hi") })
+                        RedButton(title: "완료", isEnabled: $isEnabled, height: 55, action: {
+                            relationships.append(Relationship(nickname: nickname, hashtags: hashtag, icon: icon, startDate: Date(), userId: user1.id))
+                            navigateToCreateJam = true })
                     }
                 }
                 }
@@ -160,6 +164,12 @@ struct CreateRelationshipView: View {
                 .onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
+            }
+            NavigationLink(
+                destination: CreateJamView(),
+                isActive: $navigateToCreateJam
+            ) {
+                EmptyView()
             }
         }
         .navigationBarBackButtonHidden(true)

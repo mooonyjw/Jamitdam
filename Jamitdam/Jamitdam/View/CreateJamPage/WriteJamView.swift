@@ -78,7 +78,15 @@ struct WriteJamView: View {
     
     var body: some View {
         NavigationStack {
-            TopBar(title: "글 작성하기")
+            TopBar(
+                title: "글 작성하기",
+                rightButton: "완료",
+                rightButtonFunc: {
+                    // 해당 친구 프로필로 이동
+                    print("추가 버튼 클릭")
+                },
+                rightButtonDisabled: !title.isEmpty && !content.isEmpty
+            )
             VStack {
                 ScrollView {
                     VStack(spacing: 20) {
