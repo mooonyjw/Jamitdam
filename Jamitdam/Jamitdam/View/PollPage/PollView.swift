@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PollView: View {
-    @State private var poll = dummyPolls[0] // 첫 번째 투표 데이터
+    @State var poll: Poll // 전달받은 투표 데이터
     @State private var currentUser = user1 // 현재 사용자
     @State private var showPopover: Bool = false // 말풍선 표시 여부
     @State private var selectedOption: Int? = nil // 사용자가 선택한 옵션 인덱스
@@ -646,6 +646,6 @@ extension Character {
     }
 }
 
-#Preview {
-    PollView()
-}
+//#Preview {
+//    PollView(poll: poll)
+//}

@@ -71,16 +71,25 @@ struct HomeView: View {
                             Text("한땀한땀 재미를 이어보아요.")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
+                            
+                            Spacer()
+                            
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
+                        .padding(.leading, 15)
+                        
                         
                         Spacer() // 나머지 공간 차지
+                        HomePost(post: dummyPosts[0])
+                            .padding(.bottom, 5)
+                        
+                        HomePost(post: dummyPosts[1])
+                        
                         
                     }
                     .padding(.top)
                 }
-                .padding(.trailing, 8)
                 
                 
             }
@@ -89,5 +98,6 @@ struct HomeView: View {
 }
     
 #Preview {
+
     HomeView()
 }

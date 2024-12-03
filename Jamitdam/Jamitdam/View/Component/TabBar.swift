@@ -8,12 +8,12 @@ struct TabBar: View {
         NavigationStack {
             ZStack {
                 TabView {
-                    AddFriendProfileView()
+                    HomeView()
                         .tabItem {
                             Image(systemName: "house")
                             Text("홈")
                         }
-                    MyPageView()
+                    PollHomeView()
                         .tabItem {
                             Image(systemName: "bubble.left.and.bubble.right")
                             Text("투표")
