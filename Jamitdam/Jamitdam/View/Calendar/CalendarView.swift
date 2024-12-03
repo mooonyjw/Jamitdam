@@ -44,7 +44,7 @@ struct CalendarView: View {
                 
                 if isDetailViewVisible,
                    let selectedDate = selectedDate, let postData = getPosts(for: selectedUser, from: dummyPosts).first(where: { displayedCalendar.isSameDay(date1: $0.timestamp, date2: selectedDate)}) {
-                               PostDetailView(postData: postData)
+                    PostDetailView(for: selectedDate)
                                    .padding()
                                    .background(Color("Redemphasis").opacity(0.2))
                                    .cornerRadius(30)
@@ -177,106 +177,102 @@ struct CalendarView: View {
         }
     }
     
-    
-    // 날짜에 대한 개별 뷰
     @ViewBuilder
-    func CardView(value: DateValue)->some View {
-        VStack{
-         
+    func CardView(value: DateValue) -> some View {
+        VStack {
             if value.day != -1 {
-                // 여러 개의 포스트가 있는 경우 추가하기
-                if let post = getPosts(for: selectedUser, from: dummyPosts).first(where: { post in
-                    displayedCalendar.isSameDay(date1: post.timestamp, date2: value.date)
-                }) {
-                    Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(displayedCalendar.isSameDay(date1: value.date, date2: displayedCalendar.currentDate) ? .redemphasis : .primary
-                        )
-                        .frame(maxWidth: .infinity)
-                    
-                    Spacer()
-       
-                    ZStack{
-                        Circle()
-                            .fill(Color.redbase.opacity(0.7))
-                            .frame(width: 35, height: 35)
-                        Text(post.relationships[0].icon)
-                            .font(.title2)
+                // 날짜 텍스트
+                Text("\(value.day)")
+                    .font(.title3.bold())
+                    .foregroundColor(
+                        displayedCalendar.isSameDay(date1: value.date, date2: displayedCalendar.currentDate) ? .redemphasis : .primary
+                    )
+                    .frame(maxWidth: .infinity)
+                
+                Spacer()
+                
+                // 겹친 동그라미 표시
+                let posts = getPosts(for: selectedUser, from: dummyPosts).filter({
+                    displayedCalendar.isSameDay(date1: $0.timestamp, date2: value.date)
+                })
+                if !posts.isEmpty {
+                    ZStack {
+                        ForEach(0..<min(posts.count, 3), id: \.self) { index in
+                            Circle()
+                                .fill(Color.redbase)
+                                .frame(width: 35, height: 35)
+                                .offset(x: CGFloat(index * -5))
+                                .shadow(radius: 2)
+                            Text(posts[index].relationships[0].icon)
+                                .font(.title2)
+                                .offset(x: CGFloat(index * -5))
+                        }
                     }
-                    
-                   
-                }
-                else {
-                    
-                    Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(displayedCalendar.isSameDay(date1: value.date, date2: displayedCalendar.currentDate) ? .redemphasis : .primary)
-                        .frame(maxWidth: .infinity)
-                    
-                    Spacer()
                 }
             }
         }
-        // calendar 여백 조정
         .padding(.vertical, 9)
         .frame(height: 60, alignment: .top)
-        
     }
     
     // post가 있는 날짜의 상세 뷰
-    @ViewBuilder
-    func PostDetailView(postData: Post) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
+    // 해당 날짜의 모든 포스트 가져오기
 
-                Text(displayedCalendar.formattedDate(from: postData.timestamp, format: "yyyy년 MM월 dd일"))
-                    .font(.title3.bold())
-                Spacer()
+    @ViewBuilder
+    func PostDetailView(for date: Date) -> some View {
+        // 해당 날짜의 모든 포스트 가져오기
+        let posts = getPosts(for: selectedUser, from: dummyPosts).filter {
+            displayedCalendar.isSameDay(date1: $0.timestamp, date2: date)
+        }
+        
+        if !posts.isEmpty {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    ForEach(posts, id: \.id) { post in
+                        VStack(alignment: .leading, spacing: 10) {
+                            HStack {
+                                Text(displayedCalendar.formattedDate(from: post.timestamp, format: "yyyy년 MM월 dd일"))
+                                    .font(.title3.bold())
+                                Spacer()
+                            }
+                            
+                            HStack {
+                                Text(post.relationships[0].icon)
+                                    .font(.largeTitle)
+                                VStack(alignment: .leading) {
+                                    Text(post.relationships[0].nickname)
+                                        .font(.callout.bold())
+                                    Text("#" + post.relationships[0].hashtags[0])
+                                        .font(.caption.bold())
+                                        .foregroundColor(Color("Redemphasis"))
+                                }
+                            }
+                            
+                            Text("그 날의 글")
+                                .font(.subheadline)
+                                .padding(.top, 8)
+                            
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text(post.title ?? "")
+                                    .font(.headline)
+                                Text(post.content ?? "")
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                            .padding()
+                            .background(Color("Whitebackground"))
+                            .cornerRadius(15)
+                        }
+                        .padding(.bottom, 20)
+                    }
+                }
+                .padding()
                 
             }
-            
-            HStack {
-                Text(postData.relationships[0].icon)
-                    .font(.largeTitle)
-                VStack(alignment: .leading) {
-                    Text(postData.relationships[0].nickname)
-                        .font(.callout.bold())
-                    // hashtag 하나로 수정?
-                    Text("#" + postData.relationships[0].hashtags[0])
-                        .font(.caption.bold())
-                        
-                        .foregroundColor(Color("Redemphasis"))
-                }
-            }
-            
-            Text("그 날의 글")
-                .font(.subheadline)
-                .padding(.top, 8)
-            
-            VStack(alignment: .leading) {
-              
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(postData.title ?? "")
-                        .font(.headline)
-                    Text(postData.content ?? "")
-                    
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .topLeading)
-            .padding()
-            .padding(.bottom, 30)
-            .background(Color("Whitebackground"))
-            .cornerRadius(15)
-       
+
+            .transition(.move(edge: .bottom))
+            .animation(.easeInOut)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
-        
-        .padding(.top, 10)
-        .ignoresSafeArea(edges: .bottom)
-        
     }
-    
-   
 }
 
 
