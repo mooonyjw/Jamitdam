@@ -21,6 +21,8 @@ struct CreateRelationshipView: View {
 
     // emoji 입력이 아닐 시 alert를 띄우기 위한 변수
     @State private var isShowingAlert = false
+    
+    @FocusState private var isKeyboardActive: Bool
 
     func saveHashtag() {
         if !hashtagContent.isEmpty {
@@ -36,6 +38,7 @@ struct CreateRelationshipView: View {
 
     var body: some View {
         NavigationStack {
+            GeometryReader { geometry in
             VStack {
                 TopBar(title: "새로운 인연 생성하기")
                 ScrollView {
@@ -46,23 +49,24 @@ struct CreateRelationshipView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading)
                             .font(.system(size: 25, weight: .semibold))
-
+                        
                         Text("이모지와 별명으로 상대방을 표현해보아요.")
                             .lineSpacing(3)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading)
                             .font(.system(size: 14))
                             .foregroundColor(Color("Graybasic"))
-
+                        
                         VStack(spacing: 40) {
                             ZStack {
                                 Circle()
                                     .fill(Color("Redsoftbase"))
                                     .frame(width: 130, height: 130)
-
+                                
                                 EmojiTextfield(text: $icon, isShowingAlert: $isShowingAlert)
                                     .frame(width: 100, height: 130)
-
+                                    .focused($isKeyboardActive)
+                                
                                 if icon.isEmpty {
                                     Image(systemName: "plus")
                                         .resizable()
@@ -78,35 +82,37 @@ struct CreateRelationshipView: View {
                                     dismissButton: .default(Text("확인"))
                                 )
                             }
-
+                            
                             VStack(spacing: 10) {
                                 TextField("title", text: $nickname,
                                           prompt: Text("별명 입력")
-                                            .font(.system(size: 25))
-                                            .foregroundColor(Color("Graybasic")))
-                                    .multilineTextAlignment(.center)
-                                    .textFieldStyle(PlainTextFieldStyle())
-                                    .keyboardType(.default)
-                                    .font(.system(size: 25, weight: .semibold))
-
+                                    .font(.system(size: 25))
+                                    .foregroundColor(Color("Graybasic")))
+                                .multilineTextAlignment(.center)
+                                .textFieldStyle(PlainTextFieldStyle())
+                                .keyboardType(.default)
+                                .font(.system(size: 25, weight: .semibold))
+                                .focused($isKeyboardActive)
+                                
                                 if nickname.isEmpty {
                                     Rectangle()
                                         .fill(Color("Graybasic"))
                                         .frame(width: 120, height: 2)
                                 }
                             }
+                            .frame(height: 30)
                         }
-
+                        
                         VStack {
                             Text("관계 해시태그")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading)
                                 .font(.system(size: 25, weight: .semibold))
-
+                            
                             HStack {
                                 Text("#")
                                     .padding(.leading)
-
+                                
                                 if isEditing || hashtag.isEmpty {
                                     TextField("title", text: $hashtagContent, prompt: Text("여기를_눌러서_관계를_해시태그로_표현해보아요.")
                                         .font(.system(size: 14))
@@ -115,11 +121,17 @@ struct CreateRelationshipView: View {
                                     .onSubmit {
                                         saveHashtag()
                                     }
-
+                                    .onChange(of: hashtagContent) { newValue in
+                                        if newValue.hasSuffix(" ") {
+                                            saveHashtag()
+                                        }
+                                    }
+                                    .focused($isKeyboardActive)
+                                    
                                 } else {
                                     Text(hashtag)
                                         .font(.system(size: 18, weight: .semibold))
-
+                                    
                                     Button(action: {
                                         isEditing = true
                                         hashtagContent = hashtag
@@ -133,19 +145,22 @@ struct CreateRelationshipView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .frame(height: 25)
                         }
-
+                        
                         Toggle("친구들에게 알림 보내기", isOn: $alertFriends)
                             .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
                             .padding(.horizontal)
-
+                        
                         RedButton(title: "완료", isEnabled: $isEnabled, height: 55, action: { print("hi") })
                     }
+                }
                 }
                 .onChange(of: icon) { _ in updateButtonState() }
                 .onChange(of: nickname) { _ in updateButtonState() }
                 .onChange(of: hashtag) { _ in updateButtonState() }
+                .onTapGesture {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
         .navigationBarBackButtonHidden(true)
     }

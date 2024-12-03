@@ -296,6 +296,7 @@ struct WriteJamView: View {
                     }
             }
         }
+        .navigationBarHidden(true)
     }
     
     private func setupKeyboardObservers() {
