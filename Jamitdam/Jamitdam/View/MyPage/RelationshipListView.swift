@@ -151,11 +151,11 @@ struct RelationshipRow: View {
             
             Spacer()
             
-            ForEach(relationship.hashtags, id: \.self) { hashtag in
-                Text("#" + hashtag)
-                    .font(.system(size: 15 * widthRatio))
-                    .foregroundColor(Color("Redemphasis"))
-            }
+ 
+            Text("#" + relationship.hashtags)
+                .font(.system(size: 15 * widthRatio))
+                .foregroundColor(Color("Redemphasis"))
+            
             
             Spacer().frame(width: 21 * widthRatio)
         }

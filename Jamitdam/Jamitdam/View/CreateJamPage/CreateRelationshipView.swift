@@ -112,11 +112,10 @@ struct CreateRelationshipView: View {
                                         .font(.system(size: 14))
                                         .foregroundColor(Color("Graybasic")))
                                     .font(.system(size: 18, weight: .semibold))
-                                    .onChange(of: hashtagContent) { newValue in
-                                        if newValue.contains(" ") || newValue.contains("\n") {
-                                            saveHashtag()
-                                        }
+                                    .onSubmit {
+                                        saveHashtag()
                                     }
+
                                 } else {
                                     Text(hashtag)
                                         .font(.system(size: 18, weight: .semibold))
