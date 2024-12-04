@@ -78,7 +78,15 @@ struct WriteJamView: View {
     
     var body: some View {
         NavigationStack {
-            TopBar(title: "글 작성하기")
+            TopBar(
+                title: "글 작성하기",
+                rightButton: "완료",
+                rightButtonFunc: {
+                    // 해당 친구 프로필로 이동
+                    print("추가 버튼 클릭")
+                },
+                rightButtonDisabled: !title.isEmpty && !content.isEmpty
+            )
             VStack {
                 ScrollView {
                     VStack(spacing: 20) {
@@ -199,9 +207,9 @@ struct WriteJamView: View {
                                     Image(systemName: "photo")
                                         .foregroundColor(.white)
                                 }
-                                .disabled(selectedImages.count >= 10)
-                                .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
                             }
+                            .disabled(selectedImages.count >= 10)
+                            .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
                             .frame(alignment: .trailing)
                         }
                         // 글자 수 제한 표시
@@ -296,6 +304,7 @@ struct WriteJamView: View {
                     }
             }
         }
+        .navigationBarHidden(true)
     }
     
     private func setupKeyboardObservers() {

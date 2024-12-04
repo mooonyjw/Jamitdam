@@ -76,7 +76,6 @@ struct JamDetailView: View {
                             }
                         }
                         .padding(.top, 37)
-                        .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         
                         // 본문
@@ -85,12 +84,12 @@ struct JamDetailView: View {
                             .frame(height: 110)
                             .frame(minHeight: 110, maxHeight: .infinity)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal)
                         
                         // 이미지
                         if !post.images.isEmpty {
                             ImageSlider(imageUrls: post.images)
                                 .padding(.bottom, 30)
+                                .padding(.horizontal, -27)
                         }
                         
                         // 좋아요 및 댓글
@@ -119,12 +118,12 @@ struct JamDetailView: View {
                             
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal)
+                        
                         
                         Rectangle()
                             .frame(maxWidth: .infinity)
                             .frame(height: 1)
-                            .foregroundColor(Color("Graybasic"))
+                            .foregroundColor(Color("Grayunselected"))
                             .padding(.bottom, 10)
                         
                         // 댓글 목록
@@ -137,7 +136,7 @@ struct JamDetailView: View {
                                             Image("\(commentWriter.profile)")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 50, height: 50)
+                                                .frame(width: 40, height: 40)
                                                 .clipShape(Circle())
                                             
                                             Spacer()
@@ -147,13 +146,13 @@ struct JamDetailView: View {
                                                 // 사용자 이름 및 작성 시간
                                                 HStack {
                                                     Text("\(commentWriter.name)")
-                                                        .font(.system(size: 20))
+                                                        .font(.system(size: 13))
                                                     Text(timeAgoSinceDate(comment.date))
                                                         .font(.system(size: 12))
                                                 }
                                                 // 댓글 내용
                                                 Text(comment.content)
-                                                    .font(.system(size: 18))
+                                                    .font(.system(size: 15))
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                             }
                                             
@@ -183,7 +182,7 @@ struct JamDetailView: View {
                                                 Image("\(replyWriter.profile)")
                                                     .resizable()
                                                     .scaledToFit()
-                                                    .frame(width: 50, height: 50)
+                                                    .frame(width: 40, height: 40)
                                                     .clipShape(Circle())
                                                 
                                                 Spacer()
@@ -193,17 +192,17 @@ struct JamDetailView: View {
                                                     // 사용자 이름 및 작성 시간
                                                     HStack {
                                                         Text("\(replyWriter.name)")
-                                                            .font(.system(size: 20))
+                                                            .font(.system(size: 13))
                                                         Text(timeAgoSinceDate(reply.date))
                                                             .font(.system(size: 12))
                                                     }
                                                     // 댓글 내용
                                                     Text(reply.content)
-                                                        .font(.system(size: 18))
+                                                        .font(.system(size: 15))
                                                         .frame(maxWidth: .infinity, alignment: .leading)
                                                 }
                                             }
-                                            .padding(.leading, 70)
+                                            .padding(.leading, 40)
                                         }
                                     }
                                     .padding(.bottom, 15)
@@ -211,7 +210,6 @@ struct JamDetailView: View {
                                 
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal)
                             // 각 댓글 뷰에 id 설정
                             .id(comment.id)
                         }
@@ -279,16 +277,15 @@ struct JamDetailView: View {
                 Spacer()
                 
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color("Grayunselected"), lineWidth: 1)
-                        .frame(height: 50)
-                        .frame(maxWidth: .infinity)
-                    
+
                     TextField("", text: $myComment)
-                        .keyboardType(.default)
-                        .frame(height: 50)
-                        .font(.system(size: 20))
-                        .padding(.leading, 10)
+                        .padding(10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.gray, lineWidth: 1)
+                        )
+                        .font(.system(size: 15))
+                        .foregroundColor(Color.black)
                         .focused($isKeyboardActive)
                     
                     if myComment.isEmpty {
@@ -315,7 +312,7 @@ struct JamDetailView: View {
                     Image(systemName: "arrow.up.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 40, height: 40)
                         .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
                 }
                 .disabled(myComment.isEmpty)
@@ -432,12 +429,4 @@ struct JamDetailView: View {
     JamDetailView()
 }
 
-/*
- 고칠거
- 
- 1. 언급 시 키보드 올라오게 하기
- 2. 언급 비활성화 기능도 추가하기
- 3. 바탕 누르면 키보드 내려가게 하기
- 4. 댓글 작성 완료하면 키보드 내려가게 하기
- 
- */
+

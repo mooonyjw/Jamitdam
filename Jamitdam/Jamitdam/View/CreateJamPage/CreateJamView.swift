@@ -14,6 +14,9 @@ struct CreateJamView: View {
     // 이 페이지에서는 사용되지 않지만 DB에 추가하는 등의 작업이 필요하므로 선택된 인연을 담는 배열을 만든다.
     @State private var selectedRelationships: [Relationship] = []
     
+    @State private var navigateToWrite: Bool = false
+    @State private var navigateToCreateRelationship: Bool = false
+    
     let relationships: [Relationship] = getRelationships()
     
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
@@ -83,8 +86,6 @@ struct CreateJamView: View {
                                                 selectedRelationships.append(relationship)
                                             }
                                             
-                                            // 선택된 인연이 있는지 여부에 따라 버튼을 활성화 / 비활성화한다.
-                                            isEnabled = !selectedRelationships.isEmpty
                                         }) {
                                             VStack {
                                                 ZStack {
@@ -123,7 +124,7 @@ struct CreateJamView: View {
                                         }
                                     }
                                     Button(action: {
-                                        
+                                        navigateToCreateRelationship = true
                                     }) {
                                         VStack {
                                             ZStack {
@@ -143,6 +144,7 @@ struct CreateJamView: View {
                                     }
                                 }
                             }.frame(maxHeight: 416 * heightRatio, alignment: .top)
+                                .padding(.horizontal)
                         }
                         else {
                             LazyVGrid(columns: columns, alignment: .center, spacing: 0) {
@@ -171,8 +173,6 @@ struct CreateJamView: View {
                                             selectedRelationships.append(relationship)
                                         }
                                         
-                                        // 선택된 인연이 있는지 여부에 따라 버튼을 활성화 / 비활성화한다.
-                                        isEnabled = !selectedRelationships.isEmpty
                                     }) {
                                         VStack {
                                             ZStack {
@@ -211,7 +211,8 @@ struct CreateJamView: View {
                                     }
                                 }
                                 Button(action: {
-                                    
+                                    navigateToCreateRelationship = true
+                                
                                 }) {
                                     VStack {
                                         ZStack {
@@ -233,12 +234,27 @@ struct CreateJamView: View {
                             .frame(minHeight: 416 * heightRatio, alignment: .top)
                         }
                         Spacer().frame(height: 50 * heightRatio)
-                        RedButton(title: "다음", isEnabled: $isEnabled, height: 55 * heightRatio) {
-                            // 다음으로 넘어가는 action
+                    
+                        
+                        NavigationLink(
+                            destination: CreateRelationshipView(),
+                            isActive: $navigateToCreateRelationship
+                        ) {
+                            EmptyView()
+                        }
+                        NavigationLink(destination: WriteJamView(),
+                                       isActive: $navigateToWrite) {
+                            EmptyView()
+                        }
+                        RedButton(title: "다음", isEnabled: $isEnabled, height: 55) {
+                            if isEnabled {
+                                navigateToWrite = true
+                            }
                         }
                     }
                 }
             }
+            .navigationBarHidden(true)
         }
     }
 }

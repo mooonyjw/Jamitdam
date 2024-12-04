@@ -33,15 +33,27 @@ struct EmojiTextfield: UIViewRepresentable {
         }
 
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            // 이모지나 삭제를 허용하고, 이모지가 한 글자 이상 입력되지 않도록 설정
-            if string.isEmpty || (string.isSingleEmoji && (textField.text?.count ?? 0) == 0) {
+            if string.isEmpty {
+                // 삭제를 허용
                 parent.text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
                 return true
+            } else if string.isSingleEmoji && (textField.text?.count ?? 0) == 0 {
+                // 첫 번째 문자로 이모지를 허용
+                parent.text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+                return true
+            } else if string.isSingleEmoji && (textField.text?.count ?? 0) > 0 {
+                // 두 번째 문자로도 이모지가 입력될 경우 입력을 차단
+                return false
+            } else {
+                // 이모지가 아닌 경우 alert를 띄운다.
+                parent.isShowingAlert = true
+                return false
             }
-            // 한 글자 이상의 입력을 허용하지 않음
-            // 이모지가 아닌 경우 alert를 띄운다.
-            parent.isShowingAlert = true
-            return false
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
         }
     }
 }
