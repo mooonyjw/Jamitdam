@@ -55,7 +55,7 @@ struct FriendProfileView: View {
                             MyPageButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🩷", title: "인연 보기", destination: RelationshipListView())
                             
                             // destination 설정 해야함
-                            DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🐻‍❄️", Dday: 100)
+                            DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, lover: son, Dday: 100)
                             
                         }
                         .padding(.leading, 26 * widthRatio)

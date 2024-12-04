@@ -23,77 +23,73 @@ struct DayPlusView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        
-        VStack(alignment: .center, spacing: 25) {
-            // 닫기 편집 버튼
-            HStack{
-                
-                Button(action: {
-                    // action 넣기
-                    // 소정이가 만든 마이페이지 화면으로
-                }) {
-                    Text("닫기")
-                        .font(.callout)
-                        .foregroundColor(.graybasic)
-                        .padding()
-                }
-                Spacer()
-                Button(action: {
-                    //action
-                    dismiss()
-                }) {
-                    Text("편집")
-                        .font(.callout)
-                        .foregroundColor(.graybasic)
-                        .padding()
-                }
+        NavigationStack {
+            VStack(alignment: .center, spacing: 25) {
+                // 닫기 편집 버튼
+                HStack{
                     
-            }
-            .padding(.bottom, 80)
-            
-           
-            
-            // 하트, 이모지
-            ZStack {
-                //하트
-                Image(systemName: "heart.fill")
-                    .font(.system(size: 200))
-                    .foregroundColor(.whitebackground)
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text("닫기")
+                            .font(.callout)
+                            .foregroundColor(.graybasic)
+                            .padding()
+                    }
+                    Spacer()
+                    NavigationLink(destination: EditView()) {
+                        Text("편집")
+                            .font(.callout)
+                            .foregroundColor(.graybasic)
+                            .padding()
+                    }
+                    
+                }
+                .padding(.bottom, 80)
                 
-                //이모지
-                Text(relationship.icon)
-                    .font(.system(size: 80))
+                
+                
+                // 하트, 이모지
+                ZStack {
+                    //하트
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 200))
+                        .foregroundColor(.whitebackground)
+                    
+                    //이모지
+                    Text(relationship.icon)
+                        .font(.system(size: 80))
+                    
+                }
+                
+                Text(relationship.nickname)
+                    .font(.title.bold())
+                    .padding()
+                
+                Text("\(relationship.nickname) 님과 \n인연을 시작한 지")
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                
+                if daysSinceStart < 0 {
+                    Text("D + 0")
+                        .font(.largeTitle.bold())
+                        .foregroundColor(.redlogo)
+                }
+                else { Text("D + \(daysSinceStart)")
+                        .font(.largeTitle.bold())
+                        .foregroundColor(.redlogo)
+                }
+                
+                
+                Spacer()
+                
                 
             }
-            
-            Text(relationship.nickname)
-                .font(.title.bold())
-                .padding()
-            
-            Text("\(relationship.nickname) 님과 \n인연을 시작한 지")
-                .font(.title3)
-                .multilineTextAlignment(.center)
-          
-            if daysSinceStart < 0 {
-                Text("D + 0")
-                    .font(.largeTitle.bold())
-                    .foregroundColor(.redlogo)
-            }
-            else { Text("D + \(daysSinceStart)")
-                    .font(.largeTitle.bold())
-                    .foregroundColor(.redlogo)
-            }
-                
-               
-            Spacer()
-            
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.redsoftbase)
+            .navigationBarBackButtonHidden(true)
             
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.redsoftbase)
-        .navigationBarBackButtonHidden(true)
-        
-        
     }
 
 }

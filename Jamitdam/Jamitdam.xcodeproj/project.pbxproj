@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E43DD312CDCE27C00F3CEC6 /* User.swift */; };
-		8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A22CDDB6EC0076AE5C /* ContentView.swift */; };
-		8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */; };
-		8E4845A72CDDB7090076AE5C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A62CDDB7090076AE5C /* Post.swift */; };
-		8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9237DB2CDB0C4400301FE8 /* Relationship.swift */; };
-		8E97B9A72CFFF12000166325 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E97B9A52CFFF12000166325 /* DateValue.swift */; };
-		8E97B9A82CFFF12000166325 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E97B9A62CFFF12000166325 /* Like.swift */; };
-		8E97B9A92CFFF12000166325 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E97B9A42CFFF12000166325 /* Comment.swift */; };
+		8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32032CE1C28F00C4ED9E /* DateValue.swift */; };
+		8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32062CE1C28F00C4ED9E /* User.swift */; };
+		8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32052CE1C28F00C4ED9E /* Relationship.swift */; };
+		8E6F320B2CE1C28F00C4ED9E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32042CE1C28F00C4ED9E /* Post.swift */; };
+		8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */; };
+		8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A22CDDB6EC0076AE5C /* ContentView.swift */; };
+		8ED6A2372CF890460096E58D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6A2342CF890460096E58D /* Comment.swift */; };
+		8ED6A2392CF890460096E58D /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED6A2352CF890460096E58D /* Like.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
 		971A0B912CD9D32900A2BF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */; };
 		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
@@ -40,14 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E43DD312CDCE27C00F3CEC6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8E4845A22CDDB6EC0076AE5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
-		8E4845A62CDDB7090076AE5C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		8E9237DB2CDB0C4400301FE8 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
-		8E97B9A42CFFF12000166325 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		8E97B9A52CFFF12000166325 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
-		8E97B9A62CFFF12000166325 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		8E6F32032CE1C28F00C4ED9E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		8E6F32042CE1C28F00C4ED9E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8E6F32052CE1C28F00C4ED9E /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		8E6F32062CE1C28F00C4ED9E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8ED6A2342CF890460096E58D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8ED6A2352CF890460096E58D /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -87,15 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E7916B82CDA202700535605 /* Model */ = {
+		8E6F32072CE1C28F00C4ED9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E97B9A42CFFF12000166325 /* Comment.swift */,
-				8E97B9A52CFFF12000166325 /* DateValue.swift */,
-				8E97B9A62CFFF12000166325 /* Like.swift */,
-				8E4845A62CDDB7090076AE5C /* Post.swift */,
-				8E43DD312CDCE27C00F3CEC6 /* User.swift */,
-				8E9237DB2CDB0C4400301FE8 /* Relationship.swift */,
+				8ED6A2342CF890460096E58D /* Comment.swift */,
+				8ED6A2352CF890460096E58D /* Like.swift */,
+				8E6F32032CE1C28F00C4ED9E /* DateValue.swift */,
+				8E6F32042CE1C28F00C4ED9E /* Post.swift */,
+				8E6F32052CE1C28F00C4ED9E /* Relationship.swift */,
+				8E6F32062CE1C28F00C4ED9E /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,10 +123,10 @@
 		971A0B882CD9D32700A2BF5E /* Jamitdam */ = {
 			isa = PBXGroup;
 			children = (
+				8E6F32072CE1C28F00C4ED9E /* Model */,
 				8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */,
 				8E4845A22CDDB6EC0076AE5C /* ContentView.swift */,
 				8E9237DD2CDB123A00301FE8 /* View */,
-				8E7916B82CDA202700535605 /* Model */,
 				971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */,
 				971A0B8F2CD9D32900A2BF5E /* Preview Content */,
 			);
@@ -291,14 +291,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E97B9A72CFFF12000166325 /* DateValue.swift in Sources */,
-				8E97B9A82CFFF12000166325 /* Like.swift in Sources */,
-				8E97B9A92CFFF12000166325 /* Comment.swift in Sources */,
-				8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */,
-				8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */,
-				8E4845A72CDDB7090076AE5C /* Post.swift in Sources */,
-				8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */,
-				8E43DD322CDCE27C00F3CEC6 /* User.swift in Sources */,
+				8ED6A2372CF890460096E58D /* Comment.swift in Sources */,
+				8ED6A2392CF890460096E58D /* Like.swift in Sources */,
+				8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */,
+				8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */,
+				8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */,
+				8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */,
+				8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */,
+				8E6F320B2CE1C28F00C4ED9E /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +478,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -506,7 +506,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
