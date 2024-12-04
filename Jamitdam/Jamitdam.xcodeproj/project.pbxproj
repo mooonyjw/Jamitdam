@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E3097022CFEEDEC00E57E82 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3097012CFEEDEC00E57E82 /* Poll.swift */; };
 		8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32032CE1C28F00C4ED9E /* DateValue.swift */; };
 		8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32062CE1C28F00C4ED9E /* User.swift */; };
 		8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6F32052CE1C28F00C4ED9E /* Relationship.swift */; };
@@ -41,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8E3097012CFEEDEC00E57E82 /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		8E4845A22CDDB6EC0076AE5C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		8E6F32032CE1C28F00C4ED9E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		8E6F32072CE1C28F00C4ED9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8E3097012CFEEDEC00E57E82 /* Poll.swift */,
 				8ED6A2342CF890460096E58D /* Comment.swift */,
 				8ED6A2352CF890460096E58D /* Like.swift */,
 				8E6F32032CE1C28F00C4ED9E /* DateValue.swift */,
@@ -299,7 +296,6 @@
 				8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */,
 				8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */,
 				8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */,
-				8E3097022CFEEDEC00E57E82 /* Poll.swift in Sources */,
 				8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */,
 				8E6F320A2CE1C28F00C4ED9E /* Relationship.swift in Sources */,
 				8E6F320B2CE1C28F00C4ED9E /* Post.swift in Sources */,
