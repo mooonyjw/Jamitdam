@@ -207,9 +207,9 @@ struct WriteJamView: View {
                                     Image(systemName: "photo")
                                         .foregroundColor(.white)
                                 }
-                                .disabled(selectedImages.count >= 10)
-                                .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
                             }
+                            .disabled(selectedImages.count >= 10)
+                            .contentShape(Circle()) // 버튼의 터치 영역을 Circle 모양으로 설정
                             .frame(alignment: .trailing)
                         }
                         // 글자 수 제한 표시
