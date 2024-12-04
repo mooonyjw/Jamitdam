@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct RedButton: View {
+public struct EmptyButton: View {
     let title: String
     // 외부에서 버튼을 활성화시키기 위한 조건을 만족 시킬 시 true를 전달
     @Binding var isEnabled: Bool

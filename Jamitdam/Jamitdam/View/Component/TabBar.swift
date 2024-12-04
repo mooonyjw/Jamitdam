@@ -10,12 +10,12 @@ struct TabBar: View {
             ZStack {
                
                 TabView {
-                    AddFriendProfileView()
+                    HomeView()
                         .tabItem {
                             Image(systemName: "house")
                             Text("홈")
                         }
-                    MyPageView()
+                    PollHomeView()
                         .tabItem {
                             Image(systemName: "bubble.left.and.bubble.right")
                             Text("투표")
@@ -24,7 +24,9 @@ struct TabBar: View {
                         .tabItem {
                         }
                         .disabled(true)
+
                     CalendarView(isTabBarHidden: $isTabBarHidden)
+
                         .tabItem {
                             Image(systemName: "calendar")
                             Text("달력")

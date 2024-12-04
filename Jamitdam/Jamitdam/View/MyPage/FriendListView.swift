@@ -21,7 +21,7 @@ struct FriendListView: View {
     var screenHeight: CGFloat = 844
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -53,6 +53,7 @@ struct FriendListView: View {
                 }
                 .navigationBarBackButtonHidden(true)
             }
+            
             NavigationLink(
                 destination: FriendProfileView(
                     user: selectedFriend ?? user.friends[0]
@@ -61,7 +62,7 @@ struct FriendListView: View {
             ) {
                 EmptyView()
             }
-        }
+        //}
 
     }
 }

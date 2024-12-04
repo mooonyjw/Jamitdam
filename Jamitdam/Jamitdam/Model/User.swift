@@ -17,6 +17,9 @@ struct User: Identifiable {
     var blockedFriends: [User] = []
     var friends: [User] = []
     var requestedFriends: [User] = []
+    // 유저별로 디데이 띄울 인연
+    //var ddayRelationshipID: UUID?
+    var likedPostIDs: [UUID] = []
 
     // 친구 추가
     mutating func addFriend(friend: User) {
@@ -56,6 +59,7 @@ var user4 = User(name: "메모리", profile: "UserProfile4", userID: "memory", p
 var user5 = User(name: "이혜민이올시다!", profile: "UserProfile5", userID: "hyemin", password: "hyemin55", email: "Lhm55@hanyang.ac.kr")
 
 
-var user1 = User(name: "유수현", profile: "UserProfile1", userID: "suhyeonU", password: "suhyeonU11", email: "Shu11@hanyang.ac.kr", blockedFriends: [user2, user3], friends: [user2, user5])
+var user1 = User(name: "유수현", profile: "UserProfile1", userID: "suhyeonU", password: "suhyeonU11", email: "Shu11@hanyang.ac.kr", blockedFriends: [user2, user3], friends: [user2, user5], requestedFriends: [user4]
+)
 
 var users: [User] = [user1, user2, user3, user4, user5]

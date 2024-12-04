@@ -8,6 +8,7 @@ struct MyPageView: View {
     // 유수현의 마이페이지
     @State private var user: User = user1
     @State private var nickname: String = ""
+    @State private var lover: Relationship = tiger
 
     // 친구 추가 액션 시트
     @State private var isPresentingBottomSheet = false
@@ -82,7 +83,7 @@ struct MyPageView: View {
                             Spacer().frame(width: 11.5 * widthRatio)
                             
                             // destination 설정 해야함
-                            DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, icon: "🐻‍❄️", Dday: 100)
+                            DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, lover: lover, Dday: 40)
                             
                         }
                         .padding(.leading, 26 * widthRatio)
@@ -110,7 +111,7 @@ struct MyPageView: View {
                                 // destination 설정 해야함
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: AddFriendProfileView())
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: SelectingFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: SelectingFriendProfileView(friend: user3))
                             }
                             
                             Spacer()
@@ -145,7 +146,7 @@ struct MyPageView: View {
                                 // destination 설정 해야함
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: AddFriendProfileView())
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: SelectingFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: SelectingFriendProfileView(friend: user4))
                             }
                             
                             Spacer()
@@ -251,7 +252,7 @@ struct MyPageView: View {
                                 
                                 ToggleList(widthRatio: widthRatio, heightRatio: heightRatio, whatToggle: 2, onAlarm: $onAlarm, darkMode: $darkMode)
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "튜토리얼 보기", titleButton: true, destination: SelectingFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "튜토리얼 보기", titleButton: true, destination: SelectingFriendProfileView(friend: user4))
                             }
                             
                             Spacer()
@@ -283,7 +284,7 @@ struct MyPageView: View {
                             VStack {
                                 MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "로그아웃", titleButton: true, destination: AddFriendProfileView())
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "탈퇴하기", titleColor: Color.red, titleButton: true, destination: SelectingFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "탈퇴하기", titleColor: Color.red, titleButton: true, destination: SelectingFriendProfileView(friend: user4))
 
                             }
 
@@ -355,24 +356,27 @@ struct DdayButton: View {
     var widthRatio: CGFloat
     var heightRatio: CGFloat
     
-    var icon: String
+    var lover: Relationship
     
     // 입력받을 디데이 날짜
     let Dday: Int
     @State private var title: String
 
 
-    init(widthRatio: CGFloat, heightRatio: CGFloat, icon: String, Dday: Int) {
+    init(widthRatio: CGFloat, heightRatio: CGFloat, lover: Relationship, Dday: Int) {
         self.widthRatio = widthRatio
         self.heightRatio = heightRatio
-        self.icon = icon
+        self.lover = lover
         self.Dday = Dday
         self._title = State(initialValue: "D+\(Dday)")
     }
     
     var body: some View {
         // 디데이 수정 페이지로 이동
-        NavigationLink(destination: AddFriendProfileView()) {
+
+        NavigationLink(destination: DayPlusView(relationship: tiger, startDate: Calendar.current.date(byAdding: .day, value: -40, to: Date())!
+           )) {
+
             VStack {
                 
                 ZStack {
@@ -380,7 +384,7 @@ struct DdayButton: View {
                         .font(.system(size: 35 * widthRatio))
                         .foregroundColor(Color.white)
                     
-                    Text(icon)
+                    Text(lover.icon)
                         .font(.system(size: 20 * widthRatio))
                 }
                 Spacer()

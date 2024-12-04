@@ -69,4 +69,3 @@ func addPost(post: Post) {
 func deletePost(post: Post) {
     dummyPosts.removeAll { $0.id == post.id }
 }
-
