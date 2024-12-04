@@ -3,9 +3,13 @@ import SwiftUI
 struct JamDetailView: View {
     
     // 글 주인공 (더미데이터 유수현)
-    private var writer: User = user1
+    //private var writer: User = user1
+    // 로그인된 사용자 (유수현)
+    @State private var loginedUser: User = user1
     // 글 (더미데이터 유수현의 글)
-    private var post: Post = dummyPosts[0]
+    //private var post: Post = dummyPosts[0]
+    let post: Post
+
     // 좋아요 눌렀는지 여부
     // false로 초기화하지만 DB -> likebutton으로부터 정보를 받아서 업데이트
     @State var isLiked: Bool = false
@@ -39,11 +43,11 @@ struct JamDetailView: View {
         // 글 ID
         let postId: UUID = post.id
         // 작성자 ID
-        let writerId: UUID = writer.id
+        //let writerId: UUID = writer.id
         // 작성자 프로필
-        let profile: String = writer.profile
+        //let profile: String = writer.profile
         // 작성자 이름
-        let name: String = writer.name
+        //let name: String = writer.name
         // 글 제목
         let title: String = post.title
         // 글 본문
@@ -58,25 +62,52 @@ struct JamDetailView: View {
                     VStack {
                         // 작성자 프로필
                         HStack {
-                            Image(profile)
+                            Image(post.author.profile)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
                                 .clipShape(Circle())
+//                            
+//                            Spacer()
+//                                .frame(width: 10)
                             
-                            Spacer()
-                                .frame(width: 10)
-                            
-                            VStack(alignment: .leading) {
-                                Text(name)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(post.author.name)
                                     .font(.system(size: 20, weight: .semibold))
                                 Text(timeAgoSinceDate(writeDate))
-                                    .font(.system(size: 14))
-                                    .padding(.leading, 2)
+                                    .font(.footnote)
+                                    .foregroundColor(Color("Graybasic"))
+                            }
+                            .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Menu {
+                                // 본인이 작성한 글만 수정/삭제 버튼 표시
+                                if post.author.id == loginedUser.id {
+                                    Button(action: {
+                                        print("수정 동작 실행")
+                                        //editPoll()
+                                    }) {
+                                        Label("수정", systemImage: "pencil")
+                                    }
+
+                                    Button(role: .destructive, action: {
+                                        print("삭제 동작 실행")
+                                        //deletePoll()
+                                    }) {
+                                        Label("삭제", systemImage: "trash")
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "ellipsis")
+                                    .rotationEffect(.degrees(90))
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.gray)
+                                    .padding(8)
                             }
                         }
-                        .padding(.top, 37)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 10)
                         
                         // 본문
                         Text(content)
@@ -136,7 +167,7 @@ struct JamDetailView: View {
                                             Image("\(commentWriter.profile)")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 40, height: 40)
+                                                .frame(width: 50, height: 50)
                                                 .clipShape(Circle())
                                             
                                             Spacer()
@@ -146,13 +177,15 @@ struct JamDetailView: View {
                                                 // 사용자 이름 및 작성 시간
                                                 HStack {
                                                     Text("\(commentWriter.name)")
-                                                        .font(.system(size: 13))
+                                                        .font(.system(size: 15, weight: .semibold))
                                                     Text(timeAgoSinceDate(comment.date))
-                                                        .font(.system(size: 12))
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color("Graybasic"))
                                                 }
+                                                .padding(.bottom, 1)
                                                 // 댓글 내용
                                                 Text(comment.content)
-                                                    .font(.system(size: 15))
+                                                    .font(.system(size: 16))
                                                     .frame(maxWidth: .infinity, alignment: .leading)
                                             }
                                             
@@ -192,13 +225,15 @@ struct JamDetailView: View {
                                                     // 사용자 이름 및 작성 시간
                                                     HStack {
                                                         Text("\(replyWriter.name)")
-                                                            .font(.system(size: 13))
+                                                            .font(.system(size: 15, weight: .semibold))
                                                         Text(timeAgoSinceDate(reply.date))
-                                                            .font(.system(size: 12))
+                                                            .font(.footnote)
+                                                            .foregroundColor(Color("Graybasic"))
                                                     }
+                                                    .padding(.bottom, 0.3)
                                                     // 댓글 내용
                                                     Text(reply.content)
-                                                        .font(.system(size: 15))
+                                                        .font(.system(size: 16))
                                                         .frame(maxWidth: .infinity, alignment: .leading)
                                                 }
                                             }
@@ -235,6 +270,8 @@ struct JamDetailView: View {
                     
                 }
             }
+            .navigationBarBackButtonHidden(true) // Remove the default back button
+
         }
                 
         
@@ -328,7 +365,7 @@ struct JamDetailView: View {
     // 좋아요 상태 초기화를 위한 함수
     public func initializeLikeStatus() {
         // 좋아요 여부를 체크하는 함수 사용
-        isLiked = checkIfLiked(userId: writer.id, postId: post.id)
+        isLiked = checkIfLiked(userId: loginedUser.id, postId: post.id)
         likesCount = post.likesCount
     }
     
@@ -425,8 +462,8 @@ struct JamDetailView: View {
     
 }
 
-#Preview {
-    JamDetailView()
-}
+//#Preview {
+//    JamDetailView()
+//}
 
 

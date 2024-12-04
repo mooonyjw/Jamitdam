@@ -8,19 +8,22 @@ struct HomePost: View {
     init(post: Post) {
         self.post = post
         self.user = post.author
+        self._likesCount = State(initialValue: post.likesCount) // 좋아요 개수 초기화
     }
+    
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
     @State var isLiked: Bool = false
     // 좋아요 개수
-    @State var likesCount: Int = 5
+    @State private var likesCount: Int // 좋아요 개수
     // 더미 댓글 데이터
+    //@State private var comments: [Comment] // 댓글 데이터
     @State var comments: [Comment] = [comment1, comment2, co_comment1]
-    
+
     public var body: some View {
-        NavigationLink(destination: JamDetailView()) {
+        NavigationLink(destination: JamDetailView(post: post)) {
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()
                     .frame(height: 16)

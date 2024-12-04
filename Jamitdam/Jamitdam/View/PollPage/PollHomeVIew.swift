@@ -2,8 +2,9 @@ import SwiftUI
 
 struct PollHomeView: View {
     
-    // 글 주인공 (더미데이터 유수현)
     private var writer: User = user1
+    private var polls: [Poll] = dummyPolls // 모든 투표 데이터를 가져옴
+
 
     var body: some View {
         NavigationStack {
@@ -81,13 +82,18 @@ struct PollHomeView: View {
                         
                         Spacer() // 나머지 공간 차지
                         
-                        VotePost(poll: dummyPolls[0])
-                            .padding(.bottom, 5)
-                        VotePost(poll: dummyPolls[1])
-                            .padding(.bottom, 5)
-                        
-                        VotePost(poll: dummyPolls[2])
-                            .padding(.bottom, 5)
+//                        VotePost(poll: dummyPolls[0])
+//                            .padding(.bottom, 5)
+//                        VotePost(poll: dummyPolls[1])
+//                            .padding(.bottom, 5)
+//                        
+//                        VotePost(poll: dummyPolls[2])
+//                            .padding(.bottom, 5)
+//                        // 투표 리스트 섹션
+                        ForEach(polls, id: \.id) { poll in
+                            VotePost(poll: poll)
+                                .padding(.bottom, 5)
+                        }
 
 
                     }
