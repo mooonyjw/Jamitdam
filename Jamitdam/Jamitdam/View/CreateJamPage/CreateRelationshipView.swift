@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct CreateRelationshipView: View {
+    @ObservedObject var relationshipStore: RelationshipStore
+    
     // 버튼을 활성화시키기 위한 변수
     @State private var isEnabled: Bool = false
 
@@ -153,7 +155,8 @@ struct CreateRelationshipView: View {
                             .padding(.horizontal)
                         
                         RedButton(title: "완료", isEnabled: $isEnabled, height: 55, action: {
-                            relationships.append(Relationship(nickname: nickname, hashtags: hashtag, icon: icon, startDate: Date(), userId: user1.id))
+                            let newRelationship = Relationship(nickname: nickname, hashtags: hashtag, icon: icon, startDate: Date(), userId: user1.id)
+                            relationshipStore.addRelationship(newRelationship)
                             navigateToCreateJam = true })
                     }
                 }
@@ -166,7 +169,7 @@ struct CreateRelationshipView: View {
                 }
             }
             NavigationLink(
-                destination: CreateJamView(),
+                destination: CreateJamView().environmentObject(relationshipStore),
                 isActive: $navigateToCreateJam
             ) {
                 EmptyView()
@@ -177,5 +180,6 @@ struct CreateRelationshipView: View {
 }
 
 #Preview {
-    CreateRelationshipView()
+    CreateRelationshipView(relationshipStore: RelationshipStore())
+        .environmentObject(RelationshipStore())
 }
