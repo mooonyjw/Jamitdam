@@ -3,10 +3,12 @@ import SwiftUI
 struct TabBar: View {
     
     @State private var showPopUp: Bool = false
+    @State private var isTabBarHidden: Bool = false
     
     var body: some View {
         NavigationStack {
             ZStack {
+               
                 TabView {
                     AddFriendProfileView()
                         .tabItem {
@@ -22,11 +24,13 @@ struct TabBar: View {
                         .tabItem {
                         }
                         .disabled(true)
-                    RelationshipListView()
+                    CalendarView(isTabBarHidden: $isTabBarHidden)
                         .tabItem {
                             Image(systemName: "calendar")
                             Text("달력")
                         }
+                        .toolbar(isTabBarHidden ? .hidden: .visible, for: .tabBar)
+                  
                     MyPageView()
                         .tabItem {
                             Image(systemName: "person")
@@ -61,6 +65,8 @@ struct TabBar: View {
                     }
                     .padding(.horizontal, 16)
                 }
+                .zIndex(1)
+                .opacity(isTabBarHidden ? 0 : 1)
                 
                 
                 // 팝업
@@ -122,7 +128,6 @@ struct PostPopUp: View {
         .shadow(radius: 10)
     }
 }
-
 
 #Preview {
     TabBar()
