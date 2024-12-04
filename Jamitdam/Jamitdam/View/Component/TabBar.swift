@@ -5,11 +5,14 @@ struct TabBar: View {
     @State private var showPopUp: Bool = false
     @State private var isLoggedIn: Bool = false // 로그인 상태 관리
     @State private var showLoginModal: Bool = false // 로그인 모달 표시 상태
+    @State private var isTabBarHidden: Bool = false
+
 
     
     var body: some View {
         NavigationStack {
             ZStack {
+               
                 TabView {
                     HomeView()
                         .tabItem {
@@ -25,11 +28,15 @@ struct TabBar: View {
                         .tabItem {
                         }
                         .disabled(true)
-                    RelationshipListView()
+
+                    CalendarView(isTabBarHidden: $isTabBarHidden)
+
                         .tabItem {
                             Image(systemName: "calendar")
                             Text("달력")
                         }
+                        .toolbar(isTabBarHidden ? .hidden: .visible, for: .tabBar)
+                  
                     MyPageView()
                         .tabItem {
                             Image(systemName: "person")
@@ -76,6 +83,8 @@ struct TabBar: View {
                     }
                     .padding(.horizontal, 16)
                 }
+                .zIndex(1)
+                .opacity(isTabBarHidden ? 0 : 1)
                 
                 
                 // 팝업
@@ -147,7 +156,6 @@ struct PostPopUp: View {
     }
     
 }
-
 
 #Preview {
     TabBar()
