@@ -12,6 +12,9 @@
 		8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */; };
 		8E4845A72CDDB7090076AE5C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4845A62CDDB7090076AE5C /* Post.swift */; };
 		8E9237DC2CDB0C4400301FE8 /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9237DB2CDB0C4400301FE8 /* Relationship.swift */; };
+		8E97B9A72CFFF12000166325 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E97B9A52CFFF12000166325 /* DateValue.swift */; };
+		8E97B9A82CFFF12000166325 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E97B9A62CFFF12000166325 /* Like.swift */; };
+		8E97B9A92CFFF12000166325 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E97B9A42CFFF12000166325 /* Comment.swift */; };
 		971A0B8E2CD9D32900A2BF5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */; };
 		971A0B912CD9D32900A2BF5E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */; };
 		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
@@ -42,6 +45,9 @@
 		8E4845A42CDDB6F80076AE5C /* JamitdamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamApp.swift; sourceTree = "<group>"; };
 		8E4845A62CDDB7090076AE5C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8E9237DB2CDB0C4400301FE8 /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
+		8E97B9A42CFFF12000166325 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8E97B9A52CFFF12000166325 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		8E97B9A62CFFF12000166325 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 		971A0B862CD9D32700A2BF5E /* Jamitdam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jamitdam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0B8D2CD9D32900A2BF5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		971A0B902CD9D32900A2BF5E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 		8E7916B82CDA202700535605 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E97B9A42CFFF12000166325 /* Comment.swift */,
+				8E97B9A52CFFF12000166325 /* DateValue.swift */,
+				8E97B9A62CFFF12000166325 /* Like.swift */,
 				8E4845A62CDDB7090076AE5C /* Post.swift */,
 				8E43DD312CDCE27C00F3CEC6 /* User.swift */,
 				8E9237DB2CDB0C4400301FE8 /* Relationship.swift */,
@@ -282,6 +291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E97B9A72CFFF12000166325 /* DateValue.swift in Sources */,
+				8E97B9A82CFFF12000166325 /* Like.swift in Sources */,
+				8E97B9A92CFFF12000166325 /* Comment.swift in Sources */,
 				8E4845A52CDDB6F80076AE5C /* JamitdamApp.swift in Sources */,
 				8E4845A32CDDB6EC0076AE5C /* ContentView.swift in Sources */,
 				8E4845A72CDDB7090076AE5C /* Post.swift in Sources */,
