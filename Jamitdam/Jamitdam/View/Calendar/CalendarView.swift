@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 struct CalendarView: View {
+    @Binding var isTabBarHidden: Bool
     // 캘린더 가져오기
 
     @State private var selectedDate: Date? = nil
@@ -26,6 +27,7 @@ struct CalendarView: View {
                     .ignoresSafeArea()
                     .onTapGesture {
                         isDetailViewVisible = false
+                        isTabBarHidden = false
                     }
             }
             
@@ -171,6 +173,7 @@ struct CalendarView: View {
                         if displayedCalendar.hasPost(for: value.date, from: getPosts(for: selectedUser, from: dummyPosts)){
                             selectedDate = value.date
                             isDetailViewVisible = true
+                            isTabBarHidden = true
                         }
                     }
             }
@@ -278,12 +281,12 @@ struct CalendarView: View {
 
     
 #Preview {
-   
+    @State var isTabBarHidden: Bool = false
     let initialCalendar = getCalendar(for: user1, from: dummyCalendars)
     var displayedCalendar = initialCalendar
     // 기본적으로 본인 사용자로 초기화
     var selectedUser = user1
     
-    CalendarView(displayedCalendar: displayedCalendar, selectedUser: selectedUser)
+    CalendarView(isTabBarHidden: $isTabBarHidden, displayedCalendar: displayedCalendar, selectedUser: selectedUser)
     
 }
