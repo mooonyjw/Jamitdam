@@ -23,7 +23,7 @@ struct DayPlusView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             VStack(alignment: .center, spacing: 25) {
                 // 닫기 편집 버튼
                 HStack{
@@ -89,7 +89,7 @@ struct DayPlusView: View {
             .background(Color.redsoftbase)
             .navigationBarBackButtonHidden(true)
             
-        }
+        //}
     }
 
 }

@@ -71,6 +71,7 @@ struct RequestedFriendListView: View {
                 }
                 .navigationBarBackButtonHidden(true) 
             }
+
             NavigationLink(
                 destination: SelectingFriendProfileView(
                     friend: selectedFriend ?? user.friends[0]
@@ -79,8 +80,8 @@ struct RequestedFriendListView: View {
             ) {
                 EmptyView()
             }
-        //}
-    }
+        }
+    
 }
 
 
