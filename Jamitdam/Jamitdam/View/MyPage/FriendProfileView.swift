@@ -17,7 +17,7 @@ struct FriendProfileView: View {
 
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -126,9 +126,9 @@ struct FriendProfileView: View {
             .onAppear {
                 nickname = user.name
             }
-
-        }
-        .navigationBarHidden(true)
+            .navigationBarHidden(true)
+        //}
+        
     }
     
 }

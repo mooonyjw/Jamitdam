@@ -50,7 +50,7 @@ struct EditRelationshipView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             VStack {
                 
                 TopBar(title: "인연 수정하기")
@@ -165,8 +165,8 @@ struct EditRelationshipView: View {
                 .onChange(of: hashtag) { _ in updateButtonState() }
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
-        }
-        .navigationBarBackButtonHidden(true) 
+        //}
+            .navigationBarBackButtonHidden(true) 
     }
 }
 

@@ -16,7 +16,7 @@ struct RequestedFriendListView: View {
     
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -79,7 +79,7 @@ struct RequestedFriendListView: View {
             ) {
                 EmptyView()
             }
-        }
+        //}
     }
 }
 

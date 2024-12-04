@@ -21,7 +21,7 @@ struct MyPageView: View {
     @State private var darkMode: Bool = false
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -303,7 +303,7 @@ struct MyPageView: View {
                 nickname = user.name
             }
 
-        }
+        //}
     }
     
 }

@@ -22,7 +22,7 @@ struct TabBar: View {
                         .tabItem {
                         }
                         .disabled(true)
-                    RelationshipListView()
+                    MyPageView()
                         .tabItem {
                             Image(systemName: "calendar")
                             Text("달력")
