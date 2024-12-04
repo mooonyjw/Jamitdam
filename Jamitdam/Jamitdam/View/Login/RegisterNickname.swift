@@ -1,31 +1,32 @@
+
+// 하단의 다음 버튼을 활성화시키기 위한 boolean
+// 닉네임이 입력되면 true가 된다.
+
 import SwiftUI
 
-
 struct RegisterNickname: View {
-    
     @State private var nickname: String = ""
-    
-    // 하단의 다음 버튼을 활성화시키기 위한 boolean
-    // 닉네임이 입력되면 true가 된다.
     @State private var isEnabled: Bool = false
-    @Environment(\.dismiss) private var dismiss
+    @State private var showAlert: Bool = false // Alert 표시 상태
+    @Environment(\.dismiss) private var dismiss // 뷰 닫기 기능
     @StateObject private var navigationState = NavigationState()
+
+    @State private var navigateToLogin: Bool = false // 로그인 화면 이동 상태
 
     let screenWidth: CGFloat = 390
     let screenHeight: CGFloat = 844
-
 
     var body: some View {
         GeometryReader { geometry in
             let heightRatio = geometry.size.height / screenHeight
             let widthRatio = geometry.size.width / screenWidth
-            
+
             VStack {
-                //TopBar(title: "")
+                // Back Button
                 BackButton(widthRatio: widthRatio, heightRatio: heightRatio)
                     .frame(height: 57)
                     .padding(.top)
-                
+
                 ScrollView {
                     VStack(spacing: 20) {
                         // Header Text
@@ -41,56 +42,58 @@ struct RegisterNickname: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
                         .padding(.top, 30)
-                        
-                        
+
+                        // Nickname Input Field
                         VStack(spacing: 20) {
                             ZStack {
-                                // RoundedRectangle으로 박스 그리기
                                 RoundedRectangle(cornerRadius: 15)
                                     .stroke(Color("Grayunselected"), lineWidth: 1)
                                     .frame(height: 65)
-                                
-                                // TextField 배치
+
                                 TextField("닉네임", text: $nickname)
                                     .onChange(of: nickname) { newValue in
-                                        // 공백 제거 및 8자 제한
                                         let trimmedValue = newValue.filter { !$0.isWhitespace }
                                         if trimmedValue.count > 8 {
                                             nickname = String(trimmedValue.prefix(8))
                                         } else {
                                             nickname = trimmedValue
                                         }
-                                        // 다음 버튼 활성화 여부 갱신
                                         isEnabled = !nickname.isEmpty
                                     }
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(.horizontal, 15)
                             }
-                            // ZStack 내부 여백
                             .padding(.horizontal, 15)
                         }
                     }
                 }
-                
+
                 Spacer()
-                NavigationLink(
-                    destination: RegisterNickname(),
-                    isActive: $navigationState.navigateToNickname
-                ) {
+
+                // 회원가입 버튼
+                NavigationLink(destination: Login()) {
                     RedButton(title: "회원가입", isEnabled: .constant(isEnabled), height: 55) {
-                        // Navigation 활성화
-                        navigationState.navigateToLogin = true
+                        // Alert 띄우고 로그인 페이지로 이동
+                        showAlert = true
                     }
                     .disabled(!isEnabled)
                 }
                 .padding(.bottom, 70 * heightRatio)
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("회원가입 완료"),
+                        message: Text("회원가입이 완료되었습니다."),
+                        dismissButton: .default(Text("확인")) {
+                            dismiss()
+                            dismiss()
+                        }
+                    )
+                }
                 
             }
-            
         }
         .navigationBarBackButtonHidden(true)
     }
-        
 }
 
 #Preview {

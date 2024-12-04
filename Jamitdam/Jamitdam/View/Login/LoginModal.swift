@@ -116,6 +116,8 @@ struct LoginModal: View {
     @State private var password: String = ""
     @State private var isEnabled: Bool = true
     @Binding var isLoggedIn: Bool
+    @Binding var showLoginModal: Bool // TabBar의 모달 상태 제어
+
 
     @State private var navigateToRegister: Bool = false
 
@@ -211,16 +213,78 @@ struct LoginModal: View {
 
                         // RedButton fixed at the bottom
                         RedButton(title: "로그인", isEnabled: $isEnabled, height: 55) {
-                            print("로그인 성공")
-                            isLoggedIn = true // 로그인 상태 업데이트
+                            if username.isEmpty || password.isEmpty {
+                                print("아이디와 비밀번호를 입력하세요.")
+                            } else {
+                                print("로그인 성공")
+                                isLoggedIn = true // 로그인 성공 시 상태 변경
+                                showLoginModal = false // 모달 닫기
+
+                                
+                            }
                         }
+                        .disabled(username.isEmpty || password.isEmpty)
                         .padding(.bottom, 70 * heightRatio)
                     }
                 }
                 .navigationDestination(isPresented: $navigateToRegister) {
                     Register()
+
                 }
             }
         }
+        .interactiveDismissDisabled(true) // 스와이프 동작 비활성화
+
     }
 }
+//
+//import SwiftUI
+//
+//struct LoginModal: View {
+//    @State private var username: String = ""
+//    @State private var password: String = ""
+//    @State private var isEnabled: Bool = true
+//    @Binding var isLoggedIn: Bool
+//    @Binding var showLoginModal: Bool // 모달 제어
+//
+//    var body: some View {
+//        NavigationStack {
+//            VStack {
+//                Text("로그인")
+//                    .font(.largeTitle)
+//                    .padding()
+//
+//                TextField("아이디", text: $username)
+//                    .padding()
+//                    .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+//                    .padding(.horizontal)
+//
+//                SecureField("비밀번호", text: $password)
+//                    .padding()
+//                    .background(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
+//                    .padding(.horizontal)
+//
+//                RedButton(title: "로그인", isEnabled: $isEnabled, height: 55) {
+//                    if username.isEmpty || password.isEmpty {
+//                        print("아이디와 비밀번호를 입력하세요.")
+//                    } else {
+//                        print("로그인 성공")
+//                        isLoggedIn = true // 로그인 성공 시 상태 변경
+//                        showLoginModal = false // 로그인 성공 후 모달 닫기
+//                    }
+//                }
+//                .disabled(username.isEmpty || password.isEmpty)
+//                .padding()
+//
+//                // 로그인이 완료되지 않으면 닫기 버튼 제거
+//                if !isLoggedIn {
+//                    Text("로그인 후에 계속 진행할 수 있습니다.")
+//                        .foregroundColor(.gray)
+//                        .font(.footnote)
+//                        .padding()
+//                }
+//            }
+//            .interactiveDismissDisabled(true) // 스와이프 동작 비활성화
+//        }
+//    }
+//}

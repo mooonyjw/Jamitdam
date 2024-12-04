@@ -39,140 +39,140 @@ struct CreateRelationshipView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-            VStack {
-                TopBar(title: "새로운 인연 생성하기")
-                ScrollView {
-                    Spacer()
-                        .frame(height: 50)
-                    VStack(spacing: 20) {
-                        Text("그 사람은 누구인가요?")
+        GeometryReader { geometry in
+        VStack {
+            TopBar(title: "새로운 인연 생성하기")
+            ScrollView {
+                Spacer()
+                    .frame(height: 50)
+                VStack(spacing: 20) {
+                    Text("그 사람은 누구인가요?")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading)
+                        .font(.system(size: 25, weight: .semibold))
+                    
+                    Text("이모지와 별명으로 상대방을 표현해보아요.")
+                        .lineSpacing(3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading)
+                        .font(.system(size: 14))
+                        .foregroundColor(Color("Graybasic"))
+                    
+                    VStack(spacing: 40) {
+                        ZStack {
+                            Circle()
+                                .fill(Color("Redsoftbase"))
+                                .frame(width: 130, height: 130)
+                            
+                            EmojiTextfield(text: $icon, isShowingAlert: $isShowingAlert)
+                                .frame(width: 100, height: 130)
+                                .focused($isKeyboardActive)
+                            
+                            if icon.isEmpty {
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(Color("Grayunselected"))
+                                    .transition(.opacity)
+                            }
+                        }
+                        .alert(isPresented: $isShowingAlert) {
+                            Alert(
+                                title: Text(""),
+                                message: Text("이모지를 입력해주세요!"),
+                                dismissButton: .default(Text("확인"))
+                            )
+                        }
+                        
+                        VStack(spacing: 10) {
+                            TextField("title", text: $nickname,
+                                      prompt: Text("별명 입력")
+                                .font(.system(size: 25))
+                                .foregroundColor(Color("Graybasic")))
+                            .multilineTextAlignment(.center)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .keyboardType(.default)
+                            .font(.system(size: 25, weight: .semibold))
+                            .focused($isKeyboardActive)
+                            
+                            if nickname.isEmpty {
+                                Rectangle()
+                                    .fill(Color("Graybasic"))
+                                    .frame(width: 120, height: 2)
+                            }
+                        }
+                        .frame(height: 30)
+                    }
+                    
+                    VStack {
+                        Text("관계 해시태그")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading)
                             .font(.system(size: 25, weight: .semibold))
                         
-                        Text("이모지와 별명으로 상대방을 표현해보아요.")
-                            .lineSpacing(3)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading)
-                            .font(.system(size: 14))
-                            .foregroundColor(Color("Graybasic"))
-                        
-                        VStack(spacing: 40) {
-                            ZStack {
-                                Circle()
-                                    .fill(Color("Redsoftbase"))
-                                    .frame(width: 130, height: 130)
-                                
-                                EmojiTextfield(text: $icon, isShowingAlert: $isShowingAlert)
-                                    .frame(width: 100, height: 130)
-                                    .focused($isKeyboardActive)
-                                
-                                if icon.isEmpty {
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .frame(width: 30, height: 30)
-                                        .foregroundColor(Color("Grayunselected"))
-                                        .transition(.opacity)
-                                }
-                            }
-                            .alert(isPresented: $isShowingAlert) {
-                                Alert(
-                                    title: Text(""),
-                                    message: Text("이모지를 입력해주세요!"),
-                                    dismissButton: .default(Text("확인"))
-                                )
-                            }
-                            
-                            VStack(spacing: 10) {
-                                TextField("title", text: $nickname,
-                                          prompt: Text("별명 입력")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color("Graybasic")))
-                                .multilineTextAlignment(.center)
-                                .textFieldStyle(PlainTextFieldStyle())
-                                .keyboardType(.default)
-                                .font(.system(size: 25, weight: .semibold))
-                                .focused($isKeyboardActive)
-                                
-                                if nickname.isEmpty {
-                                    Rectangle()
-                                        .fill(Color("Graybasic"))
-                                        .frame(width: 120, height: 2)
-                                }
-                            }
-                            .frame(height: 30)
-                        }
-                        
-                        VStack {
-                            Text("관계 해시태그")
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                        HStack {
+                            Text("#")
                                 .padding(.leading)
-                                .font(.system(size: 25, weight: .semibold))
                             
-                            HStack {
-                                Text("#")
-                                    .padding(.leading)
-                                
-                                if isEditing || hashtag.isEmpty {
-                                    TextField("title", text: $hashtagContent, prompt: Text("여기를_눌러서_관계를_해시태그로_표현해보아요.")
-                                        .font(.system(size: 14))
-                                        .foregroundColor(Color("Graybasic")))
-                                    .font(.system(size: 18, weight: .semibold))
-                                    .onSubmit {
+                            if isEditing || hashtag.isEmpty {
+                                TextField("title", text: $hashtagContent, prompt: Text("여기를_눌러서_관계를_해시태그로_표현해보아요.")
+                                    .font(.system(size: 14))
+                                    .foregroundColor(Color("Graybasic")))
+                                .font(.system(size: 18, weight: .semibold))
+                                .onSubmit {
+                                    saveHashtag()
+                                }
+                                .onChange(of: hashtagContent) { newValue in
+                                    if newValue.hasSuffix(" ") {
                                         saveHashtag()
                                     }
-                                    .onChange(of: hashtagContent) { newValue in
-                                        if newValue.hasSuffix(" ") {
-                                            saveHashtag()
-                                        }
-                                    }
-                                    .focused($isKeyboardActive)
-                                    
-                                } else {
-                                    Text(hashtag)
-                                        .font(.system(size: 18, weight: .semibold))
-                                    
-                                    Button(action: {
-                                        isEditing = true
-                                        hashtagContent = hashtag
-                                        hashtag = ""
-                                    }) {
-                                        Text("수정")
-                                            .foregroundColor(Color("Graybasic"))
-                                    }
+                                }
+                                .focused($isKeyboardActive)
+                                
+                            } else {
+                                Text(hashtag)
+                                    .font(.system(size: 18, weight: .semibold))
+                                
+                                Button(action: {
+                                    isEditing = true
+                                    hashtagContent = hashtag
+                                    hashtag = ""
+                                }) {
+                                    Text("수정")
+                                        .foregroundColor(Color("Graybasic"))
                                 }
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .frame(height: 25)
                         }
-                        
-                        Toggle("친구들에게 알림 보내기", isOn: $alertFriends)
-                            .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
-                            .padding(.horizontal)
-                        
-                        RedButton(title: "완료", isEnabled: $isEnabled, height: 55, action: {
-                            relationships.append(Relationship(nickname: nickname, hashtags: hashtag, icon: icon, startDate: Date(), userId: user1.id))
-                            navigateToCreateJam = true })
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(height: 25)
                     }
-                }
-                }
-                .onChange(of: icon) { _ in updateButtonState() }
-                .onChange(of: nickname) { _ in updateButtonState() }
-                .onChange(of: hashtag) { _ in updateButtonState() }
-                .onTapGesture {
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    
+                    Toggle("친구들에게 알림 보내기", isOn: $alertFriends)
+                        .toggleStyle(SwitchToggleStyle(tint: Color("Redemphasis2")))
+                        .padding(.horizontal)
+                    
+                    RedButton(title: "완료", isEnabled: $isEnabled, height: 55, action: {
+                        relationships.append(Relationship(nickname: nickname, hashtags: hashtag, icon: icon, startDate: Date(), userId: user1.id))
+                        navigateToCreateJam = true })
                 }
             }
-            NavigationLink(
-                destination: CreateJamView(),
-                isActive: $navigateToCreateJam
-            ) {
-                EmptyView()
+            }
+            .onChange(of: icon) { _ in updateButtonState() }
+            .onChange(of: nickname) { _ in updateButtonState() }
+            .onChange(of: hashtag) { _ in updateButtonState() }
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         }
         .navigationBarBackButtonHidden(true)
+
+        NavigationLink(
+            destination: CreateJamView(),
+            isActive: $navigateToCreateJam
+        ) {
+            EmptyView()
+        }
+    
     }
 }
 

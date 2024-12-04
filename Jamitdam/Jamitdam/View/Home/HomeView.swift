@@ -7,6 +7,11 @@ struct HomeView: View {
     // 글 (더미데이터 유수현의 글)
     private var post: Post = dummyPosts[0]
     
+    @State private var showLoginModal: Bool = false
+    @State private var isLoggedIn: Bool = false // 로그인 상태 관리
+    @State private var transitionToHome: Bool = false // 자연스러운 전환 제어
+
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -94,7 +99,7 @@ struct HomeView: View {
                 
             }
             .navigationBarBackButtonHidden(true) // Remove the default back button
-
+            
         }
     }
 }
