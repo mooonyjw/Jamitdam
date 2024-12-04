@@ -105,12 +105,14 @@ struct Register: View {
                 
                 VStack {
                     // Custom Navigation Bar 사용
-                    AddFriendCustomBar(
-                        widthRatio: widthRatio,
-                        heightRatio: heightRatio
-                    )
-                    .frame(height: 57)
-                    .padding(.top)
+//                    AddFriendCustomBar(
+//                        widthRatio: widthRatio,
+//                        heightRatio: heightRatio
+//                    )
+//                    .frame(height: 57)
+//                    .padding(.top)
+                    
+                    TopBar(title: "")
                     ScrollView {
                         
                         VStack(spacing: 20) {
@@ -326,7 +328,6 @@ struct Register: View {
     }
     
 }
-
 
 #Preview {
     Register()

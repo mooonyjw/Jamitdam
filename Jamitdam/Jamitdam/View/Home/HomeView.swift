@@ -93,6 +93,8 @@ struct HomeView: View {
                 
                 
             }
+            .navigationBarBackButtonHidden(true) // Remove the default back button
+
         }
     }
 }

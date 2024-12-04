@@ -96,6 +96,8 @@ struct PollHomeView: View {
                 
                 
             }
+            .navigationBarBackButtonHidden(true)
+
         }
     }
 }

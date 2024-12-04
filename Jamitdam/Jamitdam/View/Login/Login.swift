@@ -60,31 +60,45 @@ struct Login: View {
                                 
                                 // Additional options
                                 HStack {
-                                    Button("회원가입") {
-                                        navigationState.navigateToRegister = true
+                                    NavigationLink(destination: Register()) {
+                                        Text("회원가입")
+                                            .font(.body)
+                                            .foregroundColor(Color.black)
                                     }
-                                    .font(.body)
-                                    .foregroundColor(.black)
+
                                     
                                     Circle()
                                         .fill(Color.gray)
                                         .frame(width: 3)
                                     
-                                    Button("아이디 찾기") {
-                                        navigationState.navigateToSearchID = true
+//                                    Button("아이디 찾기") {
+//                                        navigationState.navigateToSearchID = true
+//                                    }
+//                                    .font(.body)
+//                                    .foregroundColor(.black)
+//                                    
+                                    NavigationLink(destination: SearchID()) {
+                                        Text("아이디 찾기")
+                                            .font(.body)
+                                            .foregroundColor(Color.black)
+
                                     }
-                                    .font(.body)
-                                    .foregroundColor(.black)
                                     
                                     Circle()
                                         .fill(Color.gray)
                                         .frame(width: 3)
                                     
-                                    Button("비밀번호 찾기") {
-                                        navigationState.navigateToSearchPW = true
+//                                    Button("비밀번호 찾기") {
+//                                        navigationState.navigateToSearchPW = true
+//                                    }
+//                                    .font(.body)
+//                                    .foregroundColor(.black)
+                                    
+                                    NavigationLink(destination: SearchPW()) {
+                                        Text("비밀번호 찾기")
+                                            .font(.body)
+                                            .foregroundColor(Color.black)
                                     }
-                                    .font(.body)
-                                    .foregroundColor(.black)
                                 }
                                 .padding(.bottom, 20)
                             }
@@ -96,21 +110,18 @@ struct Login: View {
                         RedButton(title: "로그인", isEnabled: $isEnabled, height: 55) {
                             navigationState.navigateToHome = true
                         }
+                        
+//                        NavigationLink(destination: Register()) {
+//                            Text("회원가입")
+//                                .font(.body)
+//                                .foregroundColor(Color.black)
+//                        }
                         .padding(.bottom, 70 * heightRatio)
                     }
                 }
             }
             .navigationDestination(isPresented: $navigationState.navigateToHome) {
-                // Home()
-            }
-            .navigationDestination(isPresented: $navigationState.navigateToRegister) {
-                Register()
-            }
-            .navigationDestination(isPresented: $navigationState.navigateToSearchID) {
-                SearchID()
-            }
-            .navigationDestination(isPresented: $navigationState.navigateToSearchPW) {
-                SearchPW()
+                HomeView()
             }
             .toolbar {
                 // Hide the back button
@@ -123,6 +134,56 @@ struct Login: View {
     }
 }
 
+struct LoginList<Destination: View>: View {
+    
+    var widthRatio: CGFloat
+    var heightRatio: CGFloat
+    
+    var title: String
+    var titleColor: Color = Color.black
+    var titleButton: Bool = false
+    
+    // 오른쪽 버튼
+    var button: String?
+    var destination: Destination
+    
+    var body: some View {
+        HStack {
+            Spacer()
+                .frame(width: 26 * widthRatio)
+            
+            // 튜토리얼 보기, 로그아웃, 탈퇴하기는 글자 자체가 버튼임
+            if titleButton {
+                Button(action: {
+                    print("버튼 클릭")
+                }) {
+                    Text(title)
+                        .font(.system(size: 18 * widthRatio))
+                        .foregroundColor(titleColor)
+                }
+            } else {
+                Text(title)
+                    .font(.system(size: 18 * widthRatio))
+                    .foregroundColor(titleColor)
+            }
+            
+            Spacer()
+            
+            if let button = button {
+                NavigationLink(destination: destination) {
+                    Image(systemName: button)
+                        .font(.system(size: 21 * widthRatio))
+                        .foregroundColor(Color("Graybasic"))
+                }
+            }
+            
+            Spacer()
+                .frame(width: 19 * widthRatio)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 57 * heightRatio)
+    }
+}
 #Preview {
     Login()
 }

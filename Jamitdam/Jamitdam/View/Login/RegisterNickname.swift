@@ -23,12 +23,13 @@ struct RegisterNickname: View {
                 
                 VStack {
                     // Custom Navigation Bar 사용
-                    AddFriendCustomBar(
-                        widthRatio: widthRatio,
-                        heightRatio: heightRatio
-                    )
-                    .padding(.top)
-                    
+//                    AddFriendCustomBar(
+//                        widthRatio: widthRatio,
+//                        heightRatio: heightRatio
+//                    )
+//                    .padding(.top)
+                    TopBar(title: "")
+
                     ScrollView {
                         VStack(spacing: 20) {
                             // Header Text
@@ -87,9 +88,9 @@ struct RegisterNickname: View {
                 
             }
             .navigationBarBackButtonHidden(true)
-            .navigationDestination(isPresented: $navigationState.navigateToLogin) {
-                Login()
-            }
+//            .navigationDestination(isPresented: $navigationState.navigateToLogin) {
+//                Login()
+//            }
         }
     }
         
