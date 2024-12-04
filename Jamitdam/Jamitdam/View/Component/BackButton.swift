@@ -1,20 +1,31 @@
 import SwiftUI
 
 struct BackButton: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.dismiss) private var dismiss
     
-    var color: Color = .black
-    // 외부에서 버튼을 누를 시 일어날 action 전달
-    let action: () -> Void
+    var showBackButton: Bool = true
+    var widthRatio: CGFloat
+    var heightRatio: CGFloat
+    
+    func backButtonFunc() {
+        print("뒤로가기 클릭")
+        dismiss()
+    }
+    
     var body: some View {
-        Button {
-            action()
-        } label: {
-            Image(systemName: "chevron.backward")
-                .renderingMode(.template)
-                .foregroundColor(Color("Black"))
-                .shadow(radius: 2.0)
-                .contentShape(Rectangle())
+        HStack {
+            Button(action: backButtonFunc) {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 21 * widthRatio))
+                    .padding()
+                    .foregroundColor(Color("Graybasic"))
+            }
+            
+            
+            Spacer()
+
         }
+        .padding(.top, 0)
+        .frame(height: 57.0 * heightRatio)
     }
 }
