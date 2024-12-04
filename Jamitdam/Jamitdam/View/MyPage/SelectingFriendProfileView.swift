@@ -8,10 +8,19 @@ struct SelectingFriendProfileView: View {
     // 유수현의 계정
     @State private var user = user1
     // 추가할 친구: 진서기
-    @State private var friend = user2
+    
+    //var inputFriend: User
+    
+    @State private var friend: User
+    // 초기화 메서드에서 friend 초기값 전달
+    init(friend: User) {
+        _friend = State(initialValue: friend)
+    }
+    
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
+
     // Alert 상태 관리 변수
     @State private var showAddFriendAlert = false
     @State private var showUnapprovalAlert = false
@@ -24,7 +33,7 @@ struct SelectingFriendProfileView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             GeometryReader { geometry in
                 
                 let widthRatio = geometry.size.width / screenWidth
@@ -117,19 +126,19 @@ struct SelectingFriendProfileView: View {
                     Spacer()
                         .frame(height: 30 * heightRatio)
                     
-                    // 친구 추가 시 친구 프로필로 이동
-                    // 친구 프로필 페이지로 이동 추후 구현
-//                    NavigationLink(
-//                        destination: FriendProfileView(),
-//                        isActive: $navigateToFriendProfile
-//                    ) {
-//                        EmptyView()
-//                    }
+  
+                    NavigationLink(
+                        destination: FriendProfileView(user: friend),
+                        isActive: $navigateToFriendProfile
+                    ) {
+                        EmptyView()
+                    }
                 }
+
                 .navigationBarBackButtonHidden(true)
              
             }
-        }
+        //}
     }
 }
 
@@ -140,5 +149,5 @@ struct SelectingFriendProfileView: View {
 
 
 #Preview {
-    SelectingFriendProfileView()
+    SelectingFriendProfileView(friend: user3)
 }
