@@ -20,6 +20,7 @@
 		971A0B9B2CD9D32900A2BF5E /* JamitdamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0B9A2CD9D32900A2BF5E /* JamitdamTests.swift */; };
 		971A0BA52CD9D32900A2BF5E /* JamitdamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */; };
 		971A0BA72CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */; };
+		97E70FD22CFFF53600ECE4F1 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E70FD12CFFF53600ECE4F1 /* Poll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		971A0BA02CD9D32900A2BF5E /* JamitdamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JamitdamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		971A0BA42CD9D32900A2BF5E /* JamitdamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITests.swift; sourceTree = "<group>"; };
 		971A0BA62CD9D32900A2BF5E /* JamitdamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamitdamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		97E70FD12CFFF53600ECE4F1 /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -90,6 +92,7 @@
 		8E6F32072CE1C28F00C4ED9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				97E70FD12CFFF53600ECE4F1 /* Poll.swift */,
 				8ED6A2342CF890460096E58D /* Comment.swift */,
 				8ED6A2352CF890460096E58D /* Like.swift */,
 				8E6F32032CE1C28F00C4ED9E /* DateValue.swift */,
@@ -294,6 +297,7 @@
 				8ED6A2372CF890460096E58D /* Comment.swift in Sources */,
 				8ED6A2392CF890460096E58D /* Like.swift in Sources */,
 				8E6F320F2CE1CE3400C4ED9E /* ContentView.swift in Sources */,
+				97E70FD22CFFF53600ECE4F1 /* Poll.swift in Sources */,
 				8E6F32082CE1C28F00C4ED9E /* DateValue.swift in Sources */,
 				8E6F320C2CE1CD7D00C4ED9E /* JamitdamApp.swift in Sources */,
 				8E6F32092CE1C28F00C4ED9E /* User.swift in Sources */,
