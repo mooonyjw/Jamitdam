@@ -77,450 +77,450 @@ struct PollView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                // 상단바
-                TopBar(title: "운명을 잇다")
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 16) {
+        
+        VStack(spacing: 0) {
+            // 상단바
+            TopBar(title: "운명을 잇다")
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        
+                        // 작성자 프로필
+                        HStack {
+                            // 작성자 정보
+                            Image(poll.writer.profile)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
                             
-                            // 작성자 프로필
-                            HStack {
-                                // 작성자 정보
-                                Image(poll.writer.profile)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle())
-                                
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(poll.writer.name)
-                                        .font(.system(size: 20, weight: .semibold))
-                                    Text(poll.timeElapsedString())
-                                        .font(.footnote)
-                                        .foregroundColor(Color("Graybasic"))
-                                }
-                                .padding(.leading, 5)
-                                
-                                Spacer()
-                                
-                                Menu {
-                                    // 본인이 작성한 글만 수정/삭제 버튼 표시
-                                    if poll.writer.id == currentUser.id {
-                                        Button(action: {
-                                            print("수정 동작 실행")
-                                            editPoll()
-                                        }) {
-                                            Label("수정", systemImage: "pencil")
-                                        }
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(poll.writer.name)
+                                    .font(.system(size: 20, weight: .semibold))
+                                Text(poll.timeElapsedString())
+                                    .font(.footnote)
+                                    .foregroundColor(Color("Graybasic"))
+                            }
+                            .padding(.leading, 5)
+                            
+                            Spacer()
+                            
+                            Menu {
+                                // 본인이 작성한 글만 수정/삭제 버튼 표시
+                                if poll.writer.id == currentUser.id {
+                                    Button(action: {
+                                        print("수정 동작 실행")
+                                        editPoll()
+                                    }) {
+                                        Label("수정", systemImage: "pencil")
+                                    }
 
-                                        Button(role: .destructive, action: {
-                                            print("삭제 동작 실행")
-                                            deletePoll()
-                                        }) {
-                                            Label("삭제", systemImage: "trash")
-                                        }
+                                    Button(role: .destructive, action: {
+                                        print("삭제 동작 실행")
+                                        deletePoll()
+                                    }) {
+                                        Label("삭제", systemImage: "trash")
                                     }
-                                } label: {
-                                    Image(systemName: "ellipsis")
-                                        .rotationEffect(.degrees(90))
-                                        .font(.system(size: 20))
-                                        .foregroundColor(.gray)
-                                        .padding(8)
                                 }
-                                
-                                
-                            }
-                            .padding()
-                            
-                            // 본문 내용
-                            if let content = poll.content {
-                                Text(content)
+                            } label: {
+                                Image(systemName: "ellipsis")
+                                    .rotationEffect(.degrees(90))
                                     .font(.system(size: 20))
-                                    .frame(height: 110)
-                                    .frame(minHeight: 110, maxHeight: .infinity)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.horizontal)
-                                //.font(.system(size: 16))
-                                //.fixedSize(horizontal: false, vertical: true) // 줄바꿈 허용
-                                
-                                // 본문에서 첫 번째 이모티콘 추출
-                                let emoji = extractEmoji(from: content)
-                                
-                                // 첫 번째 이모티콘과 관련된 해시태그 표시
-                                if let emoji = emoji,
-                                   let hashtag = relationships.first(where: { $0.icon == emoji })?.hashtags {
-                                    Text("#\(hashtag)")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundColor(Color("Redemphasis"))
-                                        .padding(.horizontal)
-                                        .padding(.top, 5)
-                                }
+                                    .foregroundColor(.gray)
+                                    .padding(8)
                             }
-                           
-                            if !hasVoted {
-                                // 투표 화면 (투표 완료 전)
-                                VStack(alignment: .leading, spacing: 12) {
-                                    ForEach(poll.options.indices, id: \.self) { index in
-                                        Button(action: {
-                                            selectedOption = index
-                                        }) {
-                                            // 옵션 버튼 스타일
-                                            HStack {
-                                                Text(poll.options[index])
-                                                    .font(.system(size: 17))
-                                                    .foregroundColor(.black)
-                                                    .padding(.horizontal)
-                                                Spacer()
-                                            }
-                                            .padding()
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .fill(selectedOption == index ? Color("Redsoftbase") : Color.white)
-                                                    .frame(height: 55)
-                                                    .padding(.horizontal)
-                                            )
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(
-                                                        selectedOption == index ? Color("Redemphasis2") : Color.gray,
-                                                        lineWidth: 1
-                                                    )
-                                                    .frame(height: 55)
-                                                    .padding(.horizontal)
-                                            )
-                                        }
-                                    }
-                                    
-                                    // 투표하기 버튼
-                                    RedButton(title: "투표하기", isEnabled: .constant(isEnabled), height: 55) {
-                                        if let selectedOption = selectedOption {
-                                            print("Before voting: \(poll.votes)") // 투표 전 상태 출력
-                                            poll.vote(by: currentUser, for: selectedOption) // 투표 실행
-                                            print("After voting: \(poll.votes)") // 투표 후 상태 출력
-                                            hasVoted = true
-                                        }
-                                    }
-                                    .disabled(!isEnabled) // 선택된 옵션이 없으면 비활성화
-                                    
-                                }
-                            } else {
-                                // 투표 결과 화면 (투표 완료 후)
-                                VStack(alignment: .leading, spacing: 12) {
-                                    ForEach(poll.options.indices, id: \.self) { index in
+                            
+                            
+                        }
+                        .padding()
+                        
+                        // 본문 내용
+                        if let content = poll.content {
+                            Text(content)
+                                .font(.system(size: 20))
+                                .frame(height: 110)
+                                .frame(minHeight: 110, maxHeight: .infinity)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal)
+                            //.font(.system(size: 16))
+                            //.fixedSize(horizontal: false, vertical: true) // 줄바꿈 허용
+                            
+                            // 본문에서 첫 번째 이모티콘 추출
+                            let emoji = extractEmoji(from: content)
+                            
+                            // 첫 번째 이모티콘과 관련된 해시태그 표시
+                            if let emoji = emoji,
+                               let hashtag = relationships.first(where: { $0.icon == emoji })?.hashtags {
+                                Text("#\(hashtag)")
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .foregroundColor(Color("Redemphasis"))
+                                    .padding(.horizontal)
+                                    .padding(.top, 5)
+                            }
+                        }
+                       
+                        if !hasVoted {
+                            // 투표 화면 (투표 완료 전)
+                            VStack(alignment: .leading, spacing: 12) {
+                                ForEach(poll.options.indices, id: \.self) { index in
+                                    Button(action: {
+                                        selectedOption = index
+                                    }) {
+                                        // 옵션 버튼 스타일
                                         HStack {
-                                            // 옵션 텍스트
                                             Text(poll.options[index])
                                                 .font(.system(size: 17))
                                                 .foregroundColor(.black)
-                                                .padding(.leading)
-                                            
-                                            Spacer()
-                                            
-                                            // 받은 투표 수 표시
-                                            Text("\(poll.votes[index])표")
-                                                .font(.system(size: 16))
                                                 .padding(.horizontal)
+                                            Spacer()
                                         }
                                         .padding()
                                         .background(
                                             RoundedRectangle(cornerRadius: 15)
-                                                .fill(index == selectedOption ? Color("Redsoftbase") : Color.white)
-                                                .padding(.horizontal)
+                                                .fill(selectedOption == index ? Color("Redsoftbase") : Color.white)
                                                 .frame(height: 55)
+                                                .padding(.horizontal)
                                         )
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 15)
                                                 .stroke(
-                                                    index == selectedOption ? Color("Redemphasis2") : Color.gray,
+                                                    selectedOption == index ? Color("Redemphasis2") : Color.gray,
                                                     lineWidth: 1
                                                 )
-                                                .padding(.horizontal)
                                                 .frame(height: 55)
+                                                .padding(.horizontal)
                                         )
                                     }
-                                    
-                                    // 다시 투표하기 버튼 (RedButton 사용)
-                                    RedButton(title: "다시 투표하기", isEnabled: .constant(true), height: 55) {
-                                        hasVoted = false  // 투표 상태 초기화
-                                        selectedOption = nil  // 선택 초기화
+                                }
+                                
+                                // 투표하기 버튼
+                                RedButton(title: "투표하기", isEnabled: .constant(isEnabled), height: 55) {
+                                    if let selectedOption = selectedOption {
+                                        print("Before voting: \(poll.votes)") // 투표 전 상태 출력
+                                        poll.vote(by: currentUser, for: selectedOption) // 투표 실행
+                                        print("After voting: \(poll.votes)") // 투표 후 상태 출력
+                                        hasVoted = true
                                     }
-                                    .padding(.bottom, 5)
-                                    
+                                }
+                                .disabled(!isEnabled) // 선택된 옵션이 없으면 비활성화
+                                
+                            }
+                        } else {
+                            // 투표 결과 화면 (투표 완료 후)
+                            VStack(alignment: .leading, spacing: 12) {
+                                ForEach(poll.options.indices, id: \.self) { index in
                                     HStack {
-                                        Image(systemName: "quote.bubble")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 20, height: 20)
-                                            .foregroundColor(Color("Graybasic"))
-                                        Text("\(comments.count)")
-                                            .foregroundColor(Color("Graybasic"))
-                                            .font(.system(size: 20))
+                                        // 옵션 텍스트
+                                        Text(poll.options[index])
+                                            .font(.system(size: 17))
+                                            .foregroundColor(.black)
+                                            .padding(.leading)
+                                        
+                                        Spacer()
+                                        
+                                        // 받은 투표 수 표시
+                                        Text("\(poll.votes[index])표")
+                                            .font(.system(size: 16))
+                                            .padding(.horizontal)
+                                    }
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(index == selectedOption ? Color("Redsoftbase") : Color.white)
+                                            .padding(.horizontal)
+                                            .frame(height: 55)
+                                    )
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(
+                                                index == selectedOption ? Color("Redemphasis2") : Color.gray,
+                                                lineWidth: 1
+                                            )
+                                            .padding(.horizontal)
+                                            .frame(height: 55)
+                                    )
+                                }
+                                
+                                // 다시 투표하기 버튼 (RedButton 사용)
+                                RedButton(title: "다시 투표하기", isEnabled: .constant(true), height: 55) {
+                                    hasVoted = false  // 투표 상태 초기화
+                                    selectedOption = nil  // 선택 초기화
+                                }
+                                .padding(.bottom, 5)
+                                
+                                HStack {
+                                    Image(systemName: "quote.bubble")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(Color("Graybasic"))
+                                    Text("\(comments.count)")
+                                        .foregroundColor(Color("Graybasic"))
+                                        .font(.system(size: 20))
+                                }
+                                .padding(.horizontal)
+                                
+                                Divider()
+                                
+                                // 댓글 섹션
+                                VStack(alignment: .leading, spacing: 16) {
+                                    HStack {
+                                        Text("댓글")
+                                            .font(.headline)
+                                        Spacer()
                                     }
                                     .padding(.horizontal)
                                     
-                                    Divider()
-                                    
-                                    // 댓글 섹션
-                                    VStack(alignment: .leading, spacing: 16) {
-                                        HStack {
-                                            Text("댓글")
-                                                .font(.headline)
-                                            Spacer()
-                                        }
-                                        .padding(.horizontal)
-                                        
-                                        // 댓글 목록
-                                        ForEach(comments.filter { $0.parentId == nil }, id: \.id) { comment in
-                                            VStack(alignment: .leading) {
-                                                
-                                                // 댓글 작성자 및 내용
-                                                HStack(alignment: .top) {
-                                                    if let commentWriter = users.first(where: { $0.id == comment.userId }) {
-                                                        Image("\(commentWriter.profile)")
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 50, height: 50)
-                                                            .clipShape(Circle())
-                                                        
-                                                        Spacer()
-                                                            .frame(width: 10)
-                                                        
-                                                        VStack(alignment: .leading) {
-                                                            // 작성자 이름 및 작성 시간
-                                                            HStack {
-                                                                Text("\(commentWriter.name)")
-                                                                    .font(.system(size: 15, weight: .semibold))
-                                                                Text(comment.timeElapsedString())
-                                                                    .font(.footnote)
-                                                                    .foregroundColor(Color("Graybasic"))
-                                                            }
-                                                            .padding(.bottom, 1)
-                                                            // 댓글 내용
-                                                            Text(comment.content)
-                                                                .font(.system(size: 16))
-                                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                                        }
-                                                        Spacer()
-                                                        Button(action: {
-                                                            // 대댓글 작성 동작
-                                                            enableReply(parent: comment)
-                                                        }) {
-                                                            Image(systemName: "bubble.right")
-                                                                .resizable()
-                                                                .scaledToFit()
-                                                                .frame(width: 15, height: 15)
+                                    // 댓글 목록
+                                    ForEach(comments.filter { $0.parentId == nil }, id: \.id) { comment in
+                                        VStack(alignment: .leading) {
+                                            
+                                            // 댓글 작성자 및 내용
+                                            HStack(alignment: .top) {
+                                                if let commentWriter = users.first(where: { $0.id == comment.userId }) {
+                                                    Image("\(commentWriter.profile)")
+                                                        .resizable()
+                                                        .scaledToFit()
+                                                        .frame(width: 50, height: 50)
+                                                        .clipShape(Circle())
+                                                    
+                                                    Spacer()
+                                                        .frame(width: 10)
+                                                    
+                                                    VStack(alignment: .leading) {
+                                                        // 작성자 이름 및 작성 시간
+                                                        HStack {
+                                                            Text("\(commentWriter.name)")
+                                                                .font(.system(size: 15, weight: .semibold))
+                                                            Text(comment.timeElapsedString())
+                                                                .font(.footnote)
                                                                 .foregroundColor(Color("Graybasic"))
                                                         }
-                                                        if comment.userId == currentUser.id {
-                                                            Menu {
-                                                                Button(role: .destructive, action: {
-                                                                    deleteComment(comment)
-                                                                }) {
-                                                                    Label("삭제", systemImage: "trash")
-                                                                }
-                                                            } label: {
-                                                                Image(systemName: "ellipsis")
-                                                                    .rotationEffect(.degrees(90))
-                                                                    .font(.system(size: 15))
-                                                                    .foregroundColor(.gray)
-                                                                    .padding(.top, 5)
-                                                                    
-                                                            }
-                                                        }
+                                                        .padding(.bottom, 1)
+                                                        // 댓글 내용
+                                                        Text(comment.content)
+                                                            .font(.system(size: 16))
+                                                            .frame(maxWidth: .infinity, alignment: .leading)
                                                     }
-                                                }
-                                                .padding(.bottom, 15)
-                                                .swipeActions {
-                                                    Button(role: .destructive) {
-                                                        deleteComment(comment)
-                                                    } label: {
-                                                        Label("삭제", systemImage: "trash")
+                                                    Spacer()
+                                                    Button(action: {
+                                                        // 대댓글 작성 동작
+                                                        enableReply(parent: comment)
+                                                    }) {
+                                                        Image(systemName: "bubble.right")
+                                                            .resizable()
+                                                            .scaledToFit()
+                                                            .frame(width: 15, height: 15)
+                                                            .foregroundColor(Color("Graybasic"))
                                                     }
-                                                }
-                                                // 대댓글이 있는 경우 표시
-                                                if let replies = replyDict[comment.id] {
-                                                    ForEach(replies, id: \.id) { reply in
-                                                        HStack(alignment: .top) {
-                                                            if let replyWriter = users.first(where: { $0.id == reply.userId }) {
-                                                                Image("\(replyWriter.profile)")
-                                                                    .resizable()
-                                                                    .scaledToFit()
-                                                                    .frame(width: 40, height: 40)
-                                                                    .clipShape(Circle())
-                                                                
-                                                                Spacer()
-                                                                    .frame(width: 10)
-                                                                
-                                                                VStack(alignment: .leading) {
-                                                                    // 작성자 이름 및 작성 시간
-                                                                    HStack {
-                                                                        Text("\(replyWriter.name)")
-                                                                            .font(.system(size: 15, weight: .semibold))
-                                                                        Text(reply.timeElapsedString())
-                                                                            .font(.footnote)
-                                                                            .foregroundColor(Color("Graybasic"))
-                                                                    }
-                                                                    .padding(.bottom, 0.3)
-                                                                    // 대댓글 내용
-                                                                    Text(reply.content)
-                                                                        .font(.system(size: 16))
-                                                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                                                    
-                                                                }
-                                                                
-                                                                Spacer()
-                                                                // 본인이 작성한 댓글만 삭제 버튼 표시
-                                                                if reply.userId == currentUser.id {
-                                                                    Menu {
-                                                                        Button(role: .destructive, action: {
-                                                                            deleteComment(reply)
-                                                                        }) {
-                                                                            Label("삭제", systemImage: "trash")
-                                                                        }
-                                                                    
-                                                                    } label: {
-                                                                        Image(systemName: "ellipsis")
-                                                                            .rotationEffect(.degrees(90))
-                                                                            .font(.system(size: 15))
-                                                                            .foregroundColor(.gray)
-                                                                            .padding(.top, 5)
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                        .padding(.leading, 70) // 대댓글 들여쓰기
-                                                        .swipeActions {
-                                                            // 삭제 버튼
-                                                            Button(role: .destructive) {
+                                                    if comment.userId == currentUser.id {
+                                                        Menu {
+                                                            Button(role: .destructive, action: {
                                                                 deleteComment(comment)
-                                                            } label: {
+                                                            }) {
                                                                 Label("삭제", systemImage: "trash")
                                                             }
+                                                        } label: {
+                                                            Image(systemName: "ellipsis")
+                                                                .rotationEffect(.degrees(90))
+                                                                .font(.system(size: 15))
+                                                                .foregroundColor(.gray)
+                                                                .padding(.top, 5)
+                                                                
                                                         }
                                                     }
                                                 }
                                             }
-                                            .padding(.horizontal)
-                                            .id(comment.id)
-                                            
+                                            .padding(.bottom, 15)
+                                            .swipeActions {
+                                                Button(role: .destructive) {
+                                                    deleteComment(comment)
+                                                } label: {
+                                                    Label("삭제", systemImage: "trash")
+                                                }
+                                            }
+                                            // 대댓글이 있는 경우 표시
+                                            if let replies = replyDict[comment.id] {
+                                                ForEach(replies, id: \.id) { reply in
+                                                    HStack(alignment: .top) {
+                                                        if let replyWriter = users.first(where: { $0.id == reply.userId }) {
+                                                            Image("\(replyWriter.profile)")
+                                                                .resizable()
+                                                                .scaledToFit()
+                                                                .frame(width: 40, height: 40)
+                                                                .clipShape(Circle())
+                                                            
+                                                            Spacer()
+                                                                .frame(width: 10)
+                                                            
+                                                            VStack(alignment: .leading) {
+                                                                // 작성자 이름 및 작성 시간
+                                                                HStack {
+                                                                    Text("\(replyWriter.name)")
+                                                                        .font(.system(size: 15, weight: .semibold))
+                                                                    Text(reply.timeElapsedString())
+                                                                        .font(.footnote)
+                                                                        .foregroundColor(Color("Graybasic"))
+                                                                }
+                                                                .padding(.bottom, 0.3)
+                                                                // 대댓글 내용
+                                                                Text(reply.content)
+                                                                    .font(.system(size: 16))
+                                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                                                
+                                                            }
+                                                            
+                                                            Spacer()
+                                                            // 본인이 작성한 댓글만 삭제 버튼 표시
+                                                            if reply.userId == currentUser.id {
+                                                                Menu {
+                                                                    Button(role: .destructive, action: {
+                                                                        deleteComment(reply)
+                                                                    }) {
+                                                                        Label("삭제", systemImage: "trash")
+                                                                    }
+                                                                
+                                                                } label: {
+                                                                    Image(systemName: "ellipsis")
+                                                                        .rotationEffect(.degrees(90))
+                                                                        .font(.system(size: 15))
+                                                                        .foregroundColor(.gray)
+                                                                        .padding(.top, 5)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    .padding(.leading, 70) // 대댓글 들여쓰기
+                                                    .swipeActions {
+                                                        // 삭제 버튼
+                                                        Button(role: .destructive) {
+                                                            deleteComment(comment)
+                                                        } label: {
+                                                            Label("삭제", systemImage: "trash")
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
+                                        .padding(.horizontal)
+                                        .id(comment.id)
+                                        
                                     }
                                 }
-                                
                             }
-                        }
-                    }
-                    // 새로운 댓글이 추가되면 가장 아래로 스크롤
-                    .onChange(of: scrollToId) { id in
-                        if let id = id {
-                            proxy.scrollTo(id, anchor: .bottom)
-                        }
-                    }
-                    .onAppear {
-                        // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
-                        initializeComments()
-                    }
-                    .onTapGesture {
-                        // 배경 터치 시 키보드를 내린다
-                        print(isKeyboardActive)
-                        isKeyboardActive = false
-                        
-                    }
-                }
-                
-                VStack {
-                    // 언급 중인 경우
-                    if parentComment != nil && isReply {
-                        if let parentWriter = users.first(where: { $0.id ==  parentComment?.userId } ) {
-                            HStack {
-                                Text("\(parentWriter.name)님의 댓글에 답글을 작성중이에요!")
-                                    .font(.system(size: 15))
-                                
-                                // 언급 취소 버튼
-                                Button(action: {
-                                    isReply = false
-                                    parentComment = nil
-                                    
-                                }) {
-                                    Image(systemName: "x.circle.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 15, height: 15)
-                                        .foregroundColor(Color("Graybasic"))
-                                }
-                            }
-                            .padding(.top, 5)
                             
                         }
                     }
-                    // 하단 키보드 고정
-                    HStack {
-                        // 유저 프로필
-                        Image(user1.profile)
+                }
+                // 새로운 댓글이 추가되면 가장 아래로 스크롤
+                .onChange(of: scrollToId) { id in
+                    if let id = id {
+                        proxy.scrollTo(id, anchor: .bottom)
+                    }
+                }
+                .onAppear {
+                    // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
+                    initializeComments()
+                }
+                .onTapGesture {
+                    // 배경 터치 시 키보드를 내린다
+                    print(isKeyboardActive)
+                    isKeyboardActive = false
+                    
+                }
+            }
+            
+            VStack {
+                // 언급 중인 경우
+                if parentComment != nil && isReply {
+                    if let parentWriter = users.first(where: { $0.id ==  parentComment?.userId } ) {
+                        HStack {
+                            Text("\(parentWriter.name)님의 댓글에 답글을 작성중이에요!")
+                                .font(.system(size: 15))
+                            
+                            // 언급 취소 버튼
+                            Button(action: {
+                                isReply = false
+                                parentComment = nil
+                                
+                            }) {
+                                Image(systemName: "x.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15, height: 15)
+                                    .foregroundColor(Color("Graybasic"))
+                            }
+                        }
+                        .padding(.top, 5)
+                        
+                    }
+                }
+                // 하단 키보드 고정
+                HStack {
+                    // 유저 프로필
+                    Image(user1.profile)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50, alignment: .leading)
+                        .clipShape(Circle())
+                        .padding(.leading)
+                    
+                    ZStack(alignment: .leading) {
+                        if myComment.isEmpty {
+                            Text("당신의 의견을 입력해주세요!")
+                                .foregroundColor(Color("Grayunselected"))
+                                .padding(10)
+                                .font(.system(size: 15))
+                        }
+
+                        TextField("", text: $myComment)
+                            .padding(10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.gray, lineWidth: 1)
+                            )
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.black)
+                            .focused($isKeyboardActive)
+                    }
+                    
+                    Button(action: {
+                        if hasVoted {
+                            // 댓글을 추가
+                            if !isReply && parentComment == nil {
+                                addComment(user: user1)
+                            }
+                            // 대댓글을 추가
+                            else {
+                                if let parent = parentComment {
+                                    addReply(user: user1, parent: parent)
+                                }
+                            }
+                        } else {
+                            // 투표가 필요한 경우
+                            print("투표를 완료해야 댓글을 입력할 수 있습니다.")
+                        }
+                        
+                    }) {
+                        Image(systemName: "arrow.up.circle.fill")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 50, height: 50, alignment: .leading)
-                            .clipShape(Circle())
-                            .padding(.leading)
-                        
-                        ZStack(alignment: .leading) {
-                            if myComment.isEmpty {
-                                Text("당신의 의견을 입력해주세요!")
-                                    .foregroundColor(Color("Grayunselected"))
-                                    .padding(10)
-                                    .font(.system(size: 15))
-                            }
-
-                            TextField("", text: $myComment)
-                                .padding(10)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                )
-                                .font(.system(size: 15))
-                                .foregroundColor(Color.black)
-                                .focused($isKeyboardActive)
-                        }
-                        
-                        Button(action: {
-                            if hasVoted {
-                                // 댓글을 추가
-                                if !isReply && parentComment == nil {
-                                    addComment(user: user1)
-                                }
-                                // 대댓글을 추가
-                                else {
-                                    if let parent = parentComment {
-                                        addReply(user: user1, parent: parent)
-                                    }
-                                }
-                            } else {
-                                // 투표가 필요한 경우
-                                print("투표를 완료해야 댓글을 입력할 수 있습니다.")
-                            }
-                            
-                        }) {
-                            Image(systemName: "arrow.up.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
-                        }
-                        .disabled(myComment.isEmpty)
-                        .padding(.trailing)
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(myComment.isEmpty ? Color("Redbase") : Color("Redemphasis"))
                     }
-                    .background(Color.clear)
-                    .frame(alignment: .bottom)
-                    .padding(.bottom)
-                    .padding(.top, 5)
+                    .disabled(myComment.isEmpty)
+                    .padding(.trailing)
                 }
                 .background(Color.clear)
-                
+                .frame(alignment: .bottom)
+                .padding(.bottom)
+                .padding(.top, 5)
             }
-            .navigationBarHidden(true) // TopBar로 대체
+            .background(Color.clear)
+            
         }
+        .navigationBarHidden(true) // TopBar로 대체
+        
     }
     
     // 글 삭제 함수
