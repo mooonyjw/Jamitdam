@@ -3,10 +3,16 @@ import SwiftUI
 struct TabBar: View {
     
     @State private var showPopUp: Bool = false
+    @State private var isLoggedIn: Bool = false // 로그인 상태 관리
+    @State private var showLoginModal: Bool = false // 로그인 모달 표시 상태
+    @State private var isTabBarHidden: Bool = false
+
+
     
     var body: some View {
         NavigationStack {
             ZStack {
+               
                 TabView {
                     HomeView()
                         .tabItem {
@@ -22,11 +28,15 @@ struct TabBar: View {
                         .tabItem {
                         }
                         .disabled(true)
-                    RelationshipListView()
+
+                    CalendarView(isTabBarHidden: $isTabBarHidden)
+
                         .tabItem {
                             Image(systemName: "calendar")
                             Text("달력")
                         }
+                        .toolbar(isTabBarHidden ? .hidden: .visible, for: .tabBar)
+                  
                     MyPageView()
                         .tabItem {
                             Image(systemName: "person")
@@ -35,6 +45,18 @@ struct TabBar: View {
                 }
                 .accentColor(Color("Redlogo"))
                 
+                .onAppear {
+                    if !isLoggedIn {
+                        showLoginModal = true // 로그인 상태가 아니면 모달 표시
+                    }
+                }
+                .sheet(isPresented: $showLoginModal, onDismiss: {
+                    if !isLoggedIn {
+                        showLoginModal = true // 로그인이 안 되어 있으면 모달 다시 표시
+                    }
+                }) {
+                    LoginModal(isLoggedIn: $isLoggedIn, showLoginModal: $showLoginModal)
+                }
                 // 새로운 글 버튼
                 VStack {
                     Spacer()
@@ -61,6 +83,8 @@ struct TabBar: View {
                     }
                     .padding(.horizontal, 16)
                 }
+                .zIndex(1)
+                .opacity(isTabBarHidden ? 0 : 1)
                 
                 
                 // 팝업
@@ -74,6 +98,15 @@ struct TabBar: View {
                     .animation(.easeInOut, value: showPopUp)
                 }
             }
+        }
+        .onAppear {
+            // 로그인 상태를 즉시 확인하여 초기값 설정
+            checkLoginStatus()
+        }
+    }
+    func checkLoginStatus() {
+        if !isLoggedIn {
+            showLoginModal = true // 로그인 상태가 아니면 모달 표시
         }
     }
 }
@@ -121,8 +154,8 @@ struct PostPopUp: View {
         .cornerRadius(20)
         .shadow(radius: 10)
     }
+    
 }
-
 
 #Preview {
     TabBar()

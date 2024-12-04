@@ -16,60 +16,70 @@ struct RequestedFriendListView: View {
     
     
     var body: some View {
-        GeometryReader { geometry in
-            
-            let widthRatio = geometry.size.width / screenWidth
-            let heightRatio = geometry.size.height / screenHeight
-            
-            VStack(spacing: 0) {
+        //NavigationStack {
+            GeometryReader { geometry in
                 
-                TopBar(
-                    title: "친구 요청",
-                    rightButtonDisabled: true
-                )
+                let widthRatio = geometry.size.width / screenWidth
+                let heightRatio = geometry.size.height / screenHeight
                 
-                ScrollView {
-                    // 간격 9
-                    Spacer().frame(height: 9 * heightRatio)
+                VStack(spacing: 0) {
                     
-                    // 차단된 친구 목록
-                    ForEach(requestedFriends) { friend in
-                        RequestedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
-                            // 추가 버튼 클릭 시 .alert 표시
-                            showingAlert = true
-                            selectedFriend = friend
+                    TopBar(
+                        title: "친구 요청",
+                        rightButtonDisabled: true
+                    )
+                    
+                    ScrollView {
+                        // 간격 9
+                        Spacer().frame(height: 9 * heightRatio)
+                        
+                        // 차단된 친구 목록
+                        ForEach(requestedFriends) { friend in
+                            RequestedFriendRow(friend: friend, widthRatio: widthRatio, heightRatio: heightRatio) {
+                                // 추가 버튼 클릭 시 .alert 표시
+                                showingAlert = true
+                                selectedFriend = friend
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                // 추후 친구 수락/거절 페이지로 이동 기능 구현
+                                selectedFriend = friend
+                                navigateToProfile = true
+                                print("\(selectedFriend!.name) 수락/거절 페이지로 이동")
+                            }
                         }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            // 추후 친구 수락/거절 페이지로 이동 기능 구현
-                            selectedFriend = friend
-                            navigateToProfile = true
-                            print("\(selectedFriend!.name) 수락/거절 페이지로 이동")
+                        .alert(isPresented: $showingAlert) {
+                            Alert(
+                                title: Text("친구 추가하시겠습니까?"),
+                                message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
+                                primaryButton: .destructive(Text("추가")) {
+                                    user.addFriend(friend: selectedFriend!)
+                                    user.deleteRequestedFriend(friend: selectedFriend!)
+                                    
+                                    selectedFriend!.addFriend(friend: user)
+                                    requestedFriends = user.requestedFriends
+                                    
+                                },
+                                secondaryButton: .cancel(Text("취소"))
+                            )
                         }
                     }
-                    .alert(isPresented: $showingAlert) {
-                        Alert(
-                            title: Text("친구 추가하시겠습니까?"),
-                            message: Text("\(selectedFriend!.name)님을 친구 추가하시겠습니까?"),
-                            primaryButton: .destructive(Text("추가")) {
-                                user.addFriend(friend: selectedFriend!)
-                                user.deleteRequestedFriend(friend: selectedFriend!)
-                                
-                                selectedFriend!.addFriend(friend: user)
-                                requestedFriends = user.requestedFriends
-                                
-                            },
-                            secondaryButton: .cancel(Text("취소"))
-                        )
-                    }
+                    
                 }
-        
+                .onAppear {
+                    requestedFriends = user.requestedFriends
+                }
+                .navigationBarBackButtonHidden(true) 
             }
-            .onAppear {
-                requestedFriends = user.requestedFriends
+            NavigationLink(
+                destination: SelectingFriendProfileView(
+                    friend: selectedFriend ?? user.friends[0]
+                ),
+                isActive: $navigateToProfile
+            ) {
+                EmptyView()
             }
-            .navigationBarBackButtonHidden(true) 
-        }
+        //}
     }
 }
 

@@ -98,7 +98,6 @@ struct Register: View {
     }
     
     var body: some View {
-        NavigationStack{
             GeometryReader { geometry in
                 let heightRatio = geometry.size.height / screenHeight
                 let widthRatio = geometry.size.width / screenWidth
@@ -112,7 +111,12 @@ struct Register: View {
 //                    .frame(height: 57)
 //                    .padding(.top)
                     
-                    TopBar(title: "")
+                    //TopBar(title: "")
+                    
+                    BackButton(widthRatio: widthRatio, heightRatio: heightRatio)
+                        .frame(height: 57)
+                        .padding(.top)
+
                     ScrollView {
                         
                         VStack(spacing: 20) {
@@ -318,13 +322,21 @@ struct Register: View {
                     }
                     .disabled(!isFormValid)
                     .padding(.bottom, 70 * heightRatio)
+                    
+                   
+//                    NavigationLink(destination: RegisterNickname()) {
+//                        RedButton(title: "다음", isEnabled: .constant(true), height: 55) {
+//                            // 여기에 버튼 클릭 시 추가 동작
+//                            print("Button tapped!")
+//                        }
+//                    }
                 }
             }
             .navigationBarBackButtonHidden(true)
             .navigationDestination(isPresented: $navigationState.navigateToNickname) {
                 RegisterNickname()
             }
-        }
+        
     }
     
 }

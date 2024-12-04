@@ -18,7 +18,7 @@ struct RelationshipListView: View {
     var screenHeight: CGFloat = 844
     
     var body: some View {
-        NavigationStack {
+        //NavigationStack {
             GeometryReader { geometry in
                 let widthRatio = geometry.size.width / screenWidth
                 let heightRatio = geometry.size.height / screenHeight
@@ -122,7 +122,7 @@ struct RelationshipListView: View {
                 label: { EmptyView() }
             )
 
-        }
+        //}
     }
 }
 

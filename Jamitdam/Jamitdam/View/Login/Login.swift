@@ -11,7 +11,6 @@ struct Login: View {
     let screenHeight: CGFloat = 844
     
     var body: some View {
-        NavigationStack {
             GeometryReader { geometry in
                 let heightRatio = geometry.size.height / screenHeight
 
@@ -130,60 +129,12 @@ struct Login: View {
                 }
             }
             .navigationBarBackButtonHidden(true) // Remove the default back button
-        }
+        
     }
 }
 
-struct LoginList<Destination: View>: View {
-    
-    var widthRatio: CGFloat
-    var heightRatio: CGFloat
-    
-    var title: String
-    var titleColor: Color = Color.black
-    var titleButton: Bool = false
-    
-    // 오른쪽 버튼
-    var button: String?
-    var destination: Destination
-    
-    var body: some View {
-        HStack {
-            Spacer()
-                .frame(width: 26 * widthRatio)
-            
-            // 튜토리얼 보기, 로그아웃, 탈퇴하기는 글자 자체가 버튼임
-            if titleButton {
-                Button(action: {
-                    print("버튼 클릭")
-                }) {
-                    Text(title)
-                        .font(.system(size: 18 * widthRatio))
-                        .foregroundColor(titleColor)
-                }
-            } else {
-                Text(title)
-                    .font(.system(size: 18 * widthRatio))
-                    .foregroundColor(titleColor)
-            }
-            
-            Spacer()
-            
-            if let button = button {
-                NavigationLink(destination: destination) {
-                    Image(systemName: button)
-                        .font(.system(size: 21 * widthRatio))
-                        .foregroundColor(Color("Graybasic"))
-                }
-            }
-            
-            Spacer()
-                .frame(width: 19 * widthRatio)
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: 57 * heightRatio)
-    }
-}
 #Preview {
     Login()
 }
+
+

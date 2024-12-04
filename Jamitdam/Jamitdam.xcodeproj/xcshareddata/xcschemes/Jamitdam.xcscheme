@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63B05BBD2CEB3EFC00071C09"
+               BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
                BuildableName = "Jamitdam.app"
                BlueprintName = "Jamitdam"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
@@ -35,7 +35,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63B05BCD2CEB3EFD00071C09"
+               BlueprintIdentifier = "971A0B952CD9D32900A2BF5E"
                BuildableName = "JamitdamTests.xctest"
                BlueprintName = "JamitdamTests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
@@ -46,7 +46,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "63B05BD72CEB3EFD00071C09"
+               BlueprintIdentifier = "971A0B9F2CD9D32900A2BF5E"
                BuildableName = "JamitdamUITests.xctest"
                BlueprintName = "JamitdamUITests"
                ReferencedContainer = "container:Jamitdam.xcodeproj">
@@ -68,7 +68,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63B05BBD2CEB3EFC00071C09"
+            BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
             BuildableName = "Jamitdam.app"
             BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
@@ -85,7 +85,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "63B05BBD2CEB3EFC00071C09"
+            BlueprintIdentifier = "971A0B852CD9D32700A2BF5E"
             BuildableName = "Jamitdam.app"
             BlueprintName = "Jamitdam"
             ReferencedContainer = "container:Jamitdam.xcodeproj">
