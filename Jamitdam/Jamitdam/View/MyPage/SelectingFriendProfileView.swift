@@ -8,10 +8,17 @@ struct SelectingFriendProfileView: View {
     // 유수현의 계정
     @State private var user = user1
     // 추가할 친구: 진서기
-    @State private var friend = user2
+    
+    var inputFriend: User
+    
+    init(friend: User) {
+        self.inputFriend = friend
+    }
+    
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
+    @State private var friend: User = user2
     // Alert 상태 관리 변수
     @State private var showAddFriendAlert = false
     @State private var showUnapprovalAlert = false
@@ -126,6 +133,9 @@ struct SelectingFriendProfileView: View {
 //                        EmptyView()
 //                    }
                 }
+                .onAppear {
+                    friend = inputFriend
+                }
                 .navigationBarBackButtonHidden(true)
              
             }
@@ -140,5 +150,5 @@ struct SelectingFriendProfileView: View {
 
 
 #Preview {
-    SelectingFriendProfileView()
+    SelectingFriendProfileView(friend: user3)
 }

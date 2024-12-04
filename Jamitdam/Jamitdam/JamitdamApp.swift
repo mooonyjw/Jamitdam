@@ -4,7 +4,7 @@ import SwiftUI
 struct JamitdamApp: App {
     var body: some Scene {
         WindowGroup {
-            WriteJamView()
+            RequestedFriendListView()
         }
     }
 }
