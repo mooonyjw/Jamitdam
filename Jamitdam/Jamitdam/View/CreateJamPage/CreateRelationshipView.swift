@@ -41,7 +41,7 @@ struct CreateRelationshipView: View {
     }
 
     var body: some View {
-        NavigationStack {
+       // NavigationStack {
             GeometryReader { geometry in
             VStack {
                 TopBar(title: "새로운 인연 생성하기")
@@ -168,14 +168,15 @@ struct CreateRelationshipView: View {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }
             }
+            .navigationBarBackButtonHidden(true)
             NavigationLink(
                 destination: CreateJamView().environmentObject(relationshipStore),
                 isActive: $navigateToCreateJam
             ) {
                 EmptyView()
             }
-        }
-        .navigationBarBackButtonHidden(true)
+     //   }
+       // .navigationBarBackButtonHidden(true)
     }
 }
 
