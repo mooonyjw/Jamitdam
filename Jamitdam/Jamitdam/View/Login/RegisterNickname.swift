@@ -1,10 +1,3 @@
-//
-//  RegisterNickname.swift
-//  Jamitdam
-//
-//  Created by woni on 11/22/24.
-//
-
 import SwiftUI
 
 

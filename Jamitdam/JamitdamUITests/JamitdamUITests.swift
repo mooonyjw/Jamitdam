@@ -1,10 +1,3 @@
-//
-//  JamitDamUITests.swift
-//  JamitDamUITests
-//
-//  Created by woni on 11/18/24.
-//
-
 import XCTest
 
 final class JamitdamUITests: XCTestCase {

@@ -1,10 +1,3 @@
-//
-//  JamitDamTests.swift
-//  JamitDamTests
-//
-//  Created by woni on 11/18/24.
-//
-
 import Testing
 @testable import Jamitdam
 
