@@ -6,7 +6,7 @@ struct CreateJamView: View {
     // 하단의 다음 버튼을 활성화시키기 위한 boolean
     // 인연이 선택되면 true가 된다.
     @State private var isEnabled: Bool = true
- 
+
     // 선택된 인연을 표시하기 위한 딕셔너리
     // 인연이 선택되면 인연의 UUID와 boolean 값이 담긴다.
     @State private var selectedStates: [UUID: Bool] = [:]

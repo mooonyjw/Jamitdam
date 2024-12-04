@@ -17,7 +17,7 @@ struct VotePost: View {
     @State private var poll: Poll = dummyPolls[0]
     public var body: some View {
 
-        NavigationLink(destination: MyPageView()) {
+        NavigationLink(destination: PollView(poll: poll)) {
             
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()

@@ -78,4 +78,3 @@ public struct LikeButton: View {
         }
     }
 }
-

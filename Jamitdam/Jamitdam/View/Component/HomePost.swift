@@ -20,7 +20,7 @@ struct HomePost: View {
     @State var comments: [Comment] = [comment1, comment2, co_comment1]
     
     public var body: some View {
-        NavigationLink(destination: MyPageView()) {
+        NavigationLink(destination: JamDetailView()) {
             VStack(alignment: .leading, spacing: 0) {
                 Spacer()
                     .frame(height: 16)
