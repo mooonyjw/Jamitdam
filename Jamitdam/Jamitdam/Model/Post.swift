@@ -1,7 +1,7 @@
 import SwiftUI
 import Foundation
 
-struct Post {
+struct Post : Identifiable {
     let id: UUID = UUID()
     // 추후 댓글 db 구현 후 작성
     // var comments: [Comment]

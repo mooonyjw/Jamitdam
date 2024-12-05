@@ -1,7 +1,7 @@
 import SwiftUI
 import Foundation
 
-struct Poll {
+struct Poll : Identifiable {
     let id: UUID = UUID()
     var writer: User // 투표 작성자
     var content: String? // 글 본문

@@ -109,9 +109,9 @@ struct MyPageView: View {
                             
                             VStack {
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: RelationshipListView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: MyPostListView(user: user))
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: RelationshipListView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: MyPollListView(user: user))
                             }
                             
                             Spacer()
@@ -144,9 +144,9 @@ struct MyPageView: View {
                             
                             VStack {
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: RelationshipListView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: MyPostListView(user: user))
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: RelationshipListView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: MyPollListView(user: user))
                             }
                             
                             Spacer()
