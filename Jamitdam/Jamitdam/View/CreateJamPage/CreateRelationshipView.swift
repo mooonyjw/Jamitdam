@@ -39,8 +39,7 @@ struct CreateRelationshipView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
+        GeometryReader { geometry in
             VStack {
                 TopBar(title: "새로운 인연 생성하기")
                 ScrollView {
@@ -157,22 +156,23 @@ struct CreateRelationshipView: View {
                             navigateToCreateJam = true })
                     }
                 }
-                }
-                .onChange(of: icon) { _ in updateButtonState() }
-                .onChange(of: nickname) { _ in updateButtonState() }
-                .onChange(of: hashtag) { _ in updateButtonState() }
-                .onTapGesture {
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                }
             }
-            NavigationLink(
-                destination: CreateJamView(),
-                isActive: $navigateToCreateJam
-            ) {
-                EmptyView()
+            .onChange(of: icon) { _ in updateButtonState() }
+            .onChange(of: nickname) { _ in updateButtonState() }
+            .onChange(of: hashtag) { _ in updateButtonState() }
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         }
         .navigationBarBackButtonHidden(true)
+
+        NavigationLink(
+            destination: CreateJamView(),
+            isActive: $navigateToCreateJam
+        ) {
+            EmptyView()
+        }
+    
     }
 }
 
