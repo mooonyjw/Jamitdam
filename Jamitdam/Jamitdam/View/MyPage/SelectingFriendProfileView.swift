@@ -11,11 +11,11 @@ struct SelectingFriendProfileView: View {
     
     //var inputFriend: User
     
-    @State private var friend: User
+    @Binding var friend: User?
     // 초기화 메서드에서 friend 초기값 전달
-    init(friend: User) {
-        _friend = State(initialValue: friend)
-    }
+//    init(friend: User) {
+//        _friend = State(initialValue: friend)
+//    }
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
@@ -29,7 +29,7 @@ struct SelectingFriendProfileView: View {
     // 친구 거절 기능 함수
     func unapprovalFriend() {
         print("친구 거절 버튼 클릭")
-        user.deleteRequestedFriend(friend: friend)
+        user.deleteRequestedFriend(friend: friend!)
     }
     
     var body: some View {
@@ -43,19 +43,19 @@ struct SelectingFriendProfileView: View {
                     AddFriendCustomBar(widthRatio: widthRatio, heightRatio: heightRatio)
                     
                     // 사용자 프로필
-                    Image(friend.profile)
+                    Image(friend!.profile)
                         .resizable()
                         .frame(width: widthRatio * 110, height: heightRatio * 110)
                         .clipShape(Circle())
                         .padding(.top, 26 * heightRatio)
                     
                     // 사용자 이름
-                    Text(friend.name)
+                    Text(friend!.name)
                         .font(.system(size: 25 * widthRatio))
                         .fontWeight(.semibold)
                         .padding(.top, 27 * heightRatio)
                     
-                    Text(friend.name + "님과 친구를 맺어\n재미를 이어보세요!")
+                    Text(friend!.name + "님과 친구를 맺어\n재미를 이어보세요!")
                         .font(.system(size: 20 * widthRatio))
                         .padding(.top, 27 * heightRatio)
                         .multilineTextAlignment(.center)
@@ -79,9 +79,9 @@ struct SelectingFriendProfileView: View {
                             title: Text("친구 추가"),
                             message: Text("친구 추가를 하시겠습니까?"),
                             primaryButton: .default(Text("확인")) {
-                                user.deleteRequestedFriend(friend: friend)
-                                user.addFriend(friend: friend)
-                                friend.addFriend(friend: user)
+                                user.deleteRequestedFriend(friend: friend!)
+                                user.addFriend(friend: friend!)
+                                friend!.addFriend(friend: user)
                                 navigateToFriendProfile = true // 친구 프로필로 이동
                                 print("친구 추가 완료 및 프로필 페이지로 이동")
                             },
@@ -128,7 +128,7 @@ struct SelectingFriendProfileView: View {
                     
   
                     NavigationLink(
-                        destination: FriendProfileView(user: friend),
+                        destination: FriendProfileView(user: $friend),
                         isActive: $navigateToFriendProfile
                     ) {
                         EmptyView()
@@ -148,6 +148,6 @@ struct SelectingFriendProfileView: View {
 
 
 
-#Preview {
-    SelectingFriendProfileView(friend: user3)
-}
+//#Preview {
+//    SelectingFriendProfileView(friend: user3)
+//}

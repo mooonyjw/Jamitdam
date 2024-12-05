@@ -7,7 +7,7 @@ struct RequestedFriendListView: View {
     @State private var user = user1
     @State private var requestedFriends: [User] = []
     @State private var showingAlert = false
-    @State private var selectedFriend: User?
+    @State var selectedFriend: User?
     @State private var navigateToProfile: Bool = false
     
     
@@ -74,7 +74,7 @@ struct RequestedFriendListView: View {
 
             NavigationLink(
                 destination: SelectingFriendProfileView(
-                    friend: selectedFriend ?? user.friends[0]
+                    friend: $selectedFriend
                 ),
                 isActive: $navigateToProfile
             ) {

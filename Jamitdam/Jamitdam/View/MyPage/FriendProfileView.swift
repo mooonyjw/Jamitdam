@@ -6,7 +6,7 @@ struct FriendProfileView: View {
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
-    @State var user: User
+    @Binding var user: User?
     @State private var nickname: String = ""
 
     // 친구 추가 액션 시트
@@ -28,7 +28,7 @@ struct FriendProfileView: View {
                         AddFriendCustomBar(widthRatio: widthRatio, heightRatio: heightRatio)
                         
                         // 화면 가운데 프로필 이미지
-                        Image(user.profile)
+                        Image(user!.profile)
                             .resizable()
                             .frame(width: 110 * widthRatio, height: 110 * heightRatio)
                             .clipShape(Circle())
@@ -81,9 +81,9 @@ struct FriendProfileView: View {
                             
                             VStack {
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: AddFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: RelationshipListView())
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: SelectingFriendProfileView(friend: user1))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: RelationshipListView())
                             }
                             
                             Spacer()
@@ -124,7 +124,7 @@ struct FriendProfileView: View {
                 
             }
             .onAppear {
-                nickname = user.name
+                nickname = user!.name
             }
             .navigationBarHidden(true)
         //}
@@ -134,6 +134,6 @@ struct FriendProfileView: View {
 }
 
 
-#Preview {
-    FriendProfileView(user: user2)
-}
+//#Preview {
+//    FriendProfileView(user: user2)
+//}

@@ -61,7 +61,7 @@ struct MyPageView: View {
                         Spacer()
                             .frame(height: 8 * heightRatio)
                         
-                        NavigationLink(destination: AddFriendProfileView()) {
+                        NavigationLink(destination: RelationshipListView()) {
                             Text("프로필 편집")
                                 .font(.headline)
                                 .foregroundColor(Color("Graybasic"))
@@ -109,9 +109,9 @@ struct MyPageView: View {
                             
                             VStack {
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: AddFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 글", button: "chevron.right", destination: RelationshipListView())
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: SelectingFriendProfileView(friend: user3))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "작성한 투표", button: "chevron.right", destination: RelationshipListView())
                             }
                             
                             Spacer()
@@ -144,9 +144,9 @@ struct MyPageView: View {
                             
                             VStack {
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: AddFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: RelationshipListView())
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: SelectingFriendProfileView(friend: user4))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: RelationshipListView())
                             }
                             
                             Spacer()
@@ -252,7 +252,7 @@ struct MyPageView: View {
                                 
                                 ToggleList(widthRatio: widthRatio, heightRatio: heightRatio, whatToggle: 2, onAlarm: $onAlarm, darkMode: $darkMode)
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "튜토리얼 보기", titleButton: true, destination: SelectingFriendProfileView(friend: user4))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "튜토리얼 보기", titleButton: true, destination: RelationshipListView())
                             }
                             
                             Spacer()
@@ -282,9 +282,9 @@ struct MyPageView: View {
                                 .frame(height: 13 * heightRatio)
                             
                             VStack {
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "로그아웃", titleButton: true, destination: AddFriendProfileView())
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "로그아웃", titleButton: true, destination: RelationshipListView())
                                 
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "탈퇴하기", titleColor: Color.red, titleButton: true, destination: SelectingFriendProfileView(friend: user4))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "탈퇴하기", titleColor: Color.red, titleButton: true, destination: RelationshipListView())
 
                             }
 
