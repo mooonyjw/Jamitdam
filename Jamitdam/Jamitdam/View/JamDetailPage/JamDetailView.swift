@@ -17,8 +17,9 @@ struct JamDetailView: View {
     @State var likesCount: Int = 0
     
     // 더미 댓글 데이터
-    @State var comments: [Comment] = [comment1, comment2, co_comment1]
-    
+    //@State var comments: [Comment] = [comment1, comment2, co_comment1]
+    @State var comments: [Comment] = []
+
     // 최상위 댓글 배열
     @State var topLevelComments: [Comment] = []
     // 대댓글 딕셔너리
@@ -262,6 +263,7 @@ struct JamDetailView: View {
                     initializeLikeStatus()
                     // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
                     initializeComments()
+                    fetchComments(for: post.id)
                 }
                 .onTapGesture {
                     // 배경 터치 시 키보드를 내린다
@@ -394,7 +396,10 @@ struct JamDetailView: View {
             }
         }
     }
-    
+    func fetchComments(for postId: UUID) {
+        comments = dummyComments.filter { $0.postId == postId }
+    }
+
     // parent 댓글에 대한 대댓글 모드
     public func enableReply(parent: Comment) {
         self.parentComment = parent

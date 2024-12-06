@@ -9,7 +9,7 @@ struct VotePost: View {
         self.inputPoll = poll
         self.user = poll.writer
         self.comments = dummyPollComments
-            .filter { $0.postId == post.id }
+            .filter { $0.postId == poll.id }
     }
     
     var screenWidth: CGFloat = 390

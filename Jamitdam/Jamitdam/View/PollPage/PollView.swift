@@ -8,12 +8,16 @@ struct PollView: View {
     @State private var hasVoted: Bool = false // 사용자가 투표를 완료했는지 여부
     @State private var editingComment: Comment? = nil // 현재 수정 중인 댓글
     @State private var editedContent: String = ""     // 수정된 댓글 내용
+    
+    @State var comments: [Comment] = []
 
+
+    //@State private var poll: Poll = dummyPolls[0]
 
     
     // 더미 댓글 데이터
-    @State var comments: [Comment] = [poll_comment1, poll_comment2, poll_comment3]
-    
+//    @State var comments: [Comment] = [poll_comment1, poll_comment2, poll_comment3]
+//    
     // 최상위 댓글 배열
     @State var topLevelComments: [Comment] = []
     
@@ -419,6 +423,8 @@ struct PollView: View {
                     }
                 }
                 .onAppear {
+                    self.comments = dummyPollComments.filter { $0.postId == poll.id }
+
                     // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
                     initializeComments()
                 }
