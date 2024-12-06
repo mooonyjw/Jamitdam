@@ -652,6 +652,6 @@ extension Character {
     }
 }
 
-//#Preview {
-//    PollView(poll: poll)
-//}
+#Preview {
+    PollView(poll: poll)
+}
