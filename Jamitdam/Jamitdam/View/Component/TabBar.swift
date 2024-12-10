@@ -17,7 +17,7 @@ struct TabBar: View {
                     HomeView()
                         .tabItem {
                             Image(systemName: "house")
-                            Text("홈")
+                            Text("잼얘")
                         }
                     PollHomeView()
                         .tabItem {
