@@ -24,7 +24,7 @@ struct Comment {
 }
 
 
-var dummyComments: [Comment] = [comment1, comment2, co_comment1, comment2_1, comment2_2, co_comment1_2]
+var dummyComments: [Comment] = [comment1, comment2, comment3, co_comment1, comment2_1, comment2_2, co_comment1_2]
 var dummyPollComments: [Comment] = [poll_comment1, poll_comment2, poll_comment3]
 
 // 유수현 밥뭐먹지 글
@@ -46,8 +46,10 @@ var poll_comment3: Comment = Comment(userId: user5.id, postId: poll.id, date: Da
 
 var post2: Post = dummyPosts[1]
 
+var comment3: Comment = Comment(userId: user2.id, postId: post2.id, date: Date() - 60 * 60, content: "탕후루", parentId: nil)
+
 var comment2_1: Comment = Comment(userId: user2.id, postId: post2.id, date: Date() - 60 * 60, content: "굶어", parentId: nil)
 var comment2_2: Comment = Comment(userId: user3.id, postId: post2.id, date: Date() - 60 * 3, content: "설렁탕 어떤데", parentId: nil)
 // comment2의 대댓글
-var co_comment1_2: Comment = Comment(userId: user3.id, postId: post2.id, date: Date() - 60 * 2, content: "마라탕", parentId: comment2.id)
+var co_comment1_2: Comment = Comment(userId: user3.id, postId: post2.id, date: Date() - 60 * 2, content: "마라탕", parentId: comment3.id)
 
