@@ -4,21 +4,8 @@ import SwiftUI
 
 struct DayPlusView: View {
     
-    // EditView에서 데이터를 전달받도록
-    var relationship: Relationship
-    var startDate: Date
+    var dday: DdayData
 
-    
-   // 얼마나 지났는지 날짜 계산
-    private var daysSinceStart: Int {
-        let calendar = Calendar.current
-        // 시간제거
-        let startOfStartDate = calendar.startOfDay(for: startDate)
-        let startOfToday = calendar.startOfDay(for: Date())
-        return max(-1, Calendar.current.dateComponents([.day], from: startOfStartDate, to: startOfToday).day ?? 0)
-    }
-    
-    
     // 화면 닫기 위해 사용
     @Environment(\.dismiss) var dismiss
     
@@ -37,7 +24,7 @@ struct DayPlusView: View {
                             .padding()
                     }
                     Spacer()
-                    NavigationLink(destination: EditView()) {
+                    NavigationLink(destination: EditView(userID: dday.userID, editingDday: dday)) {
                         Text("편집")
                             .font(.callout)
                             .foregroundColor(.graybasic)
@@ -57,25 +44,25 @@ struct DayPlusView: View {
                         .foregroundColor(.whitebackground)
                     
                     //이모지
-                    Text(relationship.icon)
+                    Text(dday.relationship.icon)
                         .font(.system(size: 80))
                     
                 }
                 
-                Text(relationship.nickname)
+                Text(dday.relationship.nickname)
                     .font(.title.bold())
                     .padding()
                 
-                Text("\(relationship.nickname) 님과 \n인연을 시작한 지")
+                Text("\(dday.relationship.nickname) 님과 \n인연을 시작한 지")
                     .font(.title3)
                     .multilineTextAlignment(.center)
                 
-                if daysSinceStart < 0 {
+                if dday.daysSinceStart < 0 {
                     Text("D + 0")
                         .font(.largeTitle.bold())
                         .foregroundColor(.redlogo)
                 }
-                else { Text("D + \(daysSinceStart)")
+                else { Text("D + \(dday.daysSinceStart)")
                         .font(.largeTitle.bold())
                         .foregroundColor(.redlogo)
                 }
@@ -97,8 +84,5 @@ struct DayPlusView: View {
 #Preview {
     
     //DayPlusView()
-    DayPlusView(
-        relationship: tiger,
-           startDate: Calendar.current.date(byAdding: .day, value: -40, to: Date())!
-       )
+    DayPlusView(dday: dday1)
 }

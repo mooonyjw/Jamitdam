@@ -2,35 +2,47 @@
 import Foundation
 import SwiftUI
 
-// navigation에서 입력 값 넣어줄 때
-// 두 개 이상의 데이터 한번에 넣어주기 위해서 구조체로 작성
-struct SelectedData: Hashable {
-    var relationship: Relationship
-    var date: Date
-}
 
 struct EditView: View {
-
-    @State private var startDate = Date()
+    @EnvironmentObject var ddayDataStore: DdayDataStore
+    // 현재 사용자의 ID
+    var userID: UUID
+    var editingDday: DdayData?
     
+    @Environment(\.dismiss) var dismiss
+    @State private var startDate = Date()
     @State private var selectedID: UUID?
     @State private var selectedRelationship: Relationship?
     let relationships: [Relationship] = getRelationships()
     
-    // NavigationStack의 경로를 관리할 상태 변수?
-    @State private var navigationPath = NavigationPath()
-    
+    init(userID: UUID, editingDday: DdayData?) {
+        self.userID = userID
+        self.editingDday = editingDday
+        self._startDate = State(initialValue: editingDday?.date ?? Date())
+        self._selectedID = State(initialValue: editingDday?.relationship.id)
+        
+    }
+
+  
     
     var body: some View {
-        NavigationStack(path: $navigationPath) {
+        //NavigationStack(path: $navigationPath) {
             
             VStack{
                 
                 Button (action: {
                     //action
-                    if let selectedRelationship = relationships.first(where: { $0.id == selectedID }) {
-                        let selectedData = SelectedData(relationship: selectedRelationship, date: startDate)
-                        navigationPath.append(selectedData)
+                    if let selectedID = selectedID,
+                       let selectedRelationship = relationships.first(where: { $0.id == selectedID }) {
+                        if let editingDday = ddayDataStore.DdayDataList.first(where: { $0.userID == userID && $0.relationship.id == selectedID}) {
+                            ddayDataStore.updateDdayData(id: editingDday.id, newRelationship: selectedRelationship, newDate: startDate)
+                            
+                        } else{
+                            let newDdayData = DdayData(relationship: selectedRelationship, date: startDate, userID: userID)
+                            ddayDataStore.addDdayData(newDdayData)
+                            
+                        }
+                        dismiss()
                     }
                     
                 }) {
@@ -126,12 +138,12 @@ struct EditView: View {
                 Spacer()
                 
             }
-            .navigationDestination(for: SelectedData.self) { selectedData in
-                DayPlusView(relationship: selectedData.relationship, startDate: selectedData.date)
-
-            }
+//            .navigationDestination(for: SelectedData.self) { selectedData in
+//                DayPlusView(relationship: selectedData.relationship, startDate: selectedData.date)
+//
+//            }
             .navigationBarBackButtonHidden(true)
-        }
+        
 
     }
     
@@ -139,6 +151,6 @@ struct EditView: View {
     
 }
 
-#Preview {
-    EditView()
-}
+//#Preview {
+//    EditView(user1.id)
+//}

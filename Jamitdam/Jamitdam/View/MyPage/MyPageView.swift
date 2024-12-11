@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MyPageView: View {
+    @EnvironmentObject var ddayDataStore: DdayDataStore
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
@@ -83,7 +84,8 @@ struct MyPageView: View {
                             Spacer().frame(width: 11.5 * widthRatio)
                             
                             // destination 설정 해야함
-                            DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, lover: lover, Dday: 40)
+                            // 수정하기
+                            DdayButton(widthRatio: widthRatio, heightRatio: heightRatio, lover: lover, dday: dday1)
                             
                         }
                         .padding(.leading, 26 * widthRatio)
@@ -356,26 +358,27 @@ struct DdayButton: View {
     var widthRatio: CGFloat
     var heightRatio: CGFloat
     
-    var lover: Relationship
+    var dday: DdayData
+    //var lover: Relationship
     
     // 입력받을 디데이 날짜
-    let Dday: Int
+    //let Dday: Int
     @State private var title: String
 
 
-    init(widthRatio: CGFloat, heightRatio: CGFloat, lover: Relationship, Dday: Int) {
+    init(widthRatio: CGFloat, heightRatio: CGFloat, lover: Relationship, dday: DdayData) {
         self.widthRatio = widthRatio
         self.heightRatio = heightRatio
-        self.lover = lover
-        self.Dday = Dday
-        self._title = State(initialValue: "D+\(Dday)")
+        //self.lover = lover
+        //self.Dday = Dday
+        self._title = State(initialValue: "D+\(dday.daysSinceStart)")
+        self.dday = dday
     }
     
     var body: some View {
         // 디데이 수정 페이지로 이동
 
-        NavigationLink(destination: DayPlusView(relationship: tiger, startDate: Calendar.current.date(byAdding: .day, value: -40, to: Date())!
-           )) {
+        NavigationLink(destination: DayPlusView(dday: dday)) {
 
             VStack {
                 
@@ -384,7 +387,7 @@ struct DdayButton: View {
                         .font(.system(size: 35 * widthRatio))
                         .foregroundColor(Color.white)
                     
-                    Text(lover.icon)
+                    Text(dday.relationship.icon)
                         .font(.system(size: 20 * widthRatio))
                 }
                 Spacer()
