@@ -7,8 +7,11 @@ struct AddFriendProfileView: View {
     // 유수현의 계정
     @State private var user = user1
     // 추가할 친구: 진서기
-    @State private var friend = user2
-    
+    @Binding var selectedFriend: User?
+//    init(friend: User) {
+//        self.friend = friend
+//    }
+    //@Binding private var friend
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
@@ -26,19 +29,19 @@ struct AddFriendProfileView: View {
                 AddFriendCustomBar(widthRatio: widthRatio, heightRatio: heightRatio)
                 
                 // 사용자 프로필
-                Image(friend.profile)
+                Image(selectedFriend!.profile)
                     .resizable()
                     .frame(width: widthRatio * 110, height: heightRatio * 110)
                     .clipShape(Circle())
                     .padding(.top, 26 * heightRatio)
                 
                 // 사용자 이름
-                Text(friend.name)
+                Text(selectedFriend!.name)
                     .font(.system(size: 25 * widthRatio))
                     .fontWeight(.semibold)
                     .padding(.top, 27 * heightRatio)
                 
-                Text(friend.name + "님과 친구를 맺어\n재미를 이어보세요!")
+                Text(selectedFriend!.name + "님과 친구를 맺어\n재미를 이어보세요!")
                     .font(.system(size: 20 * widthRatio))
                     .padding(.top, 27 * heightRatio)
                     .multilineTextAlignment(.center)
@@ -65,11 +68,11 @@ struct AddFriendProfileView: View {
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("친구 요청"),
-                    message: Text(friend.name+"님에게 친구 요청을 하시겠습니까?"),
+                    message: Text(selectedFriend!.name+"님에게 친구 요청을 하시겠습니까?"),
                     primaryButton: .default(Text("확인")) {
                         // 버튼 비활성화 및 문구 변경
                         isRequestSent = true
-                        friend.addRequestedFriend(friend: user)
+                        selectedFriend!.addRequestedFriend(friend: user)
                         print("친구 요청 버튼 클릭")
                     },
                     secondaryButton: .cancel(Text("취소"))
@@ -80,6 +83,6 @@ struct AddFriendProfileView: View {
     }
 }
 
-#Preview {
-    AddFriendProfileView()
-}
+//#Preview {
+//    AddFriendProfileView(friend: user2)
+//}

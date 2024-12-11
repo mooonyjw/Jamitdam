@@ -55,9 +55,7 @@ struct FriendListView: View {
             }
             
             NavigationLink(
-                destination: FriendProfileView(
-                    user: selectedFriend ?? user.friends[0]
-                ),
+                destination: FriendProfileView(user: $selectedFriend),
                 isActive: $navigateToProfile
             ) {
                 EmptyView()

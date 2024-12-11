@@ -4,16 +4,20 @@ struct VotePost: View {
     
     var user: User
     var inputPoll: Poll
-
+    var comments: [Comment]
     init(poll: Poll) {
         self.inputPoll = poll
         self.user = poll.writer
+        self.comments = dummyPollComments
+            .filter { $0.postId == poll.id }
     }
     
     var screenWidth: CGFloat = 390
     var screenHeight: CGFloat = 844
     
-    @State var comments: [Comment] = [comment1, comment2, co_comment1]
+    //@State var comments: [Comment] = [comment1, comment2, co_comment1]
+    
+    // onAppear로 Poll 초기화 - 하드코딩 아님
     @State private var poll: Poll = dummyPolls[0]
     public var body: some View {
 

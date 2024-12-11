@@ -14,7 +14,9 @@ struct Register: View {
     @State private var password: String = ""
     @State private var showAlert = false
     @State private var isIDDuplicated = false
+    @FocusState private var isKeyboardActive: Bool
 
+    @State private var passwordConfirmation: String = ""
 
     @StateObject private var navigationState = NavigationState()
 
@@ -40,7 +42,11 @@ struct Register: View {
         let codePattern = "[0-9]{6}"
         return NSPredicate(format: "SELF MATCHES %@", codePattern).evaluate(with: verificationCode)
     }
-
+    
+    var isPasswordMatch: Bool {
+        return password == passwordConfirmation
+    }
+    
     // 공백 포함 안 됨
     func isPasswordnoWhitespace(_ password: String) -> Bool {
         let noWhitespaceRequirement = password.rangeOfCharacter(from: .whitespacesAndNewlines) == nil
@@ -308,12 +314,38 @@ struct Register: View {
                                     .background(RoundedRectangle(cornerRadius: 15).stroke(Color("Grayunselected"), lineWidth: 1))
                                     .padding(.horizontal)
                                 
+                                // 비밀번호 확인
+                                HStack(spacing: 1) {
+                                    Text("비밀번호 확인 *")
+                                        .font(.body)
+                                        .padding(.horizontal)
+                                    
+                                    if !isPasswordMatch {
+                                        Text("비밀번호가 일치하지 않습니다.")
+                                            .font(.callout)
+                                            .foregroundColor(Color("Redemphasis"))
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
                                 
+                                SecureField("비밀번호 확인", text: $passwordConfirmation)
+                                    .padding()
+                                    .frame(height: 65)
+                                    .background(RoundedRectangle(cornerRadius: 15).stroke(Color("Grayunselected"), lineWidth: 1))
+                                    .padding(.horizontal)
+                                    .padding(.bottom)
+                                    .focused($isKeyboardActive)
+
                             }
                         }
                         .padding(.top, 30)
                     }
-                    
+                    .onTapGesture {
+                        // 배경 터치 시 키보드를 내린다
+                        print(isKeyboardActive)
+                        isKeyboardActive = false
+                        
+                    }
                     Spacer()
                     
                     // Next Button
@@ -322,6 +354,7 @@ struct Register: View {
                     }
                     .disabled(!isFormValid)
                     .padding(.bottom, 70 * heightRatio)
+                    
                     
                    
 //                    NavigationLink(destination: RegisterNickname()) {

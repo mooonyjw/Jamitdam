@@ -17,7 +17,7 @@ struct TabBar: View {
                     HomeView()
                         .tabItem {
                             Image(systemName: "house")
-                            Text("홈")
+                            Text("잼얘")
                         }
                     PollHomeView()
                         .tabItem {
@@ -117,7 +117,7 @@ struct PostPopUp: View {
     var body: some View {
         VStack {
             // 1. 잼얘 생성하기 버튼
-            NavigationLink(destination: WriteJamView()) {
+            NavigationLink(destination: CreateJamView()) {
                 HStack {
                     Text("잼얘 생성하기")
                         .font(.system(size: 16))

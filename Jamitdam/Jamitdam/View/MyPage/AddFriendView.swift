@@ -6,7 +6,9 @@ struct AddFriendView: View {
     
     @State private var friendName: String = ""
     @State private var friendID: String = ""
-    @State private var friendsList = [("John", "john123"), ("Jane", "jane456")]
+    @State private var friendsList = [user2, user3, user4, user5]
+    @State private var selectedFriend: User? = nil
+    @State private var navigateToFriendProfile = false
     
     let textFieldPadding = UIScreen.main.bounds.height * 0.0213
     
@@ -16,9 +18,10 @@ struct AddFriendView: View {
                 title: "아이디로 친구 추가",
                 rightButton: "추가",
                 rightButtonFunc: {
-                    // 해당 친구 프로필로 이동
-                    print("추가 버튼 클릭")
-                },
+                    if let friend = matchingFriend() {
+                        selectedFriend = friend
+                        navigateToFriendProfile = true
+                    }                },
                 rightButtonDisabled: !isFriendValid()
             )
             
@@ -37,6 +40,13 @@ struct AddFriendView: View {
             
             Spacer()
             
+            NavigationLink(
+                destination: AddFriendProfileView(selectedFriend: $selectedFriend),
+                isActive: $navigateToFriendProfile
+            ) {
+                EmptyView()
+            }
+            
         }
         .background(Color("Whitebackground"))
         .navigationBarBackButtonHidden(true) 
@@ -44,8 +54,13 @@ struct AddFriendView: View {
     
     // 일치하는 사용자가 있을 시 추가 버튼 활성화
     private func isFriendValid() -> Bool {
-        friendsList.contains { (name, id) in
-            name == friendName && id == friendID
+        matchingFriend() != nil
+    }
+    
+    // 일치하는 친구를 찾기
+    private func matchingFriend() -> User? {
+        friendsList.first { user in
+            user.name == friendName && user.userID == friendID
         }
     }
 }

@@ -17,8 +17,9 @@ struct JamDetailView: View {
     @State var likesCount: Int = 0
     
     // 더미 댓글 데이터
-    @State var comments: [Comment] = [comment1, comment2, co_comment1]
-    
+    //@State var comments: [Comment] = [comment1, comment2, co_comment1]
+    @State var comments: [Comment] = []
+
     // 최상위 댓글 배열
     @State var topLevelComments: [Comment] = []
     // 대댓글 딕셔너리
@@ -109,12 +110,28 @@ struct JamDetailView: View {
                         }
                         .padding(.top, 10)
                         
-                        // 본문
-                        Text(content)
-                            .font(.system(size: 20))
-                            .frame(height: 110)
-                            .frame(minHeight: 110, maxHeight: .infinity)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        // 본문 및 해시태그
+                        VStack(alignment: .leading) {
+                            Text(content)
+                                .font(.system(size: 20))
+                                .frame(alignment: .leading)
+                                
+                            
+                            if !post.hashTags.isEmpty {
+                                HStack {
+                                    ForEach(post.hashTags.indices, id: \.self) { index in
+                                        Text(post.hashTags[index])
+                                            .font(.system(size: 16, weight: .semibold))
+                                            .foregroundColor(Color("Redemphasis"))
+                                    }
+                                    .padding(.trailing, 5)
+                                }
+                                .padding(.top, 5)
+                            }
+                        }
+                        .frame(height: 110)
+                        .frame(minHeight: 110, maxHeight: .infinity)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         
                         // 이미지
                         if !post.images.isEmpty {
@@ -258,10 +275,12 @@ struct JamDetailView: View {
                 }
                 .padding(.horizontal)
                 .onAppear {
+                    fetchComments(for: post.id)
                     // 사용자의 좋아요 상태를 체크하여 초깃값 설정
                     initializeLikeStatus()
                     // 댓글과 대댓글 분류하여 배열과 딕셔너리 초기화
                     initializeComments()
+
                 }
                 .onTapGesture {
                     // 배경 터치 시 키보드를 내린다
@@ -394,7 +413,10 @@ struct JamDetailView: View {
             }
         }
     }
-    
+    func fetchComments(for postId: UUID) {
+        comments = dummyComments.filter { $0.postId == postId }
+    }
+
     // parent 댓글에 대한 대댓글 모드
     public func enableReply(parent: Comment) {
         self.parentComment = parent
@@ -462,8 +484,9 @@ struct JamDetailView: View {
     
 }
 
-//#Preview {
-//    JamDetailView()
-//}
+#Preview {
+    JamDetailView(post: post2)
+}
+
 
 
