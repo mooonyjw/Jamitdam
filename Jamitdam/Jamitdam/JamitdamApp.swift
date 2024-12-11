@@ -5,7 +5,7 @@ struct JamitdamApp: App {
     @StateObject private var relationshipStore = RelationshipStore()
     var body: some Scene {
         WindowGroup {
-            CreateJamView()
+            SplashView()
                 .environmentObject(relationshipStore)
         }
     }
