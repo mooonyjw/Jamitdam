@@ -22,6 +22,8 @@ class NavigationState: ObservableObject {
     @Published var navigateToSearchPW = false
     
     @Published var navigateToNickname = false
+    
+    @Published var isLoggedIn = false
 
     
 }

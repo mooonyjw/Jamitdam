@@ -108,6 +108,9 @@ struct Login: View {
                         // RedButton fixed at the bottom
                         RedButton(title: "로그인", isEnabled: $isEnabled, height: 55) {
                             navigationState.navigateToHome = true
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                navigationState.navigateToHome = true
+                            }
                         }
                         
 //                        NavigationLink(destination: Register()) {

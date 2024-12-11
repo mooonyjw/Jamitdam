@@ -7,6 +7,7 @@ struct TabBar: View {
     @State private var showLoginModal: Bool = false // 로그인 모달 표시 상태
     @State private var isTabBarHidden: Bool = false
 
+    @EnvironmentObject var navigationState: NavigationState
 
     
     var body: some View {
@@ -46,16 +47,16 @@ struct TabBar: View {
                 .accentColor(Color("Redlogo"))
                 
                 .onAppear {
-                    if !isLoggedIn {
+                    if !navigationState.isLoggedIn {
                         showLoginModal = true // 로그인 상태가 아니면 모달 표시
                     }
                 }
                 .sheet(isPresented: $showLoginModal, onDismiss: {
-                    if !isLoggedIn {
+                    if !navigationState.isLoggedIn {
                         showLoginModal = true // 로그인이 안 되어 있으면 모달 다시 표시
                     }
                 }) {
-                    LoginModal(isLoggedIn: $isLoggedIn, showLoginModal: $showLoginModal)
+                    LoginModal(showLoginModal: $showLoginModal)
                 }
                 // 새로운 글 버튼
                 VStack {
@@ -105,7 +106,7 @@ struct TabBar: View {
         }
     }
     func checkLoginStatus() {
-        if !isLoggedIn {
+        if !navigationState.isLoggedIn {
             showLoginModal = true // 로그인 상태가 아니면 모달 표시
         }
     }
