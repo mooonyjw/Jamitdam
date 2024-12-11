@@ -109,7 +109,7 @@ struct RelationshipListView: View {
                 )
             }
             NavigationLink(
-                destination: CreateRelationshipView(relationshipStore: relationshipStore).environmentObject(relationshipStore),
+                destination: CreateRelationshipListView(relationshipStore: relationshipStore).environmentObject(relationshipStore),
                 isActive: $navigateToCreateRelationship,
                 label: { EmptyView() }
             )
