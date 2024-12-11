@@ -58,7 +58,7 @@ var dummyPolls: [Poll] = [
         content: "나 대망의 첫 소개팅임. 컄ㅋ캬컄컄ㅋㅋ \n\n그런 의미에서 나 뭐입고 갈지 추천해줘 ㅎㅎ \n성공하면 밥살게 ㅎㅎ",
         options: ["치마+롱부츠", "원피스", "흰티+청바지"],
         votes: [1, 0, 5],
-        voters: [:],
+        voters: [user1.id:2],
         createdAt: Date().addingTimeInterval(-900)
     )
 ]
