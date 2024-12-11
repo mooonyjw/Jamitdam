@@ -115,8 +115,8 @@ struct LoginModal: View {
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var isEnabled: Bool = true
-    @Binding var isLoggedIn: Bool
     @Binding var showLoginModal: Bool // TabBar의 모달 상태 제어
+    @EnvironmentObject var navigationState: NavigationState
 
 
     @State private var navigateToRegister: Bool = false
@@ -217,7 +217,7 @@ struct LoginModal: View {
                                 print("아이디와 비밀번호를 입력하세요.")
                             } else {
                                 print("로그인 성공")
-                                isLoggedIn = true // 로그인 성공 시 상태 변경
+                                navigationState.isLoggedIn = true // 로그인 성공 시 상태 변경
                                 showLoginModal = false // 모달 닫기
 
                                 

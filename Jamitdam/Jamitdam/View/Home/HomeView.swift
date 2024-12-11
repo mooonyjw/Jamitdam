@@ -6,12 +6,13 @@ struct HomeView: View {
     private var writer: User = user1
     // 글 (더미데이터 유수현의 글)
     //private var post: Post = dummyPosts[0]
+
     private var posts: [Post] = dummyPosts // 모든 포스트 데이터
+    @EnvironmentObject var navigationState: NavigationState
 
     @State private var showLoginModal: Bool = false
-    @State private var isLoggedIn: Bool = false // 로그인 상태 관리
     @State private var transitionToHome: Bool = false // 자연스러운 전환 제어
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -87,11 +88,12 @@ struct HomeView: View {
                         
                         Spacer() // 나머지 공간 차지
                         // 포스트 리스트 섹션
-                        ForEach(posts, id: \.id) { post in
-                            HomePost(post: post)
-                                .padding(.bottom, 5)
+                        if(navigationState.isLoggedIn) {
+                            ForEach(posts, id: \.id) { post in
+                                HomePost(post: post)
+                                    .padding(.bottom, 5)
+                            }
                         }
-                        
                     }
                     .padding(.top)
                 }
