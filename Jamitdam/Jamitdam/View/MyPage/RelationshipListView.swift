@@ -3,7 +3,7 @@ import Foundation
 
 struct RelationshipListView: View {
     
-    @State private var user1Relationships: [Relationship] = getRelationships()
+    @EnvironmentObject var relationshipStore: RelationshipStore
     @State private var isShowDeleteAlert = false
     @State private var selectedRelationship: Relationship?
 
@@ -40,7 +40,7 @@ struct RelationshipListView: View {
                     
                     // 인연 리스트
                     List {
-                        ForEach(user1Relationships) { relationship in
+                        ForEach(relationshipStore.relationships) { relationship in
                             RelationshipRow(relationship: relationship, widthRatio: widthRatio, heightRatio: heightRatio)
                                 .contentShape(Rectangle())
                                 .onTapGesture {
@@ -62,7 +62,10 @@ struct RelationshipListView: View {
                                 }
                         }
                         .onDelete { indexSet in
-                            user1Relationships.remove(atOffsets: indexSet)
+                            indexSet.forEach { index in
+                                let relationship = relationshipStore.relationships[index]
+                                relationshipStore.deleteRelationship(relationship)
+                            }
                         }
                     }
                     .environment(\.editMode, .constant(isEditing ? .active : .inactive))
@@ -72,7 +75,7 @@ struct RelationshipListView: View {
                             message: Text("이 인연을 삭제하시겠습니까?"),
                             primaryButton: .destructive(Text("삭제")) {
                                 if let relationship = selectedRelationship {
-                                    deleteRelationship(relationship)
+                                    relationshipStore.deleteRelationship(relationship)
                                 }
                             },
                             secondaryButton: .cancel(Text("취소"))
@@ -106,7 +109,7 @@ struct RelationshipListView: View {
                 )
             }
             NavigationLink(
-                destination: CreateRelationshipView(),
+                destination: CreateRelationshipView(relationshipStore: relationshipStore).environmentObject(relationshipStore),
                 isActive: $navigateToCreateRelationship,
                 label: { EmptyView() }
             )
@@ -120,12 +123,6 @@ struct RelationshipListView: View {
             )
 
         //}
-    }
-    func deleteRelationship(_ relationship: Relationship) {
-        if let index = user1Relationships.firstIndex(where: { $0.id == relationship.id }) {
-            user1Relationships.remove(at: index)
-        }
-        
     }
 }
 

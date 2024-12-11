@@ -204,6 +204,8 @@ struct PollView: View {
                                         poll.vote(by: currentUser, for: selectedOption) // 투표 실행
                                         print("After voting: \(poll.votes)") // 투표 후 상태 출력
                                         hasVoted = true
+                                        print("Afert voter: \(poll.voters)")
+
                                     }
                                 }
                                 .disabled(!isEnabled) // 선택된 옵션이 없으면 비활성화

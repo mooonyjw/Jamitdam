@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 // DayPlus Navigation에서 필요해서 수정
 struct Relationship: Identifiable, Hashable, Equatable {
@@ -27,3 +28,21 @@ func getRelationships() -> [Relationship] {
 func addRelationship(relationship: Relationship) {
     relationships.append(relationship)
 }
+
+class RelationshipStore: ObservableObject {
+    @Published var relationships: [Relationship]
+    init() {
+        // 초기 더미 데이터로 relationships를 초기화
+        self.relationships = [tiger, podong, gamer, baeksook, son]
+    }
+    
+    func addRelationship(_ relationship: Relationship) {
+        relationships.append(relationship)
+    }
+    
+    func deleteRelationship(_ relationship: Relationship) {
+        relationships.removeAll { $0.id == relationship.id }
+    }
+}
+
+

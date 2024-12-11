@@ -2,6 +2,7 @@ import SwiftUI
 
 
 struct CreateJamView: View {
+    @EnvironmentObject var relationshipStore: RelationshipStore
     // 하단의 다음 버튼을 활성화시키기 위한 boolean
     // 인연이 선택되면 true가 된다.
     @State private var isEnabled: Bool = true
@@ -17,7 +18,6 @@ struct CreateJamView: View {
     @State private var navigateToWrite: Bool = false
     @State private var navigateToCreateRelationship: Bool = false
     
-    let relationships: [Relationship] = getRelationships()
     
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
     let screenWidth: CGFloat = 390
@@ -25,6 +25,7 @@ struct CreateJamView: View {
     
 
     var body: some View {
+        let relationships: [Relationship] = relationshipStore.relationships
         GeometryReader { geometry in
             let widthRatio = geometry.size.width / screenWidth
             let heightRatio = geometry.size.height / screenHeight
@@ -61,7 +62,7 @@ struct CreateJamView: View {
                             ScrollView{
                                 LazyVGrid(columns: columns, alignment: .center, spacing: 0) {
                                     
-                                    ForEach(relationships, id: \.id) {
+                                    ForEach(relationshipStore.relationships, id: \.id) {
                                         relationship in
                                         
                                         // 해당 인연이 선택 되었는지 여부를 나타내는 변수
@@ -236,7 +237,7 @@ struct CreateJamView: View {
                     
                         
                         NavigationLink(
-                            destination: CreateRelationshipView(),
+                            destination: CreateRelationshipView(relationshipStore: relationshipStore).environmentObject(relationshipStore),
                             isActive: $navigateToCreateRelationship
                         ) {
                             EmptyView()
@@ -261,4 +262,5 @@ struct CreateJamView: View {
 
 #Preview {
     CreateJamView()
+        .environmentObject(RelationshipStore())
 }
