@@ -61,7 +61,7 @@ struct MyPageView: View {
                         Spacer()
                             .frame(height: 8 * heightRatio)
                         
-                        NavigationLink(destination: RelationshipListView()) {
+                        NavigationLink(destination: EmptyView()) {
                             Text("프로필 편집")
                                 .font(.headline)
                                 .foregroundColor(Color("Graybasic"))
@@ -144,9 +144,9 @@ struct MyPageView: View {
                             
                             VStack {
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: MyPostListView(user: user))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "좋아요 누른 글", button: "chevron.right", destination: LikePostListView(user: user))
                                 // destination 설정 해야함
-                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: MyPollListView(user: user))
+                                MyPageList(widthRatio: widthRatio, heightRatio: heightRatio, title: "투표한 글", button: "chevron.right", destination: LikePollListView(user: user))
                             }
                             
                             Spacer()
