@@ -22,6 +22,7 @@ struct Post : Identifiable {
     // 글에 포함된 이미지
     var images: [String] = []
     
+    
     // 글 해시태그 추가
     mutating func addHashTags(hastTags: [String]) {
         self.hashTags.append(contentsOf: hastTags)

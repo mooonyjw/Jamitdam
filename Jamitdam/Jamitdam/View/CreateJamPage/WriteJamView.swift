@@ -313,7 +313,7 @@ struct WriteJamView: View {
         .navigationBarHidden(true)
         
         NavigationLink(
-            destination: HomeView(postStore: postStore).environmentObject(postStore),
+            destination: TabBar(),
             isActive: $navigateToHome
         ) {
             EmptyView()
