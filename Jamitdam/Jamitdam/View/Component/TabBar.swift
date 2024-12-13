@@ -6,19 +6,20 @@ struct TabBar: View {
     @State private var isLoggedIn: Bool = false // 로그인 상태 관리
     @State private var showLoginModal: Bool = false // 로그인 모달 표시 상태
     @State private var isTabBarHidden: Bool = false
-
-
+    
+    @EnvironmentObject private var postStore: PostStore
     
     var body: some View {
         NavigationStack {
             ZStack {
                
                 TabView {
-                    HomeView()
+                    HomeView(postStore: postStore)
                         .tabItem {
                             Image(systemName: "house")
                             Text("잼얘")
                         }
+                        .environmentObject(postStore)
                     PollHomeView()
                         .tabItem {
                             Image(systemName: "bubble.left.and.bubble.right")

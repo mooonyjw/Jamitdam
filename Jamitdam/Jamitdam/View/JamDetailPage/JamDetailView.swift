@@ -7,7 +7,6 @@ struct JamDetailView: View {
     // 로그인된 사용자 (유수현)
     @State private var loginedUser: User = user1
     // 글 (더미데이터 유수현의 글)
-    //private var post: Post = dummyPosts[0]
     let post: Post
 
     // 좋아요 눌렀는지 여부

@@ -38,6 +38,10 @@ struct WriteJamView: View {
     // 선택한 이미지
     @State private var selectedImage: UIImage?
     
+    @State private var navigateToHome: Bool = false
+    
+    @EnvironmentObject private var postStore: PostStore
+    
     // 언급 시 보여줄 인연 목록
     var filteredRelationships: [Relationship] {
         if mentionQuery.isEmpty {
@@ -82,10 +86,12 @@ struct WriteJamView: View {
                 title: "글 작성하기",
                 rightButton: "완료",
                 rightButtonFunc: {
-                    // 해당 친구 프로필로 이동
-                    print("추가 버튼 클릭")
+                    // 글 작성 완료
+                    postStore.addPost(_post: Post(content: content, timestamp: Date(), author: user1, title: title, likesCount: 0, hashTags: hashtags, relationships: relationships.filter { mentionedRelationshipIDs.contains($0.id) }))
+                    
+                    navigateToHome = true
                 },
-                rightButtonDisabled: !title.isEmpty && !content.isEmpty
+                rightButtonDisabled: title.isEmpty || content.isEmpty
             )
             VStack {
                 ScrollView {
@@ -305,6 +311,13 @@ struct WriteJamView: View {
             }
         }
         .navigationBarHidden(true)
+        
+        NavigationLink(
+            destination: HomeView(postStore: postStore).environmentObject(postStore),
+            isActive: $navigateToHome
+        ) {
+            EmptyView()
+        }
     }
     
     private func setupKeyboardObservers() {
@@ -327,7 +340,8 @@ struct WriteJamView: View {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
-
-#Preview {
-    WriteJamView()
-}
+//
+//#Preview {
+//    WriteJamView()
+//        .environmentObject(PostStore())
+//}

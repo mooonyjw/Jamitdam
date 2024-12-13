@@ -1,18 +1,18 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    // 글 주인공 (더미데이터 유수현)
-    private var writer: User = user1
-    // 글 (더미데이터 유수현의 글)
-    //private var post: Post = dummyPosts[0]
-    private var posts: [Post] = dummyPosts // 모든 포스트 데이터
-
     @State private var showLoginModal: Bool = false
     @State private var isLoggedIn: Bool = false // 로그인 상태 관리
     @State private var transitionToHome: Bool = false // 자연스러운 전환 제어
     
+    @ObservedObject var postStore: PostStore
+
     var body: some View {
+        // 글 주인공
+        var writer: User = user1
+
+        let posts: [Post] = postStore.posts
+        
         NavigationStack {
             ZStack {
                 Color("Whitebackground") // 배경색 설정
@@ -56,7 +56,6 @@ struct HomeView: View {
                     .padding(.bottom, 40)
                     
                     Spacer() // 나머지 공간을 차지하게 하여 헤더가 위에 고정되도록 설정
-                    
                     
                     ScrollView{
                         // "운명을 잇다" 섹션
@@ -104,7 +103,7 @@ struct HomeView: View {
     }
 }
     
-#Preview {
-
-    HomeView()
-}
+//#Preview {
+//    HomeView(postStore: PostStore())
+//        .environmentObject(PostStore())
+//}
