@@ -116,6 +116,30 @@
     }
 
     /* 기획의도 섹션 스타일 */
+
+    /* 애니메이션 효과 */
+    @keyframes slideInFromLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInFromRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
     .planning-section {
         height: 100vh;
         display: flex;
@@ -126,11 +150,15 @@
         justify-content: center;
     }
 
+    /* 기본 상태: 투명 및 위치 초기화 */
     .plannig-emoji-left,
     .plannig-emoji-right {
         display: flex;
         align-items: center;
         gap: 40px;
+        opacity: 0; /* 애니메이션 전에는 투명 */
+        transform: translateY(20px); /* 기본적으로 약간 아래쪽 */
+        transition: opacity 1s ease, transform 1s ease;
     }
 
     .plannig-emoji-left {
@@ -140,6 +168,32 @@
     .plannig-emoji-right {
         justify-content: flex-end;
         text-align: right;
+    }
+
+    /* 애니메이션 트리거 후 상태 */
+    .show-left {
+        opacity: 1;
+        transform: translateY(0); /* 원래 위치로 복귀 */
+    }
+
+    .show-right {
+        opacity: 1;
+        transform: translateY(0); /* 원래 위치로 복귀 */
+    }
+
+    .center-text {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: left;
+        line-height: 1.6;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .show-center {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .plannig-emoji-left .emoji,
@@ -155,11 +209,18 @@
     }
 
     .center-text {
-        font-size: 20px;
-        font-weight: bold;
-        text-align: left;
-        line-height: 1.6;
-        margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .show-center {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     /* 포지션 섹션 스타일 */
@@ -321,6 +382,41 @@
             </p>
         </div>
     </div>
+    <script>
+        // Intersection Observer 설정
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // 각 요소가 화면에 보일 때 애니메이션 활성화
+                    if (entry.target.classList.contains("plannig-emoji-left")) {
+                        entry.target.classList.add("show-left");
+                    } else if (entry.target.classList.contains("plannig-emoji-right")) {
+                        entry.target.classList.add("show-right");
+                    } else if (entry.target.classList.contains("center-text")) {
+                        entry.target.classList.add("show-center");
+                    }
+                } else {
+                    // 화면에서 벗어나면 애니메이션 비활성화
+                    if (entry.target.classList.contains("plannig-emoji-left")) {
+                        entry.target.classList.remove("show-left");
+                    } else if (entry.target.classList.contains("plannig-emoji-right")) {
+                        entry.target.classList.remove("show-right");
+                    } else if (entry.target.classList.contains("center-text")) {
+                        entry.target.classList.remove("show-center");
+                    }
+                }
+            });
+        });
+    
+        // 관찰 시작
+        document
+            .querySelectorAll(
+                ".plannig-emoji-left, .plannig-emoji-right, .center-text"
+            )
+            .forEach((element) => {
+                observer.observe(element);
+            });
+    </script>
 
     <!-- 포지션 섹션 -->
     <div class="position-section">
