@@ -1,70 +1,91 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jamit - 재미를 잇다</title>
-  <style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jamit - 재미를 잇다</title>
+    <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      padding-left: 50px;
-      padding-right: 50px;
-      background: linear-gradient(90deg, #f4c7c7, #fff4fb);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        padding-left: 50px;
+        padding-right: 50px;
+        background: linear-gradient(90deg, #f4c7c7, #fff4fb);
+    }
+
+    h1 {
+        font-size: 2em;
+        color: #111;
+    }
+
+    p {
+        margin: 15px 0;
+    }
+
+    .highlight {
+        font-weight: bold;
+        color: #d9534f;
+    }
+
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 1.1em;
+        font-weight: bold;
     }
 
     section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* 각 섹션이 화면 전체를 채움 */
-      padding: 50px;
-      box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* 각 섹션이 화면 전체를 채움 */
+        /* padding: 50px; */
+        box-sizing: border-box;
     }
 
     /* 첫 번째 섹션 스타일 */
     .first-section {
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
+        text-align: left;
+        display: flex;
+        justify-content: space-between;
     }
 
     .logo img {
-      width: 117px; /* 로고 크기 */
-      height: auto;
-      padding-bottom: 30px;
+         width: 117px; /* 로고 크기 */
+        height: auto;
+        padding-bottom: 30px;
     }
 
     .subheading {
-      font-size: 30px;
-      font-weight: bolder;
-      color: #333;
-      margin-bottom: 30px;
+        font-size: 30px;
+        font-weight: bolder;
+        color: #333;
+        margin-bottom: 30px;
     }
 
     .subheading2 {
-      font-size: 50px;
-      font-weight: 600;
-      color: #0e0d0d;
-      margin-bottom: 40px;
+        font-size: 50px;
+        font-weight: 600;
+        color: #0e0d0d;
+        margin-bottom: 40px;
     }
 
     .button {
-      display: inline-block;
-      background-color: #ff6f61;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 30px;
-      font-size: 16px;
-      text-decoration: none;
-      margin-top: 20px;
-      cursor: pointer;
-      margin-right: 20px;
+        display: inline-block;
+        background-color: #ff6f61;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 16px;
+        text-decoration: none;
+        margin-top: 20px;
+        cursor: pointer;
+        margin-right: 20px;
     }
 
     .button:hover {
-      background-color: #ff4f41;
+        background-color: #ff4f41;
     }
 
     .button2 {
@@ -83,109 +104,221 @@
         }
 
     .image-container img {
-      max-width: 400px;
+        max-width: 400px;
+        padding-right: 50px;
+    }
+
+    .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 50px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: linear-gradient(145deg, #fff3f3, #ffdada);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .card .emoji {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+    .card .name {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .card .position {
+        font-size: 1.2em;
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    .card ul {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .card ul li {
+        margin-bottom: 10px;
+        font-size: 1em;
+    }
+
+    .card ul li:before {
+        content: '•';
+        color: #ff6f61;
+        margin-right: 8px;
     }
 
     /* 두 번째 섹션 스타일 */
     .about-section {
-      text-align: center;
+        text-align: center;
     }
 
     .about-heading {
-      font-size: 36px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 40px;
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 40px;
     }
 
     .team-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
     }
 
     .team-member {
-      text-align: center;
+        text-align: center;
     }
 
     .team-member .emoji {
-      font-size: 40px;
-      margin-bottom: 10px;
+        font-size: 40px;
+        margin-bottom: 10px;
     }
 
     .team-member .name {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
 
     .team-member .info {
-      font-size: 14px;
-      color: #666;
+        font-size: 14px;
+        color: #666;
     }
-  </style>
+    </style>
 </head>
 <body>
-  <!-- 첫 번째 섹션 -->
-  <section class="first-section">
-    <div>
-      <div class="logo">
-        <img src="images/logo.svg" alt="Jamit 로고">
-      </div>
-      <div class="subheading">재미를 잇다,</div>
-      <div class="subheading2">잼잇담</div>
-      <a href="#" class="button">지금 시작하기</a>
-      <a href="#" class="button2">Sainbunbap</a>
-    </div>
-    <div class="image-container">
-      <img src="images/phones.png" alt="휴대폰1">
-    </div>
-  </section>
+    <!-- 첫 번째 섹션 -->
+    <section class="first-section">
+        <div>
+        <div class="logo">
+            <img src="images/logo.svg" alt="Jamit 로고">
+        </div>
+        <div class="subheading">재미를 잇다,</div>
+        <div class="subheading2">잼잇담</div>
+        <a href="#" class="button">지금 시작하기</a>
+        <a href="#" class="button2">Sainbunbap</a>
+        </div>
+        <div class="image-container">
+        <img src="images/phones.png" alt="휴대폰1">
+        </div>
+    </section>
 
-  <!-- 두 번째 섹션 -->
-  <section class="about-section">
-    <div>
-      <div class="about-heading">Sainbunbap</div>
-      <div class="team-container">
-        <div class="team-member">
-          <div class="emoji">🐼</div>
-          <div class="name">이효정</div>
-          <div class="info">
-            컴퓨터소프트웨어학부<br>
-            2022077510<br>
-            dlgywjd2580@hanyang.ac.kr
-          </div>
+    <div class="second-section">
+        <div class="title">Position</div>
+        <div class="cards">
+            <div class="card">
+                <div class="emoji">🌻</div>
+                <div class="name">김소정</div>
+                <div class="position">사인분밥 뽀글이</div>
+                <ul>
+                    <li>마이페이지</li>
+                    <li>하단탭</li>
+                    <li>상단바 컴포넌트</li>
+                    <li>게시글 더미데이터 생성</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="emoji">🍒</div>
+                <div class="name">손주은</div>
+                <div class="position">사인분밥 대장</div>
+                <ul>
+                    <li>달력</li>
+                    <li>투표 생성하기</li>
+                    <li>인연 디데이 설정</li>
+                    <li>더미데이터 생성 및 테스트</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="emoji">🐼</div>
+                <div class="name">이효정</div>
+                <div class="position">사인분밥 서열꼴지</div>
+                <ul>
+                    <li>잼얘 생성하기</li>
+                    <li>잼얘 보기</li>
+                    <li>인연 만들기</li>
+                    <li>댓글, 답글, 좋아요</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="emoji">🦍</div>
+                <div class="name">임정원</div>
+                <div class="position">사인분밥 고릴라</div>
+                <ul>
+                    <li>스플래시 화면</li>
+                    <li>로그인 / 회원가입</li>
+                    <li>잼얘 / 투표 홈 화면</li>
+                    <li>투표 보기</li>
+                </ul>
+            </div>
         </div>
-        <div class="team-member">
-          <div class="emoji">🌻</div>
-          <div class="name">김소정</div>
-          <div class="info">
-            컴퓨터소프트웨어학부<br>
-            2022054702<br>
-            cindy0325@hanyang.ac.kr
-          </div>
+    </section>
+
+    <!-- 두 번째 섹션 -->
+    <section class="about-section">
+        <div>
+        <div class="about-heading">Sainbunbap</div>
+        <div class="team-container">
+            <div class="team-member">
+            <div class="emoji">🐼</div>
+            <div class="name">이효정</div>
+            <div class="info">
+                컴퓨터소프트웨어학부<br>
+                2022077510<br>
+                dlgywjd2580@hanyang.ac.kr
+            </div>
+            </div>
+            <div class="team-member">
+            <div class="emoji">🌻</div>
+            <div class="name">김소정</div>
+            <div class="info">
+                컴퓨터소프트웨어학부<br>
+                2022054702<br>
+                cindy0325@hanyang.ac.kr
+            </div>
+            </div>
+            <div class="team-member">
+            <div class="emoji">🍒</div>
+            <div class="name">손주은</div>
+            <div class="info">
+                컴퓨터소프트웨어학부<br>
+                2022085069<br>
+                sonje515@hanyang.ac.kr
+            </div>
+            </div>
+            <div class="team-member">
+            <div class="emoji">👽</div>
+            <div class="name">임정원</div>
+            <div class="info">
+                컴퓨터소프트웨어학부<br>
+                2022066953<br>
+                ljungwon91@hanyang.ac.kr
+            </div>
+            </div>
         </div>
-        <div class="team-member">
-          <div class="emoji">🍒</div>
-          <div class="name">손주은</div>
-          <div class="info">
-            컴퓨터소프트웨어학부<br>
-            2022085069<br>
-            sonje515@hanyang.ac.kr
-          </div>
         </div>
-        <div class="team-member">
-          <div class="emoji">👽</div>
-          <div class="name">임정원</div>
-          <div class="info">
-            컴퓨터소프트웨어학부<br>
-            2022066953<br>
-            ljungwon91@hanyang.ac.kr
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
 </body>
 </html>
