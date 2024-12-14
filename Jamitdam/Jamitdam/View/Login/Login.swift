@@ -5,6 +5,8 @@ struct Login: View {
     @State private var password: String = ""
     @State private var isEnabled: Bool = true
     @StateObject private var navigationState = NavigationState()
+    
+    @EnvironmentObject private var postStore: PostStore
 
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
     let screenWidth: CGFloat = 390
@@ -112,18 +114,14 @@ struct Login: View {
                                 navigationState.navigateToHome = true
                             }
                         }
-                        
-//                        NavigationLink(destination: Register()) {
-//                            Text("회원가입")
-//                                .font(.body)
-//                                .foregroundColor(Color.black)
-//                        }
+
                         .padding(.bottom, 70 * heightRatio)
                     }
                 }
             }
             .navigationDestination(isPresented: $navigationState.navigateToHome) {
-                HomeView()
+                HomeView(postStore: postStore)
+                    .environmentObject(postStore)
             }
             .toolbar {
                 // Hide the back button

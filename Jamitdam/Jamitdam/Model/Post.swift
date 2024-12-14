@@ -70,3 +70,21 @@ func addPost(post: Post) {
 func deletePost(post: Post) {
     dummyPosts.removeAll { $0.id == post.id }
 }
+
+class PostStore: ObservableObject {
+    @Published var posts: [Post]
+    
+    init() {
+        // 초기 더미 데이터로 posts를 초기화
+        self.posts = dummyPosts
+    }
+    
+    func addPost(_post: Post) {
+        posts.append(_post)
+    }
+    
+    func deletePost(_ post: Post) {
+        posts.removeAll { $0.id == post.id }
+    }
+    
+}

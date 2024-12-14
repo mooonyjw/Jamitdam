@@ -25,10 +25,6 @@ func getRelationships() -> [Relationship] {
     return relationships
 }
 
-func addRelationship(relationship: Relationship) {
-    relationships.append(relationship)
-}
-
 class RelationshipStore: ObservableObject {
     @Published var relationships: [Relationship]
     init() {
