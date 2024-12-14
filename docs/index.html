@@ -25,13 +25,15 @@
 
     /* 첫 번째 섹션 스타일 */
     .first-section {
+        padding-left: 50px;
+        padding-right: 50px;
         text-align: left;
         display: flex;
         justify-content: space-between;
     }
 
     .first-section .logo img {
-         width: 117px; /* 로고 크기 */
+        width: 117px; /* 로고 크기 */
         height: auto;
         padding-bottom: 30px;
     }
@@ -86,6 +88,72 @@
     .first-section .image-container img {
         max-width: 400px;
         padding-right: 50px;
+    }
+
+    /* 두 번째 섹션 스타일 */
+    .second-section {
+        background: linear-gradient(90deg, #f4c7c7, #fff4fb);
+        justify-content: flex-start;
+        text-align: left; /* 글씨 왼쪽 정렬 */
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .second-section h1 {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .second-section p {
+        font-size: 20px;
+
+    }
+
+    /* 기획의도 섹션 스타일 */
+    .planning-section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding-left: 50px;
+        padding-right: 50px;
+        justify-content: center;
+    }
+
+    .plannig-emoji-left,
+    .plannig-emoji-right {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .plannig-emoji-left {
+        justify-content: flex-start;
+    }
+
+    .plannig-emoji-right {
+        justify-content: flex-end;
+        text-align: right;
+    }
+
+    .plannig-emoji-left .emoji,
+    .plannig-emoji-right .emoji {
+        font-size: 80px;
+    }
+
+    .plannig-emoji-left p,
+    .plannig-emoji-right p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .center-text {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: left;
+        line-height: 1.6;
+        margin: 0;
     }
 
     /* 포지션 섹션 스타일 */
@@ -213,6 +281,34 @@
         <img src="images/phones.png" alt="휴대폰1">
         </div>
     </section>
+
+    <!-- 두 번째 섹션 -->
+    <section class="second-section">
+        <div>
+            <h1>당신의 이야기가 특별해지는 곳</h1>
+            <p>잼잇담에서 함께하세요.</p>
+        </div>
+    </section>
+
+    <!-- 기획 의도 섹션 -->
+    <div class="planning-section">
+        <div class="plannig-emoji-left">
+            <div class="emoji">🥱</div>
+            <p>분명 재미있는 이야기인데,<br>화자에 따라 이야기가 재미없게 들린 경우가 있으신가요?</p>
+        </div>
+        <div class="plannig-emoji-right">
+            <p>이야기 할 때 상대방의 실명을 언급하는 게<br>곤란했던 적이 있으신가요?</p>
+            <div class="emoji">🙈</div>
+        </div>
+        <div class="plannig-emoji-left">
+            <div class="emoji">🤫</div>
+            <p class="center-text">
+                잼잇담은 친구들과 편하게 공유할 수 있는 잼얘부터,<br>
+                어디 가서 말하기 어려운 속깊은 이야기까지<br>
+                누구나 부담 없이 털어놓을 수 있는 공간입니다.
+            </p>
+        </div>
+    </div>
 
     <!-- 포지션 섹션 -->
     <div class="position-section">
