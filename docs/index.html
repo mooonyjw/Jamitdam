@@ -106,7 +106,13 @@
 
     .second-section p {
         font-size: 20px;
+    }
 
+    .second-section .video-container {
+        flex: 1; /* 비디오가 남은 공간을 차지 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     /* 기획의도 섹션 스타일 */
@@ -287,6 +293,12 @@
         <div>
             <h1>당신의 이야기가 특별해지는 곳</h1>
             <p>잼잇담에서 함께하세요.</p>
+        </div>
+        <div class="video-container">
+            <video controls width="300">
+                <source src="images/video.mov" type="video/mp4">
+                브라우저에서 비디오를 지원하지 않습니다.
+            </video>
         </div>
     </section>
 
