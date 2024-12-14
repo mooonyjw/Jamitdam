@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jamit - 재미를 잇다</title>
+    
+    
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -13,7 +15,7 @@
         padding-right: 50px;
         background: linear-gradient(90deg, #f4c7c7, #fff4fb);
     }
-    
+
     section {
         display: flex;
         justify-content: center;
@@ -231,7 +233,7 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-self: center;
+            justify-content: center;
             
     }
 
@@ -240,7 +242,8 @@
         font-size: 2.5em;
         font-weight: bold;
         margin-bottom: 50px;
-        margin-top: 50px;
+        justify-content: center;
+
     }
 
     .position-section .cards {
@@ -255,6 +258,25 @@
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
+        opacity: 0; /* 초기 상태: 보이지 않음 */
+        transform: translateY(30px); /* 아래쪽에서 등장 */
+        transition: all 0.6s ease-out; /* 부드러운 전환 */
+    }
+
+    /* 홀수 카드: 왼쪽에서 등장 */
+    .position-section .card:nth-child(odd) {
+        transform: translateX(-50px);
+    }
+
+    /* 짝수 카드: 오른쪽에서 등장 */
+    .position-section .card:nth-child(even) {
+        transform: translateX(50px);
+    }
+
+    /* 활성화된 카드 스타일 */
+    .position-section .card.active {
+        opacity: 1; /* 보이도록 설정 */
+        transform: translateX(0); /* 원래 위치로 이동 */
     }
 
     .position-section .card .emoji {
@@ -292,6 +314,154 @@
         margin-right: 8px;
     }
 
+    /* 기능 알아보기 스타일 */
+    .features-section {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .features-section .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .features-section .title {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 50px;
+    }
+
+    .features-section .features {
+        display: flex;
+        justify-content: space-around; /* 여백 조정 */
+        gap: 60px; /* 박스 간격 */
+    }
+
+    .features-section .feature {
+        flex: 1;
+        background: #ffeef3;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 310px; /* 각 박스 크기 제한 */
+        box-sizing: border-box;
+    }
+
+    .features-section .feature h2 {
+        font-size: 3em;
+        color: #ff6f61;
+        margin-bottom: 20px;
+        background: #ffe4df;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        margin: 0 auto 20px auto;
+    }
+
+    .features-section .feature h3 {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .features-section .feature p {
+        font-size: 1em;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    @media screen and (max-width: 768px) {
+        .features-section .features {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .features-section .feature {
+            max-width: 100%;
+        }
+    }
+
+    /* process 섹션 */
+    .progress-section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    .progress-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .progress-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        gap: 30px;
+    }
+
+    .progress-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        opacity: 0; /* 초기 상태: 보이지 않음 */
+        transform: translateY(30px); /* 아래쪽에서 등장 */
+        transition: all 0.6s ease-out; /* 부드러운 전환 */
+    }
+
+    .progress-item.active {
+        opacity: 1; /* 활성화 시 보이도록 */
+        transform: translateY(0); /* 원래 위치로 이동 */
+    }
+
+    .circle {
+        width: 90px;
+        height: 90px;
+        background: #ffe4e1;
+        color: #333;
+        font-size: 2rem;
+        font-weight: bold;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2px;
+    }
+
+    .progress-details h3 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .progress-details p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #555;
+        margin-bottom: 30px;
+    }
+
+    .progress-line {
+        width: 4px;
+        height: 60px;
+        background: #f0c7c7;
+        margin: -20px 0;
+    }
+    
     /* about 섹션 스타일 */
     .about-section {
         text-align: center;
@@ -418,6 +588,83 @@
             });
     </script>
 
+    
+    <!-- 기능 알아보기 섹션 -->
+    <section class="features-section">
+        <div class="container">
+            <div class="title">Jamitdam 기능 알아보기</div>
+            <div class="features">
+                <div class="feature">
+                    <h2>1</h2>
+                    <h3>인연들과 관련된 이야기를 나눌 수 있습니다.</h3>
+                    <p>다른 친구들의 재미있는 이야기를 실시간으로 확인하고 반응하세요.</p>
+                </div>
+                <div class="feature">
+                    <h2>2</h2>
+                    <h3>내가 겪은 재미있는 일화를 나눌 수 있습니다.</h3>
+                    <p>재미있는 이야기가 생기면 잼잇담으로 친구들에게 알릴 수 있습니다.<br>친구들의 반응을 살피며 재미를 느낄 수 있습니다.</p>
+                </div>
+                <div class="feature">
+                    <h2>3</h2>
+                    <h3>실시간 투표를 통해 친구들과 의견을 나눌 수 있습니다.</h3>
+                    <p>혼자 고민하기 힘든 주제들을 친구들에게 공유해보세요.<br>친구들의 투표로 고민을 빠르게 해결할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress 섹션 -->
+    <section class="progress-section">
+        <h2 class="progress-title">PROGRESS</h2>
+        <div class="progress-container">
+            <div class="progress-item">
+                <div class="circle">01</div>
+                <div class="progress-details">
+                    <h3>Planning</h3>
+                    <p>잼잇담 기획 및 디자인</p>
+                </div>
+                <div class="progress-line"></div>
+            </div>
+            <div class="progress-item">
+                <div class="circle">02</div>
+                <div class="progress-details">
+                    <h3>Development</h3>
+                    <p>프론트엔드 MVP 개발 완료<br>추가 기능 구현 및 버그 수정 진행<br>서버 및 DB 연결 예정</p>
+                </div>
+                <div class="progress-line"></div>
+            </div>
+            <div class="progress-item">
+                <div class="circle">03</div>
+                <div class="progress-details">
+                    <h3>Launch</h3>
+                    <p>3월 출시 예정</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressItems = document.querySelectorAll(".progress-item");
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                        } else {
+                            // 화면을 벗어나면 다시 초기 상태로 설정
+                            entry.target.classList.remove("active");
+                        }
+                    });
+                },
+                { threshold: 0.2 } // 20%가 보이면 트리거
+            );
+
+            progressItems.forEach((item) => observer.observe(item));
+        });
+    </script>
+        
     <!-- 포지션 섹션 -->
     <div class="position-section">
         <div class="title">Position</div>
@@ -468,6 +715,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 포지션 섹션의 카드 요소 선택
+            const positionCards = document.querySelectorAll(".position-section .card");
+
+            // IntersectionObserver 생성
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active"); // 카드가 보이면 active 클래스 추가
+                        } else {
+                            entry.target.classList.remove("active"); // 화면에서 벗어나면 active 클래스 제거
+                        }
+                    });
+                },
+                { threshold: 0.2 } // 20%가 보이면 트리거
+            );
+
+            // 각 카드를 observer로 감시
+            positionCards.forEach((card) => observer.observe(card));
+        });
+    </script>
 
     <!-- about 섹션 -->
     <section class="about-section">
