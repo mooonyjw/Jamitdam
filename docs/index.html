@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jamit - 재미를 잇다</title>
+    <title>Jamitdam - 재미를 잇다</title>
     
     
     <style>
@@ -26,6 +26,30 @@
     }
 
     /* 첫 번째 섹션 스타일 */
+
+    /* 애니메이션 효과 */
+    @keyframes fadeInUp {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+    }
+
+    .show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
     .first-section {
         padding-left: 120px;
         padding-right: 50px;
@@ -506,7 +530,7 @@
 </head>
 <body>
     <!-- 첫 번째 섹션 -->
-    <section class="first-section">
+    <section class="first-section fade-in-up">
         <div>
         <div class="logo">
             <img src="images/logo.svg" alt="Jamit 로고">
@@ -516,10 +540,34 @@
         <a href="#" class="button">지금 시작하기</a>
         <a href="#" class="button2">Sainbunbap</a>
         </div>
-        <div class="image-container">
+        <div class="image-container fade-in-up">
         <img src="images/phones.png" alt="휴대폰1">
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 애니메이션이 적용될 요소 선택
+            const animatedElements = document.querySelectorAll(".fade-in-up");
+    
+            // Intersection Observer 생성
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("show"); // 요소가 화면에 보이면 show 클래스 추가
+                        } else {
+                            entry.target.classList.remove("show"); // 화면에서 벗어나면 show 클래스 제거
+                        }
+                    });
+                },
+                { threshold: 0.2 } // 20%가 보이면 트리거
+            );
+    
+            // 모든 애니메이션 요소를 observer로 감시
+            animatedElements.forEach((element) => observer.observe(element));
+        });
+    </script>
+    
 
     <!-- 기획 의도 섹션 -->
     <div class="planning-section">
@@ -592,21 +640,21 @@
     </section>
     
     <!-- 기능 알아보기 섹션 -->
-    <section class="features-section">
-        <div class="container">
-            <div class="title">Jamitdam 기능 알아보기</div>
+    <section class="features-section fade-in-up">
+        <div class="container fade-in-up">
+            <div class="title fade-in-up">Jamitdam 기능 알아보기</div>
             <div class="features">
-                <div class="feature">
+                <div class="feature fade-in-up">
                     <h2>1</h2>
                     <h3>인연들과 관련된 이야기와 내가 겪은 재미있는 일화를 나눌 수 있습니다.</h3>
                     <p>재미있는 이야기가 생기면 잼잇담으로 친구들에게 알릴 수 있습니다.<br>친구들의 반응을 실시간으로 살피며 재미를 느낄 수 있습니다.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in-up">
                     <h2>2</h2>
                     <h3>이모티콘과 별명을 사용해서 익명성을 보장할 수 있습니다.</h3>
                     <p>이름을 언급하기 곤란하신가요? 이름을 작성하지 않아도 귀여운 이모티콘으로 상대를 표현해 보세요.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in-up">
                     <h2>3</h2>
                     <h3>실시간 투표를 통해 친구들과 의견을 나눌 수 있습니다.</h3>
                     <p>혼자 고민하기 힘든 주제들을 친구들에게 공유해보세요.<br>친구들의 투표로 고민을 빠르게 해결할 수 있습니다.</p>
@@ -614,6 +662,29 @@
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 애니메이션이 적용될 요소 선택
+            const animatedElements = document.querySelectorAll(".fade-in-up");
+    
+            // Intersection Observer 생성
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("show"); // 요소가 화면에 보이면 show 클래스 추가
+                        } else {
+                            entry.target.classList.remove("show"); // 화면에서 벗어나면 show 클래스 제거
+                        }
+                    });
+                },
+                { threshold: 0.2 } // 20%가 보이면 트리거
+            );
+    
+            // 모든 애니메이션 요소를 observer로 감시
+            animatedElements.forEach((element) => observer.observe(element));
+        });
+    </script>
 
     <!-- Progress 섹션 -->
     <section class="progress-section">
