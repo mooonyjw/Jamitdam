@@ -38,4 +38,3 @@ public struct RedButton: View {
         .padding(.horizontal)
     }
 }
-

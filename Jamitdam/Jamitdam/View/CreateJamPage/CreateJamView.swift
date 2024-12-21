@@ -2,10 +2,11 @@ import SwiftUI
 
 
 struct CreateJamView: View {
+    @EnvironmentObject var relationshipStore: RelationshipStore
     // 하단의 다음 버튼을 활성화시키기 위한 boolean
     // 인연이 선택되면 true가 된다.
     @State private var isEnabled: Bool = true
- 
+
     // 선택된 인연을 표시하기 위한 딕셔너리
     // 인연이 선택되면 인연의 UUID와 boolean 값이 담긴다.
     @State private var selectedStates: [UUID: Bool] = [:]
@@ -14,7 +15,9 @@ struct CreateJamView: View {
     // 이 페이지에서는 사용되지 않지만 DB에 추가하는 등의 작업이 필요하므로 선택된 인연을 담는 배열을 만든다.
     @State private var selectedRelationships: [Relationship] = []
     
-    let relationships: [Relationship] = getRelationships()
+    @State private var navigateToWrite: Bool = false
+    @State private var navigateToCreateRelationship: Bool = false
+    
     
     // 반응형 레이아웃을 위해 아이폰14의 너비, 높이를 나누어주기 위해 변수 사용
     let screenWidth: CGFloat = 390
@@ -22,11 +25,12 @@ struct CreateJamView: View {
     
 
     var body: some View {
+        let relationships: [Relationship] = relationshipStore.relationships
         GeometryReader { geometry in
             let widthRatio = geometry.size.width / screenWidth
             let heightRatio = geometry.size.height / screenHeight
             
-            NavigationStack{
+                TopBar(title: "잼얘 생성하기")
                 ZStack {
                     Color("BackgroundWhite")
                     VStack {
@@ -58,7 +62,7 @@ struct CreateJamView: View {
                             ScrollView{
                                 LazyVGrid(columns: columns, alignment: .center, spacing: 0) {
                                     
-                                    ForEach(relationships, id: \.id) {
+                                    ForEach(relationshipStore.relationships, id: \.id) {
                                         relationship in
                                         
                                         // 해당 인연이 선택 되었는지 여부를 나타내는 변수
@@ -82,8 +86,6 @@ struct CreateJamView: View {
                                                 selectedRelationships.append(relationship)
                                             }
                                             
-                                            // 선택된 인연이 있는지 여부에 따라 버튼을 활성화 / 비활성화한다.
-                                            isEnabled = !selectedRelationships.isEmpty
                                         }) {
                                             VStack {
                                                 ZStack {
@@ -122,7 +124,7 @@ struct CreateJamView: View {
                                         }
                                     }
                                     Button(action: {
-                                        
+                                        navigateToCreateRelationship = true
                                     }) {
                                         VStack {
                                             ZStack {
@@ -142,6 +144,7 @@ struct CreateJamView: View {
                                     }
                                 }
                             }.frame(maxHeight: 416 * heightRatio, alignment: .top)
+                                .padding(.horizontal)
                         }
                         else {
                             LazyVGrid(columns: columns, alignment: .center, spacing: 0) {
@@ -170,8 +173,6 @@ struct CreateJamView: View {
                                             selectedRelationships.append(relationship)
                                         }
                                         
-                                        // 선택된 인연이 있는지 여부에 따라 버튼을 활성화 / 비활성화한다.
-                                        isEnabled = !selectedRelationships.isEmpty
                                     }) {
                                         VStack {
                                             ZStack {
@@ -210,7 +211,8 @@ struct CreateJamView: View {
                                     }
                                 }
                                 Button(action: {
-                                    
+                                    navigateToCreateRelationship = true
+                                
                                 }) {
                                     VStack {
                                         ZStack {
@@ -232,14 +234,27 @@ struct CreateJamView: View {
                             .frame(minHeight: 416 * heightRatio, alignment: .top)
                         }
                         Spacer().frame(height: 50 * heightRatio)
-                        RedButton(title: "다음", isEnabled: $isEnabled, height: 55 * heightRatio) {
-                            // 다음으로 넘어가는 action
+                    
+                        
+                        NavigationLink(
+                            destination: CreateRelationshipView(relationshipStore: relationshipStore).environmentObject(relationshipStore),
+                            isActive: $navigateToCreateRelationship
+                        ) {
+                            EmptyView()
+                        }
+                        NavigationLink(destination: WriteJamView(),
+                                       isActive: $navigateToWrite) {
+                            EmptyView()
+                        }
+                        RedButton(title: "다음", isEnabled: $isEnabled, height: 55) {
+                            if isEnabled {
+                                navigateToWrite = true
+                            }
                         }
                     }
-                }
-                .navigationTitle("잼얘 생성하기")
-                .navigationBarTitleDisplayMode(.inline)
+                
             }
+            .navigationBarHidden(true)
         }
     }
 }
@@ -247,5 +262,5 @@ struct CreateJamView: View {
 
 #Preview {
     CreateJamView()
-        .previewDevice(PreviewDevice(rawValue: "iPhone 14"))
+        .environmentObject(RelationshipStore())
 }

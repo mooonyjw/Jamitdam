@@ -1,17 +1,20 @@
-//
-//  JamitdamApp.swift
-//  Jamitdam
-//
-//  Created by 이효정 on 11/5/24.
-//
-
 import SwiftUI
 
 @main
 struct JamitdamApp: App {
+    @StateObject private var relationshipStore = RelationshipStore()
+    @StateObject private var postStore = PostStore()
+    @StateObject private var navigationState = NavigationState()
+    @StateObject private var ddayDataStore = DdayDataStore()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
+                .environmentObject(relationshipStore)
+                .environmentObject(postStore)
+                .environmentObject(navigationState)
+                .environmentObject(ddayDataStore)
+
         }
     }
 }
